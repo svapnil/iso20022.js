@@ -1,5 +1,5 @@
 import { SWIFTCreditPaymentInitiation } from '../../../src/pain/001/SWIFTCreditPaymentInitiation';
-import { ISO20022 } from '../../../src/iso20022';
+import ISO20022 from '../../../src/iso20022';
 import fs from 'fs';
 import libxmljs from 'libxmljs';
 

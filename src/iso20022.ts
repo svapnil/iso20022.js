@@ -5,7 +5,7 @@ export interface ISO20022Config {
     initiatingParty: Party;
 }
 
-export class ISO20022 {
+class ISO20022 {
     private initiatingParty: Party;
 
     constructor(config: ISO20022Config) {
@@ -19,3 +19,5 @@ export class ISO20022 {
         });
     }
 }
+
+export default ISO20022;
