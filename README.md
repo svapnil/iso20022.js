@@ -8,6 +8,8 @@ npm install iso20022.js
 ```
 
 # Usage
+
+```ts
 import { ISO20022 } from 'iso20022.js'
 
 const iso20022 = new ISO20022({
@@ -46,6 +48,7 @@ const creditTransfer = iso20022.createSWIFTCreditPaymentInitiation([{
 }]);
 
 console.log(creditTransfer.toString());
+```
 
 
 
