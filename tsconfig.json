@@ -28,7 +28,9 @@
 
     "paths": {
       "@/*": ["./src/*", "./test/*"]
-    }
+    },
+
+    "baseUrl": "./src",
   },
   "include": ["src", "test"],
   "exclude": ["scripts", "node_modules"],
