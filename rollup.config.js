@@ -1,5 +1,8 @@
 import { defineConfig } from 'rollup';
-import typescript from 'rollup-plugin-typescript2';
+import commonjs from '@rollup/plugin-commonjs';
+import nodeResolve from '@rollup/plugin-node-resolve';
+import typescript from '@rollup/plugin-typescript';
+import dts from 'rollup-plugin-dts';
 
 export default defineConfig([
   {
@@ -17,8 +20,15 @@ export default defineConfig([
     plugins: [
       typescript({
         tsconfig: './tsconfig.json',
-        useTsconfigDeclarationDir: true
-      })
-    ]
+      }),
+      nodeResolve(),
+      commonjs()
+    ],
+    external: ['decimal.js', 'dinero.js', 'xmlbuilder2'], // Add any external dependencies here
+  },
+  {
+    input: 'src/index.ts',
+    output: [{ file: 'dist/index.d.ts', format: 'es' }],
+    plugins: [dts()],
   }
 ]);

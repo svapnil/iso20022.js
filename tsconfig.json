@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     "outDir": "dist",
+    "declaration": true,
+    "declarationDir": "./dist",
+    "emitDeclarationOnly": true,
     // Enable latest features
     "lib": ["ESNext"],
     "target": "ESNext",
@@ -32,6 +35,6 @@
 
     "baseUrl": "./src",
   },
-  "include": ["src", "test"],
+  "include": ["src/**/*", "test/**/*"],
   "exclude": ["scripts", "node_modules"],
 }

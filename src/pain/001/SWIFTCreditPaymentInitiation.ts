@@ -1,4 +1,4 @@
-import { create } from 'xmlbuilder2';
+import xmlbuilder from 'xmlbuilder2';
 import { v4 as uuidv4 } from 'uuid';
 import Dinero, { Currency } from 'dinero.js'
 import { StructuredAddress, Party, Agent, BICAgent, IBANAccount, SWIFTCreditPaymentInstruction } from '../../lib/types.js';
@@ -106,7 +106,7 @@ export class SWIFTCreditPaymentInitiation extends ISO20022PaymentInitiation {
             }
         };
 
-        const doc = create(xmlObj);
+        const doc = xmlbuilder.create(xmlObj);
         return doc.end({ prettyPrint: true });
     }
 }
