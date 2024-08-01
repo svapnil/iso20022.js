@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    // Enable latest features
+    "lib": ["ESNext"],
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleDetection": "auto",
+    "allowJs": true,
+    "isolatedModules": true,
+
+    // Compile Mode
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "Node",
+
+    // Best practices
+    "strict": true,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // Some stricter flags (disabled by default)
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noPropertyAccessFromIndexSignature": false,
+
+    // https://stackoverflow.com/questions/62096269/cant-run-my-node-js-typescript-project-typeerror-err-unknown-file-extension
+    "esModuleInterop": true,
+
+    "paths": {
+      "@/*": ["./src/*", "./test/*"]
+    }
+  },
+  "include": ["src", "test"],
+  "exclude": ["scripts", "node_modules"],
+}

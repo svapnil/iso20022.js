@@ -1,0 +1,41 @@
+{
+  "name": "iso20022.js",
+  "version": "0.0.1",
+  "description": "Simple framework to create and ingest ISO20022 XML files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "shell": "npx tsx --experimental-repl-await"
+  },
+  "type": "module",
+  "keywords": [
+    "iso20022",
+    "finance",
+    "fintech",
+    "payments"
+  ],
+  "homepage": "https://iso20022js.com",
+  "author": "svapnil",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.24.7",
+    "@faker-js/faker": "^8.4.1",
+    "@jest/globals": "^29.7.0",
+    "@types/decimal.js": "^7.4.0",
+    "@types/dinero.js": "^1.9.4",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.12",
+    "@types/uuid": "^10.0.0",
+    "jest": "^29.7.0",
+    "libxmljs": "^1.0.11",
+    "ts-jest": "^29.2.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "decimal.js": "^10.4.3",
+    "dinero.js": "^1.9.1",
+    "uuid": "^10.0.0",
+    "xmlbuilder2": "^3.1.1"
+  }
+}
