@@ -5,20 +5,36 @@ import { StructuredAddress, Party, Agent, BICAgent, IBANAccount, SWIFTCreditPaym
 import { ISO20022PaymentInitiation } from './ISO20022PaymentInitiation';
 import { sanitize } from '../../utils/format';
 
+/**
+ * Configuration interface for SWIFTCreditPaymentInitiation.
+ * @interface SWIFTCreditPaymentInitiationConfig
+ */
 export interface SWIFTCreditPaymentInitiationConfig {
+    /** The party initiating the payment. */
     initiatingParty: Party;
+    /** An array of payment instructions. */
     paymentInstructions: SWIFTCreditPaymentInstruction[];
+    /** Optional unique identifier for the message. If not provided, a UUID will be generated. */
     messageId?: string;
+    /** Optional creation date for the message. If not provided, current date will be used. */
     creationDate?: Date;
 }
 
+/**
+ * Represents a SWIFT Credit Payment v3 Initiation message (pain.001.001.03).
+ * @class
+ * @extends ISO20022PaymentInitiation
+ */
 export class SWIFTCreditPaymentInitiation extends ISO20022PaymentInitiation {
     private initiatingParty: Party;
-    private messageId;
-    private creationDate;
+    private messageId: string;
+    private creationDate: Date;
     private paymentInstructions: SWIFTCreditPaymentInstruction[];
-    // private config: SWIFTCreditPaymentInitiationConfig;
 
+    /**
+     * Creates an instance of SWIFTCreditPaymentInitiation.
+     * @param {SWIFTCreditPaymentInitiationConfig} config - The configuration object.
+     */
     constructor(config: SWIFTCreditPaymentInitiationConfig) {
         super();
         this.initiatingParty = config.initiatingParty;
@@ -28,6 +44,10 @@ export class SWIFTCreditPaymentInitiation extends ISO20022PaymentInitiation {
         this.validate();
     }
 
+    /**
+     * Validates the payment initiation data has the information required to create a valid XML file.
+     * @private
+     */
     private validate() {
         if (this.messageId.length > 35) {
             throw new Error('messageId must not exceed 35 characters');
@@ -35,6 +55,11 @@ export class SWIFTCreditPaymentInitiation extends ISO20022PaymentInitiation {
         // Add more validation as needed
     }
 
+    /**
+     * Generates payment information for a single payment instruction.
+     * @param {SWIFTCreditPaymentInstruction} paymentInstruction - The payment instruction.
+     * @returns {Object} The payment information object.
+     */
     paymentInformation(paymentInstruction: SWIFTCreditPaymentInstruction) {
         const paymentInfId = sanitize(paymentInstruction.id || uuidv4(), 35);
         const amount = Dinero({
@@ -79,6 +104,10 @@ export class SWIFTCreditPaymentInitiation extends ISO20022PaymentInitiation {
         };
     }
 
+    /**
+     * Serializes the payment initiation to an XML string.
+     * @returns {string} The XML representation of the payment initiation.
+     */
     public serialize(): string {
         const paymentsInstructions = this.paymentInstructions.map(p => this.paymentInformation(p));
 
