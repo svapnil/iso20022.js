@@ -1,5 +1,6 @@
 import { Decimal } from "decimal.js"
 import { Currency } from "dinero.js"
+import { Alpha2CountryCode }from "./countries"
 
 /**
  * Represents a payment instruction with essential details.
@@ -48,7 +49,7 @@ export interface StructuredAddress {
     /** The postal or ZIP code. */
     postalCode?: string
     /** The country, typically represented by a country code. */
-    country?: string
+    country?: Alpha2CountryCode
 }
 
 /**

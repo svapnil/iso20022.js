@@ -1,4 +1,4 @@
-# iso20022.js (WIP 🚧)
+# iso20022.js
 iso20022.js is a Node library for creating and managing ISO 20022 XML files.
 
 # Installation
@@ -17,12 +17,12 @@ const iso20022 = new ISO20022({
         name: 'ACME Corporation',
         id: 'ACMECorp',
         account: {
-            iban: 'DE89370400440532013000',
+            accountNumber: '123456789012',
         },
         agent: {
-            bic: 'DEUTDEFF',
+            bic: 'CHASUS33',
             bankAddress: {
-                country: 'DE',
+                country: 'US',
             }
         }
     }

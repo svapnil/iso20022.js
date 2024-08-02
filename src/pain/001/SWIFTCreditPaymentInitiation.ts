@@ -1,7 +1,7 @@
-import xmlbuilder from 'xmlbuilder2';
+import {create} from 'xmlbuilder2';
 import { v4 as uuidv4 } from 'uuid';
 import Dinero, { Currency } from 'dinero.js'
-import { StructuredAddress, Party, Agent, BICAgent, IBANAccount, SWIFTCreditPaymentInstruction } from '../../lib/types.js';
+import { Party, Agent, BICAgent, IBANAccount, SWIFTCreditPaymentInstruction, Account } from '../../lib/types.js';
 import { ISO20022PaymentInitiation } from './ISO20022PaymentInitiation';
 import { sanitize } from '../../utils/format';
 
@@ -47,11 +47,32 @@ export class SWIFTCreditPaymentInitiation extends ISO20022PaymentInitiation {
     /**
      * Validates the payment initiation data has the information required to create a valid XML file.
      * @private
+     * @throws {Error} If validation fails.
      */
     private validate() {
         if (this.messageId.length > 35) {
             throw new Error('messageId must not exceed 35 characters');
         }
+
+        // Validate that all creditors have addresses
+        const creditorWithoutAddress = this.paymentInstructions.find(
+            instruction => !instruction.creditor.address
+        );
+
+        // Validate that all creditors have complete addresses
+        // According to spec, the country is required for all addresses
+        const creditorWithIncompleteAddress = this.paymentInstructions.find(
+            instruction => {
+                const address = instruction.creditor.address;
+                return !address ||
+                    !address.country;
+            }
+        );
+
+        if (creditorWithIncompleteAddress) {
+            throw new Error('All creditors must have complete addresses (street name, building number, postal code, town name, and country)');
+        }
+
         // Add more validation as needed
     }
 
@@ -79,7 +100,7 @@ export class SWIFTCreditPaymentInitiation extends ISO20022PaymentInitiation {
             },
             ReqdExctnDt: this.creationDate.toISOString().split('T')[0],
             Dbtr: this.party(this.initiatingParty),
-            DbtrAcct: this.internationalAccount(this.initiatingParty.account as IBANAccount),
+            DbtrAcct: this.account(this.initiatingParty.account as Account),
             DbtrAgt: this.bicAgent(this.initiatingParty.agent as BICAgent),
             ChrgBr: 'SHAR',
             CdtTrfTxInf: {
@@ -135,7 +156,7 @@ export class SWIFTCreditPaymentInitiation extends ISO20022PaymentInitiation {
             }
         };
 
-        const doc = xmlbuilder.create(xmlObj);
+        const doc = create(xmlObj);
         return doc.end({ prettyPrint: true });
     }
 }

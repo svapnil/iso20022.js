@@ -10,13 +10,13 @@ describe('SWIFTCreditPaymentInitiation', () => {
     beforeEach(() => {
         iso20022 = new ISO20022({
             initiatingParty: {
-                name: 'ACME Corporation',
+                name: 'Acme Corporation',
                 id: 'ACMEID',
                 account: {
-                    iban: 'DE1234567890123456',
+                    accountNumber: '123456789012',
                 },
                 agent: {
-                    bic: 'DEUTDEFF'
+                    bic: 'CHASUS33'
                 }
             }
         });
@@ -34,6 +34,13 @@ describe('SWIFTCreditPaymentInitiation', () => {
                     },
                     agent: {
                         bic: 'DEUTDEFF'
+                    },
+                    address: {
+                        streetName: 'Main St',
+                        buildingNumber: '123',
+                        postalCode: '12345',
+                        townName: 'Funkytown',
+                        country: 'DE'
                     }
                 },
             }

@@ -1,4 +1,4 @@
-import { Party, IBANAccount, BICAgent } from '../../lib/types';
+import { Party, IBANAccount, BICAgent, Account, BaseAccount } from '../../lib/types';
 
 /**
  * Abstract base class for ISO20022 payment initiation (PAIN) messages.
@@ -27,6 +27,38 @@ export abstract class ISO20022PaymentInitiation {
                 TwnNm: party.address?.townName,
                 CtrySubDiv: party.address?.countrySubDivision,
                 Ctry: party.address?.country
+            },
+        };
+    }
+
+    /**
+     * Formats an account according to ISO20022 standards.
+     * This method handles both IBAN and non-IBAN accounts.
+     *
+     * @param {Account} account - The account to be formatted. Can be either an IBANAccount or a BaseAccount.
+     * @returns {Object} An object representing the formatted account information.
+     *                   For IBAN accounts, it returns an object with an IBAN identifier.
+     *                   For non-IBAN accounts, it returns an object with an 'Other' identifier.
+     *
+     * @example
+     * // For an IBAN account
+     * account({ iban: 'DE89370400440532013000' })
+     * // Returns: { Id: { IBAN: 'DE89370400440532013000' } }
+     *
+     * @example
+     * // For a non-IBAN account
+     * account({ accountNumber: '1234567890' })
+     * // Returns: { Id: { Othr: { Id: '1234567890' } } }
+     */
+    account(account: Account) {
+        if ((account as IBANAccount).iban) {
+            return this.internationalAccount(account as IBANAccount);
+        }
+        return {
+            Id: {
+                Othr: {
+                    Id: (account as BaseAccount).accountNumber
+                }
             },
         };
     }
