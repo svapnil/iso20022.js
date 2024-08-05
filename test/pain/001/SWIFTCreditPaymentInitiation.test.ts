@@ -26,7 +26,7 @@ describe('SWIFTCreditPaymentInitiation', () => {
                 type: 'swift',
                 direction: 'credit',
                 amount: 1000,
-                currency: 'EUR',
+                currency: 'USD',
                 creditor: {
                     name: 'John Doe',
                     account: {

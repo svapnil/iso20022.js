@@ -1,4 +1,4 @@
-import { Party, IBANAccount, BICAgent, Account, BaseAccount } from '../../lib/types';
+import { Party, IBANAccount, BICAgent, Account, BaseAccount, Agent, ABAAgent } from '../../lib/types';
 
 /**
  * Abstract base class for ISO20022 payment initiation (PAIN) messages.
@@ -77,16 +77,40 @@ export abstract class ISO20022PaymentInitiation {
     }
 
     /**
-     * Formats a BIC agent according to ISO20022 standards.
-     * @param {BICAgent} agent - The BIC agent information.
-     * @returns {Object} Formatted XML agent information.
+     * Formats an agent according to ISO20022 standards.
+     * This method handles both BIC and ABA agents.
+     * 
+     * @param {Agent} agent - The agent to be formatted. Can be either a BICAgent or an ABAAgent.
+     * @returns {Object} An object representing the formatted agent information.
+     *                   For BIC agents, it returns an object with a BIC identifier.
+     *                   For ABA agents, it returns an object with clearing system member identification.
+     * 
+     * @example
+     * // For a BIC agent
+     * agent({ bic: 'BOFAUS3NXXX' })
+     * // Returns: { FinInstnId: { BIC: 'BOFAUS3NXXX' } }
+     * 
+     * @example
+     * // For an ABA agent
+     * agent({ routingNumber: '026009593' })
+     * // Returns: { FinInstnId: { ClrSysMmbId: { MmbId: '026009593' } } }
      */
-    bicAgent(agent: BICAgent) {
-        return {
-            FinInstnId: {
-                BIC: agent.bic,
-            }
-        };
+    agent(agent: Agent) {
+        if ((agent as BICAgent).bic !== undefined) {
+            return {
+                FinInstnId: {
+                    BIC: (agent as BICAgent).bic,
+                }
+            };
+        } else {
+            return {
+                FinInstnId: {
+                    ClrSysMmbId: {
+                        MmbId: (agent as ABAAgent).routingNumber
+                    }
+                }
+            };
+        }
     }
 
     /**

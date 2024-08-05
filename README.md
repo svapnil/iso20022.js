@@ -14,8 +14,8 @@ import { ISO20022 } from 'iso20022.js'
 
 const iso20022 = new ISO20022({
     initiatingParty: {
-        name: 'ACME Corporation',
-        id: 'ACMECorp',
+        name: 'Acme Corporation',
+        id: 'ACMECORP',
         account: {
             accountNumber: '123456789012',
         },
@@ -28,26 +28,31 @@ const iso20022 = new ISO20022({
     }
 });
 
-const creditTransfer = iso20022.createSWIFTCreditPaymentInitiation([{
-    type: 'swift',
-    direction: 'credit',
-    amount: 1000,
-    currency: 'USD',
-    creditor: {
-        name: 'Jane Smith',
-        account: {
-            iban: 'DE89370400440532013000'
-        },
-        agent: {
-            bic: 'DEUTDEFF',
-            bankAddress: {
-                country: 'DE',
+const creditPaymentInitiation = iso20022.createSWIFTCreditPaymentInitiation({
+    paymentInstructions: [{
+        type: 'swift',
+        direction: 'credit',
+        amount: 1000,
+        currency: 'USD',
+        creditor: {
+            name: 'Jane Smith',
+            account: {
+                iban: 'DE89370400440532013000'
+            },
+            agent: {
+                bic: 'DEUTDEFF',
+            },
+            address: {
+                streetName: "123 Main St",
+                townName: "Funkytown",
+                postalCode: "12345",
+                country: "DE",
             }
         }
-    }
-}]);
+    }]
+});
 
-console.log(creditTransfer.toString());
+console.log(creditPaymentInitiation.toString());
 ```
 
 

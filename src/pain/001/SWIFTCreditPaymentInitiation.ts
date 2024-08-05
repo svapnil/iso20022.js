@@ -98,10 +98,10 @@ export class SWIFTCreditPaymentInitiation extends ISO20022PaymentInitiation {
                     Cd: 'URGP'
                 },
             },
-            ReqdExctnDt: this.creationDate.toISOString().split('T')[0],
+            ReqdExctnDt: this.creationDate.toISOString().split('T')[0], // TODO: Check time zone eventually
             Dbtr: this.party(this.initiatingParty),
             DbtrAcct: this.account(this.initiatingParty.account as Account),
-            DbtrAgt: this.bicAgent(this.initiatingParty.agent as BICAgent),
+            DbtrAgt: this.agent(this.initiatingParty.agent as BICAgent),
             ChrgBr: 'SHAR',
             CdtTrfTxInf: {
                 PmtId: {
@@ -115,7 +115,7 @@ export class SWIFTCreditPaymentInitiation extends ISO20022PaymentInitiation {
                     }
                 },
                 // IntrmyAgt1: paymentInstruction.intermediaryBank ? this.financialInstitution(paymentInstruction.intermediaryBank) : undefined,
-                CdtrAgt: this.bicAgent(paymentInstruction.creditor.agent as BICAgent),
+                CdtrAgt: this.agent(paymentInstruction.creditor.agent as BICAgent),
                 Cdtr: this.party(paymentInstruction.creditor as Party),
                 CdtrAcct: this.internationalAccount(paymentInstruction.creditor.account as IBANAccount),
                 RmtInf: paymentInstruction.remittanceInformation ? {
