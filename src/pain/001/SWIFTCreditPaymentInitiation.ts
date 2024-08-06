@@ -1,4 +1,4 @@
-import {create} from 'xmlbuilder2';
+import { create } from 'xmlbuilder2';
 import { v4 as uuidv4 } from 'uuid';
 import Dinero, { Currency } from 'dinero.js'
 import { Party, Agent, BICAgent, IBANAccount, SWIFTCreditPaymentInstruction, Account } from '../../lib/types.js';
