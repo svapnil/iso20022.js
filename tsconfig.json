@@ -33,8 +33,8 @@
       "@/*": ["./src/*", "./test/*"]
     },
 
-    "baseUrl": "./src",
+    "baseUrl": "./src"
   },
   "include": ["src/**/*", "test/**/*"],
-  "exclude": ["scripts", "node_modules"],
+  "exclude": ["scripts", "node_modules"]
 }
