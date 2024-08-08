@@ -114,7 +114,9 @@ export class SWIFTCreditPaymentInitiation extends ISO20022PaymentInitiation {
                         '@Ccy': paymentInstruction.currency
                     }
                 },
-                // IntrmyAgt1: paymentInstruction.intermediaryBank ? this.financialInstitution(paymentInstruction.intermediaryBank) : undefined,
+                // TODO: Add support for intermediary bank information
+                // This is necessary when the SWIFT Payment needs to be routed through multiple banks in order to reach the recipient
+                // intermediaryBanks will probably need to be an array of BICAgents. There needs to be an easy way to get this information for users
                 CdtrAgt: this.agent(paymentInstruction.creditor.agent as BICAgent),
                 Cdtr: this.party(paymentInstruction.creditor as Party),
                 CdtrAcct: this.internationalAccount(paymentInstruction.creditor.account as IBANAccount),

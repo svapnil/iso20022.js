@@ -1,5 +1,6 @@
 # iso20022.js
-iso20022.js is a Node library for interacting wit the banking system using ISO 20022 XML.
+
+Read the Docs: https://docs.iso20022js.com
 
 The mission of this NPM package is to connect the most widely used programming language to the most widely used payment standard.
 
