@@ -10,19 +10,19 @@ export default defineConfig([
     output: [
       {
         file: 'dist/index.js',
-        format: 'cjs'
+        format: 'cjs',
       },
       {
         file: 'dist/index.mjs',
-        format: 'es'
-      }
+        format: 'es',
+      },
     ],
     plugins: [
       typescript({
         tsconfig: './tsconfig.json',
       }),
       nodeResolve(),
-      commonjs()
+      commonjs(),
     ],
     external: ['decimal.js', 'dinero.js', 'xmlbuilder2'], // Add any external dependencies here
   },
@@ -30,5 +30,5 @@ export default defineConfig([
     input: 'src/index.ts',
     output: [{ file: 'dist/index.d.ts', format: 'es' }],
     plugins: [dts()],
-  }
+  },
 ]);
