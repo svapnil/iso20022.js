@@ -84,6 +84,10 @@ export interface BaseAccount {
   accountNumber: string;
   /** The type of the account. */
   accountType?: 'checking' | 'savings';
+  /** The currency of the account. */
+  currency?: Currency;
+  /** The name of the account. */
+  name?: string;
 }
 
 /**
