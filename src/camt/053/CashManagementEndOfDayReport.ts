@@ -69,28 +69,52 @@ export class CashManagementEndOfDayReport {
     });
   }
 
+  /**
+   * Retrieves all transactions from all statements in the report.
+   * @returns {Transaction[]} An array of all transactions across all statements.
+   */
   get transactions(): Transaction[] {
     return this._statements
       .flatMap(statement => statement.entries)
       .flatMap(entry => entry.transactions);
   }
 
+  /**
+   * Retrieves all entries from all statements in the report.
+   * @returns {Entry[]} An array of all entries across all statements.
+   */
   get entries(): Entry[] {
     return this._statements.flatMap(statement => statement.entries);
   }
 
+  /**
+   * Gets the unique identifier for the message.
+   * @returns {string} The message ID.
+   */
   get messageId(): string {
     return this._messageId;
   }
 
+  /**
+   * Gets the party receiving the report.
+   * @returns {Party} The recipient party information.
+   */
   get recipient(): Party {
     return this._recipient;
   }
 
+  /**
+   * Gets the date and time when the report was created.
+   * @returns {Date} The creation date of the report.
+   */
   get creationDate(): Date {
     return this._creationDate;
   }
 
+  /**
+   * Gets all statements included in the report.
+   * @returns {Statement[]} An array of all statements in the report.
+   */
   get statements(): Statement[] {
     return this._statements;
   }
