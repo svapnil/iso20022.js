@@ -115,5 +115,7 @@ export interface ABAAgent {
 
 /**
  * Represents either a BIC or ABA identified financial agent.
+ * NOTE: Sometimes an agent can include both a BIC and ABA routing number. 
+ * This library does not support that yet, but we will need to.
  */
 export type Agent = BICAgent | ABAAgent;

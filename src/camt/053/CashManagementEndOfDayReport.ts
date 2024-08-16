@@ -1,4 +1,4 @@
-import { Statement } from "camt/types";
+import { Entry, Statement, Transaction } from "camt/types";
 import { Party }  from "../../lib/types";
 import { XMLParser } from "fast-xml-parser";
 import { parseStatement } from "./utils";
@@ -24,10 +24,10 @@ export class CashManagementEndOfDayReport {
   }
 
   static fromXML(rawXml: string): CashManagementEndOfDayReport {
-    const parser = new XMLParser();
+    const parser = new XMLParser({ ignoreAttributes: false });
     const xml = parser.parse(rawXml);
     const bankToCustomerStatement = xml.Document.BkToCstmrStmt;
-    const rawCreationDate = bankToCustomerStatement.CreDtTm;
+    const rawCreationDate = bankToCustomerStatement.GrpHdr.CreDtTm;
     const creationDate = new Date(rawCreationDate);
 
     let statements: Statement[] = [];
@@ -46,6 +46,15 @@ export class CashManagementEndOfDayReport {
       },
       statements: statements
     });
+  }
+
+  get transactions(): Transaction[] {
+    return this._statements.flatMap(statement => statement.entries).flatMap(entry => entry.transactions);
+  }
+
+
+  get entries(): Entry[] {
+    return this._statements.flatMap(statement => statement.entries);
   }
 
   get messageId(): string {
