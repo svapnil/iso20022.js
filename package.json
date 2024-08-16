@@ -67,6 +67,7 @@
   "dependencies": {
     "decimal.js": "^10.4.3",
     "dinero.js": "^1.9.1",
+    "fast-xml-parser": "^4.4.1",
     "xmlbuilder2": "^3.1.1"
   }
 }
