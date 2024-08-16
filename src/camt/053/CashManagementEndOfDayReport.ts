@@ -3,13 +3,25 @@ import { Party } from '../../lib/types';
 import { XMLParser } from 'fast-xml-parser';
 import { parseStatement } from './utils';
 
+/**
+ * Configuration interface for creating a CashManagementEndOfDayReport instance.
+ */
 interface CashManagementEndOfDayReportConfig {
+  /** Unique identifier for the message */
   messageId: string;
+  /** Date and time when the report was created */
   creationDate: Date;
+  /** Party receiving the report */
   recipient: Party;
+  /** Array of bank statements included in the report */
   statements: Statement[];
 }
 
+/**
+ * Represents a Cash Management End of Day Report (CAMT.053.x).
+ * This class encapsulates the data and functionality related to processing
+ * and accessing information from a CAMT.053 XML file.
+ */
 export class CashManagementEndOfDayReport {
   private _messageId: string;
   private _creationDate: Date;
@@ -23,6 +35,13 @@ export class CashManagementEndOfDayReport {
     this._statements = config.statements;
   }
 
+  /**
+   * Creates a CashManagementEndOfDayReport instance from a raw XML string.
+   *
+   * @param {string} rawXml - The raw XML string containing the CAMT.053 data.
+   * @returns {CashManagementEndOfDayReport} A new instance of CashManagementEndOfDayReport.
+   * @throws {Error} If the XML parsing fails or required data is missing.
+   */
   static fromXML(rawXml: string): CashManagementEndOfDayReport {
     const parser = new XMLParser({ ignoreAttributes: false });
     const xml = parser.parse(rawXml);
