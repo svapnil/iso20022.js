@@ -14,6 +14,8 @@ npm install iso20022.js
 
 # Usage
 
+### Payment Initiation: Sending a SWIFT Transfer
+
 ```ts
 import { ISO20022 } from 'iso20022.js';
 
@@ -60,6 +62,17 @@ const creditPaymentInitiation = iso20022.createSWIFTCreditPaymentInitiation({
 });
 
 console.log(creditPaymentInitiation.toString());
+```
+
+### Cash Management: Ingesting a CAMT.053 file
+
+```ts
+import { CashManagementEndOfDayReport } from 'iso20022.js';
+
+const xml = fs.readFileSync('balance_report.xml', 'utf8');
+const report = CashManagementEndOfDayReport.fromXML(xml);
+
+console.log(report.transactions);
 ```
 
 ## About ISO20022
