@@ -1,7 +1,7 @@
-import { Entry, Statement, Transaction } from "camt/types";
-import { Party }  from "../../lib/types";
-import { XMLParser } from "fast-xml-parser";
-import { parseStatement } from "./utils";
+import { Entry, Statement, Transaction } from 'camt/types';
+import { Party } from '../../lib/types';
+import { XMLParser } from 'fast-xml-parser';
+import { parseStatement } from './utils';
 
 interface CashManagementEndOfDayReportConfig {
   messageId: string;
@@ -32,7 +32,9 @@ export class CashManagementEndOfDayReport {
 
     let statements: Statement[] = [];
     if (Array.isArray(bankToCustomerStatement.Stmt)) {
-      statements = bankToCustomerStatement.Stmt.map((stmt: any) => parseStatement(stmt));
+      statements = bankToCustomerStatement.Stmt.map((stmt: any) =>
+        parseStatement(stmt),
+      );
     } else {
       statements = [parseStatement(bankToCustomerStatement.Stmt)];
     }
@@ -44,14 +46,15 @@ export class CashManagementEndOfDayReport {
         id: bankToCustomerStatement.GrpHdr.MsgRcpt.Id.OrgId.Othr.Id,
         name: bankToCustomerStatement.GrpHdr.MsgRcpt.Nm,
       },
-      statements: statements
+      statements: statements,
     });
   }
 
   get transactions(): Transaction[] {
-    return this._statements.flatMap(statement => statement.entries).flatMap(entry => entry.transactions);
+    return this._statements
+      .flatMap(statement => statement.entries)
+      .flatMap(entry => entry.transactions);
   }
-
 
   get entries(): Entry[] {
     return this._statements.flatMap(statement => statement.entries);
