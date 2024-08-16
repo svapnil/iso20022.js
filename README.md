@@ -1,5 +1,7 @@
 # iso20022.js
 
+This package is meant for companies using ISO20022 to send and receive payment information.
+
 Read the Docs: https://docs.iso20022js.com
 
 The mission of this NPM package is to connect the most widely used programming language to the most widely used payment standard.
