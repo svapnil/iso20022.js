@@ -1,6 +1,10 @@
 import { Balance, Entry, Statement, Transaction } from 'camt/types';
 import { Account, BICAgent, Party } from '../../lib/types';
-import { parseAccount, parseAgent } from '../../parseUtils';
+import {
+  parseAccount,
+  parseAgent,
+  parseAmountToMinorUnits,
+} from '../../parseUtils';
 
 export const parseStatement = (stmt: any): Statement => {
   const id = stmt.Id.toString();
@@ -13,7 +17,12 @@ export const parseStatement = (stmt: any): Statement => {
   // Txn Summaries
   const numOfEntries = stmt.TxsSummry?.TtlNtries.NbOfNtries;
   const sumOfEntries = stmt.TxsSummry?.TtlNtries.Sum;
-  const netAmountOfEntries = stmt.TxsSummry?.TtlNtries.TtlNetNtryAmt;
+  const rawNetAmountOfEntries = stmt.TxsSummry?.TtlNtries.TtlNetNtryAmt;
+  let netAmountOfEntries;
+  // No currency information, default to USD
+  if (rawNetAmountOfEntries) {
+    netAmountOfEntries = parseAmountToMinorUnits(rawNetAmountOfEntries);
+  }
 
   const numOfCredits = stmt.TxsSummry?.TtlCdtNtries.NbOfNtries;
   const sumOfCredits = stmt.TxsSummry?.TtlCdtNtries.Sum;
@@ -63,8 +72,9 @@ export const parseStatement = (stmt: any): Statement => {
 };
 
 export const parseBalance = (balance: any): Balance => {
-  const amount = balance.Amt['#text'];
+  const rawAmount = balance.Amt['#text'];
   const currency = balance.Amt['@_Ccy'];
+  const amount = parseAmountToMinorUnits(rawAmount, currency);
   const creditDebitIndicator =
     balance.CdtDbtInd === 'CRDT' ? 'credit' : 'debit';
   const type = balance.Tp.CdOrPrtry.Cd;
@@ -81,8 +91,9 @@ export const parseEntry = (entry: any): Entry => {
   const creditDebitIndicator = entry.CdtDbtInd === 'CRDT' ? 'credit' : 'debit';
   const bookingDate = new Date(entry.BookgDt.DtTm);
   const reversal = entry.RvslInd === 'true';
-  const amount = entry.Amt['#text'];
+  const rawAmount = entry.Amt['#text'];
   const currency = entry.Amt['@_Ccy'];
+  const amount = parseAmountToMinorUnits(rawAmount, currency);
   const proprietaryCode = entry.BkTxCd.Prtry.Cd;
 
   // Currently, we flatten entry details into a list of TransactionDetails

@@ -30,7 +30,7 @@ describe('CashManagementEndOfDayReport', () => {
         expect(statement.toDate).toBeInstanceOf(Date);
         expect(statement.numOfEntries).toBe(14);
         expect(statement.sumOfEntries).toBe(140);
-        expect(statement.netAmountOfEntries).toBe(40);
+        expect(statement.netAmountOfEntries).toBe(40_00);
         expect(statement.account).toEqual({
           accountNumber: 'DD01100056869',
           currency: 'USD',
@@ -43,7 +43,7 @@ describe('CashManagementEndOfDayReport', () => {
         // Balances
         expect(statement.balances.length).toBe(4);
         const firstBalance = statement.balances[0];
-        expect(firstBalance.amount).toBe(843686.2);
+        expect(firstBalance.amount).toBe(843686_20);
         expect(firstBalance.currency).toBe('USD');
         expect(firstBalance.creditDebitIndicator).toBe('debit');
         expect(firstBalance.type).toBe('OPBD');
@@ -51,7 +51,7 @@ describe('CashManagementEndOfDayReport', () => {
         // Entries
         expect(statement.entries.length).toBe(15);
         const firstEntry = statement.entries[0];
-        expect(firstEntry.amount).toBe(10);
+        expect(firstEntry.amount).toBe(10_00);
         expect(firstEntry.currency).toBe('USD');
         expect(firstEntry.creditDebitIndicator).toBe('credit');
         expect(firstEntry.proprietaryCode).toBe('ACH Credit Reject');
