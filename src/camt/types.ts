@@ -8,8 +8,8 @@ export interface Statement {
   electronicSequenceNumber: number;
   legalSequenceNumber: number;
   creationDate: Date;
-  fromDate: Date;
-  toDate: Date;
+  fromDate?: Date;
+  toDate?: Date;
   account: Account;
   agent: Agent;
   numOfEntries?: number;

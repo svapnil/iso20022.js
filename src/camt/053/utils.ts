@@ -11,8 +11,13 @@ export const parseStatement = (stmt: any): Statement => {
   const electronicSequenceNumber = stmt.ElctrncSeqNb;
   const legalSequenceNumber = stmt.LglSeqNb;
   const creationDate = new Date(stmt.CreDtTm);
-  const fromDate = new Date(stmt.FrToDt.FrDtTm);
-  const toDate = new Date(stmt.FrToDt.ToDtTm);
+
+  let fromDate;
+  let toDate;
+  if (stmt.FrToDt) {
+    fromDate = new Date(stmt.FrToDt.FrDtTm);
+    toDate = new Date(stmt.FrToDt.ToDtTm);
+  }
 
   // Txn Summaries
   const numOfEntries = stmt.TxsSummry?.TtlNtries.NbOfNtries;
@@ -94,7 +99,7 @@ export const parseEntry = (entry: any): Entry => {
   const rawAmount = entry.Amt['#text'];
   const currency = entry.Amt['@_Ccy'];
   const amount = parseAmountToMinorUnits(rawAmount, currency);
-  const proprietaryCode = entry.BkTxCd.Prtry.Cd;
+  const proprietaryCode = entry.BkTxCd.Prtry?.Cd;
 
   // Currently, we flatten entry details into a list of TransactionDetails
   let rawEntryDetails = entry.NtryDtls;

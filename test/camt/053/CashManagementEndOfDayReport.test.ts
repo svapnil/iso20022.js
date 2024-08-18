@@ -134,5 +134,14 @@ describe('CashManagementEndOfDayReport', () => {
         expect(report.messageId).toBe('9184021900');
       });
     });
+
+    describe('with a Nordea 053 v2 file', () => {
+      it('should create an instance with valid config', () => {
+        xmlFilePath = `${process.cwd()}/test/assets/nordea_example_camt.xml`;
+        const camt053V2Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        report = CashManagementEndOfDayReport.fromXML(camt053V2Sample);
+        expect(report.messageId).toBe('XML12345678901234567890123456789012');
+      });
+    });
   });
 });
