@@ -1,4 +1,3 @@
-import { Decimal } from 'decimal.js';
 import { Currency } from 'dinero.js';
 import { Alpha2CountryCode } from './countries';
 

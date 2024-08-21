@@ -1,5 +1,5 @@
 import { Balance, Entry, Statement, Transaction } from 'camt/types';
-import { Account, BICAgent, Party } from '../../lib/types';
+import { Party } from '../../lib/types';
 import {
   parseAccount,
   parseAgent,

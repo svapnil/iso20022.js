@@ -1,4 +1,4 @@
-import { Entry, Statement, Transaction } from 'camt/types';
+import { Entry, Statement, Transaction } from '../types';
 import { Party } from '../../lib/types';
 import { XMLParser } from 'fast-xml-parser';
 import { parseStatement } from './utils';

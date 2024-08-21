@@ -48,7 +48,6 @@
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@types/decimal.js": "^7.4.0",
     "@types/dinero.js": "^1.9.4",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.14.12",
@@ -65,7 +64,6 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "decimal.js": "^10.4.3",
     "dinero.js": "^1.9.1",
     "fast-xml-parser": "^4.4.1",
     "xmlbuilder2": "^3.1.1"
