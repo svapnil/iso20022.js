@@ -24,7 +24,7 @@ export default defineConfig([
       nodeResolve(),
       commonjs(),
     ],
-    external: ['decimal.js', 'dinero.js', 'xmlbuilder2'], // Add any external dependencies here
+    external: ['dinero.js', 'xmlbuilder2'], // Add any external dependencies here
   },
   {
     input: 'src/index.ts',
