@@ -1,5 +1,5 @@
 import { create } from 'xmlbuilder2';
-import { randomUUID } from 'crypto';
+import { v4 as uuidv4 } from 'uuid';
 import Dinero, { Currency } from 'dinero.js';
 import {
   Party,
@@ -47,7 +47,7 @@ export class SWIFTCreditPaymentInitiation extends ISO20022PaymentInitiation {
     this.initiatingParty = config.initiatingParty;
     this.paymentInstructions = config.paymentInstructions;
     this.messageId =
-      config.messageId || randomUUID().replace(/-/g, '').substring(0, 35);
+      config.messageId || uuidv4().replace(/-/g, '').substring(0, 35);
     this.creationDate = config.creationDate || new Date();
     this.validate();
   }
@@ -91,7 +91,7 @@ export class SWIFTCreditPaymentInitiation extends ISO20022PaymentInitiation {
    * @returns {Object} The payment information object.
    */
   paymentInformation(paymentInstruction: SWIFTCreditPaymentInstruction) {
-    const paymentInfId = sanitize(paymentInstruction.id || randomUUID(), 35);
+    const paymentInfId = sanitize(paymentInstruction.id || uuidv4(), 35);
     const amount = Dinero({
       amount: paymentInstruction.amount,
       currency: paymentInstruction.currency,
