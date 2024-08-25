@@ -20,6 +20,4 @@ export type {
   BalanceType,
 } from './camt/types';
 
-export {
-  CashManagementEndOfDayReport,
-} from './camt/053/CashManagementEndOfDayReport';
+export { CashManagementEndOfDayReport } from './camt/053/CashManagementEndOfDayReport';

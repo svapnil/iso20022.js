@@ -47,6 +47,7 @@ describe('CashManagementEndOfDayReport', () => {
         expect(firstBalance.currency).toBe('USD');
         expect(firstBalance.creditDebitIndicator).toBe('debit');
         expect(firstBalance.type).toBe('OPBD');
+        expect(firstBalance.date).toBeInstanceOf(Date);
 
         // Entries
         expect(statement.entries.length).toBe(15);
