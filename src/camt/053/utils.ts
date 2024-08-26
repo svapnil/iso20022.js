@@ -1,5 +1,6 @@
 import { Balance, Entry, Statement, Transaction } from 'camt/types';
 import { Party } from '../../lib/types';
+import { parseDate } from '../../parseUtils';
 import {
   parseAccount,
   parseAgent,
@@ -83,7 +84,7 @@ export const parseBalance = (balance: any): Balance => {
   const creditDebitIndicator =
     balance.CdtDbtInd === 'CRDT' ? 'credit' : 'debit';
   const type = balance.Tp.CdOrPrtry.Cd;
-  const date = new Date(balance.Dt.DtTm);
+  const date = parseDate(balance.Dt);
   return {
     date,
     amount,

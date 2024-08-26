@@ -142,6 +142,10 @@ describe('CashManagementEndOfDayReport', () => {
         const camt053V2Sample = fs.readFileSync(xmlFilePath, 'utf8');
         report = CashManagementEndOfDayReport.fromXML(camt053V2Sample);
         expect(report.messageId).toBe('XML12345678901234567890123456789012');
+
+        // First balance parses file (Dt)
+        const firstBalance = report.statements[0].balances[0];
+        expect(firstBalance.date).toEqual(new Date('2019-05-08'));
       });
     });
   });
