@@ -56,6 +56,7 @@ describe('CashManagementEndOfDayReport', () => {
         expect(firstEntry.currency).toBe('USD');
         expect(firstEntry.creditDebitIndicator).toBe('credit');
         expect(firstEntry.proprietaryCode).toBe('ACH Credit Reject');
+        expect(firstEntry.bookingDate).toBeInstanceOf(Date);
 
         // Currently, we flatten entry details into a list of transactions
         expect(firstEntry.transactions.length).toBe(1);

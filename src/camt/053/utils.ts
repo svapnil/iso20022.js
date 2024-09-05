@@ -97,7 +97,7 @@ export const parseBalance = (balance: any): Balance => {
 export const parseEntry = (entry: any): Entry => {
   const referenceId = entry.NtryRef;
   const creditDebitIndicator = entry.CdtDbtInd === 'CRDT' ? 'credit' : 'debit';
-  const bookingDate = new Date(entry.BookgDt.DtTm);
+  const bookingDate = parseDate(entry.BookgDt);
   const reversal = entry.RvslInd === 'true';
   const rawAmount = entry.Amt['#text'];
   const currency = entry.Amt['@_Ccy'];
