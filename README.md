@@ -9,7 +9,7 @@ The mission of this NPM package is to connect the most widely used programming l
 If you're interested in using iso20022.js and would like to use different payment types or ingest files using CAMT, please email [svapnil@woodside.sh](mailto:svapnil@woodside.sh).
 
 
-[![Book with Cal](https://cal.com/book-with-cal-dark.svg)](https://cal.com/woodside/30min?utm_source=banner&utm_campaign=oss)
+[![Book with Cal](https://cal.com/book-with-cal-dark.svg)](https://cal.com/woodside/iso20022js?utm_source=banner&utm_campaign=oss)
 
 # Installation
 
