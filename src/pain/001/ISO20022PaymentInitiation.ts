@@ -12,7 +12,7 @@ import {
  * Abstract base class for ISO20022 payment initiation (PAIN) messages.
  * @abstract
  */
-export abstract class ISO20022PaymentInitiation {
+export abstract class PaymentInitiation {
   /**
    * Serializes the payment initiation to a string format.
    * @abstract
