@@ -9,7 +9,7 @@ import {
   SWIFTCreditPaymentInstruction,
   Account,
 } from '../../lib/types.js';
-import { ISO20022PaymentInitiation } from './ISO20022PaymentInitiation';
+import { PaymentInitiation } from './ISO20022PaymentInitiation';
 import { sanitize } from '../../utils/format';
 
 /**
@@ -30,9 +30,9 @@ export interface SWIFTCreditPaymentInitiationConfig {
 /**
  * Represents a SWIFT Credit Payment v3 Initiation message (pain.001.001.03).
  * @class
- * @extends ISO20022PaymentInitiation
+ * @extends PaymentInitiation
  */
-export class SWIFTCreditPaymentInitiation extends ISO20022PaymentInitiation {
+export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
   private initiatingParty: Party;
   private messageId: string;
   private creationDate: Date;
