@@ -3,61 +3,114 @@
 import { Currency } from 'dinero.js';
 import { Account, Agent, Party } from '../lib/types';
 
+/**
+ * Represents a bank statement in the CAMT.053 format.
+ */
 export interface Statement {
+  /** Unique identifier for the statement. */
   id: string;
+  /** Electronic sequence number of the statement. */
   electronicSequenceNumber: number;
+  /** Legal sequence number of the statement. */
   legalSequenceNumber: number;
+  /** Date and time when the statement was created. */
   creationDate: Date;
+  /** Start date of the statement period. */
   fromDate?: Date;
+  /** End date of the statement period. */
   toDate?: Date;
+  /** Account details for which the statement is generated. */
   account: Account;
+  /** Financial institution details. */
   agent: Agent;
+  /** Total number of entries in the statement. */
   numOfEntries?: number;
+  /** Sum of all entries in the statement. */
   sumOfEntries?: number;
+  /** Net amount of all entries in the statement. */
   netAmountOfEntries?: number;
-  // CdtDbtInd is left out because you can calculate it from the entries
+  /** Number of credit entries in the statement. */
   numOfCreditEntries?: number;
+  /** Sum of all credit entries in the statement. */
   sumOfCreditEntries?: number;
+  /** Number of debit entries in the statement. */
   numOfDebitEntries?: number;
+  /** Sum of all debit entries in the statement. */
   sumOfDebitEntries?: number;
+  /** Array of balance information. */
   balances: Balance[];
+  /** Array of transaction entries. */
   entries: Entry[];
 }
 
+/**
+ * Represents a balance in the statement, delinated by date and type.
+ */
 export interface Balance {
+  /** Date of the balance. */
   date: Date;
+  /** Type of the balance. */
   type: BalanceType;
+  /** Amount of the balance. */
   amount: number;
-  // Credit means positive balance, Debit means negative balance
+  /** Indicates whether the balance is credit (positive) or debit (negative). */
   creditDebitIndicator: 'credit' | 'debit';
+  /** Currency of the balance. */
   currency: Currency;
 }
 
 // NOTE: Excluded fields that may be future work:
+/**
+ * Represents a transaction entry in the statement.
+ */
 export interface Entry {
+  /** Unique reference ID for the entry. */
   referenceId: string;
+  /** Indicates whether the entry is a credit or debit. */
   creditDebitIndicator: 'credit' | 'debit';
+  /** Indicates if the entry is a reversal. */
   reversal: boolean;
+  /** Date when the entry was booked. */
   bookingDate: Date;
+  /** Amount of the entry. */
   amount: number;
+  /** Currency of the entry. */
   currency: Currency;
+  /** Proprietary code associated with the entry. */
   proprietaryCode: string;
+  /** Array of individual transactions within this entry. */
   transactions: Transaction[];
 }
 
+/**
+ * Represents an individual transaction within an entry.
+ */
 export interface Transaction {
+  /** Unique message ID for the transaction. */
   messageId?: string;
+  /** Reference ID assigned by the account servicer. */
   accountServicerReferenceId?: string;
+  /** ID of the payment information. */
   paymentInformationId?: string;
+  /** Instruction ID for the transaction. */
   instructionId?: string;
+  /** Unique transaction ID. */
   transactionId?: string;
+  /** Instructed amount for the transaction. */
   instructedAmount?: number;
+  /** Currency of the instructed amount. */
   instructedCurrency?: Currency;
+  /** Proprietary purpose code for the transaction. */
   proprietaryPurpose?: string;
+  /** Details of the debtor party. */
   debtor?: Party;
+  /** Details of the creditor party. */
   creditor?: Party;
+  /** Additional information about the remittance. */
   remittanceInformation?: string;
+  /** Reason for return, if applicable. */
   returnReason?: string;
+  /** Additional information about the return. */
   returnAdditionalInformation?: string;
 }
 
