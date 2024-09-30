@@ -17,10 +17,9 @@ describe('PaymentStatusReport', () => {
         expect(report.initatingParty).toEqual({
           name: 'Goldman Sachs Bank',
         });
-        expect(report.originalGroupInformation).toEqual({
-          originalMessageId: '10280093XXXX',
-        });
+        expect(report.originalMessageId).toEqual('10280093XXXX');
         expect(report).toBeInstanceOf(PaymentStatusReport);
+        expect(report.statuses).toHaveLength(1);
       });
     });
   });
