@@ -1,4 +1,4 @@
-import { Account, Agent } from 'lib/types';
+import { Account, Agent, Party } from 'lib/types';
 import Dinero, { Currency } from 'dinero.js';
 
 export const parseAccount = (account: any): Account => {
@@ -45,4 +45,11 @@ export const parseDate = (dateElement: any): Date => {
   // Find the date element, which can be DtTm or Dt
   const date = dateElement.DtTm || dateElement.Dt;
   return new Date(date);
+};
+
+export const parseParty = (party: any): Party => {
+  return {
+    id: party.Id?.OrgId?.Othr?.Id,
+    name: party.Nm,
+  } as Party;
 };

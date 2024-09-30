@@ -2,6 +2,7 @@ import { Entry, Statement, Transaction } from '../types';
 import { Party } from '../../lib/types';
 import { XMLParser } from 'fast-xml-parser';
 import { parseStatement } from './utils';
+import { parseParty } from '../../parseUtils';
 
 /**
  * Configuration interface for creating a CashManagementEndOfDayReport instance.
@@ -61,10 +62,7 @@ export class CashManagementEndOfDayReport {
     return new CashManagementEndOfDayReport({
       messageId: bankToCustomerStatement.GrpHdr.MsgId.toString(),
       creationDate,
-      recipient: {
-        id: bankToCustomerStatement.GrpHdr.MsgRcpt.Id.OrgId.Othr.Id,
-        name: bankToCustomerStatement.GrpHdr.MsgRcpt.Nm,
-      },
+      recipient: parseParty(bankToCustomerStatement.GrpHdr.MsgRcpt),
       statements: statements,
     });
   }
