@@ -26,14 +26,15 @@ export type Status =
   | 'accepted'
   | 'acceptedPendingSettlement'
   | 'acceptedSettlementInProgress'
-  | 'acceptedSettlementCompleted';
+  | 'acceptedSettlementCompleted'
+  | 'acceptedTechnicalValidation';
 
 interface BaseStatus {
   type: StatusType;
   status: Status;
   reason?: {
-    code: string;
-    additionalInformation: string;
+    code?: string;
+    additionalInformation?: string;
   };
 }
 
@@ -86,10 +87,29 @@ export class PaymentStatusReport {
       originalMessageId: rawOriginalGroupInformation.OrgnlMsgId,
     };
 
+    const rawPmtInfAndSts = customerPaymentStatusReport.OrgnlPmtInfAndSts;
+    const pmtInfAndSts = Array.isArray(rawPmtInfAndSts)
+      ? rawPmtInfAndSts
+      : [rawPmtInfAndSts].filter(Boolean);
+    // Find all TxnInfoAndSts
+    debugger;
+    const txnInfoAndSts = pmtInfAndSts
+      .map(pmtInfAndSt => {
+        // If there is no TxInfAndSts, return an empty array
+        if (!pmtInfAndSt.hasOwnProperty('TxInfAndSts')) {
+          return [];
+        }
+        // Otherwise, return the TxInfAndSts
+        return Array.isArray(pmtInfAndSt.TxInfAndSts)
+          ? pmtInfAndSt.TxInfAndSts
+          : [pmtInfAndSt.TxInfAndSts];
+      })
+      .flat();
+
     const statuses = [
       parseGroupStatus(customerPaymentStatusReport.OrgnlGrpInfAndSts),
-      parsePaymentStatuses(customerPaymentStatusReport.OrgnlPmtInfAndSts),
-      parseTransactionStatuses(customerPaymentStatusReport.OrgnlPmtInfAndSts),
+      parsePaymentStatuses(pmtInfAndSts),
+      parseTransactionStatuses(txnInfoAndSts),
     ]
       .flat()
       .filter(status => status !== null);
@@ -130,7 +150,8 @@ export class PaymentStatusReport {
   }
 
   get originalId(): string {
-    const firstStatusInformation = this.firstStatusInformation as StatusInformation;
+    const firstStatusInformation = this
+      .firstStatusInformation as StatusInformation;
     switch (firstStatusInformation.type) {
       case 'group':
         return firstStatusInformation.originalMessageId;

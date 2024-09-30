@@ -53,3 +53,18 @@ export const parseParty = (party: any): Party => {
     name: party.Nm,
   } as Party;
 };
+
+// Standardize into a single string
+export const parseAdditionalInformation = (
+  additionalInformation: any,
+): string | undefined => {
+  if (!additionalInformation) {
+    return undefined;
+  }
+
+  if (Array.isArray(additionalInformation)) {
+    return additionalInformation.join('\n');
+  } else {
+    return additionalInformation;
+  }
+};

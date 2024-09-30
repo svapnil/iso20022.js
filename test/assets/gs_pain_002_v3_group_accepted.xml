@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.002.001.03">
+    <CstmrPmtStsRpt>
+        <GrpHdr>
+            <MsgId>13991356</MsgId>
+            <CreDtTm>2023-09-06T12:50:56.162Z</CreDtTm>
+            <InitgPty>
+                <Nm>Goldman Sachs Bank</Nm>
+            </InitgPty>
+        </GrpHdr>
+        <OrgnlGrpInfAndSts>
+            <OrgnlMsgId>CLIENT NAME_2023-09-06:04</OrgnlMsgId>
+            <OrgnlMsgNmId>CHECK_DEPOSIT</OrgnlMsgNmId>
+            <OrgnlNbOfTxs>1</OrgnlNbOfTxs>
+            <OrgnlCtrlSum>27.0</OrgnlCtrlSum>
+            <GrpSts>ACTC</GrpSts>
+            <StsRsnInf>
+                <AddtlInf>File accepted post technical and profile validations</AddtlInf>
+                <AddtlInf>Original File Name: 26951.json</AddtlInf>
+            </StsRsnInf>
+        </OrgnlGrpInfAndSts>
+    </CstmrPmtStsRpt>
+</Document>
