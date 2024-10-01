@@ -7,18 +7,20 @@ import {
 import { parseAdditionalInformation } from '../../parseUtils';
 const parseStatus = (status: string): Status => {
   switch (status) {
-    case 'ACCP':
-      return 'accepted';
+    case 'RJCT':
+      return 'rejected';
+    case 'PART':
+      return 'partiallyAccepted';
     case 'PNDG':
       return 'pending';
-    case 'REJT':
-      return 'rejected';
-    case 'ACCPD':
-      return 'acceptedPendingSettlement';
+    case 'ACCP':
+      return 'accepted';
     case 'ACSP':
       return 'acceptedSettlementInProgress';
     case 'ACSC':
       return 'acceptedSettlementCompleted';
+    case 'ACCP':
+      return 'acceptedCreditSettlementCompleted';
     case 'ACTC':
       return 'acceptedTechnicalValidation';
     default:

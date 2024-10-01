@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.002.001.03">
+    <CstmrPmtStsRpt>
+        <GrpHdr>
+            <MsgId>XML990920150728124014189</MsgId>
+            <CreDtTm>2015-07-28T10:40:14Z</CreDtTm>
+            <InitgPty>
+                <Id>
+                    <OrgId>
+                        <Othr>
+                            <Id>NDEATEST</Id>
+                            <SchmeNm>
+                                <Cd>BANK</Cd>
+                            </SchmeNm>
+                        </Othr>
+                        <Othr>
+                            <Id>1825226354</Id>
+                            <SchmeNm>
+                                <Cd>CUST</Cd>
+                            </SchmeNm>
+                        </Othr>
+                    </OrgId>
+                </Id>
+            </InitgPty>
+        </GrpHdr>
+        <OrgnlGrpInfAndSts>
+            <OrgnlMsgId>MSGID-950-TEST2-2807-01</OrgnlMsgId>
+            <OrgnlMsgNmId>pain.001.001.03</OrgnlMsgNmId>
+        </OrgnlGrpInfAndSts>
+        <OrgnlPmtInfAndSts>
+            <OrgnlPmtInfId>PMTINFID-950-TEST2-2807-01</OrgnlPmtInfId>
+            <PmtInfSts>RJCT</PmtInfSts>
+            <TxInfAndSts>
+                <OrgnlInstrId>INSTRID-950-TEST2-2807-02</OrgnlInstrId>
+                <OrgnlEndToEndId>ENDTOENDID-950-TEST2-2807-02</OrgnlEndToEndId>
+                <TxSts>RJCT</TxSts>
+                <StsRsnInf>
+                    <Rsn>
+                        <Cd>NARR</Cd>
+                    </Rsn>
+                    <AddtlInf>CAP Invalid code or combinations in CategoryPurpose or ServiceLevel</AddtlInf>
+                </StsRsnInf>
+            </TxInfAndSts>
+            <TxInfAndSts>
+                <OrgnlInstrId>INSTRID-950-TEST2-2807-01</OrgnlInstrId>
+                <OrgnlEndToEndId>ENDTOENDID-950-TEST2-2807-01</OrgnlEndToEndId>
+                <TxSts>RJCT</TxSts>
+                <StsRsnInf>
+                    <Rsn>
+                        <Cd>NARR</Cd>
+                    </Rsn>
+                    <AddtlInf>CAP Invalid code or combinations in CategoryPurpose or ServiceLevel</AddtlInf>
+                </StsRsnInf>
+            </TxInfAndSts>
+        </OrgnlPmtInfAndSts>
+    </CstmrPmtStsRpt>
+</Document>

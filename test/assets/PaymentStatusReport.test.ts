@@ -1,4 +1,7 @@
-import { PaymentStatusReport } from '../../src/pain/002/PaymentStatusReport';
+import {
+  PaymentStatusReport,
+  PaymentStatus,
+} from '../../src/pain/002/PaymentStatusReport';
 import fs from 'fs';
 
 describe('PaymentStatusReport', () => {
@@ -47,6 +50,54 @@ describe('PaymentStatusReport', () => {
         expect(report.statuses).toHaveLength(1);
         expect(report.statuses[0].type).toEqual('payment');
         expect(report.status).toEqual('accepted');
+      });
+    });
+
+    describe('with a Nordea 002 Payment Status Report Group Reject', () => {
+      it('should create an instance with valid config', () => {
+        xmlFilePath = `${process.cwd()}/test/assets/nordea_pain_002_v3_group_reject.xml`;
+        const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        report = PaymentStatusReport.fromXML(pain002Sample);
+        expect(report.statuses).toHaveLength(1);
+        expect(report.statuses[0].type).toEqual('group');
+        expect(report.statuses[0].status).toEqual('rejected');
+        expect(report.statuses[0].reason?.code).toEqual('DU01');
+        expect(report.statuses[0].reason?.additionalInformation).toEqual(
+          'ISO Duplicate Message ID',
+        );
+      });
+    });
+
+    describe('with a Nordea 002 Payment Status Report Payment Reject', () => {
+      it('should create an instance with valid config', () => {
+        xmlFilePath = `${process.cwd()}/test/assets/nordea_pain_002_v3_payment_reject.xml`;
+        const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        report = PaymentStatusReport.fromXML(pain002Sample);
+        expect(report.statuses).toHaveLength(1);
+        expect(report.statuses[0].type).toEqual('payment');
+        expect(report.status).toEqual('rejected');
+        expect(report.statuses[0].reason?.code).toEqual('NARR');
+        expect(report.statuses[0].reason?.additionalInformation).toEqual(
+          'CAP Invalid code or combinations in CategoryPurpose or ServiceLevel',
+        );
+      });
+    });
+
+    describe('with a Nordea 002 Payment Status Report Transaction Reject', () => {
+      it('should create an instance with valid config', () => {
+        xmlFilePath = `${process.cwd()}/test/assets/nordea_pain_002_v3_txn_reject.xml`;
+        const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        report = PaymentStatusReport.fromXML(pain002Sample);
+        expect(report.statuses).toHaveLength(3);
+        expect((report.statuses[0] as PaymentStatus).originalPaymentId).toEqual(
+          'PMTINFID-950-TEST2-2807-01',
+        );
+        expect(report.statuses[0].type).toEqual('payment');
+        expect(report.statuses[0].status).toEqual('rejected');
+        expect(report.statuses[1].type).toEqual('transaction');
+        expect(report.statuses[1].status).toEqual('rejected');
+        expect(report.statuses[2].type).toEqual('transaction');
+        expect(report.statuses[2].status).toEqual('rejected');
       });
     });
   });
