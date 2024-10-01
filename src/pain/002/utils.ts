@@ -87,7 +87,5 @@ export const parseTransactionStatuses = (
     };
   });
 
-  debugger;
-
   return transactionStatuses;
 };

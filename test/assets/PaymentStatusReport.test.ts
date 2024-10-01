@@ -1,7 +1,5 @@
-import {
-  PaymentStatusReport,
-  PaymentStatus,
-} from '../../src/pain/002/PaymentStatusReport';
+import { PaymentStatusReport } from '../../src/pain/002/PaymentStatusReport';
+import { PaymentStatus } from '../../src/pain/002/types';
 import fs from 'fs';
 
 describe('PaymentStatusReport', () => {
