@@ -1,9 +1,9 @@
-import { Status, StatusType } from './PaymentStatusReport';
 import {
+  Status,
   GroupStatus,
   PaymentStatus,
   TransactionStatus,
-} from './PaymentStatusReport';
+} from './types';
 import { parseAdditionalInformation } from '../../parseUtils';
 const parseStatus = (status: string): Status => {
   switch (status) {
