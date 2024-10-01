@@ -12,7 +12,11 @@ import {
   OriginalGroupInformation,
 } from './types';
 
+/**
+ * Configuration interface for creating a PaymentStatusReport instance.
+ */
 interface PaymentStatusReportConfig {
+  /** Unique identifier for the message */
   messageId: string;
   creationDate: Date;
   initatingParty: Party;
@@ -20,6 +24,9 @@ interface PaymentStatusReportConfig {
   statuses: StatusInformation[];
 }
 
+/**
+ * Represents a Payment Status Report, containing information about the status of payments and transactions.
+ */
 export class PaymentStatusReport {
   private _messageId: string;
   private _creationDate: Date;
@@ -27,6 +34,10 @@ export class PaymentStatusReport {
   private _originalGroupInformation: OriginalGroupInformation;
   private _statuses: StatusInformation[];
 
+  /**
+   * Creates a new PaymentStatusReport instance.
+   * @param {PaymentStatusReportConfig} config - The configuration object for the PaymentStatusReport.
+   */
   constructor(config: PaymentStatusReportConfig) {
     this._messageId = config.messageId;
     this._creationDate = config.creationDate;
@@ -35,6 +46,11 @@ export class PaymentStatusReport {
     this._statuses = config.statuses;
   }
 
+  /**
+   * Creates a PaymentStatusReport instance from an XML string.
+   * @param {string} rawXml - The raw XML string to parse.
+   * @returns {PaymentStatusReport} A new PaymentStatusReport instance.
+   */
   static fromXML(rawXml: string): PaymentStatusReport {
     const parser = new XMLParser({ ignoreAttributes: false });
     const xml = parser.parse(rawXml);
@@ -87,30 +103,58 @@ export class PaymentStatusReport {
     });
   }
 
-  get messageId() {
+  /**
+   * Gets the message ID of the Payment Status Report.
+   * @returns {string} The message ID.
+   */
+  get messageId(): string {
     return this._messageId;
   }
 
-  get creationDate() {
+  /**
+   * Gets the creation date of the Payment Status Report.
+   * @returns {Date} The creation date.
+   */
+  get creationDate(): Date {
     return this._creationDate;
   }
 
-  get initatingParty() {
+  /**
+   * Gets the initiating party of the Payment Status Report.
+   * @returns {Party} The initiating party.
+   */
+  get initatingParty(): Party {
     return this._initatingParty;
   }
 
-  get originalMessageId() {
+  /**
+   * Gets the original message ID from the original group information.
+   * @returns {string} The original message ID.
+   */
+  get originalMessageId(): string {
     return this._originalGroupInformation.originalMessageId;
   }
 
-  get statuses() {
+  /**
+   * Gets all status information entries in the Payment Status Report.
+   * @returns {StatusInformation[]} An array of StatusInformation objects.
+   */
+  get statuses(): StatusInformation[] {
     return this._statuses;
   }
 
-  get firstStatusInformation() {
+  /**
+   * Gets the first status information entry in the Payment Status Report.
+   * @returns {StatusInformation} The first StatusInformation object in the statuses array.
+   */
+  get firstStatusInformation(): StatusInformation {
     return this._statuses[0];
   }
 
+  /**
+   * Gets the original ID based on the type of the first status information.
+   * @returns {string} The original ID, which could be the original message ID, payment ID, or end-to-end ID.
+   */
   get originalId(): string {
     const firstStatusInformation = this
       .firstStatusInformation as StatusInformation;
@@ -124,6 +168,10 @@ export class PaymentStatusReport {
     }
   }
 
+  /**
+   * Gets the status from the first status information entry.
+   * @returns {Status} The Status from the first status information.
+   */
   get status(): Status {
     return this.firstStatusInformation.status;
   }
