@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.002.001.03">
+    <CstmrPmtStsRpt>
+        <GrpHdr>
+            <MsgId>XML990920150810101909283</MsgId>
+            <CreDtTm>2015-08-10T10:19:09</CreDtTm>
+            <InitgPty>
+                <Id>
+                    <OrgId>
+                        <BICOrBEI>NDEASESS</BICOrBEI>
+                        <Othr>
+                            <Id>1825226354</Id>
+                            <SchmeNm>
+                                <Cd>CUST</Cd>
+                            </SchmeNm>
+                        </Othr>
+                    </OrgId>
+                </Id>
+            </InitgPty>
+        </GrpHdr>
+        <OrgnlGrpInfAndSts>
+            <OrgnlMsgId>MSGID-PS-TEST-0708-01</OrgnlMsgId>
+            <OrgnlMsgNmId>pain.001.001.03</OrgnlMsgNmId>
+            <OrgnlCreDtTm>2015-08-10T10:48:47</OrgnlCreDtTm>
+            <GrpSts>RJCT</GrpSts>
+            <StsRsnInf>
+                <Rsn>
+                    <Cd>DU01</Cd>
+                </Rsn>
+                <AddtlInf>ISO Duplicate Message ID</AddtlInf>
+            </StsRsnInf>
+        </OrgnlGrpInfAndSts>
+    </CstmrPmtStsRpt>
+</Document>

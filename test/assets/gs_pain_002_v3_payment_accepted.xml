@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.002.001.03">
+    <CstmrPmtStsRpt>
+        <GrpHdr>
+            <MsgId>1744XXX</MsgId>
+            <CreDtTm>2022-03-15T19:38:16Z</CreDtTm>
+            <InitgPty>
+                <Nm>Goldman Sachs Bank</Nm>
+            </InitgPty>
+        </GrpHdr>
+        <OrgnlGrpInfAndSts>
+            <OrgnlMsgId>    XXX001_20220315_B_DZSOXXXX</OrgnlMsgId>
+            <OrgnlMsgNmId>NACHA</OrgnlMsgNmId>
+            <OrgnlNbOfTxs>8</OrgnlNbOfTxs>
+            <OrgnlCtrlSum>72.5400</OrgnlCtrlSum>
+        </OrgnlGrpInfAndSts>
+        <OrgnlPmtInfAndSts>
+            <OrgnlPmtInfId>    xxx001220315B000XXXX</OrgnlPmtInfId>
+            <PmtInfSts>ACCP</PmtInfSts>
+            <StsRsnInf>
+                <Rsn>
+                    <Cd>NARR</Cd>
+                </Rsn>
+                <AddtlInf>Accepted post profile and tech validations</AddtlInf>
+            </StsRsnInf>
+        </OrgnlPmtInfAndSts>
+    </CstmrPmtStsRpt>
+</Document>

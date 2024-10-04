@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.002.001.03">
+    <CstmrPmtStsRpt>
+        <GrpHdr>
+            <MsgId>1036XXX</MsgId>
+            <CreDtTm>2020-08-20T15:25:48</CreDtTm>
+            <InitgPty>
+                <Nm>Goldman Sachs Bank</Nm>
+            </InitgPty>
+        </GrpHdr>
+        <OrgnlGrpInfAndSts>
+            <OrgnlMsgId>10280093XXXX</OrgnlMsgId>
+            <OrgnlNbOfTxs>2</OrgnlNbOfTxs>
+            <OrgnlCtrlSum>20.0000</OrgnlCtrlSum>
+        </OrgnlGrpInfAndSts>
+        <OrgnlPmtInfAndSts>
+            <OrgnlPmtInfId>3B-CCY</OrgnlPmtInfId>
+            <TxInfAndSts>
+                <OrgnlEndToEndId>GSDGFKfLURaHb</OrgnlEndToEndId>
+                <TxSts>ACCP</TxSts>
+                <StsRsnInf>
+                    <Rsn>
+                        <Cd>NARR</Cd>
+                    </Rsn>
+                </StsRsnInf>
+                <AcctSvcrRef>I200820000XXXXX</AcctSvcrRef>
+                <OrgnlTxRef>
+                    <Amt>
+                        <InstdAmt Ccy="USD">10.00</InstdAmt>
+                    </Amt>
+                </OrgnlTxRef>
+            </TxInfAndSts>
+        </OrgnlPmtInfAndSts>
+    </CstmrPmtStsRpt>
+</Document>
