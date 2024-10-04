@@ -9,7 +9,8 @@
     "test": "jest",
     "shell": "npx tsx --experimental-repl-await",
     "build": "rollup -c",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "create-patch-version": "npm run build && npm version patch && git push origin --tags && npm publish"
   },
   "exports": {
     ".": {
