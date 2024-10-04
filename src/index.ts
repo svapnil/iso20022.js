@@ -27,6 +27,7 @@ export type {
   TransactionStatus,
   StatusInformation,
 } from './pain/002/types';
+export { StatusCode } from './pain/002/types';
 export { PaymentStatusReport } from './pain/002/PaymentStatusReport';
 
 // camt.053
@@ -37,5 +38,5 @@ export type {
   Transaction,
   BalanceType,
 } from './camt/types';
-
+export { BalanceTypeCode } from './camt/types';
 export { CashManagementEndOfDayReport } from './camt/053/CashManagementEndOfDayReport';

@@ -118,7 +118,7 @@ export interface Transaction {
  * Balance types as defined in ISO 20022.
  * @see {@link https://www.iso20022.org/sites/default/files/2022-03/externalcodesets_4q2021_v2_1.xlsx}
  */
-const BalanceTypeCodes = {
+export const BalanceTypeCode = {
   /** Closing balance of amount of money that is at the disposal of the account owner on the date specified. */
   ClosingAvailable: 'CLAV',
   /** Balance of the account at the end of the pre-agreed account reporting period. It is the sum of the opening booked balance at the beginning of the period and all entries booked to the account during the pre-agreed account reporting period. */
@@ -144,4 +144,4 @@ const BalanceTypeCodes = {
 } as const;
 
 export type BalanceType =
-  (typeof BalanceTypeCodes)[keyof typeof BalanceTypeCodes];
+  (typeof BalanceTypeCode)[keyof typeof BalanceTypeCode];
