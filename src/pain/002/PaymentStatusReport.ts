@@ -6,11 +6,7 @@ import {
   parsePaymentStatuses,
   parseTransactionStatuses,
 } from './utils';
-import {
-  StatusInformation,
-  Status,
-  OriginalGroupInformation,
-} from './types';
+import { StatusInformation, Status, OriginalGroupInformation } from './types';
 
 /**
  * Configuration interface for creating a PaymentStatusReport instance.

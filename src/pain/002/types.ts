@@ -14,25 +14,21 @@ export interface OriginalGroupInformation {
 export type StatusType = 'group' | 'payment' | 'transaction';
 
 /**
- * Represents the possible status values in a payment status report.
+ * Represents the status codes in a payment status report.
+ * @see {@link https://www.iso20022.org/sites/default/files/2022-03/externalcodesets_4q2021_v2_1.xlsx}
  */
-export type Status =
-  /** Payment initiation or individual transaction included in the payment initiation has been rejected. */
-  | 'rejected'
-  /** A number of transactions have been accepted, whereas another number of transactions have not yet achieved accepted status. This is only relevant for bulk payments. */
-  | 'partiallyAccepted'
-  /** Payment initiation or individual transaction included in the payment initiation is pending. Further checks and status update will be performed. */
-  | 'pending'
-  /** Preceding check of technical validation was successful. Customer profile check was also successful. */
-  | 'accepted'
-  /** All preceding checks such as technical validation and customer profile were successful. The payment initiation was successfully signed. The payment initiation has been accepted for execution, but before settlement on the debtor's account. */
-  | 'acceptedSettlementInProgress'
-  /** This status is only applicable for instant payments. Settlement on the creditor's account has been completed. */
-  | 'acceptedCreditSettlementCompleted'
-  /** Settlement on the debtor's account has been completed. */
-  | 'acceptedSettlementCompleted'
-  /** Authentication and syntactical and semantical validation (Technical validation) are successful. */
-  | 'acceptedTechnicalValidation';
+export const StatusCode = {
+  Rejected: 'RJCT',
+  PartiallyAccepted: 'ACCP',
+  Pending: 'PNDG',
+  Accepted: 'ACCP',
+  AcceptedSettlementInProgress: 'ACSP',
+  AcceptedCreditSettlementCompleted: 'ACSC',
+  AcceptedSettlementCompleted: 'ACSC',
+  AcceptedTechnicalValidation: 'ACTC',
+} as const;
+
+export type Status = (typeof StatusCode)[keyof typeof StatusCode];
 
 /**
  * Represents the base structure for status information in a payment status report.

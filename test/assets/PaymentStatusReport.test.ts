@@ -1,5 +1,5 @@
 import { PaymentStatusReport } from '../../src/pain/002/PaymentStatusReport';
-import { PaymentStatus } from '../../src/pain/002/types';
+import { PaymentStatus, StatusCode } from '../../src/pain/002/types';
 import fs from 'fs';
 
 describe('PaymentStatusReport', () => {
@@ -32,7 +32,7 @@ describe('PaymentStatusReport', () => {
         expect(report.statuses).toHaveLength(1);
         expect(report.statuses[0].type).toEqual('group');
         expect(report.statuses[0].status).toEqual(
-          'acceptedTechnicalValidation',
+          StatusCode.AcceptedTechnicalValidation,
         );
         expect(report.statuses[0].reason?.additionalInformation).toEqual(
           'File accepted post technical and profile validations\nOriginal File Name: 26951.json',
@@ -47,7 +47,7 @@ describe('PaymentStatusReport', () => {
         report = PaymentStatusReport.fromXML(pain002Sample);
         expect(report.statuses).toHaveLength(1);
         expect(report.statuses[0].type).toEqual('payment');
-        expect(report.status).toEqual('accepted');
+        expect(report.status).toEqual(StatusCode.Accepted);
       });
     });
 
@@ -58,7 +58,7 @@ describe('PaymentStatusReport', () => {
         report = PaymentStatusReport.fromXML(pain002Sample);
         expect(report.statuses).toHaveLength(1);
         expect(report.statuses[0].type).toEqual('group');
-        expect(report.statuses[0].status).toEqual('rejected');
+        expect(report.statuses[0].status).toEqual(StatusCode.Rejected);
         expect(report.statuses[0].reason?.code).toEqual('DU01');
         expect(report.statuses[0].reason?.additionalInformation).toEqual(
           'ISO Duplicate Message ID',
@@ -73,7 +73,7 @@ describe('PaymentStatusReport', () => {
         report = PaymentStatusReport.fromXML(pain002Sample);
         expect(report.statuses).toHaveLength(1);
         expect(report.statuses[0].type).toEqual('payment');
-        expect(report.status).toEqual('rejected');
+        expect(report.status).toEqual(StatusCode.Rejected);
         expect(report.statuses[0].reason?.code).toEqual('NARR');
         expect(report.statuses[0].reason?.additionalInformation).toEqual(
           'CAP Invalid code or combinations in CategoryPurpose or ServiceLevel',
@@ -91,11 +91,11 @@ describe('PaymentStatusReport', () => {
           'PMTINFID-950-TEST2-2807-01',
         );
         expect(report.statuses[0].type).toEqual('payment');
-        expect(report.statuses[0].status).toEqual('rejected');
+        expect(report.statuses[0].status).toEqual(StatusCode.Rejected);
         expect(report.statuses[1].type).toEqual('transaction');
-        expect(report.statuses[1].status).toEqual('rejected');
+        expect(report.statuses[1].status).toEqual(StatusCode.Rejected);
         expect(report.statuses[2].type).toEqual('transaction');
-        expect(report.statuses[2].status).toEqual('rejected');
+        expect(report.statuses[2].status).toEqual(StatusCode.Rejected);
       });
     });
   });

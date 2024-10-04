@@ -3,26 +3,29 @@ import {
   GroupStatus,
   PaymentStatus,
   TransactionStatus,
+  StatusCode,
 } from './types';
 import { parseAdditionalInformation } from '../../parseUtils';
+
+// NOTE: Consider not even using this switch statement.
 const parseStatus = (status: string): Status => {
   switch (status) {
-    case 'RJCT':
-      return 'rejected';
-    case 'PART':
-      return 'partiallyAccepted';
-    case 'PNDG':
-      return 'pending';
-    case 'ACCP':
-      return 'accepted';
-    case 'ACSP':
-      return 'acceptedSettlementInProgress';
-    case 'ACSC':
-      return 'acceptedSettlementCompleted';
-    case 'ACCP':
-      return 'acceptedCreditSettlementCompleted';
-    case 'ACTC':
-      return 'acceptedTechnicalValidation';
+    case StatusCode.Rejected:
+      return StatusCode.Rejected;
+    case StatusCode.PartiallyAccepted:
+      return StatusCode.PartiallyAccepted;
+    case StatusCode.Pending:
+      return StatusCode.Pending;
+    case StatusCode.Accepted:
+      return StatusCode.Accepted;
+    case StatusCode.AcceptedSettlementInProgress:
+      return StatusCode.AcceptedSettlementInProgress;
+    case StatusCode.AcceptedCreditSettlementCompleted:
+      return StatusCode.AcceptedCreditSettlementCompleted;
+    case StatusCode.AcceptedSettlementCompleted:
+      return StatusCode.AcceptedSettlementCompleted;
+    case StatusCode.AcceptedTechnicalValidation:
+      return StatusCode.AcceptedTechnicalValidation;
     default:
       throw new Error(`Unknown status: ${status}`);
   }
