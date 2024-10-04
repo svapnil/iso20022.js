@@ -1,5 +1,8 @@
 import { PaymentStatusReport } from '../../src/pain/002/PaymentStatusReport';
-import { PaymentStatus, StatusCode } from '../../src/pain/002/types';
+import {
+  PaymentStatusInformation,
+  PaymentStatusCode,
+} from '../../src/pain/002/types';
 import fs from 'fs';
 
 describe('PaymentStatusReport', () => {
@@ -20,7 +23,7 @@ describe('PaymentStatusReport', () => {
         });
         expect(report.originalMessageId).toEqual('10280093XXXX');
         expect(report).toBeInstanceOf(PaymentStatusReport);
-        expect(report.statuses).toHaveLength(1);
+        expect(report.statusInformations).toHaveLength(1);
       });
     });
 
@@ -29,12 +32,14 @@ describe('PaymentStatusReport', () => {
         xmlFilePath = `${process.cwd()}/test/assets/gs_pain_002_v3_group_accepted.xml`;
         const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
         report = PaymentStatusReport.fromXML(pain002Sample);
-        expect(report.statuses).toHaveLength(1);
-        expect(report.statuses[0].type).toEqual('group');
-        expect(report.statuses[0].status).toEqual(
-          StatusCode.AcceptedTechnicalValidation,
+        expect(report.statusInformations).toHaveLength(1);
+        expect(report.statusInformations[0].type).toEqual('group');
+        expect(report.statusInformations[0].status).toEqual(
+          PaymentStatusCode.AcceptedTechnicalValidation,
         );
-        expect(report.statuses[0].reason?.additionalInformation).toEqual(
+        expect(
+          report.statusInformations[0].reason?.additionalInformation,
+        ).toEqual(
           'File accepted post technical and profile validations\nOriginal File Name: 26951.json',
         );
       });
@@ -45,9 +50,9 @@ describe('PaymentStatusReport', () => {
         xmlFilePath = `${process.cwd()}/test/assets/gs_pain_002_v3_payment_accepted.xml`;
         const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
         report = PaymentStatusReport.fromXML(pain002Sample);
-        expect(report.statuses).toHaveLength(1);
-        expect(report.statuses[0].type).toEqual('payment');
-        expect(report.status).toEqual(StatusCode.Accepted);
+        expect(report.statusInformations).toHaveLength(1);
+        expect(report.statusInformations[0].type).toEqual('payment');
+        expect(report.status).toEqual(PaymentStatusCode.Accepted);
       });
     });
 
@@ -56,13 +61,15 @@ describe('PaymentStatusReport', () => {
         xmlFilePath = `${process.cwd()}/test/assets/nordea_pain_002_v3_group_reject.xml`;
         const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
         report = PaymentStatusReport.fromXML(pain002Sample);
-        expect(report.statuses).toHaveLength(1);
-        expect(report.statuses[0].type).toEqual('group');
-        expect(report.statuses[0].status).toEqual(StatusCode.Rejected);
-        expect(report.statuses[0].reason?.code).toEqual('DU01');
-        expect(report.statuses[0].reason?.additionalInformation).toEqual(
-          'ISO Duplicate Message ID',
+        expect(report.statusInformations).toHaveLength(1);
+        expect(report.statusInformations[0].type).toEqual('group');
+        expect(report.statusInformations[0].status).toEqual(
+          PaymentStatusCode.Rejected,
         );
+        expect(report.statusInformations[0].reason?.code).toEqual('DU01');
+        expect(
+          report.statusInformations[0].reason?.additionalInformation,
+        ).toEqual('ISO Duplicate Message ID');
       });
     });
 
@@ -71,11 +78,13 @@ describe('PaymentStatusReport', () => {
         xmlFilePath = `${process.cwd()}/test/assets/nordea_pain_002_v3_payment_reject.xml`;
         const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
         report = PaymentStatusReport.fromXML(pain002Sample);
-        expect(report.statuses).toHaveLength(1);
-        expect(report.statuses[0].type).toEqual('payment');
-        expect(report.status).toEqual(StatusCode.Rejected);
-        expect(report.statuses[0].reason?.code).toEqual('NARR');
-        expect(report.statuses[0].reason?.additionalInformation).toEqual(
+        expect(report.statusInformations).toHaveLength(1);
+        expect(report.statusInformations[0].type).toEqual('payment');
+        expect(report.status).toEqual(PaymentStatusCode.Rejected);
+        expect(report.statusInformations[0].reason?.code).toEqual('NARR');
+        expect(
+          report.statusInformations[0].reason?.additionalInformation,
+        ).toEqual(
           'CAP Invalid code or combinations in CategoryPurpose or ServiceLevel',
         );
       });
@@ -86,16 +95,23 @@ describe('PaymentStatusReport', () => {
         xmlFilePath = `${process.cwd()}/test/assets/nordea_pain_002_v3_txn_reject.xml`;
         const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
         report = PaymentStatusReport.fromXML(pain002Sample);
-        expect(report.statuses).toHaveLength(3);
-        expect((report.statuses[0] as PaymentStatus).originalPaymentId).toEqual(
-          'PMTINFID-950-TEST2-2807-01',
+        expect(report.statusInformations).toHaveLength(3);
+        expect(
+          (report.statusInformations[0] as PaymentStatusInformation)
+            .originalPaymentId,
+        ).toEqual('PMTINFID-950-TEST2-2807-01');
+        expect(report.statusInformations[0].type).toEqual('payment');
+        expect(report.statusInformations[0].status).toEqual(
+          PaymentStatusCode.Rejected,
         );
-        expect(report.statuses[0].type).toEqual('payment');
-        expect(report.statuses[0].status).toEqual(StatusCode.Rejected);
-        expect(report.statuses[1].type).toEqual('transaction');
-        expect(report.statuses[1].status).toEqual(StatusCode.Rejected);
-        expect(report.statuses[2].type).toEqual('transaction');
-        expect(report.statuses[2].status).toEqual(StatusCode.Rejected);
+        expect(report.statusInformations[1].type).toEqual('transaction');
+        expect(report.statusInformations[1].status).toEqual(
+          PaymentStatusCode.Rejected,
+        );
+        expect(report.statusInformations[2].type).toEqual('transaction');
+        expect(report.statusInformations[2].status).toEqual(
+          PaymentStatusCode.Rejected,
+        );
       });
     });
   });

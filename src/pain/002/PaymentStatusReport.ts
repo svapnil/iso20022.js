@@ -2,11 +2,15 @@ import { XMLParser } from 'fast-xml-parser';
 import { Party } from '../../lib/types';
 import { parseParty } from '../../parseUtils';
 import {
-  parseGroupStatus,
-  parsePaymentStatuses,
-  parseTransactionStatuses,
+  parseGroupStatusInformation,
+  parsePaymentStatusInformations,
+  parseTransactionStatusInformations,
 } from './utils';
-import { StatusInformation, Status, OriginalGroupInformation } from './types';
+import {
+  StatusInformation,
+  PaymentStatus,
+  OriginalGroupInformation,
+} from './types';
 
 /**
  * Configuration interface for creating a PaymentStatusReport instance.
@@ -17,7 +21,7 @@ interface PaymentStatusReportConfig {
   creationDate: Date;
   initatingParty: Party;
   originalGroupInformation: OriginalGroupInformation;
-  statuses: StatusInformation[];
+  statusInformations: StatusInformation[];
 }
 
 /**
@@ -28,7 +32,7 @@ export class PaymentStatusReport {
   private _creationDate: Date;
   private _initatingParty: Party;
   private _originalGroupInformation: OriginalGroupInformation;
-  private _statuses: StatusInformation[];
+  private _statusInformations: StatusInformation[];
 
   /**
    * Creates a new PaymentStatusReport instance.
@@ -39,7 +43,7 @@ export class PaymentStatusReport {
     this._creationDate = config.creationDate;
     this._initatingParty = config.initatingParty;
     this._originalGroupInformation = config.originalGroupInformation;
-    this._statuses = config.statuses;
+    this._statusInformations = config.statusInformations;
   }
 
   /**
@@ -82,20 +86,22 @@ export class PaymentStatusReport {
       })
       .flat();
 
-    const statuses = [
-      parseGroupStatus(customerPaymentStatusReport.OrgnlGrpInfAndSts),
-      parsePaymentStatuses(pmtInfAndSts),
-      parseTransactionStatuses(txnInfoAndSts),
+    const statusInformations = [
+      parseGroupStatusInformation(
+        customerPaymentStatusReport.OrgnlGrpInfAndSts,
+      ),
+      parsePaymentStatusInformations(pmtInfAndSts),
+      parseTransactionStatusInformations(txnInfoAndSts),
     ]
       .flat()
-      .filter(status => status !== null);
+      .filter(statusInformation => statusInformation !== null);
 
     return new PaymentStatusReport({
       messageId,
       creationDate,
       initatingParty,
       originalGroupInformation,
-      statuses,
+      statusInformations: statusInformations,
     });
   }
 
@@ -135,8 +141,8 @@ export class PaymentStatusReport {
    * Gets all status information entries in the Payment Status Report.
    * @returns {StatusInformation[]} An array of StatusInformation objects.
    */
-  get statuses(): StatusInformation[] {
-    return this._statuses;
+  get statusInformations(): StatusInformation[] {
+    return this._statusInformations;
   }
 
   /**
@@ -144,7 +150,7 @@ export class PaymentStatusReport {
    * @returns {StatusInformation} The first StatusInformation object in the statuses array.
    */
   get firstStatusInformation(): StatusInformation {
-    return this._statuses[0];
+    return this._statusInformations[0];
   }
 
   /**
@@ -166,9 +172,9 @@ export class PaymentStatusReport {
 
   /**
    * Gets the status from the first status information entry.
-   * @returns {Status} The Status from the first status information.
+   * @returns {PaymentStatus} The Status from the first status information.
    */
-  get status(): Status {
+  get status(): PaymentStatus {
     return this.firstStatusInformation.status;
   }
 }

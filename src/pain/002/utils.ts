@@ -1,39 +1,39 @@
 import {
-  Status,
-  GroupStatus,
   PaymentStatus,
-  TransactionStatus,
-  StatusCode,
+  GroupStatusInformation,
+  PaymentStatusInformation,
+  TransactionStatusInformation,
+  PaymentStatusCode,
 } from './types';
 import { parseAdditionalInformation } from '../../parseUtils';
 
 // NOTE: Consider not even using this switch statement.
-const parseStatus = (status: string): Status => {
+const parseStatus = (status: string): PaymentStatus => {
   switch (status) {
-    case StatusCode.Rejected:
-      return StatusCode.Rejected;
-    case StatusCode.PartiallyAccepted:
-      return StatusCode.PartiallyAccepted;
-    case StatusCode.Pending:
-      return StatusCode.Pending;
-    case StatusCode.Accepted:
-      return StatusCode.Accepted;
-    case StatusCode.AcceptedSettlementInProgress:
-      return StatusCode.AcceptedSettlementInProgress;
-    case StatusCode.AcceptedCreditSettlementCompleted:
-      return StatusCode.AcceptedCreditSettlementCompleted;
-    case StatusCode.AcceptedSettlementCompleted:
-      return StatusCode.AcceptedSettlementCompleted;
-    case StatusCode.AcceptedTechnicalValidation:
-      return StatusCode.AcceptedTechnicalValidation;
+    case PaymentStatusCode.Rejected:
+      return PaymentStatusCode.Rejected;
+    case PaymentStatusCode.PartiallyAccepted:
+      return PaymentStatusCode.PartiallyAccepted;
+    case PaymentStatusCode.Pending:
+      return PaymentStatusCode.Pending;
+    case PaymentStatusCode.Accepted:
+      return PaymentStatusCode.Accepted;
+    case PaymentStatusCode.AcceptedSettlementInProgress:
+      return PaymentStatusCode.AcceptedSettlementInProgress;
+    case PaymentStatusCode.AcceptedCreditSettlementCompleted:
+      return PaymentStatusCode.AcceptedCreditSettlementCompleted;
+    case PaymentStatusCode.AcceptedSettlementCompleted:
+      return PaymentStatusCode.AcceptedSettlementCompleted;
+    case PaymentStatusCode.AcceptedTechnicalValidation:
+      return PaymentStatusCode.AcceptedTechnicalValidation;
     default:
       throw new Error(`Unknown status: ${status}`);
   }
 };
 
-export const parseGroupStatus = (
+export const parseGroupStatusInformation = (
   originalGroupInfAndStatus: any,
-): GroupStatus | null => {
+): GroupStatusInformation | null => {
   if (!originalGroupInfAndStatus.hasOwnProperty('GrpSts')) {
     return null;
   }
@@ -50,9 +50,9 @@ export const parseGroupStatus = (
   };
 };
 
-export const parsePaymentStatuses = (
+export const parsePaymentStatusInformations = (
   originalPaymentInfAndStatuses: any,
-): PaymentStatus[] => {
+): PaymentStatusInformation[] => {
   return originalPaymentInfAndStatuses
     .map((payment: any) => {
       if (!payment.hasOwnProperty('PmtInfSts')) {
@@ -73,9 +73,9 @@ export const parsePaymentStatuses = (
     .filter((status: any) => status !== null);
 };
 
-export const parseTransactionStatuses = (
+export const parseTransactionStatusInformations = (
   allTxnsInfoAndStatuses: any[],
-): TransactionStatus[] => {
+): TransactionStatusInformation[] => {
   const transactionStatuses = allTxnsInfoAndStatuses.map((transaction: any) => {
     return {
       type: 'transaction' as const,

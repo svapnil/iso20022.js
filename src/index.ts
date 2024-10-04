@@ -20,14 +20,14 @@ export { SWIFTCreditPaymentInitiation } from './pain/001/SWIFTCreditPaymentIniti
 export type {
   OriginalGroupInformation,
   StatusType,
-  Status,
-  BaseStatus,
-  GroupStatus,
-  PaymentStatus,
-  TransactionStatus,
+  PaymentStatus as Status,
+  BaseStatusInformation as BaseStatus,
+  GroupStatusInformation as GroupStatus,
+  PaymentStatusInformation as PaymentStatus,
+  TransactionStatusInformation as TransactionStatus,
   StatusInformation,
 } from './pain/002/types';
-export { StatusCode } from './pain/002/types';
+export { PaymentStatusCode as StatusCode } from './pain/002/types';
 export { PaymentStatusReport } from './pain/002/PaymentStatusReport';
 
 // camt.053
