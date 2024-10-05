@@ -12,7 +12,7 @@ describe('PaymentStatusReport', () => {
 
     describe('with a Goldman Sachs 002 Txn Status Report', () => {
       it('should create an instance with valid config', () => {
-        xmlFilePath = `${process.cwd()}/test/assets/gs_pain_002_v3_accepted.xml`;
+        xmlFilePath = `${process.cwd()}/test/assets/goldman_sachs/pain_002_v3_accepted.xml`;
         const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
         report = PaymentStatusReport.fromXML(pain002Sample);
 
@@ -29,7 +29,7 @@ describe('PaymentStatusReport', () => {
 
     describe('with a Goldman Sachs 002 Group Status Report', () => {
       it('should create an instance with valid config', () => {
-        xmlFilePath = `${process.cwd()}/test/assets/gs_pain_002_v3_group_accepted.xml`;
+        xmlFilePath = `${process.cwd()}/test/assets/goldman_sachs/pain_002_v3_group_accepted.xml`;
         const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
         report = PaymentStatusReport.fromXML(pain002Sample);
         expect(report.statusInformations).toHaveLength(1);
@@ -47,7 +47,7 @@ describe('PaymentStatusReport', () => {
 
     describe('with a Goldman Sachs 002 Payment Status Report', () => {
       it('should create an instance with valid config', () => {
-        xmlFilePath = `${process.cwd()}/test/assets/gs_pain_002_v3_payment_accepted.xml`;
+        xmlFilePath = `${process.cwd()}/test/assets/goldman_sachs/pain_002_v3_payment_accepted.xml`;
         const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
         report = PaymentStatusReport.fromXML(pain002Sample);
         expect(report.statusInformations).toHaveLength(1);
@@ -58,7 +58,7 @@ describe('PaymentStatusReport', () => {
 
     describe('with a Nordea 002 Payment Status Report Group Reject', () => {
       it('should create an instance with valid config', () => {
-        xmlFilePath = `${process.cwd()}/test/assets/nordea_pain_002_v3_group_reject.xml`;
+        xmlFilePath = `${process.cwd()}/test/assets/nordea/pain_002_v3_group_reject.xml`;
         const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
         report = PaymentStatusReport.fromXML(pain002Sample);
         expect(report.statusInformations).toHaveLength(1);
@@ -75,7 +75,7 @@ describe('PaymentStatusReport', () => {
 
     describe('with a Nordea 002 Payment Status Report Payment Reject', () => {
       it('should create an instance with valid config', () => {
-        xmlFilePath = `${process.cwd()}/test/assets/nordea_pain_002_v3_payment_reject.xml`;
+        xmlFilePath = `${process.cwd()}/test/assets/nordea/pain_002_v3_payment_reject.xml`;
         const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
         report = PaymentStatusReport.fromXML(pain002Sample);
         expect(report.statusInformations).toHaveLength(1);
@@ -92,7 +92,7 @@ describe('PaymentStatusReport', () => {
 
     describe('with a Nordea 002 Payment Status Report Transaction Reject', () => {
       it('should create an instance with valid config', () => {
-        xmlFilePath = `${process.cwd()}/test/assets/nordea_pain_002_v3_txn_reject.xml`;
+        xmlFilePath = `${process.cwd()}/test/assets/nordea/pain_002_v3_txn_reject.xml`;
         const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
         report = PaymentStatusReport.fromXML(pain002Sample);
         expect(report.statusInformations).toHaveLength(3);
