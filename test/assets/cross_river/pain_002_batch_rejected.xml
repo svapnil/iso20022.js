@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Document Xmlns="urn:iso:std:iso:20022:tech:xsd:pain.002.001.03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CstmrPmtStsRpt>
+    <GrpHdr>
+      <MsgId>abcdefg012345689</MsgId>
+      <CreDtTm>2020-11-02T07:56:06.228Z</CreDtTm>
+      <InitgPty>
+        <Nm>John Doe Corporation</Nm>
+        <Id>
+          <OrgId>
+            <BICOrBEI>JOHNDOE99</BICOrBEI>
+          </OrgId>
+        </Id>
+      </InitgPty>
+    </GrpHdr>
+    <OrgnlGrpInfAndSts>
+      <OrgnlMsgNmId>pain.008.001.02</OrgnlMsgNmId>
+      <OrgnlNbOfTxs>0</OrgnlNbOfTxs>
+      <OrgnlCtrlSum>0.0000</OrgnlCtrlSum>
+      <GrpSts>RJCT</GrpSts>
+      <StsRsnInf>
+        <Rsn>
+          <Cd>NARR</Cd>
+        </Rsn>
+        <AddtlInf><![CDATA[Error parsing file examplefile.xml: The 'MsgId' start tag on line 5 position 5 does not match the end tag of 'GrpHdr'. Line 19, position 5.]]></AddtlInf>
+      </StsRsnInf>
+    </OrgnlGrpInfAndSts>
+  </CstmrPmtStsRpt>
+</Document>

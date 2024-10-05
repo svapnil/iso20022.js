@@ -115,7 +115,7 @@ describe('PaymentStatusReport', () => {
       });
     });
 
-    describe('with a Cross River 002 Credit Payment Status Report', () => {
+    describe('with a Cross River 002 Accepted Credit Payment Status Report', () => {
       it('should create an instance with valid config', () => {
         xmlFilePath = `${process.cwd()}/test/assets/cross_river/pain_002_credit_accepted.xml`;
         const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
@@ -131,9 +131,9 @@ describe('PaymentStatusReport', () => {
       });
     });
 
-    describe('with a Cross River 002 Debit Payment Status Report', () => {
+    describe('with a Cross River 002 Accepted Debit Payment Status Report', () => {
       it('should create an instance with valid config', () => {
-        xmlFilePath = `${process.cwd()}/test/assets/cross_river/paid_002_debit_accepted.xml`;
+        xmlFilePath = `${process.cwd()}/test/assets/cross_river/pain_002_debit_accepted.xml`;
         const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
         report = PaymentStatusReport.fromXML(pain002Sample);
         expect(report.statusInformations).toHaveLength(5);
@@ -144,6 +144,28 @@ describe('PaymentStatusReport', () => {
         expect(report.statusInformations[2].status).toEqual(
           PaymentStatusCode.AcceptedSettlementInProgress,
         );
+      });
+    });
+
+    describe('with a Cross River 002 Rejected Group Payment Status Report', () => {
+      it('should create an instance with valid config', () => {
+        xmlFilePath = `${process.cwd()}/test/assets/cross_river/pain_002_batch_rejected.xml`;
+        const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        report = PaymentStatusReport.fromXML(pain002Sample);
+        expect(report.statusInformations).toHaveLength(1);
+        expect(report.statusInformations[0].type).toEqual('group');
+        expect(report.statusInformations[0].status).toEqual(PaymentStatusCode.Rejected);
+      });
+    });
+
+    describe('with a Cross River 002 Rejected Transaction Payment Status Report', () => {
+      it('should create an instance with valid config', () => {
+        xmlFilePath = `${process.cwd()}/test/assets/cross_river/pain_002_transaction_rejected.xml`;
+        const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        report = PaymentStatusReport.fromXML(pain002Sample);
+        expect(report.statusInformations).toHaveLength(5);
+        expect(report.statusInformations[4].type).toEqual('transaction');
+        expect(report.statusInformations[4].status).toEqual(PaymentStatusCode.Rejected);
       });
     });
   });

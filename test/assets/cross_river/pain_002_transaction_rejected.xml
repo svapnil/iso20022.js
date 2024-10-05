@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Document Xmlns="urn:iso:std:iso:20022:tech:xsd:pain.002.001.03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CstmrPmtStsRpt>
+    <GrpHdr>
+      <MsgId>abcdefg0123456789</MsgId>
+      <CreDtTm>2020-10-26T11:49:33.620Z</CreDtTm>
+      <InitgPty>
+        <Nm>John Doe Corporation</Nm>
+        <Id>
+          <OrgId>
+            <BICOrBEI>JOHNDOE99</BICOrBEI>
+          </OrgId>
+        </Id>
+      </InitgPty>
+    </GrpHdr>
+    <OrgnlGrpInfAndSts>
+      <OrgnlMsgId>missing2</OrgnlMsgId>
+      <OrgnlMsgNmId>pain.001.001.03</OrgnlMsgNmId>
+      <OrgnlNbOfTxs>3</OrgnlNbOfTxs>
+      <OrgnlCtrlSum>5.0400</OrgnlCtrlSum>
+      <GrpSts>ACTC</GrpSts>
+    </OrgnlGrpInfAndSts>
+    <OrgnlPmtInfAndSts>
+      <OrgnlPmtInfId>missing2</OrgnlPmtInfId>
+      <OrgnlNbOfTxs>3</OrgnlNbOfTxs>
+      <OrgnlCtrlSum>5.0400</OrgnlCtrlSum>
+      <PmtInfSts>RJCT</PmtInfSts>
+      <TxInfAndSts>
+        <OrgnlInstrId>example01234567</OrgnlInstrId>
+        <OrgnlEndToEndId>sanity-10-1-12-1-21</OrgnlEndToEndId>
+        <TxSts>RJCT</TxSts>
+        <StsRsnInf>
+          <Rsn>
+            <Cd>NARR</Cd>
+          </Rsn>
+          <AddtlInf><![CDATA[Instruction ID example01234567 already exist]]></AddtlInf>
+        </StsRsnInf>
+      </TxInfAndSts>
+      <TxInfAndSts>
+        <OrgnlInstrId>example01234567</OrgnlInstrId>
+        <OrgnlEndToEndId>example01234567</OrgnlEndToEndId>
+        <TxSts>RJCT</TxSts>
+        <StsRsnInf>
+          <Rsn>
+            <Cd>NARR</Cd>
+          </Rsn>
+          <AddtlInf><![CDATA[Instruction ID example01234567 already exist]]></AddtlInf>
+        </StsRsnInf>
+      </TxInfAndSts>
+      <TxInfAndSts>
+        <OrgnlInstrId>example012345678</OrgnlInstrId>
+        <OrgnlEndToEndId>example012345678</OrgnlEndToEndId>
+        <TxSts>RJCT</TxSts>
+        <StsRsnInf>
+          <Rsn>
+            <Cd>NARR</Cd>
+          </Rsn>
+          <AddtlInf><![CDATA[Instruction ID example012345678 already exist]]></AddtlInf>
+        </StsRsnInf>
+      </TxInfAndSts>
+    </OrgnlPmtInfAndSts>
+  </CstmrPmtStsRpt>
+</Document>
