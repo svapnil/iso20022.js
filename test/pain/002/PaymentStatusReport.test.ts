@@ -1,8 +1,8 @@
-import { PaymentStatusReport } from '../../src/pain/002/PaymentStatusReport';
+import { PaymentStatusReport } from '../../../src/pain/002/PaymentStatusReport';
 import {
   PaymentStatusInformation,
   PaymentStatusCode,
-} from '../../src/pain/002/types';
+} from '../../../src/pain/002/types';
 import fs from 'fs';
 
 describe('PaymentStatusReport', () => {
