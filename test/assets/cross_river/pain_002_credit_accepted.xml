@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Document Xmlns="urn:iso:std:iso:20022:tech:xsd:pain.002.001.03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CstmrPmtStsRpt>
+    <GrpHdr>
+      <MsgId>abcdefg0000000</MsgId>
+      <CreDtTm>2020-09-15T15:58:04.637Z</CreDtTm>
+      <InitgPty>
+        <Nm>John Doe Corporation</Nm>
+        <Id>
+          <OrgId>
+            <BICOrBEI>JOHNDOE99</BICOrBEI>
+          </OrgId>
+        </Id>
+      </InitgPty>
+    </GrpHdr>
+    <OrgnlGrpInfAndSts>
+      <OrgnlMsgId>AMBCD10000000</OrgnlMsgId>
+      <OrgnlMsgNmId>pain.001.001.03</OrgnlMsgNmId>
+      <OrgnlNbOfTxs>3</OrgnlNbOfTxs>
+      <OrgnlCtrlSum>5.0100</OrgnlCtrlSum>
+      <GrpSts>ACTC</GrpSts>
+    </OrgnlGrpInfAndSts>
+    <OrgnlPmtInfAndSts>
+      <OrgnlPmtInfId>ABCD10000000</OrgnlPmtInfId>
+      <OrgnlNbOfTxs>3</OrgnlNbOfTxs>
+      <OrgnlCtrlSum>5.0100</OrgnlCtrlSum>
+      <PmtInfSts>ACTC</PmtInfSts>
+      <TxInfAndSts>
+        <OrgnlInstrId>100ABCD012345</OrgnlInstrId>
+        <OrgnlEndToEndId>0000000000000108</OrgnlEndToEndId>
+        <ClrSysRef>46456456</ClrSysRef>
+        <TxSts>ACSP</TxSts>
+      </TxInfAndSts>
+    </OrgnlPmtInfAndSts>
+  </CstmrPmtStsRpt>
+</Document>
