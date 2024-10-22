@@ -5,6 +5,7 @@ export type {
   Account,
   Agent,
   SWIFTCreditPaymentInstruction,
+  SEPACreditPaymentInstruction,
   StructuredAddress,
   IBANAccount,
   BaseAccount,
@@ -15,6 +16,8 @@ export type {
 // pain.001
 export type { SWIFTCreditPaymentInitiationConfig } from './pain/001/SWIFTCreditPaymentInitiation';
 export { SWIFTCreditPaymentInitiation } from './pain/001/SWIFTCreditPaymentInitiation';
+export type { SEPACreditPaymentInitiationConfig } from './pain/001/SEPACreditPaymentInitiation';
+export { SEPACreditPaymentInitiation } from './pain/001/SEPACreditPaymentInitiation';
 
 // pain.002
 export type {
