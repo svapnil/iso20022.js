@@ -108,6 +108,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
             MsgId: this.messageId,
             CreDtTm: this.creationDate.toISOString(),
             NbOfTxs: this.paymentInstructions.length.toString(),
+            CtrlSum: this.paymentSum,
             InitgPty: {
               Nm: this.initiatingParty.name,
               Id: {
