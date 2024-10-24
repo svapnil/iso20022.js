@@ -1,6 +1,6 @@
 {
   "name": "@ekhineo/iso20022.js",
-  "version": "0.0.13",
+  "version": "0.1.0",
   "description": "Simple framework to create and ingest ISO20022 XML files.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
