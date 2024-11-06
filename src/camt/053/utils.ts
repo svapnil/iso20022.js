@@ -105,14 +105,15 @@ export const parseEntry = (entry: any): Entry => {
   const proprietaryCode = entry.BkTxCd.Prtry?.Cd;
 
   // Currently, we flatten entry details into a list of TransactionDetails
-  let rawEntryDetails = entry.NtryDtls;
+  let rawEntryDetails = entry.NtryDtls || [];
   if (!Array.isArray(rawEntryDetails)) {
     rawEntryDetails = [rawEntryDetails];
   }
+
   const transactions = rawEntryDetails
     .map((rawDetail: any) => {
       // Get list of transaction details, even if it's singleton
-      let transactionDetails = rawDetail.TxDtls;
+      let transactionDetails = rawDetail.TxDtls || [];
       if (!Array.isArray(transactionDetails)) {
         transactionDetails = [transactionDetails];
       }

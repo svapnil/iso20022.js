@@ -149,5 +149,18 @@ describe('CashManagementEndOfDayReport', () => {
         expect(firstBalance.date).toEqual(new Date('2019-05-08'));
       });
     });
+
+    describe('with a Abn AMRO 053 NL file', () => {
+      it('should create an instance with valid config', () => {
+        xmlFilePath = `${process.cwd()}/test/assets/abn_amro/example_camt.xml`;
+        const camt053Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        report = CashManagementEndOfDayReport.fromXML(camt053Sample);
+        expect(report.messageId).toBe('0574908765.2013-04-02');
+
+        // First balance parses file (Dt)
+        const firstBalance = report.statements[0].balances[0];
+        expect(firstBalance.date).toEqual(new Date('2013-03-28'));
+      });
+    });
   });
 });

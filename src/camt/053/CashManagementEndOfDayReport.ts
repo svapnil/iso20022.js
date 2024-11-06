@@ -13,7 +13,7 @@ interface CashManagementEndOfDayReportConfig {
   /** Date and time when the report was created */
   creationDate: Date;
   /** Party receiving the report */
-  recipient: Party;
+  recipient?: Party;
   /** Array of bank statements included in the report */
   statements: Statement[];
 }
@@ -26,7 +26,7 @@ interface CashManagementEndOfDayReportConfig {
 export class CashManagementEndOfDayReport {
   private _messageId: string;
   private _creationDate: Date;
-  private _recipient: Party;
+  private _recipient?: Party;
   private _statements: Statement[];
 
   constructor(config: CashManagementEndOfDayReportConfig) {
@@ -59,10 +59,11 @@ export class CashManagementEndOfDayReport {
       statements = [parseStatement(bankToCustomerStatement.Stmt)];
     }
 
+    const party = bankToCustomerStatement.GrpHdr.MsgRcpt;
     return new CashManagementEndOfDayReport({
       messageId: bankToCustomerStatement.GrpHdr.MsgId.toString(),
       creationDate,
-      recipient: parseParty(bankToCustomerStatement.GrpHdr.MsgRcpt),
+      recipient: party ? parseParty(party) : undefined,
       statements: statements,
     });
   }
@@ -97,7 +98,7 @@ export class CashManagementEndOfDayReport {
    * Gets the party receiving the report.
    * @returns {Party} The recipient party information.
    */
-  get recipient(): Party {
+  get recipient(): Party | undefined {
     return this._recipient;
   }
 
