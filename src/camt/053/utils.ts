@@ -134,9 +134,9 @@ export const parseEntry = (entry: any): Entry => {
 };
 
 const parseTransactionDetail = (transactionDetail: any): Transaction => {
-  const messageId = transactionDetail.Refs.MsgId;
-  const accountServicerReferenceId = transactionDetail.Refs.AcctSvcrRef;
-  const paymentInformationId = transactionDetail.Refs.PmtInfId;
+  const messageId = transactionDetail.Refs?.MsgId;
+  const accountServicerReferenceId = transactionDetail.Refs?.AcctSvcrRef;
+  const paymentInformationId = transactionDetail.Refs?.PmtInfId;
   const remittanceInformation = transactionDetail.RmtInf?.Ustrd;
   const proprietaryPurpose = transactionDetail.Purp?.Prtry;
   const returnReason = transactionDetail.RtrInf?.Rsn;

@@ -150,7 +150,7 @@ describe('CashManagementEndOfDayReport', () => {
       });
     });
 
-    describe('with a Abn AMRO 053 NL file', () => {
+    describe('with a ABN AMRO 053 NL file', () => {
       it('should create an instance with valid config', () => {
         xmlFilePath = `${process.cwd()}/test/assets/abn_amro/example_camt.xml`;
         const camt053Sample = fs.readFileSync(xmlFilePath, 'utf8');
@@ -160,6 +160,19 @@ describe('CashManagementEndOfDayReport', () => {
         // First balance parses file (Dt)
         const firstBalance = report.statements[0].balances[0];
         expect(firstBalance.date).toEqual(new Date('2013-03-28'));
+      });
+    });
+
+    describe('with a ING 053 NL file', () => {
+      it('should create an instance with valid config', () => {
+        xmlFilePath = `${process.cwd()}/test/assets/ing/example_camt.xml`;
+        const camt053Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        report = CashManagementEndOfDayReport.fromXML(camt053Sample);
+        expect(report.messageId).toBe('201401030009999_20140104015504378');
+
+        // First balance parses file (Dt)
+        const firstBalance = report.statements[0].balances[0];
+        expect(firstBalance.date).toEqual(new Date('2014-01-02'));
       });
     });
   });
