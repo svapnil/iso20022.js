@@ -1834,8 +1834,8 @@ Inkomende SDD Reject
                         </RmtInf>
                         <RtrInf>
                             <Rsn>
-                            <Cd>MS03</Cd>
-                            <Rsn>
+                                <Cd>MS03</Cd>
+                            </Rsn>
                         </RtrInf>
                     </TxDtls>
                 </NtryDtls>
@@ -1925,8 +1925,8 @@ Inkomende SDD Return
                         </RmtInf>
                         <RtrInf>
                             <Rsn>
-                            <Cd>MS03</Cd>
-                            <Rsn>
+                                <Cd>MS03</Cd>
+                            </Rsn>
                         </RtrInf>
                     </TxDtls>
                 </NtryDtls>

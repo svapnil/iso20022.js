@@ -1,6 +1,12 @@
-import { Balance, Entry, Statement, Transaction } from 'camt/types';
+import {
+  Balance,
+  BankTransactionCode,
+  Entry,
+  Statement,
+  Transaction,
+} from 'camt/types';
 import { Party } from '../../lib/types';
-import { parseDate } from '../../parseUtils';
+import { parseAdditionalInformation, parseDate } from '../../parseUtils';
 import {
   parseAccount,
   parseAgent,
@@ -103,6 +109,9 @@ export const parseEntry = (entry: any): Entry => {
   const currency = entry.Amt['@_Ccy'];
   const amount = parseAmountToMinorUnits(rawAmount, currency);
   const proprietaryCode = entry.BkTxCd.Prtry?.Cd;
+  const additionalInformation = parseAdditionalInformation(entry.AddtlNtryInf);
+  const accountServicerReferenceId = entry.AcctSvcrRef;
+  const bankTransactionCode = parseBankTransactionCode(entry.BkTxCd);
 
   // Currently, we flatten entry details into a list of TransactionDetails
   let rawEntryDetails = entry.NtryDtls || [];
@@ -130,6 +139,9 @@ export const parseEntry = (entry: any): Entry => {
     currency,
     proprietaryCode,
     transactions,
+    additionalInformation,
+    accountServicerReferenceId,
+    bankTransactionCode,
   } as Entry;
 };
 
@@ -199,4 +211,22 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
     debtor,
     creditor,
   } as Transaction;
+};
+
+const parseBankTransactionCode = (
+  transactionCode: any,
+): BankTransactionCode | undefined => {
+  const domainCode = transactionCode?.Domn?.Cd;
+  const domainFamilyCode = transactionCode?.Domn?.Fmly?.Cd;
+  const domainSubFamilyCode = transactionCode?.Domn?.Fmly?.SubFmlyCd;
+  const proprietaryCode = transactionCode.Prtry?.Cd;
+  const proprietaryCodeIssuer = transactionCode.Prtry?.Issr;
+
+  return {
+    domainCode,
+    domainFamilyCode,
+    domainSubFamilyCode,
+    proprietaryCode,
+    proprietaryCodeIssuer,
+  };
 };

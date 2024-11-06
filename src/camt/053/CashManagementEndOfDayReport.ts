@@ -37,6 +37,32 @@ export class CashManagementEndOfDayReport {
   }
 
   /**
+   * Creates and configures the XML Parser
+   *
+   * @returns {XMLParser} A configured instance of XMLParser
+   */
+  private static getParser(): XMLParser {
+    return new XMLParser({
+      ignoreAttributes: false,
+      tagValueProcessor: (
+        tagName,
+        tagValue,
+        _jPath,
+        _hasAttributes,
+        isLeafNode,
+      ) => {
+        /**
+         * Codes and Entry References can look like numbers and get parsed
+         * appropriately. We don't want this to happen, as they contain leading
+         * zeros or are too long and overflow.
+         */
+        if (isLeafNode && ['Cd', 'NtryRef'].includes(tagName)) return undefined;
+        return tagValue;
+      },
+    });
+  }
+
+  /**
    * Creates a CashManagementEndOfDayReport instance from a raw XML string.
    *
    * @param {string} rawXml - The raw XML string containing the CAMT.053 data.
@@ -44,7 +70,7 @@ export class CashManagementEndOfDayReport {
    * @throws {Error} If the XML parsing fails or required data is missing.
    */
   static fromXML(rawXml: string): CashManagementEndOfDayReport {
-    const parser = new XMLParser({ ignoreAttributes: false });
+    const parser = CashManagementEndOfDayReport.getParser();
     const xml = parser.parse(rawXml);
     const bankToCustomerStatement = xml.Document.BkToCstmrStmt;
     const rawCreationDate = bankToCustomerStatement.GrpHdr.CreDtTm;
