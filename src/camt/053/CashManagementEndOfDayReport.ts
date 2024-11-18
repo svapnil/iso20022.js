@@ -17,7 +17,6 @@ interface CashManagementEndOfDayReportConfig {
   /** Array of bank statements included in the report */
   statements: Statement[];
 }
-
 /**
  * Represents a Cash Management End of Day Report (CAMT.053.x).
  * This class encapsulates the data and functionality related to processing
@@ -55,6 +54,8 @@ export class CashManagementEndOfDayReport {
          * Codes and Entry References can look like numbers and get parsed
          * appropriately. We don't want this to happen, as they contain leading
          * zeros or are too long and overflow.
+         *
+         * Ex. <Cd>0001234<Cd> Should resolve to "0001234"
          */
         if (isLeafNode && ['Cd', 'NtryRef'].includes(tagName)) return undefined;
         return tagValue;
@@ -122,7 +123,7 @@ export class CashManagementEndOfDayReport {
 
   /**
    * Gets the party receiving the report.
-   * @returns {Party} The recipient party information.
+   * @returns {Party | undefined} The recipient party information, or undefined if no recipient is set.
    */
   get recipient(): Party | undefined {
     return this._recipient;

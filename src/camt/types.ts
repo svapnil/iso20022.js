@@ -64,7 +64,7 @@ export interface Balance {
  * Represents a transaction entry in the statement.
  */
 export interface Entry {
-  /** Unique reference ID for the entry. */
+  /** Unique reference ID for the entry, if included in the statement. */
   referenceId?: string;
   /** Indicates whether the entry is a credit or debit. */
   creditDebitIndicator: 'credit' | 'debit';
@@ -120,8 +120,10 @@ export interface Transaction {
   returnAdditionalInformation?: string;
 }
 
+// NOTE: We should consider creating DomainCode, FamilyCode, and SubFamilyCode types from:
+// https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets
 export interface BankTransactionCode {
-  /** Specifiesthe business area of the underlying transaction. */
+  /** Specifies the business area of the underlying transaction. */
   domainCode?: string;
   /** Specifies the family within the domain of the underlying transaction.  */
   domainFamilyCode?: string;
