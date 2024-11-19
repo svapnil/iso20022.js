@@ -64,8 +64,8 @@ export interface Balance {
  * Represents a transaction entry in the statement.
  */
 export interface Entry {
-  /** Unique reference ID for the entry. */
-  referenceId: string;
+  /** Unique reference ID for the entry, if included in the statement. */
+  referenceId?: string;
   /** Indicates whether the entry is a credit or debit. */
   creditDebitIndicator: 'credit' | 'debit';
   /** Indicates if the entry is a reversal. */
@@ -80,6 +80,12 @@ export interface Entry {
   proprietaryCode: string;
   /** Array of individual transactions within this entry. */
   transactions: Transaction[];
+  /** Additional entry information */
+  additionalInformation?: string;
+  /** Reference ID assigned by the account servicer. */
+  accountServicerReferenceId?: string;
+  /** Details about the type of transaction */
+  bankTransactionCode: BankTransactionCode;
 }
 
 /**
@@ -112,6 +118,21 @@ export interface Transaction {
   returnReason?: string;
   /** Additional information about the return. */
   returnAdditionalInformation?: string;
+}
+
+// NOTE: We should consider creating DomainCode, FamilyCode, and SubFamilyCode types from:
+// https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets
+export interface BankTransactionCode {
+  /** Specifies the business area of the underlying transaction. */
+  domainCode?: string;
+  /** Specifies the family within the domain of the underlying transaction.  */
+  domainFamilyCode?: string;
+  /** Specifies the sub-product family within a specific family of the underlying transaction. */
+  domainSubFamilyCode?: string;
+  /** Bank transaction code in a proprietary form, as defined by the issuer. */
+  proprietaryCode?: string;
+  /** Identification of the issuer of the proprietary bank transaction code. */
+  proprietaryCodeIssuer?: string;
 }
 
 /**
