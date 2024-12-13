@@ -20,6 +20,12 @@ describe('CashManagementEndOfDayReport', () => {
         });
         expect(report).toBeInstanceOf(CashManagementEndOfDayReport);
 
+        // Synthetic methods (map reduced)
+        expect(report.statements.length).toBe(1);
+        expect(report.transactions.length).toBe(15);
+        expect(report.entries.length).toBe(15);
+        expect(report.balances.length).toBe(4);
+
         // Statement is correct
         const statement = report.statements[0];
         expect(statement.id).toBe('258158850');

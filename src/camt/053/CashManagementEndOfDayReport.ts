@@ -1,4 +1,4 @@
-import { Entry, Statement, Transaction } from '../types';
+import { Balance, Entry, Statement, Transaction } from '../types';
 import { Party } from '../../lib/types';
 import { XMLParser } from 'fast-xml-parser';
 import { parseStatement } from './utils';
@@ -96,6 +96,14 @@ export class CashManagementEndOfDayReport {
   }
 
   /**
+   * Retrieves all balances from all statements in the report.
+   * @returns {Balance[]} An array of all balances across all statements.
+   */
+  get balances(): Balance[] {
+    return this._statements.flatMap(statement => statement.balances);
+  }
+
+  /**
    * Retrieves all transactions from all statements in the report.
    * @returns {Transaction[]} An array of all transactions across all statements.
    */
@@ -144,4 +152,5 @@ export class CashManagementEndOfDayReport {
   get statements(): Statement[] {
     return this._statements;
   }
+
 }
