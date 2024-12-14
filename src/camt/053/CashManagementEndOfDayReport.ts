@@ -3,6 +3,10 @@ import { Party } from '../../lib/types';
 import { XMLParser } from 'fast-xml-parser';
 import { parseStatement } from './utils';
 import { parseParty } from '../../parseUtils';
+import {
+  InvalidXmlError,
+  InvalidXmlNamespaceError,
+} from '../../errors';
 
 /**
  * Configuration interface for creating a CashManagementEndOfDayReport instance.
@@ -73,6 +77,16 @@ export class CashManagementEndOfDayReport {
   static fromXML(rawXml: string): CashManagementEndOfDayReport {
     const parser = CashManagementEndOfDayReport.getParser();
     const xml = parser.parse(rawXml);
+
+    if (!xml.Document) {
+      throw new InvalidXmlError("Invalid XML format");
+    }
+
+    const namespace = (xml.Document['@_xmlns'] || xml.Document['@_Xmlns']) as string;
+    if (!namespace.startsWith('urn:iso:std:iso:20022:tech:xsd:camt.053.001.')) {
+      throw new InvalidXmlNamespaceError('Invalid CAMT.053 namespace');
+    }
+
     const bankToCustomerStatement = xml.Document.BkToCstmrStmt;
     const rawCreationDate = bankToCustomerStatement.GrpHdr.CreDtTm;
     const creationDate = new Date(rawCreationDate);

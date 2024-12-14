@@ -230,5 +230,24 @@ describe('CashManagementEndOfDayReport', () => {
         });
       });
     });
+
+    describe('with a non-XML file', () => {
+      it('should throw an error', () => {
+        expect(() => {
+          CashManagementEndOfDayReport.fromXML('HELLO!!');
+        }).toThrow('Invalid XML format');
+      });
+    });
+  });
+
+
+  describe('with a non-CAMT 053 XML file', () => {
+    it('should throw an error', () => {
+      expect(() => {
+        const xmlFilePath = `${process.cwd()}/test/assets/cross_river/pain_002_transaction_rejected.xml`;
+        const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        CashManagementEndOfDayReport.fromXML(pain002Sample);
+      }).toThrow('Invalid XML namespace');
+    });
   });
 });
