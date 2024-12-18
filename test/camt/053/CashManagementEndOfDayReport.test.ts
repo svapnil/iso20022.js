@@ -247,7 +247,7 @@ describe('CashManagementEndOfDayReport', () => {
         const xmlFilePath = `${process.cwd()}/test/assets/cross_river/pain_002_transaction_rejected.xml`;
         const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
         CashManagementEndOfDayReport.fromXML(pain002Sample);
-      }).toThrow('Invalid XML namespace');
+      }).toThrow('Invalid CAMT.053 namespace');
     });
   });
 });
