@@ -10,9 +10,9 @@ export interface Statement {
   /** Unique identifier for the statement. */
   id: string;
   /** Electronic sequence number of the statement. */
-  electronicSequenceNumber: number;
+  electronicSequenceNumber?: number;
   /** Legal sequence number of the statement. */
-  legalSequenceNumber: number;
+  legalSequenceNumber?: number;
   /** Date and time when the statement was created. */
   creationDate: Date;
   /** Start date of the statement period. */
