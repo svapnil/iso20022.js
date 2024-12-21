@@ -38,7 +38,7 @@ export type {
   Transaction,
   BalanceType,
 } from './camt/types';
-export { BalanceTypeCode } from './camt/types';
+export { BalanceTypeCode, BalanceTypeCodeDescriptionMap } from './camt/types';
 export { CashManagementEndOfDayReport } from './camt/053/CashManagementEndOfDayReport';
 
 // errors

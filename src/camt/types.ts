@@ -164,5 +164,22 @@ export const BalanceTypeCode = {
   AdditionalBalReserveRequirement: 'ABRR',
 } as const;
 
+/**
+ * Description mapping of BalanceTypeCode values to their names.
+ */
+export const BalanceTypeCodeDescriptionMap = {
+  'CLAV': 'Closing Available',
+  'CLBD': 'Closing Booked',
+  'FWAV': 'Forward Available',
+  'INFO': 'Information',
+  'ITAV': 'Interim Available',
+  'ITBD': 'Interim Booked',
+  'OPAV': 'Opening Available',
+  'OPBD': 'Opening Booked',
+  'PRCD': 'Previously Closed Booked',
+  'XPCD': 'Expected',
+  'ABRR': 'Additional Balance Reserve Requirement'
+} as const;
+
 export type BalanceType =
   (typeof BalanceTypeCode)[keyof typeof BalanceTypeCode];
