@@ -56,6 +56,13 @@ describe('CashManagementEndOfDayReport', () => {
         expect(firstBalance.date).toBeInstanceOf(Date);
 
         // Entries
+
+        // Expect some entries to be reversals
+        const reversedEntries = statement.entries.filter(
+          entry => entry.reversal,
+        );
+        expect(reversedEntries.length).toBe(3);
+
         expect(statement.entries.length).toBe(15);
         const firstEntry = statement.entries[0];
         expect(firstEntry.amount).toBe(10_00);

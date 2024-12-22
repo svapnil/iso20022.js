@@ -104,7 +104,7 @@ export const parseEntry = (entry: any): Entry => {
   const referenceId = entry.NtryRef;
   const creditDebitIndicator = entry.CdtDbtInd === 'CRDT' ? 'credit' : 'debit';
   const bookingDate = parseDate(entry.BookgDt);
-  const reversal = entry.RvslInd === 'true';
+  const reversal = entry.RvslInd === true;
   const rawAmount = entry.Amt['#text'];
   const currency = entry.Amt['@_Ccy'];
   const amount = parseAmountToMinorUnits(rawAmount, currency);
