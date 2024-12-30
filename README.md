@@ -1,6 +1,7 @@
 # iso20022.js
 
-NOTE: Introducing ISO20022 Pro, the Web-App layer of ISO20022 - create and import ISO20022 files in a single UI.
+> [!IMPORTANT]
+> Introducing ISO20022 Pro, the Web-App layer of ISO20022 - create and import ISO20022 files in a single UI.
 
 This package is meant for companies using ISO20022 to send and receive payment information.
 
