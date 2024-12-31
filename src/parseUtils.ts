@@ -1,4 +1,4 @@
-import { Account, Agent, Party } from 'lib/types';
+import { Account, Agent, Party, StructuredAddress } from 'lib/types';
 import Dinero, { Currency } from 'dinero.js';
 
 export const parseAccount = (account: any): Account => {
@@ -52,6 +52,17 @@ export const parseParty = (party: any): Party => {
     id: party.Id?.OrgId?.Othr?.Id,
     name: party.Nm,
   } as Party;
+};
+
+export const parseRecipient = (recipient: any): {
+  id?: string;
+  name?: string;
+  address?: StructuredAddress
+} => {
+  return {
+    id: recipient.Id?.OrgId?.Othr?.Id,
+    name: recipient.Nm,
+  };
 };
 
 // Standardize into a single string
