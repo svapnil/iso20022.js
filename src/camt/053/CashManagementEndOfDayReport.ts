@@ -1,8 +1,8 @@
 import { Balance, Entry, Statement, Transaction } from '../types';
-import { Party } from '../../lib/types';
+import { Party, StructuredAddress } from '../../lib/types';
 import { XMLParser } from 'fast-xml-parser';
 import { parseStatement } from './utils';
-import { parseParty } from '../../parseUtils';
+import { parseRecipient } from '../../parseUtils';
 import {
   InvalidXmlError,
   InvalidXmlNamespaceError,
@@ -16,8 +16,12 @@ interface CashManagementEndOfDayReportConfig {
   messageId: string;
   /** Date and time when the report was created */
   creationDate: Date;
-  /** Party receiving the report */
-  recipient?: Party;
+  /** Recipient (party without bank and institution) receiving the report */
+  recipient?: {
+    id?: string;
+    name?: string;
+    address?: StructuredAddress;
+  };
   /** Array of bank statements included in the report */
   statements: Statement[];
 }
@@ -29,7 +33,11 @@ interface CashManagementEndOfDayReportConfig {
 export class CashManagementEndOfDayReport {
   private _messageId: string;
   private _creationDate: Date;
-  private _recipient?: Party;
+  private _recipient?: {
+    name?: string;
+    id?: string;
+    address?: StructuredAddress;
+  };
   private _statements: Statement[];
 
   constructor(config: CashManagementEndOfDayReportConfig) {
@@ -100,11 +108,11 @@ export class CashManagementEndOfDayReport {
       statements = [parseStatement(bankToCustomerStatement.Stmt)];
     }
 
-    const party = bankToCustomerStatement.GrpHdr.MsgRcpt;
+    const rawRecipient = bankToCustomerStatement.GrpHdr.MsgRcpt;
     return new CashManagementEndOfDayReport({
       messageId: bankToCustomerStatement.GrpHdr.MsgId.toString(),
       creationDate,
-      recipient: party ? parseParty(party) : undefined,
+      recipient: rawRecipient ? parseRecipient(rawRecipient) : undefined,
       statements: statements,
     });
   }
