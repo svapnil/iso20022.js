@@ -33,6 +33,16 @@ export interface SWIFTCreditPaymentInstruction extends PaymentInstruction {
   creditor: Party;
 }
 
+/*
+ * Represents a SEPA credit payment instruction, etending the base PaymentInstruction.
+ */
+export interface SEPACreditPaymentInstruction extends PaymentInstruction {
+  type: 'sepa',
+  direction: 'credit',
+  creditor: Party,
+  dinero?: Dinero.Dinero,
+}
+
 /**
  * Represents a structured address format.
  */
