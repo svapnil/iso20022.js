@@ -154,7 +154,9 @@ describe('PaymentStatusReport', () => {
         report = PaymentStatusReport.fromXML(pain002Sample);
         expect(report.statusInformations).toHaveLength(1);
         expect(report.statusInformations[0].type).toEqual('group');
-        expect(report.statusInformations[0].status).toEqual(PaymentStatusCode.Rejected);
+        expect(report.statusInformations[0].status).toEqual(
+          PaymentStatusCode.Rejected,
+        );
       });
     });
 
@@ -165,7 +167,9 @@ describe('PaymentStatusReport', () => {
         report = PaymentStatusReport.fromXML(pain002Sample);
         expect(report.statusInformations).toHaveLength(5);
         expect(report.statusInformations[4].type).toEqual('transaction');
-        expect(report.statusInformations[4].status).toEqual(PaymentStatusCode.Rejected);
+        expect(report.statusInformations[4].status).toEqual(
+          PaymentStatusCode.Rejected,
+        );
       });
     });
   });

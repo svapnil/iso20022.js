@@ -1,6 +1,6 @@
 {
   "name": "@ekhineo/iso20022.js",
-  "version": "0.1.0",
+  "version": "0.0.20",
   "description": "Simple framework to create and ingest ISO20022 XML files.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,7 +10,8 @@
     "shell": "npx tsx --experimental-repl-await",
     "build": "rollup -c",
     "type-check": "tsc --noEmit",
-    "create-patch-version": "npm run build && npm version patch && git push origin --tags && npm publish"
+    "create-patch-version": "npm run build && npm version patch && git push origin --tags && npm publish",
+    "example:swift": "npx tsx examples/swift-credit-transfer.ts"
   },
   "exports": {
     ".": {

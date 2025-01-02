@@ -10,9 +10,9 @@ export interface Statement {
   /** Unique identifier for the statement. */
   id: string;
   /** Electronic sequence number of the statement. */
-  electronicSequenceNumber: number;
+  electronicSequenceNumber?: number;
   /** Legal sequence number of the statement. */
-  legalSequenceNumber: number;
+  legalSequenceNumber?: number;
   /** Date and time when the statement was created. */
   creationDate: Date;
   /** Start date of the statement period. */
@@ -64,8 +64,8 @@ export interface Balance {
  * Represents a transaction entry in the statement.
  */
 export interface Entry {
-  /** Unique reference ID for the entry. */
-  referenceId: string;
+  /** Unique reference ID for the entry, if included in the statement. */
+  referenceId?: string;
   /** Indicates whether the entry is a credit or debit. */
   creditDebitIndicator: 'credit' | 'debit';
   /** Indicates if the entry is a reversal. */
@@ -80,6 +80,12 @@ export interface Entry {
   proprietaryCode: string;
   /** Array of individual transactions within this entry. */
   transactions: Transaction[];
+  /** Additional entry information */
+  additionalInformation?: string;
+  /** Reference ID assigned by the account servicer. */
+  accountServicerReferenceId?: string;
+  /** Details about the type of transaction */
+  bankTransactionCode: BankTransactionCode;
 }
 
 /**
@@ -114,6 +120,21 @@ export interface Transaction {
   returnAdditionalInformation?: string;
 }
 
+// NOTE: We should consider creating DomainCode, FamilyCode, and SubFamilyCode types from:
+// https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets
+export interface BankTransactionCode {
+  /** Specifies the business area of the underlying transaction. */
+  domainCode?: string;
+  /** Specifies the family within the domain of the underlying transaction.  */
+  domainFamilyCode?: string;
+  /** Specifies the sub-product family within a specific family of the underlying transaction. */
+  domainSubFamilyCode?: string;
+  /** Bank transaction code in a proprietary form, as defined by the issuer. */
+  proprietaryCode?: string;
+  /** Identification of the issuer of the proprietary bank transaction code. */
+  proprietaryCodeIssuer?: string;
+}
+
 /**
  * Balance types as defined in ISO 20022.
  * @see {@link https://www.iso20022.org/sites/default/files/2022-03/externalcodesets_4q2021_v2_1.xlsx}
@@ -141,6 +162,23 @@ export const BalanceTypeCode = {
   Expected: 'XPCD',
   /** The difference between the excess/(deficit) investable balance and the excess/(deficit) collected balance due to the reserve requirement. This balance is not used if the account's Earnings Credit Rate is net of reserves. This may be used when the earnings allowance rate is not adjusted for reserves. It may be that reserves have been subtracted from the collected balance to determine the investable balance. Therefore, they must be added back to the excess/(deficit) investable balance to determine the collected balance position. The presentation of this calculation is optional. AFP code=00 04 21 */
   AdditionalBalReserveRequirement: 'ABRR',
+} as const;
+
+/**
+ * Description mapping of BalanceTypeCode values to their names.
+ */
+export const BalanceTypeCodeDescriptionMap = {
+  'CLAV': 'Closing Available',
+  'CLBD': 'Closing Booked',
+  'FWAV': 'Forward Available',
+  'INFO': 'Information',
+  'ITAV': 'Interim Available',
+  'ITBD': 'Interim Booked',
+  'OPAV': 'Opening Available',
+  'OPBD': 'Opening Booked',
+  'PRCD': 'Previously Closed Booked',
+  'XPCD': 'Expected',
+  'ABRR': 'Additional Balance Reserve Requirement'
 } as const;
 
 export type BalanceType =

@@ -1,8 +1,12 @@
-import { Entry, Statement, Transaction } from '../types';
-import { Party } from '../../lib/types';
+import { Balance, Entry, Statement, Transaction } from '../types';
+import { Party, StructuredAddress } from '../../lib/types';
 import { XMLParser } from 'fast-xml-parser';
 import { parseStatement } from './utils';
-import { parseParty } from '../../parseUtils';
+import { parseRecipient } from '../../parseUtils';
+import {
+  InvalidXmlError,
+  InvalidXmlNamespaceError,
+} from '../../errors';
 
 /**
  * Configuration interface for creating a CashManagementEndOfDayReport instance.
@@ -12,12 +16,15 @@ interface CashManagementEndOfDayReportConfig {
   messageId: string;
   /** Date and time when the report was created */
   creationDate: Date;
-  /** Party receiving the report */
-  recipient: Party;
+  /** Recipient (party without bank and institution) receiving the report */
+  recipient?: {
+    id?: string;
+    name?: string;
+    address?: StructuredAddress;
+  };
   /** Array of bank statements included in the report */
   statements: Statement[];
 }
-
 /**
  * Represents a Cash Management End of Day Report (CAMT.053.x).
  * This class encapsulates the data and functionality related to processing
@@ -26,7 +33,11 @@ interface CashManagementEndOfDayReportConfig {
 export class CashManagementEndOfDayReport {
   private _messageId: string;
   private _creationDate: Date;
-  private _recipient: Party;
+  private _recipient?: {
+    name?: string;
+    id?: string;
+    address?: StructuredAddress;
+  };
   private _statements: Statement[];
 
   constructor(config: CashManagementEndOfDayReportConfig) {
@@ -37,6 +48,34 @@ export class CashManagementEndOfDayReport {
   }
 
   /**
+   * Creates and configures the XML Parser
+   *
+   * @returns {XMLParser} A configured instance of XMLParser
+   */
+  private static getParser(): XMLParser {
+    return new XMLParser({
+      ignoreAttributes: false,
+      tagValueProcessor: (
+        tagName,
+        tagValue,
+        _jPath,
+        _hasAttributes,
+        isLeafNode,
+      ) => {
+        /**
+         * Codes and Entry References can look like numbers and get parsed
+         * appropriately. We don't want this to happen, as they contain leading
+         * zeros or are too long and overflow.
+         *
+         * Ex. <Cd>0001234<Cd> Should resolve to "0001234"
+         */
+        if (isLeafNode && ['Cd', 'NtryRef'].includes(tagName)) return undefined;
+        return tagValue;
+      },
+    });
+  }
+
+  /**
    * Creates a CashManagementEndOfDayReport instance from a raw XML string.
    *
    * @param {string} rawXml - The raw XML string containing the CAMT.053 data.
@@ -44,8 +83,18 @@ export class CashManagementEndOfDayReport {
    * @throws {Error} If the XML parsing fails or required data is missing.
    */
   static fromXML(rawXml: string): CashManagementEndOfDayReport {
-    const parser = new XMLParser({ ignoreAttributes: false });
+    const parser = CashManagementEndOfDayReport.getParser();
     const xml = parser.parse(rawXml);
+
+    if (!xml.Document) {
+      throw new InvalidXmlError("Invalid XML format");
+    }
+
+    const namespace = (xml.Document['@_xmlns'] || xml.Document['@_Xmlns']) as string;
+    if (!namespace.startsWith('urn:iso:std:iso:20022:tech:xsd:camt.053.001.')) {
+      throw new InvalidXmlNamespaceError('Invalid CAMT.053 namespace');
+    }
+
     const bankToCustomerStatement = xml.Document.BkToCstmrStmt;
     const rawCreationDate = bankToCustomerStatement.GrpHdr.CreDtTm;
     const creationDate = new Date(rawCreationDate);
@@ -59,12 +108,21 @@ export class CashManagementEndOfDayReport {
       statements = [parseStatement(bankToCustomerStatement.Stmt)];
     }
 
+    const rawRecipient = bankToCustomerStatement.GrpHdr.MsgRcpt;
     return new CashManagementEndOfDayReport({
       messageId: bankToCustomerStatement.GrpHdr.MsgId.toString(),
       creationDate,
-      recipient: parseParty(bankToCustomerStatement.GrpHdr.MsgRcpt),
+      recipient: rawRecipient ? parseRecipient(rawRecipient) : undefined,
       statements: statements,
     });
+  }
+
+  /**
+   * Retrieves all balances from all statements in the report.
+   * @returns {Balance[]} An array of all balances across all statements.
+   */
+  get balances(): Balance[] {
+    return this._statements.flatMap(statement => statement.balances);
   }
 
   /**
@@ -95,9 +153,9 @@ export class CashManagementEndOfDayReport {
 
   /**
    * Gets the party receiving the report.
-   * @returns {Party} The recipient party information.
+   * @returns {Party | undefined} The recipient party information, or undefined if no recipient is set.
    */
-  get recipient(): Party {
+  get recipient(): Party | undefined {
     return this._recipient;
   }
 
@@ -116,4 +174,5 @@ export class CashManagementEndOfDayReport {
   get statements(): Statement[] {
     return this._statements;
   }
+
 }

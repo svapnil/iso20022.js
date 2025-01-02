@@ -20,6 +20,12 @@ describe('CashManagementEndOfDayReport', () => {
         });
         expect(report).toBeInstanceOf(CashManagementEndOfDayReport);
 
+        // Synthetic methods (map reduced)
+        expect(report.statements.length).toBe(1);
+        expect(report.transactions.length).toBe(15);
+        expect(report.entries.length).toBe(15);
+        expect(report.balances.length).toBe(4);
+
         // Statement is correct
         const statement = report.statements[0];
         expect(statement.id).toBe('258158850');
@@ -50,6 +56,13 @@ describe('CashManagementEndOfDayReport', () => {
         expect(firstBalance.date).toBeInstanceOf(Date);
 
         // Entries
+
+        // Expect some entries to be reversals
+        const reversedEntries = statement.entries.filter(
+          entry => entry.reversal,
+        );
+        expect(reversedEntries.length).toBe(3);
+
         expect(statement.entries.length).toBe(15);
         const firstEntry = statement.entries[0];
         expect(firstEntry.amount).toBe(10_00);
@@ -57,6 +70,9 @@ describe('CashManagementEndOfDayReport', () => {
         expect(firstEntry.creditDebitIndicator).toBe('credit');
         expect(firstEntry.proprietaryCode).toBe('ACH Credit Reject');
         expect(firstEntry.bookingDate).toBeInstanceOf(Date);
+        expect(firstEntry.bankTransactionCode.proprietaryCode).toBe(
+          'ACH Credit Reject',
+        );
 
         // Currently, we flatten entry details into a list of transactions
         expect(firstEntry.transactions.length).toBe(1);
@@ -148,6 +164,97 @@ describe('CashManagementEndOfDayReport', () => {
         const firstBalance = report.statements[0].balances[0];
         expect(firstBalance.date).toEqual(new Date('2019-05-08'));
       });
+    });
+
+    describe('with a ABN AMRO 053 NL file', () => {
+      it('should create an instance with valid config', () => {
+        xmlFilePath = `${process.cwd()}/test/assets/abn_amro/example_camt.xml`;
+        const camt053Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        report = CashManagementEndOfDayReport.fromXML(camt053Sample);
+        expect(report.messageId).toBe('0574908765.2013-04-02');
+        expect(report.entries.length).toBe(13);
+
+        // First balance parses file (Dt)
+        const firstBalance = report.statements[0].balances[0];
+        expect(firstBalance.date).toEqual(new Date('2013-03-28'));
+
+        const [firstEntry] = report.entries;
+
+        expect(firstEntry.referenceId).toBeUndefined();
+        expect(firstEntry.creditDebitIndicator).toBe('credit');
+        expect(firstEntry.reversal).toBe(false);
+        expect(firstEntry.bookingDate).toEqual(new Date('2013-04-02'));
+        expect(firstEntry.amount).toBe(100);
+        expect(firstEntry.currency).toBe('EUR');
+        expect(firstEntry.proprietaryCode).toBe('N196');
+        expect(firstEntry.transactions.length).toBe(0);
+        expect(firstEntry.additionalInformation).toBe(
+          '11.11.111.111 Naam Adres 7 2960 Dorp',
+        );
+        expect(firstEntry.accountServicerReferenceId).toBe(
+          '2102830989503100038',
+        );
+        expect(firstEntry.bankTransactionCode).toEqual({
+          domainCode: 'PMNT',
+          domainFamilyCode: 'RCDT',
+          domainSubFamilyCode: 'NTAV',
+          proprietaryCode: 'N196',
+          proprietaryCodeIssuer: 'ABNAMRO',
+        });
+      });
+    });
+
+    describe('with an ING 053 NL file', () => {
+      it('should create an instance with valid config', () => {
+        xmlFilePath = `${process.cwd()}/test/assets/ing/example_camt.xml`;
+        const camt053Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        report = CashManagementEndOfDayReport.fromXML(camt053Sample);
+        expect(report.messageId).toBe('201401030009999_20140104015504378');
+        expect(report.entries.length).toBe(9);
+
+        // First balance parses file (Dt)
+        const firstBalance = report.statements[0].balances[0];
+        expect(firstBalance.date).toEqual(new Date('2014-01-02'));
+
+        const [firstEntry] = report.entries;
+
+        expect(firstEntry.referenceId).toBe('011111333306999888000000008');
+        expect(firstEntry.creditDebitIndicator).toBe('credit');
+        expect(firstEntry.reversal).toBe(false);
+        expect(firstEntry.bookingDate).toEqual(new Date('2014-01-03'));
+        expect(firstEntry.amount).toBe(35000);
+        expect(firstEntry.currency).toBe('EUR');
+        expect(firstEntry.proprietaryCode).toBe('00100');
+        expect(firstEntry.transactions.length).toBe(1);
+        expect(firstEntry.additionalInformation).toBeUndefined();
+        expect(firstEntry.accountServicerReferenceId).toBe('59999208N9');
+        expect(firstEntry.bankTransactionCode).toEqual({
+          domainCode: 'PMNT',
+          domainFamilyCode: 'RCDT',
+          domainSubFamilyCode: 'ESCT',
+          proprietaryCode: '00100',
+          proprietaryCodeIssuer: 'INGGroup',
+        });
+      });
+    });
+
+    describe('with a non-XML file', () => {
+      it('should throw an error', () => {
+        expect(() => {
+          CashManagementEndOfDayReport.fromXML('HELLO!!');
+        }).toThrow('Invalid XML format');
+      });
+    });
+  });
+
+
+  describe('with a non-CAMT 053 XML file', () => {
+    it('should throw an error', () => {
+      expect(() => {
+        const xmlFilePath = `${process.cwd()}/test/assets/cross_river/pain_002_transaction_rejected.xml`;
+        const pain002Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        CashManagementEndOfDayReport.fromXML(pain002Sample);
+      }).toThrow('Invalid CAMT.053 namespace');
     });
   });
 });
