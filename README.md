@@ -1,5 +1,7 @@
 # iso20022.js
 
+[![Coverage Status](https://coveralls.io/repos/github/svapnil/iso20022.js/badge.svg?branch=main)](https://coveralls.io/github/svapnil/iso20022.js?branch=main)
+
 > [!IMPORTANT]
 > Introducing [ISO20022 Pro](https://iso20022pro.com), the Web-App layer of ISO20022 - create and import ISO20022 files in a single UI.
 >
