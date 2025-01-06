@@ -97,9 +97,11 @@ You might want to use this package if you need to create these types of files.
 | Feature                | Description                                          | Todo |
 | ---------------------- | ---------------------------------------------------- | ---- |
 | SWIFT Credit Transfer  | Create SWIFT credit transfer messages                | ✅   |
-| CAMT Transactions      | Ingest transaction data from CAMT files              | 🚧   |
+| CAMT Transactions      | Ingest transaction data from CAMT files              | ✅   |
 | SEPA Credit Transfer   | Create SEPA credit transfer messages                 | 🚧   |
 | Fednow Credit Transfer | Create Fednow credit transfer messages               | 🚧   |
+
+# Reasons to use `iso20022.js`
 | XML Generation         | Generate valid ISO 20022 XML files                   | ✅   |
 | Type Safety            | Built with TypeScript for enhanced type checking     | ✅   |
 | Extensible             | Easy to extend for custom message types              | ✅   |
