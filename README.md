@@ -1,12 +1,17 @@
-# iso20022.js
-
 > [!IMPORTANT]
 > Introducing [ISO20022 Pro](https://iso20022pro.com), the Web-App layer of ISO20022 - create and import ISO20022 files in a single UI.
 >
 > Check it out at https://iso20022pro.com.
 
-[![Star us on GitHub](https://img.shields.io/github/stars/svapnil/iso20022.js?color=FFD700&label=Stars&logo=Github)](https://github.com/svapnil/iso20022.js)
-[![Coverage Status](https://coveralls.io/repos/github/svapnil/iso20022.js/badge.svg?branch=main)](https://coveralls.io/github/svapnil/iso20022.js?branch=main)
+<div align="center">
+  <a href="https://iso20022js.com">
+    <img alt="iso20022.js logo" src="https://github.com/user-attachments/assets/662bc55f-2be0-41dc-b79e-d62f325b1f80" height="128">
+  </a>
+  <h1>iso20022.js</h1>
+  <a href=""><img alt="github stars" src="https://img.shields.io/github/stars/svapnil/iso20022.js?color=FFD700&label=Stars&logo=Github"></a>
+  <a href="https://coveralls.io/github/svapnil/iso20022.js?branch=main"><img alt="coverage" src="https://coveralls.io/repos/github/svapnil/iso20022.js/badge.svg?branch=main"></a>
+</div>
+
 
 This package is meant for companies using ISO20022 to send and receive payment information, specifically initiating payments and receiving cash management files.
 
