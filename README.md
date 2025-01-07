@@ -1,13 +1,14 @@
 # iso20022.js
 
-[![Coverage Status](https://coveralls.io/repos/github/svapnil/iso20022.js/badge.svg?branch=main)](https://coveralls.io/github/svapnil/iso20022.js?branch=main)
-
 > [!IMPORTANT]
 > Introducing [ISO20022 Pro](https://iso20022pro.com), the Web-App layer of ISO20022 - create and import ISO20022 files in a single UI.
 >
 > Check it out at https://iso20022pro.com.
 
-This package is meant for companies using ISO20022 to send and receive payment information.
+[![Star us on GitHub](https://img.shields.io/github/stars/svapnil/iso20022.js?color=FFD700&label=Stars&logo=Github)](https://github.com/svapnil/iso20022.js)
+[![Coverage Status](https://coveralls.io/repos/github/svapnil/iso20022.js/badge.svg?branch=main)](https://coveralls.io/github/svapnil/iso20022.js?branch=main)
+
+This package is meant for companies using ISO20022 to send and receive payment information, specifically initiating payments and receiving cash management files.
 
 Read the Docs: https://docs.iso20022js.com
 
@@ -16,6 +17,15 @@ The mission of this NPM package is to connect the most widely used programming l
 If you're interested in using iso20022.js and would like to use different payment types or ingest files using CAMT, please email [svapnil@woodside.sh](mailto:svapnil@woodside.sh).
 
 [![Book with Cal](https://cal.com/book-with-cal-dark.svg)](https://cal.com/woodside/iso20022js?utm_source=banner&utm_campaign=oss)
+
+<a href="https://news.ycombinator.com/item?id=41163645">
+  <img
+    style="width: 250px; height: 54px;" width="250" height="54"
+    alt="Featured on Hacker News"
+    src="https://hackernews-badge.vercel.app/api?id=41163645"
+  />
+</a>
+
 
 # Installation
 
