@@ -24,25 +24,20 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
   constructor(config: SEPACreditPaymentInitiationConfig) {
     super();
     this.initiatingParty = config.initiatingParty;
-    this.paymentInstructions = config.paymentInstructions.map(this.reifyPaymentInstruction) as AtLeastOne<SEPACreditPaymentInstruction>;
+    this.paymentInstructions = config.paymentInstructions;
     this.messageId = config.messageId || uuidv4().replace(/-/g, '');
     this.creationDate = config.creationDate || new Date();
     this.validate();
     this.paymentSum = this.sumPaymentInstructions(this.paymentInstructions as AtLeastOne<SEPACreditPaymentInstruction>);
   }
 
-  private reifyPaymentInstruction(instruction: SEPACreditPaymentInstruction): SEPACreditPaymentInstruction {
-    return {
-      ...instruction,
-      dinero: Dinero({ amount: instruction.amount, currency: instruction.currency }),
-    };
-  }
-
-  // XXX: Does not work with different currencies
+  // NOTE: Does not work with different currencies. In the meantime we will use a guard.
+  // TODO: Figure out what to do with different currencies
   private sumPaymentInstructions(instructions: AtLeastOne<SEPACreditPaymentInstruction>): string {
-    return instructions.reduce(
+    const instructionDineros = instructions.map(instruction => Dinero({ amount: instruction.amount, currency: instruction.currency }));
+    return instructionDineros.reduce(
       (acc: Dinero.Dinero, next): Dinero.Dinero => {
-        return acc.add(next.dinero as Dinero.Dinero);
+        return acc.add(next as Dinero.Dinero);
       },
       Dinero({ amount: 0, currency: instructions[0].currency }),
     ).toFormat('0.00');
@@ -53,9 +48,12 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
       throw new Error('messageId must not exceed 35 characters');
     }
 
-    const creditorWithoutAddress = this.paymentInstructions.find(
-      instruction => !instruction.creditor.address,
-    );
+    // TODO: Remove this when we figure out how to run sumPaymentInstructions safely
+    if (!this.paymentInstructions.every((i) => {return i.currency === this.paymentInstructions[0].currency})) {
+      throw new Error(
+        "In order to calculation payment instructions sum, all payment instruction currencies must be the same."
+      )
+    }
 
     const creditorWithIncompleteAddress = this.paymentInstructions.find(
       instruction => {
@@ -73,7 +71,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
 
   paymentInformation(instruction: SEPACreditPaymentInstruction) {
     const paymentInfoID = sanitize(instruction.id || uuidv4(), 35);
-    instruction.dinero ??= Dinero({ amount: instruction.amount, currency: instruction.currency });
+    const dinero = Dinero({ amount: instruction.amount, currency: instruction.currency });
 
     return {
       PmtId: {
@@ -82,7 +80,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
       },
       Amt: {
         InstdAmt: {
-          '#': instruction.dinero.toFormat('0.00'),
+          '#': dinero.toFormat('0.00'),
           '@Ccy': instruction.currency,
         },
       },
