@@ -96,7 +96,7 @@ You might want to use this package if you need to create these types of files.
 | ---------------------- | ---------------------------------------------------- | ---- |
 | SWIFT Credit Transfer  | Create SWIFT credit transfer messages                | ✅   |
 | CAMT Transactions      | Ingest transaction data from CAMT files              | 🚧   |
-| SEPA Credit Transfer   | Create SEPA credit transfer messages                 | 🚧   |
+| SEPA Credit Transfer   | Create SEPA credit transfer messages                 | ✅   |
 | Fednow Credit Transfer | Create Fednow credit transfer messages               | 🚧   |
 | XML Generation         | Generate valid ISO 20022 XML files                   | ✅   |
 | Type Safety            | Built with TypeScript for enhanced type checking     | ✅   |
