@@ -26,17 +26,23 @@ export abstract class PaymentInitiation {
    * @returns {Object} Formatted XML party information.
    */
   party(party: Party) {
-    return {
+    const result: any = {
       Nm: party.name,
-      PstlAdr: {
-        StrtNm: party.address?.streetName,
-        BldgNb: party.address?.buildingNumber,
-        PstCd: party.address?.postalCode,
-        TwnNm: party.address?.townName,
-        CtrySubDiv: party.address?.countrySubDivision,
-        Ctry: party.address?.country,
-      },
     };
+
+    // Only include address information if it exists
+    if (party.address) {
+      result.PstlAdr = {
+        StrtNm: party.address.streetName,
+        BldgNb: party.address.buildingNumber,
+        PstCd: party.address.postalCode,
+        TwnNm: party.address.townName,
+        CtrySubDvsn: party.address.countrySubDivision,
+        Ctry: party.address.country,
+      };
+    }
+
+    return result;
   }
 
   /**

@@ -63,6 +63,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
     }
 
     // Validate that all creditors have addresses
+    // TODO: This cosnt is unused! Delete it
     const creditorWithoutAddress = this.paymentInstructions.find(
       instruction => !instruction.creditor.address,
     );
