@@ -6,12 +6,13 @@
   "types": "dist/index.d.ts",
   "module": "dist/index.mjs",
   "scripts": {
-    "test": "jest",
+    "test": "npx jest --coverage",
     "shell": "npx tsx --experimental-repl-await",
     "build": "rollup -c",
     "type-check": "tsc --noEmit",
     "create-patch-version": "npm run build && npm version patch && git push origin --tags && npm publish",
-    "example:swift": "npx tsx examples/swift-credit-transfer.ts"
+    "example:swift": "npx tsx examples/swift-credit-transfer.ts",
+    "coveralls": "npm run test && coveralls report"
   },
   "exports": {
     ".": {

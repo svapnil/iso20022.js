@@ -134,3 +134,6 @@ dist
 
 # .DS_Store
 .DS_Store
+
+# Coveralls / Coverage
+.coveralls.yml
