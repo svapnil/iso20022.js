@@ -7,13 +7,29 @@ import { v4 as uuidv4 } from 'uuid';
 
 type AtLeastOne<T> = [T, ...T[]];
 
+/**
+ * Configuration interface for SEPA Credit Payment Initiation.
+ * Defines the structure for initiating SEPA credit transfers according to pain.001.001.03 schema.
+ * @interface SEPACreditPaymentInitiationConfig
+ */
 export interface SEPACreditPaymentInitiationConfig {
+  /** The party initiating the SEPA credit transfer. */
   initiatingParty: Party;
+  /** An array containing at least one payment instruction for SEPA credit transfer. */
   paymentInstructions: AtLeastOne<SEPACreditPaymentInstruction>;
+  /** Optional unique identifier for the message. If not provided, a UUID will be generated. */
   messageId?: string;
+  /** Optional creation date for the message. If not provided, current date will be used. */
   creationDate?: Date;
 }
 
+/**
+ * Represents a SEPA Credit Transfer Initiation message (pain.001.001.03).
+ * This class handles the creation and serialization of SEPA credit transfer messages
+ * according to the ISO20022 standard.
+ * @class
+ * @extends PaymentInitiation
+ */
 export class SEPACreditPaymentInitiation extends PaymentInitiation {
   private initiatingParty: Party;
   private messageId: string;
@@ -21,6 +37,10 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
   private paymentInstructions: AtLeastOne<SEPACreditPaymentInstruction>;
   private paymentSum: string;
 
+  /**
+   * Creates an instance of SEPACreditPaymentInitiation.
+   * @param {SEPACreditPaymentInitiationConfig} config - The configuration object for the SEPA credit transfer.
+   */
   constructor(config: SEPACreditPaymentInitiationConfig) {
     super();
     this.initiatingParty = config.initiatingParty;
@@ -31,8 +51,17 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
     this.paymentSum = this.sumPaymentInstructions(this.paymentInstructions as AtLeastOne<SEPACreditPaymentInstruction>);
   }
 
+
   // NOTE: Does not work with different currencies. In the meantime we will use a guard.
   // TODO: Figure out what to do with different currencies
+
+  /**
+   * Calculates the sum of all payment instructions.
+   * @private
+   * @param {AtLeastOne<SEPACreditPaymentInstruction>} instructions - Array of payment instructions.
+   * @returns {string} The total sum formatted as a string with 2 decimal places.
+   * @throws {Error} If payment instructions have different currencies.
+   */
   private sumPaymentInstructions(instructions: AtLeastOne<SEPACreditPaymentInstruction>): string {
     const instructionDineros = instructions.map(instruction => Dinero({ amount: instruction.amount, currency: instruction.currency }));
     return instructionDineros.reduce(
@@ -43,6 +72,13 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
     ).toFormat('0.00');
   }
 
+  /**
+   * Validates the payment initiation data according to SEPA requirements.
+   * @private
+   * @throws {Error} If messageId exceeds 35 characters.
+   * @throws {Error} If payment instructions have different currencies.
+   * @throws {Error} If any creditor has incomplete address information.
+   */
   private validate() {
     if (this.messageId.length > 35) {
       throw new Error('messageId must not exceed 35 characters');
@@ -69,6 +105,11 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
     }
   }
 
+  /**
+   * Generates payment information for a single SEPA credit transfer instruction.
+   * @param {SEPACreditPaymentInstruction} instruction - The payment instruction.
+   * @returns {Object} The payment information object formatted according to SEPA specifications.
+   */
   paymentInformation(instruction: SEPACreditPaymentInstruction) {
     const paymentInfoID = sanitize(instruction.id || uuidv4(), 35);
     const dinero = Dinero({ amount: instruction.amount, currency: instruction.currency });
@@ -96,6 +137,10 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
     };
   }
 
+  /**
+   * Serializes the SEPA credit transfer initiation to an XML string.
+   * @returns {string} The XML representation of the SEPA credit transfer initiation.
+   */
   public serialize(): string {
     const xml = {
       Document: {
