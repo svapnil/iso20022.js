@@ -111,13 +111,13 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
    * @returns {Object} The payment information object formatted according to SEPA specifications.
    */
   paymentInformation(instruction: SEPACreditPaymentInstruction) {
-    const paymentInfoID = sanitize(instruction.id || uuidv4(), 35);
+    const paymentInstructionId = sanitize(instruction.id || uuidv4(), 35);
     const dinero = Dinero({ amount: instruction.amount, currency: instruction.currency });
 
     return {
       PmtId: {
-        InstrId: paymentInfoID,
-        EndToEndId: paymentInfoID,
+        InstrId: paymentInstructionId,
+        EndToEndId: paymentInstructionId,
       },
       Amt: {
         InstdAmt: {

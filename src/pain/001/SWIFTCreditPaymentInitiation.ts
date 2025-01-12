@@ -164,6 +164,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
               },
             },
           },
+          // BUG: We should put instructions in CdtTrfTxInf, not PmtInf, just like SEPA.
           PmtInf: paymentsInstructions,
         },
       },
