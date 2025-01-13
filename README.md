@@ -125,3 +125,11 @@ You might want to use this package if you need to create these types of files.
 | Type Safety            | Built with TypeScript for enhanced type checking     | ✅   |
 | Extensible             | Easy to extend for custom message types              | ✅   |
 | Validation             | Built-in validation for ISO 20022 message structures | ✅   |
+
+# Security
+
+`iso20022.js` is local, open source, and free to use. This means that payment instructions are created on your machine, not on a remote server.
+
+We take security seriously, and are consistently looking for ways to improve. If you have any suggestions or find any security issues, please [open an issue](https://github.com/svapnil/iso20022.js/issues/new/choose).
+
+**NOTE: We are tracking the [libxmljs vulnerability](https://github.com/svapnil/iso20022.js/issues/26), a dependency we use in our unit tests and have a plan to deprecate. Note that production use of `iso20022.js` is not affected by this vulnerability.**
