@@ -12,6 +12,7 @@
     "type-check": "tsc --noEmit",
     "create-patch-version": "npm run build && npm version patch && git push origin --tags && npm publish",
     "example:swift": "npx tsx examples/swift-credit-transfer.ts",
+    "example:sepa": "npx tsx examples/sepa-credit-transfer.ts",
     "coveralls": "npm run test && coveralls report"
   },
   "exports": {
