@@ -105,7 +105,6 @@ describe('SWIFTCreditPaymentInitiation', () => {
 
     test('serialized XML should validate against XSD', () => {
       const xml = swiftPayment.serialize();
-      console.log(xml);
       const xsdSchema = fs.readFileSync(
         `${process.cwd()}/schemas/pain/pain.001.001.03.xsd`,
         'utf8',
