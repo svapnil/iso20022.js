@@ -110,7 +110,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
    * @param {SEPACreditPaymentInstruction} instruction - The payment instruction.
    * @returns {Object} The payment information object formatted according to SEPA specifications.
    */
-  paymentInformation(instruction: SEPACreditPaymentInstruction) {
+  creditTransfer(instruction: SEPACreditPaymentInstruction) {
     const paymentInstructionId = sanitize(instruction.id || uuidv4(), 35);
     const dinero = Dinero({ amount: instruction.amount, currency: instruction.currency });
 
@@ -178,7 +178,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
             DbtrAgt: this.agent(this.initiatingParty.agent as Agent),
             ChrgBr: 'SLEV',
             // payments[]
-            CdtTrfTxInf: this.paymentInstructions.map(p => this.paymentInformation(p)),
+            CdtTrfTxInf: this.paymentInstructions.map(p => this.creditTransfer(p)),
           }
         }
       },
