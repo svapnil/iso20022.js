@@ -11,6 +11,8 @@ import {
 import { PaymentInitiation } from './ISO20022PaymentInitiation';
 import { sanitize } from '../../utils/format';
 
+type AtLeastOne<T> = [T, ...T[]];
+
 /**
  * Configuration interface for SWIFTCreditPaymentInitiation.
  * @interface SWIFTCreditPaymentInitiationConfig
@@ -19,7 +21,7 @@ export interface SWIFTCreditPaymentInitiationConfig {
   /** The party initiating the payment. */
   initiatingParty: Party;
   /** An array of payment instructions. */
-  paymentInstructions: SWIFTCreditPaymentInstruction[];
+  paymentInstructions: AtLeastOne<SWIFTCreditPaymentInstruction>;
   /** Optional unique identifier for the message. If not provided, a UUID will be generated. */
   messageId?: string;
   /** Optional creation date for the message. If not provided, current date will be used. */
