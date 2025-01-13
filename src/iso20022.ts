@@ -1,5 +1,8 @@
-import { Party, SWIFTCreditPaymentInstruction } from './lib/types.js';
+import { Party, SWIFTCreditPaymentInstruction, SEPACreditPaymentInstruction } from './lib/types.js';
 import { SWIFTCreditPaymentInitiation } from './pain/001/SWIFTCreditPaymentInitiation';
+import { SEPACreditPaymentInitiation } from './pain/001/SEPACreditPaymentInitiation';
+
+type AtLeastOne<T> = [T, ...T[]];
 
 /**
  * Configuration interface for the ISO20022 class.
@@ -38,6 +41,20 @@ class ISO20022 {
     paymentInstructions: SWIFTCreditPaymentInstruction[],
   ) {
     return new SWIFTCreditPaymentInitiation({
+      initiatingParty: this.initiatingParty,
+      paymentInstructions: paymentInstructions,
+    });
+  }
+
+  /**
+   * Creates a SEPA Credit Payment Initiation message.
+   * @param {SEPACreditPaymentInstruction[]} paymentInstructions - An array of payment instructions.
+   * @returns {SEPACreditPaymentInitiation} A new SEPA Credit Payment Initiation object.
+   */
+  createSEPACreditPaymentInitiation(
+    paymentInstructions: AtLeastOne<SEPACreditPaymentInstruction>,
+  ) {
+    return new SEPACreditPaymentInitiation({
       initiatingParty: this.initiatingParty,
       paymentInstructions: paymentInstructions,
     });
