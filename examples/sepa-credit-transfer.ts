@@ -13,7 +13,7 @@ async function main() {
             agent: {
                 bic: 'BSCHESMMXXX',
                 bankAddress: {
-                    country: 'US'
+                    country: 'ES'
                 }
             }
         },
