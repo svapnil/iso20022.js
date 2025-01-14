@@ -142,6 +142,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
    * @returns {string} The XML representation of the SEPA credit transfer initiation.
    */
   public serialize(): string {
+    const paymentInformationId = sanitize(uuidv4(), 35);
     const xml = {
       Document: {
         '@xmlns': 'urn:iso:std:iso:20022:tech:xsd:pain.001.001.03',
@@ -164,7 +165,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
             },
           },
           PmtInf: {
-            PmtInfId: `TRF${Date.now()}`,
+            PmtInfId: paymentInformationId,
             PmtMtd: 'TRF',
             NbOfTxs: this.paymentInstructions.length.toString(),
             CtrlSum: this.paymentSum,
