@@ -118,6 +118,8 @@ export interface Transaction {
   returnReason?: string;
   /** Additional information about the return. */
   returnAdditionalInformation?: string;
+  /** End-to-end ID for the entry. */
+  endToEndId?: string;
 }
 
 // NOTE: We should consider creating DomainCode, FamilyCode, and SubFamilyCode types from:

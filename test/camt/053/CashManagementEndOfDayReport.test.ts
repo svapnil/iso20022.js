@@ -84,6 +84,7 @@ describe('CashManagementEndOfDayReport', () => {
         expect(firstTransaction.paymentInformationId).toBe(
           'RP/GS/CTFILERP0002/CTBA0003',
         );
+        expect(firstTransaction.endToEndId).toBe('GSGWGDNCTAHQM8');
 
         // Account Information
         expect(firstTransaction.remittanceInformation).toBe(
