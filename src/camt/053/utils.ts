@@ -153,6 +153,7 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
   const proprietaryPurpose = transactionDetail.Purp?.Prtry;
   const returnReason = transactionDetail.RtrInf?.Rsn;
   const returnAdditionalInformation = transactionDetail.RtrInf?.AddtlInf;
+  const endToEndId = transactionDetail.Refs?.EndToEndId;
 
   // Get Debtor information if 'Dbtr' is present
   let debtor;
@@ -203,6 +204,7 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
   return {
     messageId,
     accountServicerReferenceId,
+    endToEndId,
     paymentInformationId,
     remittanceInformation,
     proprietaryPurpose,
