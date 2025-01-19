@@ -19,7 +19,7 @@ Read the Docs: https://docs.iso20022js.com
 
 The mission of this NPM package is to connect the most widely used programming language to the most widely used payment standard.
 
-If you're interested in using iso20022.js and would like to use different payment types or ingest files using CAMT, please email [svapnil@woodside.sh](mailto:svapnil@woodside.sh).
+If you're interested in using iso20022.js and would like to use different payment types or ingest files using CAMT, please email [iso20022js@woodside.sh](mailto:iso20022js@woodside.sh).
 
 [![Book with Cal](https://cal.com/book-with-cal-dark.svg)](https://cal.com/woodside/iso20022js?utm_source=banner&utm_campaign=oss)
 
