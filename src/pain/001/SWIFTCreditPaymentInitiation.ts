@@ -1,9 +1,8 @@
 import { create } from 'xmlbuilder2';
 import { v4 as uuidv4 } from 'uuid';
-import Dinero, { Currency } from 'dinero.js';
+import Dinero from 'dinero.js';
 import {
   Party,
-  Agent,
   BICAgent,
   IBANAccount,
   SWIFTCreditPaymentInstruction,
@@ -11,6 +10,8 @@ import {
 } from '../../lib/types.js';
 import { PaymentInitiation } from './ISO20022PaymentInitiation';
 import { sanitize } from '../../utils/format';
+
+type AtLeastOne<T> = [T, ...T[]];
 
 /**
  * Configuration interface for SWIFTCreditPaymentInitiation.
@@ -20,7 +21,7 @@ export interface SWIFTCreditPaymentInitiationConfig {
   /** The party initiating the payment. */
   initiatingParty: Party;
   /** An array of payment instructions. */
-  paymentInstructions: SWIFTCreditPaymentInstruction[];
+  paymentInstructions: AtLeastOne<SWIFTCreditPaymentInstruction>;
   /** Optional unique identifier for the message. If not provided, a UUID will be generated. */
   messageId?: string;
   /** Optional creation date for the message. If not provided, current date will be used. */
@@ -81,59 +82,44 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
     // Add more validation as needed
   }
 
+
   /**
    * Generates payment information for a single payment instruction.
    * @param {SWIFTCreditPaymentInstruction} paymentInstruction - The payment instruction.
-   * @returns {Object} The payment information object.
+   * @returns {Object} The credit transfer object.
    */
-  paymentInformation(paymentInstruction: SWIFTCreditPaymentInstruction) {
-    const paymentInfId = sanitize(paymentInstruction.id || uuidv4(), 35);
+  creditTransfer(paymentInstruction: SWIFTCreditPaymentInstruction) {
+    const paymentInstructionId = sanitize(paymentInstruction.id || uuidv4(), 35);
     const amount = Dinero({
       amount: paymentInstruction.amount,
       currency: paymentInstruction.currency,
     }).toUnit();
 
     return {
-      PmtInfId: paymentInfId,
-      PmtMtd: 'TRF',
-      BtchBookg: 'false',
-      PmtTpInf: {
-        InstrPrty: 'NORM',
-        SvcLvl: {
-          Cd: 'URGP',
+      PmtId: {
+        InstrId: paymentInstructionId,
+        EndToEndId: paymentInstructionId,
+      },
+      Amt: {
+        InstdAmt: {
+          '#': amount,
+          '@Ccy': paymentInstruction.currency,
         },
       },
-      ReqdExctnDt: this.creationDate.toISOString().split('T')[0], // TODO: Check time zone eventually
-      Dbtr: this.party(this.initiatingParty),
-      DbtrAcct: this.account(this.initiatingParty.account as Account),
-      DbtrAgt: this.agent(this.initiatingParty.agent as BICAgent),
-      ChrgBr: 'SHAR',
-      CdtTrfTxInf: {
-        PmtId: {
-          InstrId: paymentInfId,
-          EndToEndId: paymentInfId,
-        },
-        Amt: {
-          InstdAmt: {
-            '#': amount,
-            '@Ccy': paymentInstruction.currency,
-          },
-        },
-        // TODO: Add support for intermediary bank information
-        // This is necessary when the SWIFT Payment needs to be routed through multiple banks in order to reach the recipient
-        // intermediaryBanks will probably need to be an array of BICAgents. There needs to be an easy way to get this information for users
-        CdtrAgt: this.agent(paymentInstruction.creditor.agent as BICAgent),
-        Cdtr: this.party(paymentInstruction.creditor as Party),
-        CdtrAcct: this.internationalAccount(
-          paymentInstruction.creditor.account as IBANAccount,
-        ),
-        RmtInf: paymentInstruction.remittanceInformation
-          ? {
-              Ustrd: paymentInstruction.remittanceInformation,
-            }
-          : undefined,
-      },
-    };
+      // TODO: Add support for intermediary bank information
+      // This is necessary when the SWIFT Payment needs to be routed through multiple banks in order to reach the recipient
+      // intermediaryBanks will probably need to be an array of BICAgents. There needs to be an easy way to get this information for users
+      CdtrAgt: this.agent(paymentInstruction.creditor.agent as BICAgent),
+      Cdtr: this.party(paymentInstruction.creditor as Party),
+      CdtrAcct: this.internationalAccount(
+        paymentInstruction.creditor.account as IBANAccount,
+      ),
+      RmtInf: paymentInstruction.remittanceInformation
+        ? {
+          Ustrd: paymentInstruction.remittanceInformation,
+        }
+        : undefined,
+    }
   }
 
   /**
@@ -141,9 +127,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
    * @returns {string} The XML representation of the payment initiation.
    */
   public serialize(): string {
-    const paymentsInstructions = this.paymentInstructions.map(p =>
-      this.paymentInformation(p),
-    );
+    const paymentInfId = sanitize(uuidv4(), 35);
 
     const xmlObj = {
       Document: {
@@ -164,8 +148,23 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
               },
             },
           },
-          // BUG: We should put instructions in CdtTrfTxInf, not PmtInf, just like SEPA.
-          PmtInf: paymentsInstructions,
+          PmtInf: {
+            PmtInfId: paymentInfId,
+            PmtMtd: 'TRF',
+            BtchBookg: 'false',
+            PmtTpInf: {
+              InstrPrty: 'NORM',
+              SvcLvl: {
+                Cd: 'URGP',
+              },
+            },
+            ReqdExctnDt: this.creationDate.toISOString().split('T')[0], // TODO: Check time zone eventually
+            Dbtr: this.party(this.initiatingParty),
+            DbtrAcct: this.account(this.initiatingParty.account as Account),
+            DbtrAgt: this.agent(this.initiatingParty.agent as BICAgent),
+            ChrgBr: 'SHAR',
+            CdtTrfTxInf: this.paymentInstructions.map(p => this.creditTransfer(p)),
+          },
         },
       },
     };

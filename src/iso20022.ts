@@ -4,6 +4,8 @@ import { SEPACreditPaymentInitiation } from './pain/001/SEPACreditPaymentInitiat
 
 type AtLeastOne<T> = [T, ...T[]];
 
+type AtLeastOne<T> = [T, ...T[]];
+
 /**
  * Configuration interface for the ISO20022 class.
  * @interface ISO20022Config
@@ -38,7 +40,7 @@ class ISO20022 {
    * @returns {SWIFTCreditPaymentInitiation} A new SWIFT Credit Payment Initiation object.
    */
   createSWIFTCreditPaymentInitiation(
-    paymentInstructions: SWIFTCreditPaymentInstruction[],
+    paymentInstructions: AtLeastOne<SWIFTCreditPaymentInstruction>,
   ) {
     return new SWIFTCreditPaymentInitiation({
       initiatingParty: this.initiatingParty,
