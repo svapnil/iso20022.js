@@ -1,5 +1,5 @@
 > [!IMPORTANT]
-> Introducing [ISO20022 Pro](https://iso20022pro.com), the Web-App layer of ISO20022 - create and import ISO20022 files in a single UI.
+> Introducing [ISO20022 Pro](https://iso20022pro.com), a managed platform and SDK to save and send ISO20022 files for businesses.
 >
 > Check it out at https://iso20022pro.com.
 
