@@ -135,5 +135,3 @@ import {
       return this.serialize();
     }
   }
-
-  
