@@ -14,10 +14,10 @@ export type {
 } from './lib/types';
 
 // pain.001
-export type { SWIFTCreditPaymentInitiationConfig } from './pain/001/SWIFTCreditPaymentInitiation';
-export { SWIFTCreditPaymentInitiation } from './pain/001/SWIFTCreditPaymentInitiation';
-export type { SEPACreditPaymentInitiationConfig } from './pain/001/SEPACreditPaymentInitiation';
-export { SEPACreditPaymentInitiation } from './pain/001/SEPACreditPaymentInitiation';
+export type { SWIFTCreditPaymentInitiationConfig } from './pain/001/swift-credit-payment-initiation';
+export { SWIFTCreditPaymentInitiation } from './pain/001/swift-credit-payment-initiation';
+export type { SEPACreditPaymentInitiationConfig } from './pain/001/sepa-credit-payment-initiation';
+export { SEPACreditPaymentInitiation } from './pain/001/sepa-credit-payment-initiation';
 
 // pain.002
 export type {
@@ -31,7 +31,7 @@ export type {
   StatusInformation,
 } from './pain/002/types';
 export { PaymentStatusCode as StatusCode } from './pain/002/types';
-export { PaymentStatusReport } from './pain/002/PaymentStatusReport';
+export { PaymentStatusReport } from './pain/002/payment-status-report';
 
 // camt.053
 export type {
@@ -42,7 +42,7 @@ export type {
   BalanceType,
 } from './camt/types';
 export { BalanceTypeCode, BalanceTypeCodeDescriptionMap } from './camt/types';
-export { CashManagementEndOfDayReport } from './camt/053/CashManagementEndOfDayReport';
+export { CashManagementEndOfDayReport } from './camt/053/cash-management-end-of-day-report';
 
 // errors
 export {

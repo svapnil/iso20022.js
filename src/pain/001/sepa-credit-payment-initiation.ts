@@ -1,6 +1,6 @@
 import { create } from "xmlbuilder2";
 import { Account, Agent, BICAgent, IBANAccount, Party, SEPACreditPaymentInstruction } from "../../lib/types";
-import { PaymentInitiation } from "./ISO20022PaymentInitiation"
+import { PaymentInitiation } from './iso20022-payment-initiation';
 import { sanitize } from "../../utils/format";
 import Dinero from 'dinero.js';
 import { v4 as uuidv4 } from 'uuid';

@@ -1,4 +1,4 @@
-import { SEPACreditPaymentInitiation, SEPACreditPaymentInitiationConfig } from "../../../src/pain/001/SEPACreditPaymentInitiation";
+import { SEPACreditPaymentInitiation, SEPACreditPaymentInitiationConfig } from "../../../src/pain/001/sepa-credit-payment-initiation";
 import libxmljs from 'libxmljs';
 import fs from 'fs';
 import { Alpha2CountryCode } from "lib/countries";
