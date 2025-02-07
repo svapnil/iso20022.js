@@ -4,8 +4,6 @@ import { SEPACreditPaymentInitiation } from './pain/001/sepa-credit-payment-init
 
 type AtLeastOne<T> = [T, ...T[]];
 
-type AtLeastOne<T> = [T, ...T[]];
-
 /**
  * Configuration interface for the ISO20022 class.
  * @interface ISO20022Config
