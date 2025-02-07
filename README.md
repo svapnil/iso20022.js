@@ -101,6 +101,12 @@ const report = CashManagementEndOfDayReport.fromXML(xml);
 console.log(report.transactions);
 ```
 
+### Testing
+
+```bash
+npm run test
+```
+
 ## About ISO20022
 
 ISO20022 is the standard format for financial transactions. This library aims to build a powerful yet simple API to create these files, following Typescript conventions.
