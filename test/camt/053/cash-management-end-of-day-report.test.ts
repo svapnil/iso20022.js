@@ -1,4 +1,4 @@
-import { CashManagementEndOfDayReport } from '../../../src/camt/053/CashManagementEndOfDayReport';
+import { CashManagementEndOfDayReport } from '../../../src/camt/053/cash-management-end-of-day-report';
 import fs from 'fs';
 
 describe('CashManagementEndOfDayReport', () => {

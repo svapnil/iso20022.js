@@ -1,8 +1,6 @@
 import { Party, SWIFTCreditPaymentInstruction, SEPACreditPaymentInstruction } from './lib/types.js';
-import { SWIFTCreditPaymentInitiation } from './pain/001/SWIFTCreditPaymentInitiation';
-import { SEPACreditPaymentInitiation } from './pain/001/SEPACreditPaymentInitiation';
-
-type AtLeastOne<T> = [T, ...T[]];
+import { SWIFTCreditPaymentInitiation } from './pain/001/swift-credit-payment-initiation';
+import { SEPACreditPaymentInitiation } from './pain/001/sepa-credit-payment-initiation';
 
 type AtLeastOne<T> = [T, ...T[]];
 

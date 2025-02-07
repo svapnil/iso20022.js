@@ -8,7 +8,7 @@ import {
   SWIFTCreditPaymentInstruction,
   Account,
 } from '../../lib/types.js';
-import { PaymentInitiation } from './ISO20022PaymentInitiation';
+import { PaymentInitiation } from './iso20022-payment-initiation';
 import { sanitize } from '../../utils/format';
 
 type AtLeastOne<T> = [T, ...T[]];

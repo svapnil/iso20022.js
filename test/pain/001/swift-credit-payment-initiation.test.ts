@@ -1,4 +1,4 @@
-import { SWIFTCreditPaymentInitiation } from '../../../src/pain/001/SWIFTCreditPaymentInitiation';
+import { SWIFTCreditPaymentInitiation } from '../../../src/pain/001/swift-credit-payment-initiation';
 import ISO20022 from '../../../src/iso20022';
 import fs from 'fs';
 import libxmljs from 'libxmljs';

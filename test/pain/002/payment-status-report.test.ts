@@ -1,4 +1,4 @@
-import { PaymentStatusReport } from '../../../src/pain/002/PaymentStatusReport';
+import { PaymentStatusReport } from '../../../src/pain/002/payment-status-report';
 import {
   PaymentStatusInformation,
   PaymentStatusCode,
