@@ -1,7 +1,7 @@
 > [!IMPORTANT]
-> Introducing [ISO20022 Pro](https://iso20022pro.com), a managed platform and SDK to save and send ISO20022 files for businesses.
+> Introducing [Fiat Web Services](https://fiatwebservices.com), a managed platform and SDK to save and send ISO20022 files for businesses.
 >
-> Check it out at https://iso20022pro.com.
+> Check it out at https://fiatwebservices.com.
 
 <div align="center">
   <a href="https://iso20022js.com">
