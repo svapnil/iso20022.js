@@ -107,7 +107,7 @@ describe('SEPACreditPaymentInitiation', () => {
             expect(() => {
                 sepaPaymentInitiationConfig.paymentInstructions[1].currency = "USD" // Change currency
                 new SEPACreditPaymentInitiation(sepaPaymentInitiationConfig)
-            }).toThrow("In order to calculation payment instructions sum, all payment instruction currencies must be the same.");
+            }).toThrow("In order to calculate the payment instructions sum, all payment instruction currencies must be the same.");
         });
     });
 

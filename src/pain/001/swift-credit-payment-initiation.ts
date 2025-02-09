@@ -38,6 +38,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
   private messageId: string;
   private creationDate: Date;
   private paymentInstructions: SWIFTCreditPaymentInstruction[];
+  private paymentInformationId: string;
 
   /**
    * Creates an instance of SWIFTCreditPaymentInitiation.
@@ -50,6 +51,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
     this.messageId =
       config.messageId || uuidv4().replace(/-/g, '').substring(0, 35);
     this.creationDate = config.creationDate || new Date();
+    this.paymentInformationId = sanitize(uuidv4(), 35);
     this.validate();
   }
 
@@ -127,8 +129,6 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
    * @returns {string} The XML representation of the payment initiation.
    */
   public serialize(): string {
-    const paymentInfId = sanitize(uuidv4(), 35);
-
     const xmlObj = {
       Document: {
         '@xmlns': 'urn:iso:std:iso:20022:tech:xsd:pain.001.001.03',
@@ -149,7 +149,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
             },
           },
           PmtInf: {
-            PmtInfId: paymentInfId,
+            PmtInfId: this.paymentInformationId,
             PmtMtd: 'TRF',
             BtchBookg: 'false',
             PmtTpInf: {

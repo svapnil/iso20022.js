@@ -36,6 +36,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
   private creationDate: Date;
   private paymentInstructions: AtLeastOne<SEPACreditPaymentInstruction>;
   private paymentSum: string;
+  private paymentInformationId: string;
 
   /**
    * Creates an instance of SEPACreditPaymentInitiation.
@@ -47,8 +48,9 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
     this.paymentInstructions = config.paymentInstructions;
     this.messageId = config.messageId || uuidv4().replace(/-/g, '');
     this.creationDate = config.creationDate || new Date();
-    this.validate();
     this.paymentSum = this.sumPaymentInstructions(this.paymentInstructions as AtLeastOne<SEPACreditPaymentInstruction>);
+    this.paymentInformationId = sanitize(uuidv4(), 35);
+    this.validate();
   }
 
 
@@ -63,6 +65,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
    * @throws {Error} If payment instructions have different currencies.
    */
   private sumPaymentInstructions(instructions: AtLeastOne<SEPACreditPaymentInstruction>): string {
+    this.validateAllInstructionsHaveSameCurrency();
     const instructionDineros = instructions.map(instruction => Dinero({ amount: instruction.amount, currency: instruction.currency }));
     return instructionDineros.reduce(
       (acc: Dinero.Dinero, next): Dinero.Dinero => {
@@ -84,12 +87,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
       throw new Error('messageId must not exceed 35 characters');
     }
 
-    // TODO: Remove this when we figure out how to run sumPaymentInstructions safely
-    if (!this.paymentInstructions.every((i) => {return i.currency === this.paymentInstructions[0].currency})) {
-      throw new Error(
-        "In order to calculation payment instructions sum, all payment instruction currencies must be the same."
-      )
-    }
+    this.validateAllInstructionsHaveSameCurrency();
 
     const creditorWithIncompleteAddress = this.paymentInstructions.find(
       instruction => {
@@ -102,6 +100,16 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
       throw new Error(
         'All creditors must have complete addresses (street name, building number, postal code, town name, and country)',
       );
+    }
+  }
+
+  // Validates that all payment instructions have the same currency
+  // TODO: Remove this when we figure out how to run sumPaymentInstructions safely
+  private validateAllInstructionsHaveSameCurrency() {
+    if (!this.paymentInstructions.every((i) => {return i.currency === this.paymentInstructions[0].currency})) {
+      throw new Error(
+        "In order to calculate the payment instructions sum, all payment instruction currencies must be the same."
+      )
     }
   }
 
@@ -142,7 +150,6 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
    * @returns {string} The XML representation of the SEPA credit transfer initiation.
    */
   public serialize(): string {
-    const paymentInformationId = sanitize(uuidv4(), 35);
     const xml = {
       Document: {
         '@xmlns': 'urn:iso:std:iso:20022:tech:xsd:pain.001.001.03',
@@ -165,7 +172,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
             },
           },
           PmtInf: {
-            PmtInfId: paymentInformationId,
+            PmtInfId: this.paymentInformationId,
             PmtMtd: 'TRF',
             NbOfTxs: this.paymentInstructions.length.toString(),
             CtrlSum: this.paymentSum,
