@@ -3,6 +3,7 @@ import libxmljs from 'libxmljs';
 import fs from 'fs';
 import { Alpha2CountryCode } from "lib/countries";
 import ISO20022 from '../../../src/iso20022';
+import { v4 as uuidv4 } from 'uuid';
 
 describe('SEPACreditPaymentInitiation', () => {
     let sepaPaymentInitiationConfig: SEPACreditPaymentInitiationConfig;
@@ -22,6 +23,8 @@ describe('SEPACreditPaymentInitiation', () => {
     }
 
     const paymentInstruction1 = {
+        id: "abcdefg",
+        endToEndId: "123456789",
         type: 'sepa' as const,
         direction: "credit" as const,
         creditor: {
@@ -173,6 +176,8 @@ describe('SEPACreditPaymentInitiation', () => {
                             streetName: "Calle de Serrano",
                             buildingNumber: "41",
                             townName: "Madrid",
+                            postalCode: "28001",
+                            countrySubDivision: "Madrid",
                             country: "ES"
                         }
                     },
@@ -226,7 +231,23 @@ describe('SEPACreditPaymentInitiation', () => {
                     }
                 })
             })
+        })
 
+        describe('with a iso20022.js created SEPA 001 XML', () => {
+           const messageId = uuidv4().slice(0, 35); 
+           const creationDate = new Date();
+           const sepaPayment = new SEPACreditPaymentInitiation({
+                messageId: messageId,
+                creationDate: creationDate,
+                initiatingParty: initiatingParty,
+                paymentInstructions: [paymentInstruction1]
+           }) 
+
+           const recreatedSepaPayment = SEPACreditPaymentInitiation.fromXML(sepaPayment.serialize());
+           expect(recreatedSepaPayment.messageId).toBe(messageId);
+           expect(recreatedSepaPayment.creationDate).toStrictEqual(creationDate);
+           expect(recreatedSepaPayment.paymentInstructions).toHaveLength(1);
+           expect(recreatedSepaPayment.paymentInstructions[0]).toEqual(paymentInstruction1);
         })
     })
 })

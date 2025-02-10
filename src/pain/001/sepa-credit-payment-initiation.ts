@@ -111,12 +111,13 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
    */
   creditTransfer(instruction: SEPACreditPaymentInstruction) {
     const paymentInstructionId = sanitize(instruction.id || uuidv4(), 35);
+    const endToEndId = sanitize(instruction.endToEndId || instruction.id || uuidv4(), 35);
     const dinero = Dinero({ amount: instruction.amount, currency: instruction.currency });
 
     return {
       PmtId: {
         InstrId: paymentInstructionId,
-        EndToEndId: paymentInstructionId,
+        EndToEndId: endToEndId,
       },
       Amt: {
         InstdAmt: {
@@ -222,8 +223,8 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
       const amount = parseAmountToMinorUnits(Number(inst.Amt.InstdAmt['#text']), currency);
       const rawPostalAddress = inst.Cdtr.PstlAdr;
       return {
-        ...(inst.PmtId.InstrId && { id: (inst.PmtId.InstrId as string) }),
-        ...(inst.PmtId.EndToEndId && { endToEndId: (inst.PmtId.EndToEndId as string) }),
+        ...(inst.PmtId.InstrId && { id: (inst.PmtId.InstrId.toString() as string) }),
+        ...(inst.PmtId.EndToEndId && { endToEndId: (inst.PmtId.EndToEndId.toString() as string) }),
         type: 'sepa',
         direction: 'credit',
         amount: amount,
@@ -236,8 +237,9 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
             address: {
               ...(rawPostalAddress.StrtNm && { streetName: rawPostalAddress.StrtNm.toString() as string }),
               ...(rawPostalAddress.BldgNb && { buildingNumber: rawPostalAddress.BldgNb.toString() as string }),
-              ...(rawPostalAddress.PstlCd && { postalCode: rawPostalAddress.PstlCd.toString() as string }),
               ...(rawPostalAddress.TwnNm && { townName: rawPostalAddress.TwnNm.toString() as string }),
+              ...(rawPostalAddress.CtrySubDvsn && { countrySubDivision: rawPostalAddress.CtrySubDvsn.toString() as string }),
+              ...(rawPostalAddress.PstCd && { postalCode: rawPostalAddress.PstCd.toString() as string }),
               ...(rawPostalAddress.Ctry && { country: rawPostalAddress.Ctry as Alpha2CountryCode }),
             }
           } : {}),
