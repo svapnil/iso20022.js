@@ -7,6 +7,8 @@ import { Alpha2CountryCode } from './countries';
 export interface PaymentInstruction {
   /** Unique identifier for the payment instruction. */
   id?: string;
+  /** Unique end-to-end identifier for the payment. */
+  endToEndId?: string;
   /** Indicates whether the payment is a credit or debit. */
   direction: 'credit' | 'debit';
   /** The amount of the payment. */
