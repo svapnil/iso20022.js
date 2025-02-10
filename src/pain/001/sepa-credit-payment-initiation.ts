@@ -2,8 +2,12 @@ import { create } from "xmlbuilder2";
 import { Account, Agent, BICAgent, IBANAccount, Party, SEPACreditPaymentInstruction } from "../../lib/types";
 import { PaymentInitiation } from './iso20022-payment-initiation';
 import { sanitize } from "../../utils/format";
-import Dinero from 'dinero.js';
+import Dinero, { Currency } from 'dinero.js';
 import { v4 as uuidv4 } from 'uuid';
+import { XMLParser } from 'fast-xml-parser';
+import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
+import { parseAccount, parseAgent, parseAmountToMinorUnits } from "../../parseUtils";
+import { Alpha2CountryCode } from "lib/countries";
 
 type AtLeastOne<T> = [T, ...T[]];
 
@@ -31,12 +35,12 @@ export interface SEPACreditPaymentInitiationConfig {
  * @extends PaymentInitiation
  */
 export class SEPACreditPaymentInitiation extends PaymentInitiation {
-  private initiatingParty: Party;
-  private messageId: string;
-  private creationDate: Date;
-  private paymentInstructions: AtLeastOne<SEPACreditPaymentInstruction>;
+  public initiatingParty: Party;
+  public messageId: string;
+  public creationDate: Date;
+  public paymentInstructions: AtLeastOne<SEPACreditPaymentInstruction>;
+  public paymentInformationId: string;
   private paymentSum: string;
-  private paymentInformationId: string;
 
   /**
    * Creates an instance of SEPACreditPaymentInitiation.
@@ -88,25 +92,12 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
     }
 
     this.validateAllInstructionsHaveSameCurrency();
-
-    const creditorWithIncompleteAddress = this.paymentInstructions.find(
-      instruction => {
-        const address = instruction.creditor.address;
-        return !address || !address.country;
-      },
-    );
-
-    if (creditorWithIncompleteAddress) {
-      throw new Error(
-        'All creditors must have complete addresses (street name, building number, postal code, town name, and country)',
-      );
-    }
   }
 
   // Validates that all payment instructions have the same currency
   // TODO: Remove this when we figure out how to run sumPaymentInstructions safely
   private validateAllInstructionsHaveSameCurrency() {
-    if (!this.paymentInstructions.every((i) => {return i.currency === this.paymentInstructions[0].currency})) {
+    if (!this.paymentInstructions.every((i) => { return i.currency === this.paymentInstructions[0].currency })) {
       throw new Error(
         "In order to calculate the payment instructions sum, all payment instruction currencies must be the same."
       )
@@ -120,12 +111,13 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
    */
   creditTransfer(instruction: SEPACreditPaymentInstruction) {
     const paymentInstructionId = sanitize(instruction.id || uuidv4(), 35);
+    const endToEndId = sanitize(instruction.endToEndId || instruction.id || uuidv4(), 35);
     const dinero = Dinero({ amount: instruction.amount, currency: instruction.currency });
 
     return {
       PmtId: {
         InstrId: paymentInstructionId,
-        EndToEndId: paymentInstructionId,
+        EndToEndId: endToEndId,
       },
       Amt: {
         InstdAmt: {
@@ -194,6 +186,73 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
 
     const doc = create(xml);
     return doc.end({ prettyPrint: true });
+  }
+
+  public static fromXML(rawXml: string): SEPACreditPaymentInitiation {
+    const parser = new XMLParser({ ignoreAttributes: false });
+    const xml = parser.parse(rawXml);
+
+    if (!xml.Document) {
+      throw new InvalidXmlError("Invalid XML format");
+    }
+
+    const namespace = (xml.Document['@_xmlns'] || xml.Document['@_Xmlns']) as string;
+    if (!namespace.startsWith('urn:iso:std:iso:20022:tech:xsd:pain.001.001.03')) {
+      throw new InvalidXmlNamespaceError('Invalid PAIN.001 namespace');
+    }
+
+    const messageId = (xml.Document.CstmrCdtTrfInitn.GrpHdr.MsgId as string);
+    const creationDate = new Date(xml.Document.CstmrCdtTrfInitn.GrpHdr.CreDtTm as string);
+
+    if (Array.isArray(xml.Document.CstmrCdtTrfInitn.PmtInf)) {
+      throw new Error('Multiple PmtInf is not supported'); 
+    }
+
+    // Assuming we have one PmtInf / one Debtor, we can hack together this information from InitgPty / Dbtr
+    const initiatingParty = {
+      name: (xml.Document.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm as string) || (xml.Document.CstmrCdtTrfInitn.PmtInf.Dbtr.Nm as string),
+      id: (xml.Document.CstmrCdtTrfInitn.GrpHdr.InitgPty.Id.OrgId.Othr.Id as string),
+      agent: parseAgent(xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAgt),
+      account: parseAccount(xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAcct)
+    }
+
+    const rawInstructions = Array.isArray(xml.Document.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf) ? xml.Document.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf : [xml.Document.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf];
+
+    const paymentInstructions = rawInstructions.map((inst: any) => {
+      const currency = (inst.Amt.InstdAmt['@_Ccy'] as Currency);
+      const amount = parseAmountToMinorUnits(Number(inst.Amt.InstdAmt['#text']), currency);
+      const rawPostalAddress = inst.Cdtr.PstlAdr;
+      return {
+        ...(inst.PmtId.InstrId && { id: (inst.PmtId.InstrId.toString() as string) }),
+        ...(inst.PmtId.EndToEndId && { endToEndId: (inst.PmtId.EndToEndId.toString() as string) }),
+        type: 'sepa',
+        direction: 'credit',
+        amount: amount,
+        currency: currency,
+        creditor: {
+          name: (inst.Cdtr?.Nm as string),
+          agent: parseAgent(inst.CdtrAgt),
+          account: parseAccount(inst.CdtrAcct),
+          ...((rawPostalAddress && (rawPostalAddress.StreetName || rawPostalAddress.BldgNb || rawPostalAddress.PstlCd || rawPostalAddress.TwnNm || rawPostalAddress.Ctry)) ? {
+            address: {
+              ...(rawPostalAddress.StrtNm && { streetName: rawPostalAddress.StrtNm.toString() as string }),
+              ...(rawPostalAddress.BldgNb && { buildingNumber: rawPostalAddress.BldgNb.toString() as string }),
+              ...(rawPostalAddress.TwnNm && { townName: rawPostalAddress.TwnNm.toString() as string }),
+              ...(rawPostalAddress.CtrySubDvsn && { countrySubDivision: rawPostalAddress.CtrySubDvsn.toString() as string }),
+              ...(rawPostalAddress.PstCd && { postalCode: rawPostalAddress.PstCd.toString() as string }),
+              ...(rawPostalAddress.Ctry && { country: rawPostalAddress.Ctry as Alpha2CountryCode }),
+            }
+          } : {}),
+        }
+      }
+    }) as AtLeastOne<SEPACreditPaymentInstruction>;
+
+    return new SEPACreditPaymentInitiation({
+      messageId: messageId,
+      creationDate: creationDate,
+      initiatingParty: initiatingParty,
+      paymentInstructions: paymentInstructions
+    });
   }
 
 }
