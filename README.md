@@ -1,5 +1,5 @@
 > [!IMPORTANT]
-> Introducing [Fiat Web Services](https://fiatwebservices.com), a managed platform and SDK to save and send ISO20022 files for businesses.
+> Introducing [Fiat Web Services](https://fiatwebservices.com), a managed platform and SDK to save and send B2B payments.
 >
 > Check it out at https://fiatwebservices.com.
 
@@ -13,7 +13,7 @@
 </div>
 
 
-This package is meant for companies using ISO20022 to send and receive payment information, specifically initiating payments and receiving cash management files.
+This package is meant for companies using ISO20022 to send and receive payment information, specifically initiating SEPA, ACH, FedWire, RTP, SWIFT payments and receiving cash management files.
 
 Read the Docs: https://docs.iso20022js.com
 
