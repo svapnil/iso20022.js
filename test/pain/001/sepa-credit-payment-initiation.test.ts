@@ -48,6 +48,32 @@ describe('SEPACreditPaymentInitiation', () => {
         currency: "EUR" as const
     }
 
+    const paymentInstruction2 = {
+        id: "abcdefg",
+        endToEndId: "123456789",
+        type: 'sepa' as const,
+        direction: "credit" as const,
+        creditor: {
+            name: "Guli Mancini",
+            account: {
+                iban: "ES9121000418450200051332"
+            },
+            agent: {
+                bic: "BBVAESMMXXX"
+            },
+            address: {
+                streetName: "Avenida de la Hispanidad",
+                buildingNumber: "41",
+                townName: "Madrid",
+                countrySubDivision: "Madrid",
+                postalCode: "28001",
+                country: "ES" as Alpha2CountryCode
+            }
+        },
+        amount: 1000,
+        currency: "EUR" as const
+    }
+
     describe('serialize', () => {
         beforeEach(() => {
             sepaPaymentInitiationConfig = {
@@ -240,14 +266,15 @@ describe('SEPACreditPaymentInitiation', () => {
                 messageId: messageId,
                 creationDate: creationDate,
                 initiatingParty: initiatingParty,
-                paymentInstructions: [paymentInstruction1]
+                paymentInstructions: [paymentInstruction1, paymentInstruction2]
            }) 
 
            const recreatedSepaPayment = SEPACreditPaymentInitiation.fromXML(sepaPayment.serialize());
            expect(recreatedSepaPayment.messageId).toBe(messageId);
            expect(recreatedSepaPayment.creationDate).toStrictEqual(creationDate);
-           expect(recreatedSepaPayment.paymentInstructions).toHaveLength(1);
+           expect(recreatedSepaPayment.paymentInstructions).toHaveLength(2);
            expect(recreatedSepaPayment.paymentInstructions[0]).toEqual(paymentInstruction1);
+           expect(recreatedSepaPayment.paymentInstructions[1]).toEqual(paymentInstruction2);
         })
     })
 })
