@@ -38,7 +38,8 @@ export const parseAmountToMinorUnits = (
   const currencyObject = Dinero({
     currency: currency,
   });
-  return Number(rawAmount) * 10 ** currencyObject.getPrecision();
+  // Also make sure Javascript number parsing error do not happen.
+  return Math.floor(Number(rawAmount) * 10 ** currencyObject.getPrecision());
 };
 
 export const parseDate = (dateElement: any): Date => {

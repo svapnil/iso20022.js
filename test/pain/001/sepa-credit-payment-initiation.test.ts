@@ -44,7 +44,7 @@ describe('SEPACreditPaymentInitiation', () => {
                 country: "ES" as Alpha2CountryCode
             }
         },
-        amount: 1000,
+        amount: 3395,
         currency: "EUR" as const
     }
 
