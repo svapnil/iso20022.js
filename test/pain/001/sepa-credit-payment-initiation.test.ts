@@ -1,9 +1,12 @@
 import { SEPACreditPaymentInitiation, SEPACreditPaymentInitiationConfig } from "../../../src/pain/001/sepa-credit-payment-initiation";
+import { SEPACreditPaymentInstruction } from "../../../src/lib/types";
 import libxmljs from 'libxmljs';
 import fs from 'fs';
 import { Alpha2CountryCode } from "lib/countries";
 import ISO20022 from '../../../src/iso20022';
 import { v4 as uuidv4 } from 'uuid';
+
+type AtLeastOne<T> = [T, ...T[]];
 
 describe('SEPACreditPaymentInitiation', () => {
     let sepaPaymentInitiationConfig: SEPACreditPaymentInitiationConfig;
@@ -122,6 +125,38 @@ describe('SEPACreditPaymentInitiation', () => {
         test('should validate against XSD', () => {
             sepaPayment = new SEPACreditPaymentInitiation(sepaPaymentInitiationConfig)
             const xml = sepaPayment.serialize();
+            const xsdSchema = fs.readFileSync(
+                `${process.cwd()}/schemas/pain/pain.001.001.03.xsd`,
+                'utf8',
+            );
+            const xmlDoc = libxmljs.parseXml(xml);
+            const xsdDoc = libxmljs.parseXml(xsdSchema);
+            const isValid = xmlDoc.validate(xsdDoc);
+            expect(isValid).toBeTruthy();
+        });
+
+        test('should use TRAD as default category purpose code', () => {
+            sepaPayment = new SEPACreditPaymentInitiation(sepaPaymentInitiationConfig);
+            const xml = sepaPayment.serialize();
+            expect(xml).toMatch(/<CtgyPurp>[\s\n]*<Cd>TRAD<\/Cd>[\s\n]*<\/CtgyPurp>/);
+        });
+
+        test('should allow custom category purpose code', () => {
+            const customConfig = {
+                ...sepaPaymentInitiationConfig,
+                paymentInstructions: [
+                    {
+                        ...paymentInstruction1,
+                        categoryPurpose: 'SUPP' // Example: Supplier Payment
+                    },
+                    paymentInstruction2
+                ] as AtLeastOne<SEPACreditPaymentInstruction>
+            };
+            sepaPayment = new SEPACreditPaymentInitiation(customConfig);
+            const xml = sepaPayment.serialize();
+            expect(xml).toMatch(/<CtgyPurp>[\s\n]*<Cd>SUPP<\/Cd>[\s\n]*<\/CtgyPurp>/);
+
+            // Validate against XSD
             const xsdSchema = fs.readFileSync(
                 `${process.cwd()}/schemas/pain/pain.001.001.03.xsd`,
                 'utf8',

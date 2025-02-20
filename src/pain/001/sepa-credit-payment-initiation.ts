@@ -170,7 +170,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
             CtrlSum: this.paymentSum,
             PmtTpInf: {
               SvcLvl: { Cd: 'SEPA' },
-              CtgyPurp: { Cd: 'TRAD' },
+              CtgyPurp: { Cd: this.paymentInstructions[0].categoryPurpose || 'TRAD' },
             },
             ReqdExctnDt: this.creationDate.toISOString().split('T').at(0),
             Dbtr: this.party(this.initiatingParty),
