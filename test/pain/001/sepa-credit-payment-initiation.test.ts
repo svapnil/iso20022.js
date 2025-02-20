@@ -1,5 +1,5 @@
 import { SEPACreditPaymentInitiation, SEPACreditPaymentInitiationConfig } from "../../../src/pain/001/sepa-credit-payment-initiation";
-import { SEPACreditPaymentInstruction } from "../../../src/lib/types";
+import { SEPACreditPaymentInstruction, ExternalCategoryPurposeCode } from "../../../src/lib/types";
 import libxmljs from 'libxmljs';
 import fs from 'fs';
 import { Alpha2CountryCode } from "lib/countries";
@@ -135,19 +135,19 @@ describe('SEPACreditPaymentInitiation', () => {
             expect(isValid).toBeTruthy();
         });
 
-        test('should use TRAD as default category purpose code', () => {
+        test('should omit category purpose when not provided', () => {
             sepaPayment = new SEPACreditPaymentInitiation(sepaPaymentInitiationConfig);
             const xml = sepaPayment.serialize();
-            expect(xml).toMatch(/<CtgyPurp>[\s\n]*<Cd>TRAD<\/Cd>[\s\n]*<\/CtgyPurp>/);
+            expect(xml).not.toMatch(/<CtgyPurp>/);
         });
 
-        test('should allow custom category purpose code', () => {
+        test('should include custom category purpose code when provided', () => {
             const customConfig = {
                 ...sepaPaymentInitiationConfig,
                 paymentInstructions: [
                     {
                         ...paymentInstruction1,
-                        categoryPurpose: 'SUPP' // Example: Supplier Payment
+                        categoryPurpose: ExternalCategoryPurposeCode.Supplier
                     },
                     paymentInstruction2
                 ] as AtLeastOne<SEPACreditPaymentInstruction>
