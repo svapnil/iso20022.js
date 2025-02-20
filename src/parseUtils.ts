@@ -26,7 +26,7 @@ export const parseAgent = (agent: any): Agent => {
   }
 
   return {
-    routingNumber: agent.FinInstnId.Othr.Id,
+    abaRoutingNumber: agent.FinInstnId.Othr.Id,
   } as Agent;
 };
 

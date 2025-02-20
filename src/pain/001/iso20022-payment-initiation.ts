@@ -106,7 +106,7 @@ import {
      *
      * @example
      * // For an ABA agent
-     * agent({ routingNumber: '026009593' })
+     * agent({ abaRoutingNumber: '026009593' })
      * // Returns: { FinInstnId: { ClrSysMmbId: { MmbId: '026009593' } } }
      */
     agent(agent: Agent) {
@@ -120,7 +120,7 @@ import {
         return {
           FinInstnId: {
             ClrSysMmbId: {
-              MmbId: (agent as ABAAgent).routingNumber,
+              MmbId: (agent as ABAAgent).abaRoutingNumber,
             },
           },
         };
