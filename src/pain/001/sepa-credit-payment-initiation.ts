@@ -43,7 +43,6 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
   public paymentInstructions: AtLeastOne<SEPACreditPaymentInstruction>;
   public paymentInformationId: string;
   private paymentSum: string;
-  private categoryPurpose?: ExternalCategoryPurpose;
 
   /**
    * Creates an instance of SEPACreditPaymentInitiation.
@@ -55,7 +54,6 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
     this.paymentInstructions = config.paymentInstructions;
     this.messageId = config.messageId || uuidv4().replace(/-/g, '');
     this.creationDate = config.creationDate || new Date();
-    this.categoryPurpose = config.categoryPurpose;
     this.paymentSum = this.sumPaymentInstructions(this.paymentInstructions as AtLeastOne<SEPACreditPaymentInstruction>);
     this.paymentInformationId = sanitize(uuidv4(), 35);
     this.validate();
@@ -174,8 +172,8 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
             CtrlSum: this.paymentSum,
             PmtTpInf: {
               SvcLvl: { Cd: 'SEPA' },
-              ...(this.categoryPurpose && {
-                CtgyPurp: { Cd: this.categoryPurpose }
+              ...(config.categoryPurpose && {
+                CtgyPurp: { Cd: config.categoryPurpose }
               }),
             },
             ReqdExctnDt: this.creationDate.toISOString().split('T').at(0),
