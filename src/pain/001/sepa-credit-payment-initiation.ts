@@ -125,7 +125,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
           '@Ccy': instruction.currency,
         },
       },
-      CdtrAgt: this.agent(instruction.creditor.agent as BICAgent),
+      ...(instruction.creditor.agent && { CdtrAgt: this.agent(instruction.creditor.agent as BICAgent) }),
       Cdtr: this.party(instruction.creditor as Party),
       CdtrAcct: {
         Id: { IBAN: (instruction.creditor.account as IBANAccount).iban },

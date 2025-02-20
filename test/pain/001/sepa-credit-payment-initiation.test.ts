@@ -223,6 +223,40 @@ describe('SEPACreditPaymentInitiation', () => {
             });
         })
 
+        describe('with BIC-less creditor', () => {
+            beforeEach(() => {
+                const bicLessInstruction = {
+                    ...paymentInstruction1,
+                    creditor: {
+                        name: "BIC-less Creditor",
+                        account: {
+                            iban: "ES8201822200150201504058"
+                        },
+                        address: paymentInstruction1.creditor.address
+                    }
+                };
+                sepaPaymentInitiationConfig = {
+                    initiatingParty,
+                    paymentInstructions: [bicLessInstruction]
+                };
+            });
+
+            test('should create valid XML without BIC', () => {
+                sepaPayment = new SEPACreditPaymentInitiation(sepaPaymentInitiationConfig);
+                const xml = sepaPayment.serialize();
+                expect(xml).not.toContain('CdtrAgt');
+                
+                const xsdSchema = fs.readFileSync(
+                    `${process.cwd()}/schemas/pain/pain.001.001.03.xsd`,
+                    'utf8',
+                );
+                const xmlDoc = libxmljs.parseXml(xml);
+                const xsdDoc = libxmljs.parseXml(xsdSchema);
+                const isValid = xmlDoc.validate(xsdDoc);
+                expect(isValid).toBeTruthy();
+            });
+        })
+
         describe('with a GS SEPA 001 XML file', () => {
             const gsSepa = fs.readFileSync(`${process.cwd()}/test/assets/goldman_sachs/pain_001_v3_sepa.xml`, 'utf8'); 
             let sepaPayment = SEPACreditPaymentInitiation.fromXML(gsSepa);
