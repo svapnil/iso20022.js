@@ -144,13 +144,7 @@ describe('SEPACreditPaymentInitiation', () => {
         test('should include custom category purpose code when provided', () => {
             const customConfig = {
                 ...sepaPaymentInitiationConfig,
-                paymentInstructions: [
-                    {
-                        ...paymentInstruction1,
-                        categoryPurpose: ExternalCategoryPurposeCode.Supplier
-                    },
-                    paymentInstruction2
-                ] as AtLeastOne<SEPACreditPaymentInstruction>
+                categoryPurpose: ExternalCategoryPurposeCode.Supplier
             };
             sepaPayment = new SEPACreditPaymentInitiation(customConfig);
             const xml = sepaPayment.serialize();

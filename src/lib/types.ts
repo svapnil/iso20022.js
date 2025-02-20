@@ -196,8 +196,6 @@ export interface SEPACreditPaymentInstruction extends PaymentInstruction {
   type: 'sepa',
   direction: 'credit',
   creditor: Party,
-  /** Optional category purpose code following ISO20022 ExternalCategoryPurpose1Code standard */
-  categoryPurpose?: ExternalCategoryPurpose,
 }
 
 /**
