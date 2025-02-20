@@ -274,7 +274,7 @@ export interface BICAgent {
  */
 export interface ABAAgent {
   /** The ABA routing number. */
-  routingNumber: string;
+  abaNumber: string;
 }
 
 /**
