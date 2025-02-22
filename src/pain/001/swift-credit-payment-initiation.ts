@@ -39,27 +39,11 @@ export interface SWIFTCreditPaymentInitiationConfig {
  * @extends PaymentInitiation
  */
 export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
-  private initiatingParty: Party;
-  private messageId: string;
-  private creationDate: Date;
-  private paymentInstructions: SWIFTCreditPaymentInstruction[];
+  public initiatingParty: Party;
+  public messageId: string;
+  public creationDate: Date;
+  public paymentInstructions: SWIFTCreditPaymentInstruction[];
   private paymentInformationId: string;
-
-  public getInitiatingParty(): Party {
-    return this.initiatingParty;
-  }
-
-  public getMessageId(): string {
-    return this.messageId;
-  }
-
-  public getCreationDate(): Date {
-    return this.creationDate;
-  }
-
-  public getPaymentInstructions(): SWIFTCreditPaymentInstruction[] {
-    return this.paymentInstructions;
-  }
 
   /**
    * Creates an instance of SWIFTCreditPaymentInitiation.
@@ -134,7 +118,9 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
       // intermediaryBanks will probably need to be an array of BICAgents. There needs to be an easy way to get this information for users
       CdtrAgt: this.agent(paymentInstruction.creditor.agent as BICAgent),
       Cdtr: this.party(paymentInstruction.creditor as Party),
-      CdtrAcct: { Id: { Othr: { Id: 'NOTPROVIDED' } } },
+      ...(Object.keys(paymentInstruction.creditor.account || {}).length > 0 && {
+        CdtrAcct: this.account(paymentInstruction.creditor.account as Account)
+      }),
       RmtInf: paymentInstruction.remittanceInformation
         ? {
           Ustrd: paymentInstruction.remittanceInformation,
@@ -156,7 +142,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
     }
 
     const namespace = (xml.Document['@_xmlns'] || xml.Document['@_Xmlns']) as string;
-    if (!namespace.startsWith('urn:iso:std:iso:20022:tech:xsd:pain.001.001.03')) {
+    if (!namespace.startsWith('urn:iso:std:iso:20022:tech:xsd:pain.001.001')) {
       throw new InvalidXmlNamespaceError('Invalid PAIN.001 namespace');
     }
 
@@ -168,7 +154,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
     const baseInitiatingParty: Party = {
       name: xml.Document.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm,
       id: xml.Document.CstmrCdtTrfInitn.GrpHdr.InitgPty.Id?.OrgId?.Othr?.Id,
-      account: parseAccount(xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAcct) || { accountNumber: 'NOTPROVIDED' } as BaseAccount,
+      account: parseAccount(xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAcct),
       agent: {
         bic: xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAgt?.FinInstnId?.BIC
       }
@@ -188,9 +174,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
         agent: {
           bic: inst.CdtrAgt?.FinInstnId?.BIC
         },
-        account: (inst.CdtrAcct?.Id?.Othr?.Id && inst.CdtrAcct.Id.Othr.Id !== 'NOTPROVIDED'
-          ? { accountNumber: inst.CdtrAcct.Id.Othr.Id }
-          : {}) as Account,
+        account: parseAccount(inst.CdtrAcct) || {} as Account,
         address: {
           country: inst.Cdtr.PstlAdr.Ctry as Alpha2CountryCode
         }
