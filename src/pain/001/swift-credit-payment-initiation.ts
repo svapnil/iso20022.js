@@ -1,18 +1,18 @@
-import { create } from 'xmlbuilder2';
 import { v4 as uuidv4 } from 'uuid';
+import { create } from 'xmlbuilder2';
 import Dinero, { Currency } from 'dinero.js';
 import {
-  Party,
+  Account,
+  BaseAccount,
   BICAgent,
   IBANAccount,
-  BaseAccount,
+  Party,
   SWIFTCreditPaymentInstruction,
-  Account,
 } from '../../lib/types.js';
 import { XMLParser } from 'fast-xml-parser';
 import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
 import { parseAccount, parseAgent, parseAmountToMinorUnits } from "../../parseUtils";
-import { Alpha2CountryCode } from "lib/countries";
+import { Alpha2CountryCode } from "../../lib/countries";
 import { PaymentInitiation } from './iso20022-payment-initiation';
 import { sanitize } from '../../utils/format';
 
