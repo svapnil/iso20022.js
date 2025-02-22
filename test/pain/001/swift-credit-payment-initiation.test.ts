@@ -135,9 +135,9 @@ describe('SWIFTCreditPaymentInitiation', () => {
       });
 
       test('should correctly parse information', () => {
-        expect(swiftPayment.getMessageId()).toBe("bbd49338b6a3434aad7537d07b248a99");
-        expect(swiftPayment.getCreationDate().toISOString()).toBe("2025-02-22T04:30:49.327Z");
-        expect(swiftPayment.getInitiatingParty()).toEqual({
+        expect(swiftPayment.messageId).toBe("bbd49338b6a3434aad7537d07b248a99");
+        expect(swiftPayment.creationDate.toISOString()).toBe("2025-02-22T04:30:49.327Z");
+        expect(swiftPayment.initiatingParty).toEqual({
           name: "Example Corp",
           id: "EXAMPLECORP",
           account: {
@@ -148,8 +148,8 @@ describe('SWIFTCreditPaymentInitiation', () => {
           }
         });
         
-        expect(swiftPayment.getPaymentInstructions()).toHaveLength(1);
-        expect(swiftPayment.getPaymentInstructions()[0]).toEqual({
+        expect(swiftPayment.paymentInstructions).toHaveLength(1);
+        expect(swiftPayment.paymentInstructions[0]).toEqual({
           id: "383e1d18-d7d6-4239-9622-adae81183d3",
           endToEndId: "383e1d18-d7d6-4239-9622-adae81183d3",
           type: "swift",
