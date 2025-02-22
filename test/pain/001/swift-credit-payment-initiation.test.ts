@@ -92,10 +92,6 @@ describe('SWIFTCreditPaymentInitiation', () => {
     const xsdDoc = libxmljs.parseXml(xsdSchema);
 
     const isValid = xmlDoc.validate(xsdDoc);
-    if (!isValid) {
-      console.log('Generated XML:', xml);
-      console.log('Validation errors:', xmlDoc.validationErrors);
-    }
     expect(isValid).toBeTruthy();
   });
 
@@ -161,7 +157,7 @@ describe('SWIFTCreditPaymentInitiation', () => {
             agent: {
               bic: "DEUTDEFF"
             },
-            account: {},
+            account: undefined,
             address: {
               country: "DE"
             }
@@ -178,10 +174,6 @@ describe('SWIFTCreditPaymentInitiation', () => {
         const xmlDoc = libxmljs.parseXml(xml);
         const xsdDoc = libxmljs.parseXml(xsdSchema);
         const isValid = xmlDoc.validate(xsdDoc);
-        if (!isValid) {
-          console.log('Generated XML:', xml);
-          console.log('Validation errors:', xmlDoc.validationErrors);
-        }
         expect(isValid).toBeTruthy();
       });
     });
