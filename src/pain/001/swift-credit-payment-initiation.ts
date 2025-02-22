@@ -118,9 +118,9 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
       // intermediaryBanks will probably need to be an array of BICAgents. There needs to be an easy way to get this information for users
       CdtrAgt: this.agent(paymentInstruction.creditor.agent as BICAgent),
       Cdtr: this.party(paymentInstruction.creditor as Party),
-      ...(Object.keys(paymentInstruction.creditor.account || {}).length > 0 && {
-        CdtrAcct: this.account(paymentInstruction.creditor.account as Account)
-      }),
+      CdtrAcct: this.internationalAccount(
+        paymentInstruction.creditor.account as IBANAccount,
+      ),
       RmtInf: paymentInstruction.remittanceInformation
         ? {
           Ustrd: paymentInstruction.remittanceInformation,
