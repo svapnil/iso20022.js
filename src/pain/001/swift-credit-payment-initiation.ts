@@ -95,7 +95,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
    * @param {SWIFTCreditPaymentInstruction} paymentInstruction - The payment instruction.
    * @returns {Object} The credit transfer object.
    */
-  creditTransfer(paymentInstruction: SWIFTCreditPaymentInstruction) {
+  creditTransfer(paymentInstruction: SWIFTCreditPaymentInstruction): Record<string, any> {
     const paymentInstructionId = sanitize(paymentInstruction.id || uuidv4(), 35);
     const amount = Dinero({
       amount: paymentInstruction.amount,
@@ -126,7 +126,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
           Ustrd: paymentInstruction.remittanceInformation,
         }
         : undefined,
-    }
+    };
   }
 
   /**
