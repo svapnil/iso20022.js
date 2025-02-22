@@ -30,7 +30,7 @@ async function main() {
                 creditor: {
                     name: 'Hans Schneider',
                     account: {
-                        accountNumber: '987654321',
+                        iban: 'DE1234567890123456',
                     },
                     agent: {
                         bic: 'DEUTDEFF',

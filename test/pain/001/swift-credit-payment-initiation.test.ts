@@ -157,8 +157,14 @@ describe('SWIFTCreditPaymentInitiation', () => {
             agent: {
               bic: "DEUTDEFF"
             },
-            account: undefined,
+            account: {
+              iban: "DE1234567890123456"
+            },
             address: {
+              streetName: "Hauptstraße",
+              buildingNumber: 42,
+              postalCode: 10115,
+              townName: "Berlin",
               country: "DE"
             }
           }

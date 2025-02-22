@@ -1,20 +1,19 @@
+import Dinero, { Currency } from 'dinero.js';
+import { XMLParser } from 'fast-xml-parser';
 import { v4 as uuidv4 } from 'uuid';
 import { create } from 'xmlbuilder2';
-import Dinero, { Currency } from 'dinero.js';
+import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
+import { Alpha2CountryCode } from "../../lib/countries";
 import {
   Account,
-  BaseAccount,
   BICAgent,
   IBANAccount,
   Party,
-  SWIFTCreditPaymentInstruction,
+  SWIFTCreditPaymentInstruction
 } from '../../lib/types.js';
-import { XMLParser } from 'fast-xml-parser';
-import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
-import { parseAccount, parseAgent, parseAmountToMinorUnits } from "../../parseUtils";
-import { Alpha2CountryCode } from "../../lib/countries";
-import { PaymentInitiation } from './iso20022-payment-initiation';
+import { parseAccount, parseAmountToMinorUnits } from "../../parseUtils";
 import { sanitize } from '../../utils/format';
+import { PaymentInitiation } from './iso20022-payment-initiation';
 
 type AtLeastOne<T> = [T, ...T[]];
 
@@ -118,7 +117,9 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
       // intermediaryBanks will probably need to be an array of BICAgents. There needs to be an easy way to get this information for users
       CdtrAgt: this.agent(paymentInstruction.creditor.agent as BICAgent),
       Cdtr: this.party(paymentInstruction.creditor as Party),
-      CdtrAcct: paymentInstruction.creditor.account ? this.account(paymentInstruction.creditor.account as Account) : undefined,
+      CdtrAcct: this.internationalAccount(
+        paymentInstruction.creditor.account as IBANAccount,
+      ),
       RmtInf: paymentInstruction.remittanceInformation
         ? {
           Ustrd: paymentInstruction.remittanceInformation,
@@ -167,13 +168,18 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
       const amount = parseAmountToMinorUnits(Number(inst.Amt.InstdAmt['#text']), currency);
       
       // Create base creditor party
-      const baseCreditor: Party = {
+      const creditor: Party = {
         name: inst.Cdtr.Nm as string,
         agent: {
           bic: inst.CdtrAgt?.FinInstnId?.BIC
         },
         account: (inst.CdtrAcct?.Id?.IBAN || inst.CdtrAcct?.Id?.Othr?.Id) ? parseAccount(inst.CdtrAcct) : undefined,
         address: {
+          streetName: inst.Cdtr.PstlAdr.StrtNm as string,
+          buildingNumber: inst.Cdtr.PstlAdr.BldgNb as string,
+          postalCode: inst.Cdtr.PstlAdr.PstCd as string,
+          townName: inst.Cdtr.PstlAdr.TwnNm as string,
+          countrySubDivision: inst.Cdtr.PstlAdr.CtrySubDvsn as string,
           country: inst.Cdtr.PstlAdr.Ctry as Alpha2CountryCode
         }
       };
@@ -186,7 +192,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
         ...(inst.PmtId.EndToEndId && { endToEndId: inst.PmtId.EndToEndId.toString() }),
         amount,
         currency,
-        creditor: baseCreditor
+        creditor
       };
     });
 
