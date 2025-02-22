@@ -1,13 +1,18 @@
 import { create } from 'xmlbuilder2';
 import { v4 as uuidv4 } from 'uuid';
-import Dinero from 'dinero.js';
+import Dinero, { Currency } from 'dinero.js';
 import {
   Party,
   BICAgent,
   IBANAccount,
+  BaseAccount,
   SWIFTCreditPaymentInstruction,
   Account,
 } from '../../lib/types.js';
+import { XMLParser } from 'fast-xml-parser';
+import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
+import { parseAccount, parseAgent, parseAmountToMinorUnits } from "../../parseUtils";
+import { Alpha2CountryCode } from "lib/countries";
 import { PaymentInitiation } from './iso20022-payment-initiation';
 import { sanitize } from '../../utils/format';
 
@@ -39,6 +44,22 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
   private creationDate: Date;
   private paymentInstructions: SWIFTCreditPaymentInstruction[];
   private paymentInformationId: string;
+
+  public getInitiatingParty(): Party {
+    return this.initiatingParty;
+  }
+
+  public getMessageId(): string {
+    return this.messageId;
+  }
+
+  public getCreationDate(): Date {
+    return this.creationDate;
+  }
+
+  public getPaymentInstructions(): SWIFTCreditPaymentInstruction[] {
+    return this.paymentInstructions;
+  }
 
   /**
    * Creates an instance of SWIFTCreditPaymentInitiation.
@@ -113,9 +134,9 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
       // intermediaryBanks will probably need to be an array of BICAgents. There needs to be an easy way to get this information for users
       CdtrAgt: this.agent(paymentInstruction.creditor.agent as BICAgent),
       Cdtr: this.party(paymentInstruction.creditor as Party),
-      CdtrAcct: this.internationalAccount(
-        paymentInstruction.creditor.account as IBANAccount,
-      ),
+      CdtrAcct: this.account({
+        accountNumber: 'NOTPROVIDED'
+      } as BaseAccount),
       RmtInf: paymentInstruction.remittanceInformation
         ? {
           Ustrd: paymentInstruction.remittanceInformation,
@@ -128,6 +149,80 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
    * Serializes the payment initiation to an XML string.
    * @returns {string} The XML representation of the payment initiation.
    */
+  public static fromXML(rawXml: string): SWIFTCreditPaymentInitiation {
+    const parser = new XMLParser({ ignoreAttributes: false });
+    const xml = parser.parse(rawXml);
+
+    if (!xml.Document) {
+      throw new InvalidXmlError("Invalid XML format");
+    }
+
+    const namespace = (xml.Document['@_xmlns'] || xml.Document['@_Xmlns']) as string;
+    if (!namespace.startsWith('urn:iso:std:iso:20022:tech:xsd:pain.001.001.03')) {
+      throw new InvalidXmlNamespaceError('Invalid PAIN.001 namespace');
+    }
+
+    const messageId = xml.Document.CstmrCdtTrfInitn.GrpHdr.MsgId as string;
+    const creationDate = new Date(xml.Document.CstmrCdtTrfInitn.GrpHdr.CreDtTm as string);
+
+    // Parse and validate initiating party
+    const initiatingPartyAccount = parseAccount(xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAcct);
+    if (!initiatingPartyAccount) {
+      throw new Error('Initiating party account is required');
+    }
+
+    // Create base initiating party
+    const baseInitiatingParty: Party = {
+      name: xml.Document.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm,
+      id: xml.Document.CstmrCdtTrfInitn.GrpHdr.InitgPty.Id?.OrgId?.Othr?.Id,
+      account: xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAcct?.Id?.Othr?.Id ? {
+        accountNumber: xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAcct.Id.Othr.Id.toString()
+      } : undefined,
+      agent: {
+        bic: xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAgt?.FinInstnId?.BIC
+      }
+    };
+
+    const rawInstructions = Array.isArray(xml.Document.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf) 
+      ? xml.Document.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf 
+      : [xml.Document.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf];
+
+    const paymentInstructions = rawInstructions.map((inst: any) => {
+      const currency = inst.Amt.InstdAmt['@_Ccy'] as Currency;
+      const amount = parseAmountToMinorUnits(Number(inst.Amt.InstdAmt['#text']), currency);
+      
+      // Create base creditor party
+      const baseCreditor: Party = {
+        name: inst.Cdtr.Nm as string,
+        agent: {
+          bic: inst.CdtrAgt?.FinInstnId?.BIC
+        },
+        account: {} as Account,
+        address: {
+          country: inst.Cdtr.PstlAdr.Ctry as Alpha2CountryCode
+        }
+      };
+
+      // Return instruction with validated data
+      return {
+        type: 'swift' as const,
+        direction: 'credit' as const,
+        ...(inst.PmtId.InstrId && { id: inst.PmtId.InstrId.toString() }),
+        ...(inst.PmtId.EndToEndId && { endToEndId: inst.PmtId.EndToEndId.toString() }),
+        amount,
+        currency,
+        creditor: baseCreditor
+      };
+    });
+
+    return new SWIFTCreditPaymentInitiation({
+      messageId,
+      creationDate,
+      initiatingParty: baseInitiatingParty,
+      paymentInstructions: paymentInstructions as AtLeastOne<SWIFTCreditPaymentInstruction>
+    });
+  }
+
   public serialize(): string {
     const xmlObj = {
       Document: {
