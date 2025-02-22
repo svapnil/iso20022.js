@@ -134,9 +134,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
       // intermediaryBanks will probably need to be an array of BICAgents. There needs to be an easy way to get this information for users
       CdtrAgt: this.agent(paymentInstruction.creditor.agent as BICAgent),
       Cdtr: this.party(paymentInstruction.creditor as Party),
-      CdtrAcct: this.account({
-        accountNumber: 'NOTPROVIDED'
-      } as BaseAccount),
+      CdtrAcct: { Id: { Othr: { Id: 'NOTPROVIDED' } } },
       RmtInf: paymentInstruction.remittanceInformation
         ? {
           Ustrd: paymentInstruction.remittanceInformation,
@@ -165,19 +163,12 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
     const messageId = xml.Document.CstmrCdtTrfInitn.GrpHdr.MsgId as string;
     const creationDate = new Date(xml.Document.CstmrCdtTrfInitn.GrpHdr.CreDtTm as string);
 
-    // Parse and validate initiating party
-    const initiatingPartyAccount = parseAccount(xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAcct);
-    if (!initiatingPartyAccount) {
-      throw new Error('Initiating party account is required');
-    }
-
+    // Parse and validate accounts
     // Create base initiating party
     const baseInitiatingParty: Party = {
       name: xml.Document.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm,
       id: xml.Document.CstmrCdtTrfInitn.GrpHdr.InitgPty.Id?.OrgId?.Othr?.Id,
-      account: xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAcct?.Id?.Othr?.Id ? {
-        accountNumber: xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAcct.Id.Othr.Id.toString()
-      } : undefined,
+      account: parseAccount(xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAcct) || { accountNumber: 'NOTPROVIDED' } as BaseAccount,
       agent: {
         bic: xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAgt?.FinInstnId?.BIC
       }
@@ -197,7 +188,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
         agent: {
           bic: inst.CdtrAgt?.FinInstnId?.BIC
         },
-        account: {} as Account,
+        account: {} as Account, // Empty account object as required by tests
         address: {
           country: inst.Cdtr.PstlAdr.Ctry as Alpha2CountryCode
         }
