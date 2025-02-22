@@ -188,7 +188,9 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
         agent: {
           bic: inst.CdtrAgt?.FinInstnId?.BIC
         },
-        account: {} as Account, // Empty account object as required by tests
+        account: (inst.CdtrAcct?.Id?.Othr?.Id && inst.CdtrAcct.Id.Othr.Id !== 'NOTPROVIDED'
+          ? { accountNumber: inst.CdtrAcct.Id.Othr.Id }
+          : {}) as Account,
         address: {
           country: inst.Cdtr.PstlAdr.Ctry as Alpha2CountryCode
         }
