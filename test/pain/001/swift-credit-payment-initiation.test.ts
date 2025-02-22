@@ -116,4 +116,86 @@ describe('SWIFTCreditPaymentInitiation', () => {
       expect(isValid).toBeTruthy();
     });
   });
+
+  describe('fromXML', () => {
+    describe('with example SWIFT 001 XML file', () => {
+      const exampleSwift = fs.readFileSync(`${process.cwd()}/test/assets/example/swift_pain_001_v3.xml`, 'utf8');
+      let swiftPayment: SWIFTCreditPaymentInitiation;
+
+      beforeEach(() => {
+        swiftPayment = SWIFTCreditPaymentInitiation.fromXML(exampleSwift);
+      });
+
+      test('should create a SWIFTCreditPaymentInitiation instance', () => {
+        expect(swiftPayment).toBeInstanceOf(SWIFTCreditPaymentInitiation);
+      });
+
+      test('should correctly parse information', () => {
+        expect(swiftPayment.messageId).toBe("bbd49338b6a3434aad7537d07b248a99");
+        expect(swiftPayment.creationDate.toISOString()).toBe("2025-02-22T04:30:49.327Z");
+        expect(swiftPayment.initiatingParty).toEqual({
+          name: "Example Corp",
+          id: "EXAMPLECORP",
+          account: {
+            accountNumber: "123456789"
+          },
+          agent: {
+            bic: "CHASUS33"
+          }
+        });
+        
+        expect(swiftPayment.paymentInstructions).toHaveLength(1);
+        expect(swiftPayment.paymentInstructions[0]).toEqual({
+          id: "383e1d18-d7d6-4239-9622-adae81183d3",
+          endToEndId: "383e1d18-d7d6-4239-9622-adae81183d3",
+          type: "swift",
+          direction: "credit",
+          amount: 1000, // 10.00 USD in minor units
+          currency: "USD",
+          creditor: {
+            name: "Hans Schneider",
+            agent: {
+              bic: "DEUTDEFF"
+            },
+            account: {
+              iban: "DE1234567890123456"
+            },
+            address: {
+              streetName: "Hauptstraße",
+              buildingNumber: 42,
+              postalCode: 10115,
+              townName: "Berlin",
+              country: "DE"
+            }
+          }
+        });
+      });
+
+      test('serialized XML should validate against XSD', () => {
+        const xml = swiftPayment.serialize();
+        const xsdSchema = fs.readFileSync(
+          `${process.cwd()}/schemas/pain/pain.001.001.03.xsd`,
+          'utf8'
+        );
+        const xmlDoc = libxmljs.parseXml(xml);
+        const xsdDoc = libxmljs.parseXml(xsdSchema);
+        const isValid = xmlDoc.validate(xsdDoc);
+        expect(isValid).toBeTruthy();
+      });
+    });
+
+    test('should throw error for invalid XML', () => {
+      expect(() => {
+        SWIFTCreditPaymentInitiation.fromXML('<invalid>xml</invalid>');
+      }).toThrow('Invalid XML format');
+    });
+
+    test('should throw error for invalid namespace', () => {
+      expect(() => {
+        SWIFTCreditPaymentInitiation.fromXML(
+          '<?xml version="1.0"?><Document xmlns="wrong:namespace"></Document>'
+        );
+      }).toThrow('Invalid PAIN.001 namespace');
+    });
+  });
 });

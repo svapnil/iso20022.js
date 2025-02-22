@@ -67,7 +67,9 @@
           </PstlAdr>
         </Cdtr>
         <CdtrAcct>
-          <Id/>
+          <Id>
+            <IBAN>DE1234567890123456</IBAN>
+          </Id>
         </CdtrAcct>
         <RmtInf>
           <Ustrd>Invoice payment #123</Ustrd>

@@ -1,15 +1,19 @@
-import { create } from 'xmlbuilder2';
+import Dinero, { Currency } from 'dinero.js';
+import { XMLParser } from 'fast-xml-parser';
 import { v4 as uuidv4 } from 'uuid';
-import Dinero from 'dinero.js';
+import { create } from 'xmlbuilder2';
+import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
+import { Alpha2CountryCode } from "../../lib/countries";
 import {
-  Party,
+  Account,
   BICAgent,
   IBANAccount,
-  SWIFTCreditPaymentInstruction,
-  Account,
+  Party,
+  SWIFTCreditPaymentInstruction
 } from '../../lib/types.js';
-import { PaymentInitiation } from './iso20022-payment-initiation';
+import { parseAccount, parseAmountToMinorUnits } from "../../parseUtils";
 import { sanitize } from '../../utils/format';
+import { PaymentInitiation } from './iso20022-payment-initiation';
 
 type AtLeastOne<T> = [T, ...T[]];
 
@@ -34,10 +38,10 @@ export interface SWIFTCreditPaymentInitiationConfig {
  * @extends PaymentInitiation
  */
 export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
-  private initiatingParty: Party;
-  private messageId: string;
-  private creationDate: Date;
-  private paymentInstructions: SWIFTCreditPaymentInstruction[];
+  public initiatingParty: Party;
+  public messageId: string;
+  public creationDate: Date;
+  public paymentInstructions: SWIFTCreditPaymentInstruction[];
   private paymentInformationId: string;
 
   /**
@@ -90,7 +94,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
    * @param {SWIFTCreditPaymentInstruction} paymentInstruction - The payment instruction.
    * @returns {Object} The credit transfer object.
    */
-  creditTransfer(paymentInstruction: SWIFTCreditPaymentInstruction) {
+  creditTransfer(paymentInstruction: SWIFTCreditPaymentInstruction): Record<string, any> {
     const paymentInstructionId = sanitize(paymentInstruction.id || uuidv4(), 35);
     const amount = Dinero({
       amount: paymentInstruction.amount,
@@ -121,13 +125,85 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
           Ustrd: paymentInstruction.remittanceInformation,
         }
         : undefined,
-    }
+    };
   }
 
   /**
    * Serializes the payment initiation to an XML string.
    * @returns {string} The XML representation of the payment initiation.
    */
+  public static fromXML(rawXml: string): SWIFTCreditPaymentInitiation {
+    const parser = new XMLParser({ ignoreAttributes: false });
+    const xml = parser.parse(rawXml);
+
+    if (!xml.Document) {
+      throw new InvalidXmlError("Invalid XML format");
+    }
+
+    const namespace = (xml.Document['@_xmlns'] || xml.Document['@_Xmlns']) as string;
+    if (!namespace.startsWith('urn:iso:std:iso:20022:tech:xsd:pain.001.001')) {
+      throw new InvalidXmlNamespaceError('Invalid PAIN.001 namespace');
+    }
+
+    const messageId = xml.Document.CstmrCdtTrfInitn.GrpHdr.MsgId as string;
+    const creationDate = new Date(xml.Document.CstmrCdtTrfInitn.GrpHdr.CreDtTm as string);
+
+    // Parse and validate accounts
+    // Create base initiating party
+    const baseInitiatingParty: Party = {
+      name: xml.Document.CstmrCdtTrfInitn.GrpHdr.InitgPty.Nm,
+      id: xml.Document.CstmrCdtTrfInitn.GrpHdr.InitgPty.Id?.OrgId?.Othr?.Id,
+      account: parseAccount(xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAcct),
+      agent: {
+        bic: xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAgt?.FinInstnId?.BIC
+      }
+    };
+
+    const rawInstructions = Array.isArray(xml.Document.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf) 
+      ? xml.Document.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf 
+      : [xml.Document.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf];
+
+    const paymentInstructions = rawInstructions.map((inst: any) => {
+      const currency = inst.Amt.InstdAmt['@_Ccy'] as Currency;
+      const amount = parseAmountToMinorUnits(Number(inst.Amt.InstdAmt['#text']), currency);
+      
+      // Create base creditor party
+      const creditor: Party = {
+        name: inst.Cdtr.Nm as string,
+        agent: {
+          bic: inst.CdtrAgt?.FinInstnId?.BIC
+        },
+        account: (inst.CdtrAcct?.Id?.IBAN || inst.CdtrAcct?.Id?.Othr?.Id) ? parseAccount(inst.CdtrAcct) : undefined,
+        address: {
+          streetName: inst.Cdtr.PstlAdr.StrtNm as string,
+          buildingNumber: inst.Cdtr.PstlAdr.BldgNb as string,
+          postalCode: inst.Cdtr.PstlAdr.PstCd as string,
+          townName: inst.Cdtr.PstlAdr.TwnNm as string,
+          countrySubDivision: inst.Cdtr.PstlAdr.CtrySubDvsn as string,
+          country: inst.Cdtr.PstlAdr.Ctry as Alpha2CountryCode
+        }
+      };
+
+      // Return instruction with validated data
+      return {
+        type: 'swift' as const,
+        direction: 'credit' as const,
+        ...(inst.PmtId.InstrId && { id: inst.PmtId.InstrId.toString() }),
+        ...(inst.PmtId.EndToEndId && { endToEndId: inst.PmtId.EndToEndId.toString() }),
+        amount,
+        currency,
+        creditor
+      };
+    });
+
+    return new SWIFTCreditPaymentInitiation({
+      messageId,
+      creationDate,
+      initiatingParty: baseInitiatingParty,
+      paymentInstructions: paymentInstructions as AtLeastOne<SWIFTCreditPaymentInstruction>
+    });
+  }
+
   public serialize(): string {
     const xmlObj = {
       Document: {
