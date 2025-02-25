@@ -40,7 +40,7 @@ npm install iso20022.js
 
 # Usage
 
-### Payment Initiation: Sending a SWIFT Transfer
+### Payment Initiation: Sending a SEPA Transfer
 
 ```ts
 import { ISO20022 } from 'iso20022.js';
@@ -50,42 +50,42 @@ const iso20022 = new ISO20022({
     name: 'Acme Corporation',
     id: 'ACMECORP',
     account: {
-      accountNumber: '123456789012',
+      iban: 'ES1234567890123456789012'
     },
     agent: {
-      bic: 'CHASUS33',
+      bic: 'BANKESMMXXX',
       bankAddress: {
-        country: 'US',
-      },
-    },
+        country: 'ES'
+      }
+    }
   },
 });
 
-const creditPaymentInitiation = iso20022.createSWIFTCreditPaymentInitiation({
-  paymentInstructions: [
-    {
-      type: 'swift',
-      direction: 'credit',
-      amount: 1000,
-      currency: 'USD',
-      creditor: {
-        name: 'Jane Smith',
-        account: {
-          iban: 'DE89370400440532013000',
-        },
-        agent: {
-          bic: 'DEUTDEFF',
-        },
-        address: {
-          streetName: '123 Main St',
-          townName: 'Funkytown',
-          postalCode: '12345',
-          country: 'DE',
-        },
+const creditPaymentInitiation = iso20022.createSEPACreditPaymentInitiation([
+  {
+    type: 'sepa',
+    direction: 'credit',
+    creditor: {
+      name: 'John Doe',
+      account: {
+        iban: 'DE1234567890123456789012'
       },
+      agent: {
+        bic: 'DEUTDEFFXXX'
+      },
+      address: {
+        streetName: 'Example Street',
+        buildingNumber: '123',
+        townName: 'Berlin',
+        countrySubDivision: 'Berlin',
+        postalCode: '10115',
+        country: 'DE'
+      }
     },
-  ],
-});
+    amount: 1000,
+    currency: 'EUR'
+  }
+]);
 
 console.log(creditPaymentInitiation.toString());
 ```
