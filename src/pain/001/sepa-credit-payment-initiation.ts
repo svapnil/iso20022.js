@@ -249,7 +249,8 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
               ...(rawPostalAddress.Ctry && { country: rawPostalAddress.Ctry as Alpha2CountryCode }),
             }
           } : {}),
-        }
+        },
+        ...(inst.RmtInf?.Ustrd && { remittanceInformation: inst.RmtInf.Ustrd.toString() as string })
       }
     }) as AtLeastOne<SEPACreditPaymentInstruction>;
 

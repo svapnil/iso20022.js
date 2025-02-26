@@ -6,6 +6,7 @@ export type {
   Agent,
   SWIFTCreditPaymentInstruction,
   SEPACreditPaymentInstruction,
+  RTPCreditPaymentInstruction,
   StructuredAddress,
   IBANAccount,
   BaseAccount,
@@ -18,6 +19,8 @@ export type { SWIFTCreditPaymentInitiationConfig } from './pain/001/swift-credit
 export { SWIFTCreditPaymentInitiation } from './pain/001/swift-credit-payment-initiation';
 export type { SEPACreditPaymentInitiationConfig } from './pain/001/sepa-credit-payment-initiation';
 export { SEPACreditPaymentInitiation } from './pain/001/sepa-credit-payment-initiation';
+export type { RTPCreditPaymentInitiationConfig } from './pain/001/rtp-credit-payment-initiation';
+export { RTPCreditPaymentInitiation } from './pain/001/rtp-credit-payment-initiation';
 
 // pain.002
 export type {
