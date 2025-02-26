@@ -14,6 +14,7 @@
     "create-patch-version": "npm run build && npm version patch && git push origin --tags && npm publish",
     "example:swift": "npx tsx examples/swift-credit-transfer.ts",
     "example:sepa": "npx tsx examples/sepa-credit-transfer.ts",
+    "example:rtp": "npx tsx examples/rtp-credit-transfer.ts",
     "coveralls": "npm run coverage && coveralls report"
   },
   "exports": {
