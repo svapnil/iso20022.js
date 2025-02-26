@@ -137,3 +137,6 @@ dist
 
 # Coveralls / Coverage
 .coveralls.yml
+
+# Claude Code
+CLAUDE.md
