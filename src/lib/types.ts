@@ -198,6 +198,13 @@ export interface SEPACreditPaymentInstruction extends PaymentInstruction {
   creditor: Party,
 }
 
+export interface RTPCreditPaymentInstruction extends PaymentInstruction {
+  type: 'rtp',
+  direction: 'credit',
+  currency: 'USD',
+  creditor: Party,
+}
+
 /**
  * Represents a structured address format.
  */

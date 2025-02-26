@@ -1,6 +1,7 @@
-import { Party, SWIFTCreditPaymentInstruction, SEPACreditPaymentInstruction } from './lib/types.js';
+import { Party, SWIFTCreditPaymentInstruction, SEPACreditPaymentInstruction, RTPCreditPaymentInstruction } from './lib/types.js';
 import { SWIFTCreditPaymentInitiation } from './pain/001/swift-credit-payment-initiation';
 import { SEPACreditPaymentInitiation } from './pain/001/sepa-credit-payment-initiation';
+import { RTPCreditPaymentInitiation } from './pain/001/rtp-credit-payment-initiation';
 
 type AtLeastOne<T> = [T, ...T[]];
 
@@ -55,6 +56,20 @@ class ISO20022 {
     paymentInstructions: AtLeastOne<SEPACreditPaymentInstruction>,
   ) {
     return new SEPACreditPaymentInitiation({
+      initiatingParty: this.initiatingParty,
+      paymentInstructions: paymentInstructions,
+    });
+  }
+
+  /**
+   * Creates a RTP Credit Payment Initiation message.
+   * @param {RTPCreditPaymentInstruction[]} paymentInstructions - An array of payment instructions.
+   * @returns {RTPCreditPaymentInitiation} A new RTP Credit Payment Initiation object.
+   */
+  createRTPCreditPaymentInitiation(
+    paymentInstructions: AtLeastOne<RTPCreditPaymentInstruction>,
+  ) {
+    return new RTPCreditPaymentInitiation({
       initiatingParty: this.initiatingParty,
       paymentInstructions: paymentInstructions,
     });
