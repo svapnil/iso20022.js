@@ -38,6 +38,16 @@ If you're interested in using iso20022.js and would like to use different paymen
 npm install iso20022.js
 ```
 
+# Examples 
+
+Examples of ISO20022 messages being created across different payment types:
+
+```bash
+npx tsx examples/sepa-credit-transfer.ts
+npx tsx examples/rtp-credit-transfer.ts
+npx tsx examples/swift-credit-transfer.ts
+```
+
 # Usage
 
 ### Payment Initiation: Sending a SEPA Transfer
