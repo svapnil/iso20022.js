@@ -65,8 +65,10 @@ const creditPaymentInitiation = iso20022.createSEPACreditPaymentInitiation([
   {
     type: 'sepa',
     direction: 'credit',
+    amount: 1000,
+    currency: 'EUR',
     creditor: {
-      name: 'John Doe',
+      name: 'Hans Schmidt',
       account: {
         iban: 'DE1234567890123456789012'
       },
@@ -81,9 +83,7 @@ const creditPaymentInitiation = iso20022.createSEPACreditPaymentInitiation([
         postalCode: '10115',
         country: 'DE'
       }
-    },
-    amount: 1000,
-    currency: 'EUR'
+    }
   }
 ]);
 
