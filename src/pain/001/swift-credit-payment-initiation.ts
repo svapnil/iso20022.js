@@ -17,8 +17,12 @@ import { PaymentInitiation } from './iso20022-payment-initiation';
 type AtLeastOne<T> = [T, ...T[]];
 
 /**
- * Configuration interface for SWIFTCreditPaymentInitiation.
- * @interface SWIFTCreditPaymentInitiationConfig
+ * Configuration for SWIFT Credit Payment Initiation.
+ *
+ * @property {Party} initiatingParty - The party initiating the payment.
+ * @property {AtLeastOne<SWIFTCreditPaymentInstruction>} paymentInstructions - An array of payment instructions.
+ * @property {string} [messageId] - Optional unique identifier for the message. If not provided, a UUID will be generated.
+ * @property {Date} [creationDate] - Optional creation date for the message. If not provided, current date will be used.
  */
 export interface SWIFTCreditPaymentInitiationConfig {
   /** The party initiating the payment. */
@@ -35,6 +39,20 @@ export interface SWIFTCreditPaymentInitiationConfig {
  * Represents a SWIFT Credit Payment v3 Initiation message (pain.001.001.03).
  * @class
  * @extends PaymentInitiation
+ * @param {SWIFTCreditPaymentInitiationConfig} config - The configuration for the SWIFT Credit Payment Initiation message.
+ * @example
+ * ```typescript
+ * // Creating a payment message
+ * const payment = new SWIFTCreditPaymentInitiation({
+ *   ...
+ * });
+ * // Uploading to fiatwebservices.com
+ * client.paymentTransfers.create(payment);
+ * // Parsing from XML
+ * const xml = '<xml>...</xml>';
+ * const parsedTransfer = SWIFTCreditPaymentInitiation.fromXML(xml);
+ * ```
+ * @see {@link https://docs.iso20022js.com/pain/sepacredit} for more information.
  */
 export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
   public initiatingParty: Party;

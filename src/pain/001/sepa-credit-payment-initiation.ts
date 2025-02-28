@@ -3,7 +3,7 @@ import { PaymentInitiation } from './iso20022-payment-initiation';
 import { sanitize } from "../../utils/format";
 import Dinero, { Currency } from 'dinero.js';
 import { v4 as uuidv4 } from 'uuid';
-import { XMLBuilder, XMLParser } from 'fast-xml-parser';
+import { XMLParser } from 'fast-xml-parser';
 import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
 import { parseAccount, parseAgent, parseAmountToMinorUnits } from "../../parseUtils";
 import { Alpha2CountryCode } from "lib/countries";
@@ -11,9 +11,13 @@ import { Alpha2CountryCode } from "lib/countries";
 type AtLeastOne<T> = [T, ...T[]];
 
 /**
- * Configuration interface for SEPA Credit Payment Initiation.
- * Defines the structure for initiating SEPA credit transfers according to pain.001.001.03 schema.
- * @interface SEPACreditPaymentInitiationConfig
+ * Configuration for SEPA Credit Payment Initiation.
+ *
+ * @property {Party} initiatingParty - The party initiating the SEPA credit transfer.
+ * @property {AtLeastOne<SEPACreditPaymentInstruction>} paymentInstructions - An array containing at least one payment instruction for SEPA credit transfer.
+ * @property {string} [messageId] - Optional unique identifier for the message. If not provided, a UUID will be generated.
+ * @property {Date} [creationDate] - Optional creation date for the message. If not provided, current date will be used.
+ * @property {ExternalCategoryPurpose} [categoryPurpose] - Optional category purpose code following ISO20022 ExternalCategoryPurpose1Code standard.
  */
 export interface SEPACreditPaymentInitiationConfig {
   /** The party initiating the SEPA credit transfer. */
@@ -29,11 +33,25 @@ export interface SEPACreditPaymentInitiationConfig {
 }
 
 /**
- * Represents a SEPA Credit Transfer Initiation message (pain.001.001.03).
+ * Represents a SEPA Credit Payment Initiation.
  * This class handles the creation and serialization of SEPA credit transfer messages
  * according to the ISO20022 standard.
  * @class
  * @extends PaymentInitiation
+ * @param {SEPACreditPaymentInitiationConfig} config - The configuration for the SEPA Credit Payment Initiation message.
+ * @example
+ * ```typescript
+ * // Creating a SEPA payment message
+ * const payment = new SEPACreditPaymentInitiation({
+ *   // configuration options
+ * });
+ * // Uploading the payment
+ * client.paymentTransfers.create(payment);
+ * // Parsing from XML
+ * const xml = '<xml>...</xml>';
+ * const parsedTransfer = SEPACreditPaymentInitiation.fromXML(xml);
+ * ```
+ * @see {@link https://docs.iso20022js.com/pain/sepacredit} for more information.
  */
 export class SEPACreditPaymentInitiation extends PaymentInitiation {
   public initiatingParty: Party;

@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Dinero, { Currency } from 'dinero.js';
 import { sanitize } from '../../utils/format';
 import { PaymentInitiation } from './iso20022-payment-initiation';
-import { XMLBuilder, XMLParser } from 'fast-xml-parser';
+import { XMLParser } from 'fast-xml-parser';
 import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
 import { parseAccount, parseAgent, parseAmountToMinorUnits } from "../../parseUtils";
 import { Alpha2CountryCode } from "lib/countries";
@@ -11,9 +11,12 @@ import { Alpha2CountryCode } from "lib/countries";
 type AtLeastOne<T> = [T, ...T[]];
 
 /**
- * Configuration interface for RTP Credit Payment Initiation.
- * Defines the structure for initiating RTP credit transfers.
- * @interface RTPCreditPaymentInitiationConfig
+ * Configuration for RTP Credit Payment Initiation.
+ *
+ * @property {Party} initiatingParty - The party initiating the RTP credit transfer.
+ * @property {AtLeastOne<RTPCreditPaymentInstruction>} paymentInstructions - Array containing at least one payment instruction for the RTP credit transfer.
+ * @property {string} [messageId] - Optional unique identifier for the message. If not provided, a UUID will be generated.
+ * @property {Date} [creationDate] - Optional creation date for the message. If not provided, current date will be used.
  */
 export interface RTPCreditPaymentInitiationConfig {
     /** The party initiating the RTP credit transfer. */
@@ -32,6 +35,20 @@ export interface RTPCreditPaymentInitiationConfig {
  * according to the ISO20022 standard.
  * @class
  * @extends PaymentInitiation
+ * @param {RTPCreditPaymentInitiationConfig} config - The configuration for the RTP Credit Payment Initiation message.
+ * @example
+ * ```typescript
+ * // Creating a payment message
+ * const payment = new RTPCreditPaymentInitiation({
+ *   ...
+ * });
+ * // Uploading to fiatwebservices.com
+ * client.paymentTransfers.create(payment);
+ * // Parsing from XML
+ * const xml = '<xml>...</xml>';
+ * const parsedTransfer = RTPCreditPaymentInitiation.fromXML(xml);
+ * ```
+ * @see {@link https://docs.iso20022js.com/pain/rtpcredit} for more information.
  */
 export class RTPCreditPaymentInitiation extends PaymentInitiation {
     public initiatingParty: Party
