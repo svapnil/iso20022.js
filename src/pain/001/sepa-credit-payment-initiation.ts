@@ -145,12 +145,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
    * @returns {string} The XML representation of the SEPA credit transfer initiation.
    */
   public serialize(): string {
-    const builder = new XMLBuilder({
-      ignoreAttributes: false,
-      attributeNamePrefix: '@',
-      textNodeName: '#',
-      format: true,
-    });
+    const builder = PaymentInitiation.getBuilder();
     const xml = {
       '?xml': {
         '@version': '1.0',

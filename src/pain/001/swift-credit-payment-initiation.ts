@@ -204,12 +204,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
   }
 
   public serialize(): string {
-    const builder = new XMLBuilder({
-      ignoreAttributes: false,
-      attributeNamePrefix: '@',
-      textNodeName: '#',
-      format: true,
-    });
+    const builder = PaymentInitiation.getBuilder();
     const xml = {
       '?xml': {
         '@version': '1.0',
