@@ -122,6 +122,12 @@ describe('RTPCreditPaymentInitiation', () => {
             expect(xml).toMatch(/<LclInstrm>\s*<Prtry>\s*RTP\s*<\/Prtry>\s*<\/LclInstrm>/);
         });
 
+        test('serialized XML should have "USD" as currency', () => {
+            rtpPayment = new RTPCreditPaymentInitiation(rtpPaymentInitiationConfig)
+            const xml = rtpPayment.serialize();
+            expect(xml).toMatch(/<InstdAmt[^>]*Ccy="USD"[^>]*>/);
+        })
+
         test('should validate against XSD', () => {
             rtpPayment = new RTPCreditPaymentInitiation(rtpPaymentInitiationConfig)
             const xml = rtpPayment.serialize();

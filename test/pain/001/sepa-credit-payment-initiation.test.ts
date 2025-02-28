@@ -161,6 +161,12 @@ describe('SEPACreditPaymentInitiation', () => {
             expect(isValid).toBeTruthy();
         });
 
+        test('serialized XML should have "EUR" as currency', () => {
+            sepaPayment = new SEPACreditPaymentInitiation(sepaPaymentInitiationConfig);
+            const xml = sepaPayment.serialize();
+            expect(xml).toMatch(/<InstdAmt[^>]*Ccy="EUR"[^>]*>/);
+        });
+
         describe('should fail is there are different payment instruction currencies', () => {
             it('should throw an error', () => {
                 expect(() => {
