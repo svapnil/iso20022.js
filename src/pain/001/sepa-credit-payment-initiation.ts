@@ -1,10 +1,9 @@
-import { create } from "xmlbuilder2";
 import { Account, Agent, BICAgent, ExternalCategoryPurpose, IBANAccount, Party, SEPACreditPaymentInstruction } from "../../lib/types";
 import { PaymentInitiation } from './iso20022-payment-initiation';
 import { sanitize } from "../../utils/format";
 import Dinero, { Currency } from 'dinero.js';
 import { v4 as uuidv4 } from 'uuid';
-import { XMLParser } from 'fast-xml-parser';
+import { XMLBuilder, XMLParser } from 'fast-xml-parser';
 import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
 import { parseAccount, parseAgent, parseAmountToMinorUnits } from "../../parseUtils";
 import { Alpha2CountryCode } from "lib/countries";
@@ -43,7 +42,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
   public paymentInstructions: AtLeastOne<SEPACreditPaymentInstruction>;
   public paymentInformationId: string;
   public categoryPurpose?: ExternalCategoryPurpose;
-  private paymentSum: string;
+  private formattedPaymentSum: string;
 
   /**
    * Creates an instance of SEPACreditPaymentInitiation.
@@ -55,7 +54,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
     this.paymentInstructions = config.paymentInstructions;
     this.messageId = config.messageId || uuidv4().replace(/-/g, '');
     this.creationDate = config.creationDate || new Date();
-    this.paymentSum = this.sumPaymentInstructions(this.paymentInstructions as AtLeastOne<SEPACreditPaymentInstruction>);
+    this.formattedPaymentSum = this.sumPaymentInstructions(this.paymentInstructions as AtLeastOne<SEPACreditPaymentInstruction>);
     this.paymentInformationId = sanitize(uuidv4(), 35);
     this.categoryPurpose = config.categoryPurpose;
     this.validate();
@@ -146,7 +145,17 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
    * @returns {string} The XML representation of the SEPA credit transfer initiation.
    */
   public serialize(): string {
+    const builder = new XMLBuilder({
+      ignoreAttributes: false,
+      attributeNamePrefix: '@',
+      textNodeName: '#',
+      format: true,
+    });
     const xml = {
+      '?xml': {
+        '@version': '1.0',
+        '@encoding': 'UTF-8'
+      },
       Document: {
         '@xmlns': 'urn:iso:std:iso:20022:tech:xsd:pain.001.001.03',
         '@xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
@@ -155,7 +164,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
             MsgId: this.messageId,
             CreDtTm: this.creationDate.toISOString(),
             NbOfTxs: this.paymentInstructions.length.toString(),
-            CtrlSum: this.paymentSum,
+            CtrlSum: this.formattedPaymentSum,
             InitgPty: {
               Nm: this.initiatingParty.name,
               Id: {
@@ -171,7 +180,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
             PmtInfId: this.paymentInformationId,
             PmtMtd: 'TRF',
             NbOfTxs: this.paymentInstructions.length.toString(),
-            CtrlSum: this.paymentSum,
+            CtrlSum: this.formattedPaymentSum,
             PmtTpInf: {
               SvcLvl: { Cd: 'SEPA' },
               ...(this.categoryPurpose && {
@@ -190,8 +199,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
       },
     };
 
-    const doc = create(xml);
-    return doc.end({ prettyPrint: true });
+    return builder.build(xml);
   }
 
   public static fromXML(rawXml: string): SEPACreditPaymentInitiation {
@@ -211,7 +219,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
     const creationDate = new Date(xml.Document.CstmrCdtTrfInitn.GrpHdr.CreDtTm as string);
 
     if (Array.isArray(xml.Document.CstmrCdtTrfInitn.PmtInf)) {
-      throw new Error('Multiple PmtInf is not supported'); 
+      throw new Error('Multiple PmtInf is not supported');
     }
 
     // Assuming we have one PmtInf / one Debtor, we can hack together this information from InitgPty / Dbtr

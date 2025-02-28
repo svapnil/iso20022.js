@@ -1,7 +1,6 @@
 import Dinero, { Currency } from 'dinero.js';
-import { XMLParser } from 'fast-xml-parser';
+import { XMLBuilder, XMLParser } from 'fast-xml-parser';
 import { v4 as uuidv4 } from 'uuid';
-import { create } from 'xmlbuilder2';
 import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
 import { Alpha2CountryCode } from "../../lib/countries";
 import {
@@ -159,14 +158,14 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
       }
     };
 
-    const rawInstructions = Array.isArray(xml.Document.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf) 
-      ? xml.Document.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf 
+    const rawInstructions = Array.isArray(xml.Document.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf)
+      ? xml.Document.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf
       : [xml.Document.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf];
 
     const paymentInstructions = rawInstructions.map((inst: any) => {
       const currency = inst.Amt.InstdAmt['@_Ccy'] as Currency;
       const amount = parseAmountToMinorUnits(Number(inst.Amt.InstdAmt['#text']), currency);
-      
+
       // Create base creditor party
       const creditor: Party = {
         name: inst.Cdtr.Nm as string,
@@ -205,7 +204,17 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
   }
 
   public serialize(): string {
-    const xmlObj = {
+    const builder = new XMLBuilder({
+      ignoreAttributes: false,
+      attributeNamePrefix: '@',
+      textNodeName: '#',
+      format: true,
+    });
+    const xml = {
+      '?xml': {
+        '@version': '1.0',
+        '@encoding': 'UTF-8'
+      },
       Document: {
         '@xmlns': 'urn:iso:std:iso:20022:tech:xsd:pain.001.001.03',
         CstmrCdtTrfInitn: {
@@ -245,7 +254,6 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
       },
     };
 
-    const doc = create(xmlObj);
-    return doc.end({ prettyPrint: true });
+    return builder.build(xml);
   }
 }

@@ -1,10 +1,10 @@
-import { SEPACreditPaymentInitiation, SEPACreditPaymentInitiationConfig } from "../../../src/pain/001/sepa-credit-payment-initiation";
-import { SEPACreditPaymentInstruction, ExternalCategoryPurposeCode } from "../../../src/lib/types";
-import libxmljs from 'libxmljs';
 import fs from 'fs';
 import { Alpha2CountryCode } from "lib/countries";
-import ISO20022 from '../../../src/iso20022';
+import libxmljs from 'libxmljs';
 import { v4 as uuidv4 } from 'uuid';
+import ISO20022 from '../../../src/iso20022';
+import { ExternalCategoryPurposeCode } from "../../../src/lib/types";
+import { SEPACreditPaymentInitiation, SEPACreditPaymentInitiationConfig } from "../../../src/pain/001/sepa-credit-payment-initiation";
 
 type AtLeastOne<T> = [T, ...T[]];
 
