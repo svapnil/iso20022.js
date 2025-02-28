@@ -1,3 +1,4 @@
+import { XMLBuilder } from 'fast-xml-parser';
 import {
     Party,
     IBANAccount,
@@ -136,5 +137,14 @@ import {
      */
     toString() {
       return this.serialize();
+    }
+
+    static getBuilder(): XMLBuilder {
+      return new XMLBuilder({
+        ignoreAttributes: false,
+        attributeNamePrefix: '@',
+        textNodeName: '#',
+        format: true,
+      });
     }
   }

@@ -1,10 +1,9 @@
-import { create } from "xmlbuilder2";
 import { ABAAgent, Account, Agent, BaseAccount, Party, RTPCreditPaymentInstruction } from '../../lib/types';
 import { v4 as uuidv4 } from 'uuid';
 import Dinero, { Currency } from 'dinero.js';
 import { sanitize } from '../../utils/format';
 import { PaymentInitiation } from './iso20022-payment-initiation';
-import { XMLParser } from 'fast-xml-parser';
+import { XMLBuilder, XMLParser } from 'fast-xml-parser';
 import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
 import { parseAccount, parseAgent, parseAmountToMinorUnits } from "../../parseUtils";
 import { Alpha2CountryCode } from "lib/countries";
@@ -40,7 +39,7 @@ export class RTPCreditPaymentInitiation extends PaymentInitiation {
     public messageId: string
     public creationDate: Date
     public paymentInformationId: string;
-    private paymentSum: string;
+    private formattedPaymentSum: string;
     constructor(config: RTPCreditPaymentInitiationConfig) {
         super();
         this.initiatingParty = config.initiatingParty;
@@ -48,7 +47,7 @@ export class RTPCreditPaymentInitiation extends PaymentInitiation {
         this.messageId = config.messageId || uuidv4().replace(/-/g, '');
         this.creationDate = config.creationDate || new Date();
         this.paymentInformationId = sanitize(uuidv4(), 35);
-        this.paymentSum = this.sumPaymentInstructions(this.paymentInstructions as AtLeastOne<RTPCreditPaymentInstruction>);
+        this.formattedPaymentSum = this.sumPaymentInstructions(this.paymentInstructions as AtLeastOne<RTPCreditPaymentInstruction>);
         this.validate();
     }
     /**
@@ -123,7 +122,12 @@ export class RTPCreditPaymentInitiation extends PaymentInitiation {
      * @returns {string} The XML representation of the RTP credit transfer initiation.
      */
     public serialize(): string {
+        const builder = PaymentInitiation.getBuilder();
         const xml = {
+            '?xml': {
+                '@version': '1.0',
+                '@encoding': 'UTF-8'
+            },
             Document: {
                 '@xmlns': 'urn:iso:std:iso:20022:tech:xsd:pain.001.001.03',
                 '@xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
@@ -132,7 +136,7 @@ export class RTPCreditPaymentInitiation extends PaymentInitiation {
                         MsgId: this.messageId,
                         CreDtTm: this.creationDate.toISOString(),
                         NbOfTxs: this.paymentInstructions.length.toString(),
-                        CtrlSum: this.paymentSum,
+                        CtrlSum: this.formattedPaymentSum,
                         InitgPty: {
                             Nm: this.initiatingParty.name,
                             Id: {
@@ -148,7 +152,7 @@ export class RTPCreditPaymentInitiation extends PaymentInitiation {
                         PmtInfId: this.paymentInformationId,
                         PmtMtd: 'TRF',
                         NbOfTxs: this.paymentInstructions.length.toString(),
-                        CtrlSum: this.paymentSum,
+                        CtrlSum: this.formattedPaymentSum,
                         PmtTpInf: {
                             SvcLvl: { Cd: 'URNS' },
                             LclInstrm: { Prtry: "RTP" },
@@ -165,8 +169,7 @@ export class RTPCreditPaymentInitiation extends PaymentInitiation {
             },
         };
 
-        const doc = create(xml);
-        return doc.end({ prettyPrint: true });
+        return builder.build(xml);
     }
 
     public static fromXML(rawXml: string): RTPCreditPaymentInitiation {

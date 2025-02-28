@@ -73,7 +73,6 @@
   "dependencies": {
     "dinero.js": "^1.9.1",
     "fast-xml-parser": "^4.4.1",
-    "uuid": "^10.0.0",
-    "xmlbuilder2": "^3.1.1"
+    "uuid": "^10.0.0"
   }
 }
