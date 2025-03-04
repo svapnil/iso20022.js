@@ -35,6 +35,154 @@ export interface ISO20022Config {
 }
 
 /**
+ * Configuration interface for SWIFT Credit Payment Initiation.
+ * @interface SWIFTCreditPaymentInitiationConfig
+ * @example
+ * const config: SWIFTCreditPaymentInitiationConfig = {
+ *     paymentInstructions: [
+ *       {
+ *         type: 'swift',
+ *         direction: 'credit',
+ *         amount: 1000,
+ *         currency: 'USD',
+ *         creditor: {
+ *           name: 'Hans Schneider',
+ *           account: {
+ *             iban: 'DE1234567890123456',
+ *           },
+ *           agent: {
+ *             bic: 'DEUTDEFF',
+ *             bankAddress: {
+ *               country: 'DE',
+ *             },
+ *           },
+ *           address: {
+ *             streetName: 'Hauptstraße',
+ *             buildingNumber: '42',
+ *             postalCode: '10115',
+ *             townName: 'Berlin',
+ *             country: 'DE',
+ *           },
+ *         },
+ *         remittanceInformation: 'Invoice payment #123',
+ *       },
+ *     ],
+ *     messageId: 'MSGID123', // Optional
+ *     creationDate: new Date(), // Optional
+ * };
+ */
+export interface SWIFTCreditPaymentInitiationConfig {
+  /**
+   * An array of payment instructions.
+   * @type {AtLeastOne<SWIFTCreditPaymentInstruction>}
+   */
+  paymentInstructions: AtLeastOne<SWIFTCreditPaymentInstruction>;
+  
+  /**
+   * Optional unique identifier for the message. If not provided, a UUID will be generated.
+   * @type {string}
+   */
+  messageId?: string;
+  
+  /**
+   * Optional creation date for the message. If not provided, current date will be used.
+   * @type {Date}
+   */
+  creationDate?: Date;
+}
+
+/**
+ * Configuration interface for SEPA Credit Payment Initiation.
+ * @interface SEPACreditPaymentInitiationConfig
+ * @example
+ * const config: SEPACreditPaymentInitiationConfig = {
+ *     paymentInstructions: [
+ *       {
+ *         type: 'sepa',
+ *         direction: 'credit',
+ *         amount: 1000, // €10.00 Euros
+ *         currency: 'EUR',
+ *         creditor: {
+ *           name: 'Hans Schneider',
+ *           account: {
+ *             iban: 'DE1234567890123456',
+ *           },
+ *         },
+ *         remittanceInformation: 'Invoice payment #123',
+ *       },
+ *     ],
+ *     messageId: 'MSGID123', // Optional
+ *     creationDate: new Date(), // Optional
+ * };
+ */
+export interface SEPACreditPaymentInitiationConfig {
+  /**
+   * An array of payment instructions.
+   * @type {AtLeastOne<SEPACreditPaymentInstruction>}
+   */
+  paymentInstructions: AtLeastOne<SEPACreditPaymentInstruction>;
+  
+  /**
+   * Optional unique identifier for the message. If not provided, a UUID will be generated.
+   * @type {string}
+   */
+  messageId?: string;
+  
+  /**
+   * Optional creation date for the message. If not provided, current date will be used.
+   * @type {Date}
+   */
+  creationDate?: Date;
+}
+
+/**
+ * Configuration interface for RTP Credit Payment Initiation.
+ * @interface RTPCreditPaymentInitiationConfig
+ * @example
+ * const config: RTPCreditPaymentInitiationConfig = {
+ *     paymentInstructions: [
+ *       {
+ *         type: 'rtp',
+ *         direction: 'credit',
+ *         amount: 100000, // $1000.00
+ *         currency: 'USD',
+ *         creditor: {
+ *           name: 'All-American Dogs Co.',
+ *           account: {
+ *             accountNumber: '123456789012',
+ *           },
+ *           agent: {
+ *             abaRoutingNumber: '37714568112',
+ *           },
+ *         },
+ *         remittanceInformation: '1000 Hot Dogs Feb26',
+ *       },
+ *     ],
+ *     messageId: 'MSGID123', // Optional
+ *     creationDate: new Date(), // Optional
+ * };
+ */
+export interface RTPCreditPaymentInitiationConfig {
+  /**
+   * An array of payment instructions.
+   * @type {AtLeastOne<RTPCreditPaymentInstruction>}
+   */
+  paymentInstructions: AtLeastOne<RTPCreditPaymentInstruction>;
+  
+  /**
+   * Optional unique identifier for the message. If not provided, a UUID will be generated.
+   * @type {string}
+   */
+  messageId?: string;
+  
+  /**
+   * Optional creation date for the message. If not provided, current date will be used.
+   * @type {Date}
+   */
+  creationDate?: Date;
+}
+
+/**
  * Represents an ISO20022 core message creator.
  * This class provides methods to create various basic ISO20022 compliant messages.
  *
@@ -68,107 +216,125 @@ class ISO20022 {
 
   /**
    * Creates a SWIFT Credit Payment Initiation message.
-   * @param {SWIFTCreditPaymentInstruction[]} paymentInstructions - An array of payment instructions.
+   * @param {SWIFTCreditPaymentInitiationConfig} config - Configuration containing payment instructions and optional parameters.
    * @example
-   * const payment = iso20022.createSWIFTCreditPaymentInitiation([
-   *   {
-   *     type: 'swift',
-   *     direction: 'credit',
-   *     amount: 1000,
-   *     currency: 'USD',
-   *     creditor: {
-   *       name: 'Hans Schneider',
-   *       account: {
-   *         iban: 'DE1234567890123456',
-   *       },
-   *       agent: {
-   *         bic: 'DEUTDEFF',
-   *         bankAddress: {
+   * const payment = iso20022.createSWIFTCreditPaymentInitiation({
+   *   paymentInstructions: [
+   *     {
+   *       type: 'swift',
+   *       direction: 'credit',
+   *       amount: 1000,
+   *       currency: 'USD',
+   *       creditor: {
+   *         name: 'Hans Schneider',
+   *         account: {
+   *           iban: 'DE1234567890123456',
+   *         },
+   *         agent: {
+   *           bic: 'DEUTDEFF',
+   *           bankAddress: {
+   *             country: 'DE',
+   *           },
+   *         },
+   *         address: {
+   *           streetName: 'Hauptstraße',
+   *           buildingNumber: '42',
+   *           postalCode: '10115',
+   *           townName: 'Berlin',
    *           country: 'DE',
    *         },
    *       },
-   *       address: {
-   *         streetName: 'Hauptstraße',
-   *         buildingNumber: '42',
-   *         postalCode: '10115',
-   *         townName: 'Berlin',
-   *         country: 'DE',
-   *       },
+   *       remittanceInformation: 'Invoice payment #123',
    *     },
-   *     remittanceInformation: 'Invoice payment #123',
-   *   },
-   * ]);
+   *   ],
+   *   messageId: 'SWIFT-MSG-001', // Optional
+   *   creationDate: new Date('2025-03-01'), // Optional
+   * });
    * @returns {SWIFTCreditPaymentInitiation} A new SWIFT Credit Payment Initiation object.
    */
   createSWIFTCreditPaymentInitiation(
-    paymentInstructions: AtLeastOne<SWIFTCreditPaymentInstruction>,
+    config: SWIFTCreditPaymentInitiationConfig,
   ) {
     return new SWIFTCreditPaymentInitiation({
       initiatingParty: this.initiatingParty,
-      paymentInstructions: paymentInstructions,
+      paymentInstructions: config.paymentInstructions,
+      messageId: config.messageId,
+      creationDate: config.creationDate,
     });
   }
 
   /**
    * Creates a SEPA Credit Payment Initiation message.
-   * @param {SEPACreditPaymentInstruction[]} paymentInstructions - An array of payment instructions.
+   * @param {SEPACreditPaymentInitiationConfig} config - Configuration containing payment instructions and optional parameters.
    * @example
-   * const payment = iso20022.createSEPACreditPaymentInitiation([
-   *   {
-   *     type: 'sepa',
-   *     direction: 'credit',
-   *     amount: 1000, // €10.00 Euros
-   *     currency: 'EUR',
-   *     creditor: {
-   *       name: 'Hans Schneider',
-   *       account: {
-   *         iban: 'DE1234567890123456',
+   * const payment = iso20022.createSEPACreditPaymentInitiation({
+   *   paymentInstructions: [
+   *     {
+   *       type: 'sepa',
+   *       direction: 'credit',
+   *       amount: 1000, // €10.00 Euros
+   *       currency: 'EUR',
+   *       creditor: {
+   *         name: 'Hans Schneider',
+   *         account: {
+   *           iban: 'DE1234567890123456',
+   *         },
    *       },
+   *       remittanceInformation: 'Invoice payment #123',
    *     },
-   *     remittanceInformation: 'Invoice payment #123',
-   *   },
-   * ]);
+   *   ],
+   *   messageId: 'SEPA-MSG-001', // Optional
+   *   creationDate: new Date('2025-03-01'), // Optional
+   * });
    * @returns {SEPACreditPaymentInitiation} A new SEPA Credit Payment Initiation object.
    */
   createSEPACreditPaymentInitiation(
-    paymentInstructions: AtLeastOne<SEPACreditPaymentInstruction>,
+    config: SEPACreditPaymentInitiationConfig,
   ) {
     return new SEPACreditPaymentInitiation({
       initiatingParty: this.initiatingParty,
-      paymentInstructions: paymentInstructions,
+      paymentInstructions: config.paymentInstructions,
+      messageId: config.messageId,
+      creationDate: config.creationDate,
     });
   }
 
   /**
    * Creates a RTP Credit Payment Initiation message.
-   * @param {RTPCreditPaymentInstruction[]} paymentInstructions - An array of payment instructions.
+   * @param {RTPCreditPaymentInitiationConfig} config - Configuration containing payment instructions and optional parameters.
    * @example
-   * const payment = iso20022.createRTPCreditPaymentInitiation([
-   *   {
-   *     type: 'rtp',
-   *     direction: 'credit',
-   *     amount: 100000, // $1000.00
-   *     currency: 'USD',
-   *     creditor: {
-   *       name: 'All-American Dogs Co.',
-   *       account: {
-   *         accountNumber: '123456789012',
+   * const payment = iso20022.createRTPCreditPaymentInitiation({
+   *   paymentInstructions: [
+   *     {
+   *       type: 'rtp',
+   *       direction: 'credit',
+   *       amount: 100000, // $1000.00
+   *       currency: 'USD',
+   *       creditor: {
+   *         name: 'All-American Dogs Co.',
+   *         account: {
+   *           accountNumber: '123456789012',
+   *         },
+   *         agent: {
+   *           abaRoutingNumber: '37714568112',
+   *         },
    *       },
-   *       agent: {
-   *         abaRoutingNumber: '37714568112',
-   *       },
+   *       remittanceInformation: '1000 Hot Dogs Feb26',
    *     },
-   *     remittanceInformation: '1000 Hot Dogs Feb26',
-   *   },
-   * ]);
+   *   ],
+   *   messageId: 'RTP-MSG-001', // Optional
+   *   creationDate: new Date('2025-03-01'), // Optional
+   * });
    * @returns {RTPCreditPaymentInitiation} A new RTP Credit Payment Initiation object.
    */
   createRTPCreditPaymentInitiation(
-    paymentInstructions: AtLeastOne<RTPCreditPaymentInstruction>,
+    config: RTPCreditPaymentInitiationConfig,
   ) {
     return new RTPCreditPaymentInitiation({
       initiatingParty: this.initiatingParty,
-      paymentInstructions: paymentInstructions,
+      paymentInstructions: config.paymentInstructions,
+      messageId: config.messageId,
+      creationDate: config.creationDate,
     });
   }
 }

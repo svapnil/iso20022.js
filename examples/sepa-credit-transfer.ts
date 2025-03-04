@@ -19,31 +19,36 @@ async function main() {
         },
     });
 
-    const payment = iso20022.createSEPACreditPaymentInitiation([
-        {
-            type: 'sepa',
-            direction: 'credit',
-            creditor: {
-                name: 'Dáel Muñiz',
-                account: {
-                    iban: 'ES8201822200150201504058'
+    const payment = iso20022.createSEPACreditPaymentInitiation({
+        paymentInstructions: [
+            {
+                type: 'sepa',
+                direction: 'credit',
+                creditor: {
+                    name: 'Dáel Muñiz',
+                    account: {
+                        iban: 'ES8201822200150201504058'
+                    },
+                    agent: {
+                        bic: 'BBVAESMMXXX'
+                    },
+                    address: {
+                        streetName: 'Calle de Serrano',
+                        buildingNumber: '41',
+                        townName: 'Madrid',
+                        countrySubDivision: 'Madrid',
+                        postalCode: '28001',
+                        country: 'ES'
+                    }
                 },
-                agent: {
-                    bic: 'BBVAESMMXXX'
-                },
-                address: {
-                    streetName: 'Calle de Serrano',
-                    buildingNumber: '41',
-                    townName: 'Madrid',
-                    countrySubDivision: 'Madrid',
-                    postalCode: '28001',
-                    country: 'ES'
-                }
-            },
-            amount: 1000,
-            currency: 'EUR'
-        }
-    ]);
+                amount: 1000,
+                currency: 'EUR'
+            }
+        ],
+        // Optional fields
+        messageId: 'SEPA-TRANSFER-001',
+        creationDate: new Date('2025-03-04'),
+    });
 
     console.log(payment.serialize())
 }

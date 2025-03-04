@@ -16,24 +16,29 @@ async function main() {
         },
     });
 
-    const payment = iso20022.createRTPCreditPaymentInitiation([
-        {
-            type: 'rtp',
-            direction: 'credit',
-            amount: 100000, // $1000.00
-            currency: 'USD',
-            creditor: {
-                name: 'All-American Dogs Co.',
-                account: {
-                    accountNumber: '123456789012',
+    const payment = iso20022.createRTPCreditPaymentInitiation({
+        paymentInstructions: [
+            {
+                type: 'rtp',
+                direction: 'credit',
+                amount: 100000, // $1000.00
+                currency: 'USD',
+                creditor: {
+                    name: 'All-American Dogs Co.',
+                    account: {
+                        accountNumber: '123456789012',
+                    },
+                    agent: {
+                        abaRoutingNumber: '37714568112',
+                    }
                 },
-                agent: {
-                    abaRoutingNumber: '37714568112',
-                }
-            },
-            remittanceInformation: '1000 Hot Dogs Feb26',
-        }
-    ]);
+                remittanceInformation: '1000 Hot Dogs Feb26',
+            }
+        ],
+        // Optional fields
+        messageId: 'RTP-TRANSFER-001',
+        creationDate: new Date('2025-03-04'),
+    });
 
     console.log(payment.serialize());
 }

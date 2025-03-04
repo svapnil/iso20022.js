@@ -20,8 +20,8 @@ async function main() {
     });
 
     // Create a SWIFT credit transfer to a German creditor
-    const payment = iso20022.createSWIFTCreditPaymentInitiation(
-        [
+    const payment = iso20022.createSWIFTCreditPaymentInitiation({
+        paymentInstructions: [
             {
                 type: 'swift',
                 direction: 'credit',
@@ -49,7 +49,10 @@ async function main() {
                 remittanceInformation: 'Invoice payment #123',
             },
         ],
-    );
+        // Optional fields
+        messageId: 'SWIFT-TRANSFER-001',
+        creationDate: new Date('2025-03-04'),
+    });
 
     const xml = await payment.serialize();
     console.log(xml);

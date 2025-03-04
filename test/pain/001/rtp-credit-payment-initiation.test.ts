@@ -147,7 +147,9 @@ describe('RTPCreditPaymentInitiation', () => {
             })
 
             test('should create a RTPCreditPaymentInitiation instance', () => {
-                let rtpPayment = iso20022.createRTPCreditPaymentInitiation([paymentInstruction1]);
+                let rtpPayment = iso20022.createRTPCreditPaymentInitiation({
+                    paymentInstructions: [paymentInstruction1, paymentInstruction2]
+                });
                 const xml = rtpPayment.serialize();
                 const xsdSchema = fs.readFileSync(
                     `${process.cwd()}/schemas/pain/pain.001.001.03.xsd`,
