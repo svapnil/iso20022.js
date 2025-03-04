@@ -182,7 +182,9 @@ describe('SEPACreditPaymentInitiation', () => {
             })
 
             test('should create a SEPACreditPaymentInitiation instance', () => {
-                let sepaPayment = iso20022.createSEPACreditPaymentInitiation([paymentInstruction1]);
+                let sepaPayment = iso20022.createSEPACreditPaymentInitiation({
+                    paymentInstructions: [paymentInstruction1]
+                });
                 const xml = sepaPayment.serialize();
                 const xsdSchema = fs.readFileSync(
                     `${process.cwd()}/schemas/pain/pain.001.001.03.xsd`,

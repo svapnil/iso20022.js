@@ -67,9 +67,11 @@ describe('SWIFTCreditPaymentInitiation', () => {
         },
       });
 
-      swiftPayment = iso20022.createSWIFTCreditPaymentInitiation([
-        instruction1
-      ]);
+      swiftPayment = iso20022.createSWIFTCreditPaymentInitiation({
+        paymentInstructions: [
+          instruction1
+        ],
+      });
     });
 
   test('should create a SWIFTCreditPaymentInitiation instance', () => {
@@ -97,10 +99,11 @@ describe('SWIFTCreditPaymentInitiation', () => {
 
   describe('when there are multiple payment instructions', () => {
     beforeEach(() => {
-      swiftPayment = iso20022.createSWIFTCreditPaymentInitiation([
+      swiftPayment = iso20022.createSWIFTCreditPaymentInitiation({
+        paymentInstructions: [
         instruction1,
         instruction2,
-      ]);
+      ]});
     });
 
     test('serialized XML should validate against XSD', () => {
