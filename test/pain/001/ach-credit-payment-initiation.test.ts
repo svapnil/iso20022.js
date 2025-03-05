@@ -166,6 +166,20 @@ describe('ACHCreditPaymentInitiation', () => {
     })
 
     describe('fromXML', () => {
+        describe('with a goldman sachs ACH 001 XML file', () => {
+            const xmlContent = fs.readFileSync(
+                `${process.cwd()}/test/assets/goldman_sachs/pain_001_ach_credit.xml`,
+                'utf8',
+            );
+            const achPayment = ACHCreditPaymentInitiation.fromXML(xmlContent);
+            test('should create a ACHCreditPaymentInitiation instance', () => {
+                expect(achPayment).toBeInstanceOf(ACHCreditPaymentInitiation);
+            })
+            expect(achPayment.messageId).toBe("Message-Id");
+            expect(achPayment.creationDate).toStrictEqual(new Date(
+                "2024-05-10T16:10:02.017+00:00"
+            ));
+        })
         describe('with a cross river ACH 001 XML file', () => {
             const xmlContent = fs.readFileSync(
                 `${process.cwd()}/test/assets/cross_river/pain_001_ach_credit.xml`,
@@ -191,6 +205,7 @@ describe('ACHCreditPaymentInitiation', () => {
             expect(achPayment.paymentInstructions[0]?.creditor.address?.postalCode).toBe("10000");
             expect(achPayment.paymentInstructions[0]?.creditor.address?.townName).toBe("New York");
             expect(achPayment.paymentInstructions[0]?.creditor.address?.countrySubDivision).toBe("NY");
+            expect(achPayment.paymentInstructions[0]?.creditor.address?.country).toBe("US");
         })
         describe('with generated ACH 001 XML file', () => {
             // Create a test instance and serialize to XML
