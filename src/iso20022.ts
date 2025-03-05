@@ -1,7 +1,8 @@
-import { Party, SWIFTCreditPaymentInstruction, SEPACreditPaymentInstruction, RTPCreditPaymentInstruction } from './lib/types.js';
+import { Party, SWIFTCreditPaymentInstruction, SEPACreditPaymentInstruction, RTPCreditPaymentInstruction, ACHCreditPaymentInstruction } from './lib/types.js';
 import { SWIFTCreditPaymentInitiation } from './pain/001/swift-credit-payment-initiation';
 import { SEPACreditPaymentInitiation } from './pain/001/sepa-credit-payment-initiation';
 import { RTPCreditPaymentInitiation } from './pain/001/rtp-credit-payment-initiation';
+import { ACHCreditPaymentInitiation } from './pain/001/ach-credit-payment-initiation';
 
 type AtLeastOne<T> = [T, ...T[]];
 
@@ -183,6 +184,74 @@ export interface RTPCreditPaymentInitiationConfig {
 }
 
 /**
+ * Configuration interface for ACH Credit Payment Initiation.
+ * @interface ACHCreditPaymentInitiationConfig
+ * @example
+ * const config: ACHCreditPaymentInitiationConfig = {
+ *     paymentInstructions: [
+ *       {
+ *         type: 'ach',
+ *         direction: 'credit',
+ *         amount: 100000, // $1000.00
+ *         currency: 'USD',
+ *         creditor: {
+ *           name: 'John Doe Funding LLC',
+ *           account: {
+ *             accountNumber: '123456789012',
+ *           },
+ *           agent: {
+ *             abaRoutingNumber: '123456789',
+ *           },
+ *         },
+ *         remittanceInformation: 'Invoice #12345',
+ *       },
+ *     ],
+ *     messageId: 'MSGID123', // Optional
+ *     creationDate: new Date(), // Optional
+ *     localInstrument: 'CCD', // Optional, defaults to CCD
+ *     serviceLevel: 'NURG', // Optional, defaults to NURG
+ *     instructionPriority: 'NORM', // Optional, defaults to NORM
+ * };
+ */
+export interface ACHCreditPaymentInitiationConfig {
+  /**
+   * An array of payment instructions.
+   * @type {AtLeastOne<ACHCreditPaymentInstruction>}
+   */
+  paymentInstructions: AtLeastOne<ACHCreditPaymentInstruction>;
+  
+  /**
+   * Optional unique identifier for the message. If not provided, a UUID will be generated.
+   * @type {string}
+   */
+  messageId?: string;
+  
+  /**
+   * Optional creation date for the message. If not provided, current date will be used.
+   * @type {Date}
+   */
+  creationDate?: Date;
+  
+  /**
+   * Optional local instrument code. If not provided, CCD will be used.
+   * @type {string}
+   */
+  localInstrument?: string;
+  
+  /**
+   * Optional service level code. If not provided, NURG will be used.
+   * @type {string}
+   */
+  serviceLevel?: string;
+  
+  /**
+   * Optional instruction priority code. If not provided, NORM will be used.
+   * @type {string}
+   */
+  instructionPriority?: string;
+}
+
+/**
  * Represents an ISO20022 core message creator.
  * This class provides methods to create various basic ISO20022 compliant messages.
  *
@@ -335,6 +404,51 @@ class ISO20022 {
       paymentInstructions: config.paymentInstructions,
       messageId: config.messageId,
       creationDate: config.creationDate,
+    });
+  }
+
+  /**
+   * Creates an ACH Credit Payment Initiation message.
+   * @param {ACHCreditPaymentInitiationConfig} config - Configuration containing payment instructions and optional parameters.
+   * @example
+   * const payment = iso20022.createACHCreditPaymentInitiation({
+   *   paymentInstructions: [
+   *     {
+   *       type: 'ach',
+   *       direction: 'credit',
+   *       amount: 100000, // $1000.00
+   *       currency: 'USD',
+   *       creditor: {
+   *         name: 'John Doe Funding LLC',
+   *         account: {
+   *           accountNumber: '123456789012',
+   *         },
+   *         agent: {
+   *           abaRoutingNumber: '123456789',
+   *         },
+   *       },
+   *       remittanceInformation: 'Invoice #12345',
+   *     },
+   *   ],
+   *   messageId: 'ACH-MSG-001', // Optional
+   *   creationDate: new Date('2025-03-01'), // Optional
+   *   localInstrument: 'CCD', // Optional, defaults to CCD
+   *   serviceLevel: 'NURG', // Optional, defaults to NURG
+   *   instructionPriority: 'NORM', // Optional, defaults to NORM
+   * });
+   * @returns {ACHCreditPaymentInitiation} A new ACH Credit Payment Initiation object.
+   */
+  createACHCreditPaymentInitiation(
+    config: ACHCreditPaymentInitiationConfig,
+  ) {
+    return new ACHCreditPaymentInitiation({
+      initiatingParty: this.initiatingParty,
+      paymentInstructions: config.paymentInstructions,
+      messageId: config.messageId,
+      creationDate: config.creationDate,
+      localInstrument: config.localInstrument,
+      serviceLevel: config.serviceLevel,
+      instructionPriority: config.instructionPriority,
     });
   }
 }
