@@ -166,6 +166,32 @@ describe('ACHCreditPaymentInitiation', () => {
     })
 
     describe('fromXML', () => {
+        describe('with a cross river ACH 001 XML file', () => {
+            const xmlContent = fs.readFileSync(
+                `${process.cwd()}/test/assets/cross_river/pain_001_ach_credit.xml`,
+                'utf8',
+            );
+            const achPayment = ACHCreditPaymentInitiation.fromXML(xmlContent);
+            test('should create a ACHCreditPaymentInitiation instance', () => {
+                expect(achPayment).toBeInstanceOf(ACHCreditPaymentInitiation);
+            })
+
+            expect(achPayment.messageId).toBe("DOMT11234562");
+            expect(achPayment.creationDate).toStrictEqual(new Date('2020-06-29T10:24:09'));
+            expect(achPayment.initiatingParty.name).toBe("John Doe Corporation");
+            expect(achPayment.initiatingParty.id).toBe("JOHNDOE99");
+            expect(achPayment.paymentInstructions.length).toBe(1);
+            expect(achPayment.paymentInstructions[0].id).toBe("234ACHC123455");
+            expect(achPayment.paymentInstructions[0].amount).toBe(1);
+            expect(achPayment.paymentInstructions[0].currency).toBe("USD");
+            expect(achPayment.paymentInstructions[0].creditor.name).toBe("John Doe Funding LLC");
+            expect((achPayment.paymentInstructions[0]?.creditor?.account as BaseAccount)?.accountNumber).toBe("123456789");
+            expect((achPayment.paymentInstructions[0]?.creditor.agent as ABAAgent)?.abaRoutingNumber ).toBe("123456789");
+            expect(achPayment.paymentInstructions[0]?.creditor.address?.streetName).toBe("999 Any Avenue");
+            expect(achPayment.paymentInstructions[0]?.creditor.address?.postalCode).toBe("10000");
+            expect(achPayment.paymentInstructions[0]?.creditor.address?.townName).toBe("New York");
+            expect(achPayment.paymentInstructions[0]?.creditor.address?.countrySubDivision).toBe("NY");
+        })
         describe('with generated ACH 001 XML file', () => {
             // Create a test instance and serialize to XML
             const messageId = uuidv4().slice(0, 35);
