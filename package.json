@@ -15,6 +15,7 @@
     "example:swift": "npx tsx examples/swift-credit-transfer.ts",
     "example:sepa": "npx tsx examples/sepa-credit-transfer.ts",
     "example:rtp": "npx tsx examples/rtp-credit-transfer.ts",
+    "example:ach": "npx tsx examples/ach-credit-transfer.ts",
     "coveralls": "npm run coverage && coveralls report"
   },
   "exports": {
