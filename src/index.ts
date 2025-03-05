@@ -57,19 +57,9 @@ export type {
   BaseAccount,
   BICAgent,
   ABAAgent,
-  ACHLocalInstrument,
-  ACHServiceLevel,
-  ACHInstructionPriority,
 } from './lib/types';
 
-export {
-  ACHLocalInstrumentCode,
-  ACHLocalInstrumentCodeDescriptionMap,
-  ACHServiceLevelCode,
-  ACHServiceLevelCodeDescriptionMap,
-  ACHInstructionPriorityCode,
-  ACHInstructionPriorityCodeDescriptionMap,
-} from './lib/types';
+
 
 // pain.001
 export type { SWIFTCreditPaymentInitiationConfig } from './pain/001/swift-credit-payment-initiation';
