@@ -1,4 +1,4 @@
-import { ABAAgent, ACHCreditPaymentInstruction, Account, Agent, BaseAccount, Party } from '../../lib/types';
+import { ABAAgent, ACHCreditPaymentInstruction, ACHLocalInstrument, ACHLocalInstrumentCode, Account, Agent, BaseAccount, Party } from '../../lib/types';
 import { v4 as uuidv4 } from 'uuid';
 import Dinero, { Currency } from 'dinero.js';
 import { sanitize } from '../../utils/format';
@@ -27,6 +27,8 @@ export interface ACHCreditPaymentInitiationConfig {
     messageId?: string
     /** Optional creation date for the message. If not provided, current date will be used. */
     creationDate?: Date
+    /** Optional local instrument code for the ACH credit transfer. If not provided, 'CCD' (Corporate Credit or Debit) will be used. */
+    localInstrument?: ACHLocalInstrument
 }
 
 /**
@@ -92,9 +94,9 @@ export class ACHCreditPaymentInitiation extends PaymentInitiation {
         this.messageId = config.messageId || uuidv4().replace(/-/g, '');
         this.creationDate = config.creationDate || new Date();
         this.paymentInformationId = sanitize(uuidv4(), 35);
-        this.localInstrument = 'CCD';
-        this.serviceLevel = 'NURG';
-        this.instructionPriority = 'NORM';
+        this.localInstrument = config.localInstrument || ACHLocalInstrumentCode.CorporateCreditDebit;
+        this.serviceLevel = 'NURG'; // Normal Urgency
+        this.instructionPriority = 'NORM'; // Normal Priority
         this.formattedPaymentSum = this.sumPaymentInstructions(this.paymentInstructions as AtLeastOne<ACHCreditPaymentInstruction>);
         this.validate();
     }

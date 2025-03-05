@@ -57,9 +57,10 @@ export type {
   BaseAccount,
   BICAgent,
   ABAAgent,
+  ACHLocalInstrument,
 } from './lib/types';
 
-
+export { ACHLocalInstrumentCode, ACHLocalInstrumentCodeDescriptionMap } from './lib/types';
 
 // pain.001
 export type { SWIFTCreditPaymentInitiationConfig } from './pain/001/swift-credit-payment-initiation';
@@ -82,7 +83,7 @@ export type {
   TransactionStatusInformation as TransactionStatus,
   StatusInformation,
 } from './pain/002/types';
-export { PaymentStatusCode as StatusCode } from './pain/002/types';
+export { PaymentStatusCode } from './pain/002/types';
 export { PaymentStatusReport } from './pain/002/payment-status-report';
 
 // camt.053

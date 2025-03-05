@@ -205,8 +205,6 @@ export interface RTPCreditPaymentInstruction extends PaymentInstruction {
   creditor: Party,
 }
 
-
-
 /**
  * Represents an ACH credit payment instruction, extending the base PaymentInstruction.
  */
@@ -306,3 +304,40 @@ export interface ABAAgent {
  * This library does not support that yet, but we will need to.
  */
 export type Agent = BICAgent | ABAAgent;
+
+/**
+ * ACH Local Instrument Codes as defined in NACHA standards.
+ * These codes identify the specific type of ACH transaction.
+ */
+export const ACHLocalInstrumentCode = {
+  /** Corporate Credit or Debit */
+  CorporateCreditDebit: 'CCD',
+  /** Prearranged Payment and Deposit */
+  PrearrangedPaymentDeposit: 'PPD',
+  /** Internet-Initiated Entry */
+  InternetInitiated: 'WEB',
+  /** Telephone-Initiated Entry */
+  TelephoneInitiated: 'TEL',
+  /** Point-of-Purchase Entry */
+  PointOfPurchase: 'POP',
+  /** Accounts Receivable Entry */
+  AccountsReceivable: 'ARC',
+  /** Back Office Conversion */
+  BackOfficeConversion: 'BOC',
+  /** Represented Check Entry */
+  RepresentedCheck: 'RCK',
+} as const;
+
+export type ACHLocalInstrument = 
+  (typeof ACHLocalInstrumentCode)[keyof typeof ACHLocalInstrumentCode];
+
+export const ACHLocalInstrumentCodeDescriptionMap = {
+  'CCD': 'Corporate Credit or Debit',
+  'PPD': 'Prearranged Payment and Deposit',
+  'WEB': 'Internet-Initiated Entry',
+  'TEL': 'Telephone-Initiated Entry',
+  'POP': 'Point-of-Purchase Entry',
+  'ARC': 'Accounts Receivable Entry',
+  'BOC': 'Back Office Conversion',
+  'RCK': 'Represented Check Entry',
+} as const;
