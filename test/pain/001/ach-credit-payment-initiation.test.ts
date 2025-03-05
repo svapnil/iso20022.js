@@ -1,6 +1,6 @@
 import { ACHCreditPaymentInitiation, ACHCreditPaymentInitiationConfig } from "../../../src/pain/001/ach-credit-payment-initiation";
 import libxmljs from 'libxmljs';
-import fs from 'fs';
+import * as fs from 'fs';
 import { Alpha2CountryCode } from "../../../src/lib/countries";
 import ISO20022 from '../../../src/iso20022';
 import { v4 as uuidv4 } from 'uuid';

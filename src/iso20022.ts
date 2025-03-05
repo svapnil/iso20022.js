@@ -411,9 +411,6 @@ class ISO20022 {
    *   ],
    *   messageId: 'ACH-MSG-001', // Optional
    *   creationDate: new Date('2025-03-01'), // Optional
-   *   localInstrument: 'CCD', // Optional, defaults to CCD
-   *   serviceLevel: 'NURG', // Optional, defaults to NURG
-   *   instructionPriority: 'NORM', // Optional, defaults to NORM
    * });
    * @returns {ACHCreditPaymentInitiation} A new ACH Credit Payment Initiation object.
    */

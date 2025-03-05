@@ -261,9 +261,6 @@ export class ACHCreditPaymentInitiation extends PaymentInitiation {
 
         // Extract payment type information
         const pmtTpInf = xml.Document.CstmrCdtTrfInitn.PmtInf.PmtTpInf;
-        const localInstrument = pmtTpInf?.LclInstrm?.Prtry;
-        const serviceLevel = pmtTpInf?.SvcLvl?.Cd;
-        const instructionPriority = pmtTpInf?.InstrPrty;
 
         // Assuming we have one PmtInf / one Debtor, we can hack together this information from InitgPty / Dbtr
         const initiatingParty = {
