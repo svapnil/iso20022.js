@@ -130,8 +130,9 @@ You might want to use this package if you need to create these types of files.
 | SWIFT Credit Transfer  | Create SWIFT credit transfer messages                | ✅   |
 | CAMT Transactions      | Ingest transaction data from CAMT files              | ✅   |
 | SEPA Credit Transfer   | Create SEPA credit transfer messages                 | ✅   |
+| ACH Credit Transfer    | Create ACH credit transfer messages                  | ✅   |
 | RTP / Fednow Credit Transfer | Create Fednow credit transfer messages         | ✅   |
-| FedWire Credit Transfer | Create FedWire credit transfer messages               | 🚧   |
+| FedWire Credit Transfer | Create FedWire credit transfer messages             | 🚧   |
 
 
 # Reasons to use `iso20022.js`
