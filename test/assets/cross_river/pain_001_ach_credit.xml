@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03">
+    <CstmrCdtTrfInitn>
+        <GrpHdr>
+            <MsgId>DOMT11234562</MsgId>
+            <CreDtTm>2020-06-29T10:24:09</CreDtTm>
+            <NbOfTxs>1</NbOfTxs>
+            <CtrlSum>0.01</CtrlSum>
+            <InitgPty>
+                <Nm>John Doe Corporation</Nm>
+                <Id>
+                    <OrgId>
+                        <BICOrBEI>JOHNDOE99</BICOrBEI>
+                    </OrgId>
+                </Id>
+            </InitgPty>
+        </GrpHdr>
+        <PmtInf>
+            <PmtInfId>DOMT12345678</PmtInfId>
+            <PmtMtd>TRF</PmtMtd>
+            <BtchBookg>false</BtchBookg>
+            <NbOfTxs>1</NbOfTxs>
+            <CtrlSum>0.01</CtrlSum>
+            <PmtTpInf>
+                <InstrPrty>NORM</InstrPrty>
+                <SvcLvl>
+                    <Cd>NURG</Cd>
+                </SvcLvl>
+                <LclInstrm>
+                    <Prtry>CCD</Prtry>
+                </LclInstrm>
+            </PmtTpInf>
+            <ReqdExctnDt>2020-06-29</ReqdExctnDt>
+            <Dbtr>
+                <Nm>John Doe Corporation</Nm>
+                <PstlAdr>
+                    <StrtNm>999 Battery Street, 13th Floor</StrtNm>
+                    <PstCd>99999</PstCd>
+                    <TwnNm>Anytown</TwnNm>
+                    <CtrySubDvsn>CA</CtrySubDvsn>
+                    <Ctry>US</Ctry>
+                </PstlAdr>
+            </Dbtr>
+            <DbtrAcct>
+                <Id>
+                    <Othr>
+                        <Id>0123456789</Id>
+                    </Othr>
+                </Id>
+                <Ccy>USD</Ccy>
+            </DbtrAcct>
+            <DbtrAgt>
+                <FinInstnId>
+                    <ClrSysMmbId>
+                        <ClrSysId>
+                            <Cd>USABA</Cd>
+                        </ClrSysId>
+                        <MmbId>123456789</MmbId>
+                    </ClrSysMmbId>
+                    <PstlAdr>
+                        <Ctry>US</Ctry>
+                    </PstlAdr>
+                </FinInstnId>
+            </DbtrAgt>
+            <ChrgBr>SHAR</ChrgBr>
+            <CdtTrfTxInf>
+                <PmtId>
+                    <InstrId>234ACHC123455</InstrId>
+                    <EndToEndId>0000000000000011</EndToEndId>
+                </PmtId>
+                <Amt>
+                    <InstdAmt Ccy="USD">0.01</InstdAmt>
+                </Amt>
+                <CdtrAgt>
+                    <FinInstnId>
+                        <ClrSysMmbId>
+                            <ClrSysId>
+                                <Cd>USABA</Cd>
+                            </ClrSysId>
+                            <MmbId>123456789</MmbId>
+                        </ClrSysMmbId>
+                        <Nm>Cross River Bank NJ</Nm>
+                        <PstlAdr>
+                            <Ctry>US</Ctry>
+                        </PstlAdr>
+                    </FinInstnId>
+                </CdtrAgt>
+                <Cdtr>
+                    <Nm>John Doe Funding LLC</Nm>
+                    <PstlAdr>
+                        <StrtNm>999 Any Avenue</StrtNm>
+                        <PstCd>10000</PstCd>
+                        <TwnNm>New York</TwnNm>
+                        <CtrySubDvsn>NY</CtrySubDvsn>
+                        <Ctry>US</Ctry>
+                    </PstlAdr>
+                </Cdtr>
+                <CdtrAcct>
+                    <Id>
+                        <Othr>
+                            <Id>0123456789</Id>
+                        </Othr>
+                    </Id>
+                    <Tp>
+                        <Cd>CACC</Cd>
+                    </Tp>
+                    <Ccy>USD</Ccy>
+                </CdtrAcct>
+                <RmtInf>
+                    <Ustrd>Testing</Ustrd>
+                </RmtInf>
+            </CdtTrfTxInf>
+        </PmtInf>
+    </CstmrCdtTrfInitn>
+</Document>

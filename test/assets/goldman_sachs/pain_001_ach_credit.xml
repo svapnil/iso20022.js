@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03">
+    <CstmrCdtTrfInitn>
+        <GrpHdr>
+            <MsgId>Message-Id</MsgId>
+            <CreDtTm>2024-05-10T16:10:02.017+00:00</CreDtTm>
+            <NbOfTxs>1</NbOfTxs>
+            <CtrlSum>510.24</CtrlSum>
+            <InitgPty>
+                <Id>
+                    <OrgId>
+                        <Othr>
+                            <Id>Client-Id</Id>
+                        </Othr>
+                    </OrgId>
+                </Id>
+            </InitgPty>
+        </GrpHdr>
+        <PmtInf>
+            <PmtInfId>Batch-Id</PmtInfId>
+            <PmtMtd>TRF</PmtMtd>
+            <PmtTpInf>
+                <LclInstrm>
+                    <Cd>PPD</Cd>
+                </LclInstrm>
+                <CtgyPurp>
+                    <Prtry>BILLPYMENT</Prtry>
+                </CtgyPurp>
+            </PmtTpInf>
+            <ReqdExctnDt>YYYY-MM-DD</ReqdExctnDt>
+            <Dbtr>
+                <Nm>Debtor Account Holder Name</Nm>
+                <Id>
+                    <OrgId>
+                        <Othr>
+                            <Id>Debtor Id</Id>
+                        </Othr>
+                    </OrgId>
+                </Id>
+            </Dbtr>
+            <DbtrAcct>
+                <Id>
+                    <Othr>
+                        <Id>Debtor Account Id</Id>
+                    </Othr>
+                </Id>
+            </DbtrAcct>
+            <DbtrAgt>
+                <FinInstnId>
+                    <ClrSysMmbId>
+                        <ClrSysId>
+                            <Cd>USABA</Cd>
+                        </ClrSysId>
+                        <MmbId>Member Id</MmbId>
+                    </ClrSysMmbId>
+                </FinInstnId>
+            </DbtrAgt>
+            <CdtTrfTxInf>
+                <PmtId>
+                    <EndToEndId>End-to-End-Id</EndToEndId>
+                </PmtId>
+                <Amt>
+                    <InstdAmt Ccy="USD">123</InstdAmt>
+                </Amt>
+                <CdtrAgt>
+                    <FinInstnId>
+                        <ClrSysMmbId>
+                            <ClrSysId>
+                                <Cd>USABA</Cd>
+                            </ClrSysId>
+                            <MmbId>Member Id</MmbId>
+                        </ClrSysMmbId>
+                    </FinInstnId>
+                </CdtrAgt>
+                <Cdtr>
+                    <Nm>Creditor Account Holder Name</Nm>
+                </Cdtr>
+                <CdtrAcct>
+                    <Id>
+                        <Othr>
+                            <Id>Creditor Account Id</Id>
+                        </Othr>
+                    </Id>
+                    <Tp>
+                        <Cd>CACC</Cd>
+                    </Tp>
+                </CdtrAcct>
+            </CdtTrfTxInf>
+        </PmtInf>
+    </CstmrCdtTrfInitn>
+</Document>

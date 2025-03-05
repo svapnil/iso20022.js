@@ -2,7 +2,7 @@ import Dinero, { Currency } from 'dinero.js';
 import { XMLBuilder, XMLParser } from 'fast-xml-parser';
 import { v4 as uuidv4 } from 'uuid';
 import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
-import { Alpha2CountryCode } from "../../lib/countries";
+import { Alpha2Country } from "../../lib/countries";
 import {
   Account,
   BICAgent,
@@ -197,7 +197,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
           postalCode: inst.Cdtr.PstlAdr.PstCd as string,
           townName: inst.Cdtr.PstlAdr.TwnNm as string,
           countrySubDivision: inst.Cdtr.PstlAdr.CtrySubDvsn as string,
-          country: inst.Cdtr.PstlAdr.Ctry as Alpha2CountryCode
+          country: inst.Cdtr.PstlAdr.Ctry as Alpha2Country
         }
       };
 

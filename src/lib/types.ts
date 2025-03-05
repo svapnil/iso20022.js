@@ -1,5 +1,5 @@
 import { Currency } from 'dinero.js';
-import { Alpha2CountryCode } from './countries';
+import { Alpha2Country } from './countries';
 
 /**
  * Represents a payment instruction with essential details.
@@ -206,6 +206,20 @@ export interface RTPCreditPaymentInstruction extends PaymentInstruction {
 }
 
 /**
+ * Represents an ACH credit payment instruction, extending the base PaymentInstruction.
+ */
+export interface ACHCreditPaymentInstruction extends PaymentInstruction {
+  /** Specifies that this is an ACH payment. */
+  type: 'ach',
+  /** ACH payments are always credit payments. */
+  direction: 'credit',
+  /** ACH payments must use USD as currency. */
+  currency: 'USD',
+  /** The party to which the payment is credited (required for ACH payments). */
+  creditor: Party,
+}
+
+/**
  * Represents a structured address format.
  */
 export interface StructuredAddress {
@@ -220,7 +234,7 @@ export interface StructuredAddress {
   /** The postal or ZIP code. */
   postalCode?: string;
   /** The country, typically represented by a country code. */
-  country?: Alpha2CountryCode;
+  country?: Alpha2Country;
 }
 
 /**
@@ -290,3 +304,40 @@ export interface ABAAgent {
  * This library does not support that yet, but we will need to.
  */
 export type Agent = BICAgent | ABAAgent;
+
+/**
+ * ACH Local Instrument Codes as defined in NACHA standards.
+ * These codes identify the specific type of ACH transaction.
+ */
+export const ACHLocalInstrumentCode = {
+  /** Corporate Credit or Debit */
+  CorporateCreditDebit: 'CCD',
+  /** Prearranged Payment and Deposit */
+  PrearrangedPaymentDeposit: 'PPD',
+  /** Internet-Initiated Entry */
+  InternetInitiated: 'WEB',
+  /** Telephone-Initiated Entry */
+  TelephoneInitiated: 'TEL',
+  /** Point-of-Purchase Entry */
+  PointOfPurchase: 'POP',
+  /** Accounts Receivable Entry */
+  AccountsReceivable: 'ARC',
+  /** Back Office Conversion */
+  BackOfficeConversion: 'BOC',
+  /** Represented Check Entry */
+  RepresentedCheck: 'RCK',
+} as const;
+
+export type ACHLocalInstrument = 
+  (typeof ACHLocalInstrumentCode)[keyof typeof ACHLocalInstrumentCode];
+
+export const ACHLocalInstrumentCodeDescriptionMap = {
+  'CCD': 'Corporate Credit or Debit',
+  'PPD': 'Prearranged Payment and Deposit',
+  'WEB': 'Internet-Initiated Entry',
+  'TEL': 'Telephone-Initiated Entry',
+  'POP': 'Point-of-Purchase Entry',
+  'ARC': 'Accounts Receivable Entry',
+  'BOC': 'Back Office Conversion',
+  'RCK': 'Represented Check Entry',
+} as const;

@@ -51,12 +51,16 @@ export type {
   SWIFTCreditPaymentInstruction,
   SEPACreditPaymentInstruction,
   RTPCreditPaymentInstruction,
+  ACHCreditPaymentInstruction,
   StructuredAddress,
   IBANAccount,
   BaseAccount,
   BICAgent,
   ABAAgent,
+  ACHLocalInstrument,
 } from './lib/types';
+
+export { ACHLocalInstrumentCode, ACHLocalInstrumentCodeDescriptionMap } from './lib/types';
 
 // pain.001
 export type { SWIFTCreditPaymentInitiationConfig } from './pain/001/swift-credit-payment-initiation';
@@ -65,6 +69,8 @@ export type { SEPACreditPaymentInitiationConfig } from './pain/001/sepa-credit-p
 export { SEPACreditPaymentInitiation } from './pain/001/sepa-credit-payment-initiation';
 export type { RTPCreditPaymentInitiationConfig } from './pain/001/rtp-credit-payment-initiation';
 export { RTPCreditPaymentInitiation } from './pain/001/rtp-credit-payment-initiation';
+export type { ACHCreditPaymentInitiationConfig } from './pain/001/ach-credit-payment-initiation';
+export { ACHCreditPaymentInitiation } from './pain/001/ach-credit-payment-initiation';
 
 // pain.002
 export type {
@@ -77,7 +83,7 @@ export type {
   TransactionStatusInformation as TransactionStatus,
   StatusInformation,
 } from './pain/002/types';
-export { PaymentStatusCode as StatusCode } from './pain/002/types';
+export { PaymentStatusCode } from './pain/002/types';
 export { PaymentStatusReport } from './pain/002/payment-status-report';
 
 // camt.053
