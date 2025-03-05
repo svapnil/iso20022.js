@@ -1,7 +1,8 @@
 {
   "name": "iso20022.js",
   "version": "0.2.0",
-  "description": "Simple framework to create and ingest ISO20022 XML files.",
+  "readme": "README.md",
+  "description": "Library to create payment messages.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "module": "dist/index.mjs",
