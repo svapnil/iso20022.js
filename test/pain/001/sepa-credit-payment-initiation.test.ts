@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { Alpha2CountryCode } from "lib/countries";
+import { Alpha2Country } from "lib/countries";
 import libxmljs from 'libxmljs';
 import { v4 as uuidv4 } from 'uuid';
 import ISO20022 from '../../../src/iso20022';
@@ -20,7 +20,7 @@ describe('SEPACreditPaymentInitiation', () => {
         agent: {
             bic: "BSCHESMMXXX",
             bankAddress: {
-                country: "US" as Alpha2CountryCode
+                country: "US" as Alpha2Country
             }
         }
     }
@@ -44,7 +44,7 @@ describe('SEPACreditPaymentInitiation', () => {
                 townName: "Madrid",
                 countrySubDivision: "Madrid",
                 postalCode: "28001",
-                country: "ES" as Alpha2CountryCode
+                country: "ES" as Alpha2Country
             }
         },
         amount: 3395,
@@ -70,7 +70,7 @@ describe('SEPACreditPaymentInitiation', () => {
                 townName: "Madrid",
                 countrySubDivision: "Madrid",
                 postalCode: "28001",
-                country: "ES" as Alpha2CountryCode
+                country: "ES" as Alpha2Country
             }
         },
         amount: 1000,

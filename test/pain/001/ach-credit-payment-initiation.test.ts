@@ -1,7 +1,7 @@
 import { ACHCreditPaymentInitiation, ACHCreditPaymentInitiationConfig } from "../../../src/pain/001/ach-credit-payment-initiation";
 import libxmljs from 'libxmljs';
 import * as fs from 'fs';
-import { Alpha2CountryCode } from "../../../src/lib/countries";
+import { Alpha2Country } from "../../../src/lib/countries";
 import ISO20022 from '../../../src/iso20022';
 import { v4 as uuidv4 } from 'uuid';
 import { ABAAgent, BaseAccount } from "../../../src/lib/types";
@@ -41,7 +41,7 @@ describe('ACHCreditPaymentInitiation', () => {
                 townName: "San Francisco",
                 countrySubDivision: "CA",
                 postalCode: "94105",
-                country: "US" as Alpha2CountryCode
+                country: "US" as Alpha2Country
             }
         },
         amount: 1500,
@@ -67,7 +67,7 @@ describe('ACHCreditPaymentInitiation', () => {
                 townName: "New York",
                 countrySubDivision: "NY",
                 postalCode: "10018",
-                country: "US" as Alpha2CountryCode
+                country: "US" as Alpha2Country
             }
         },
         amount: 2500,

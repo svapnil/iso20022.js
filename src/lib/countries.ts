@@ -254,5 +254,5 @@ const Alpha2CountryCode = {
   XK: 'XK', // "Kosovo"
 } as const;
 
-export type Alpha2CountryCode =
+export type Alpha2Country =
   (typeof Alpha2CountryCode)[keyof typeof Alpha2CountryCode];

@@ -1,7 +1,7 @@
 import { RTPCreditPaymentInitiation, RTPCreditPaymentInitiationConfig } from "../../../src/pain/001/rtp-credit-payment-initiation";
 import libxmljs from 'libxmljs';
 import fs from 'fs';
-import { Alpha2CountryCode } from "lib/countries";
+import { Alpha2Country } from "lib/countries";
 import ISO20022 from '../../../src/iso20022';
 import { v4 as uuidv4 } from 'uuid';
 import { ABAAgent, BaseAccount } from "index";
@@ -40,7 +40,7 @@ describe('RTPCreditPaymentInitiation', () => {
                 townName: "San Francisco",
                 countrySubDivision: "CA",
                 postalCode: "94105",
-                country: "US" as Alpha2CountryCode
+                country: "US" as Alpha2Country
             }
         },
         amount: 1500,
@@ -66,7 +66,7 @@ describe('RTPCreditPaymentInitiation', () => {
                 townName: "New York",
                 countrySubDivision: "NY",
                 postalCode: "10018",
-                country: "US" as Alpha2CountryCode
+                country: "US" as Alpha2Country
             }
         },
         amount: 2500,

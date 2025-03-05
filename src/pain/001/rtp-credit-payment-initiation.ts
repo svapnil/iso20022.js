@@ -6,7 +6,7 @@ import { PaymentInitiation } from './iso20022-payment-initiation';
 import { XMLParser } from 'fast-xml-parser';
 import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
 import { parseAccount, parseAgent, parseAmountToMinorUnits } from "../../parseUtils";
-import { Alpha2CountryCode } from "lib/countries";
+import { Alpha2Country } from "lib/countries";
 
 type AtLeastOne<T> = [T, ...T[]];
 
@@ -241,7 +241,7 @@ export class RTPCreditPaymentInitiation extends PaymentInitiation {
                             ...(rawPostalAddress.TwnNm && { townName: rawPostalAddress.TwnNm.toString() as string }),
                             ...(rawPostalAddress.CtrySubDvsn && { countrySubDivision: rawPostalAddress.CtrySubDvsn.toString() as string }),
                             ...(rawPostalAddress.PstCd && { postalCode: rawPostalAddress.PstCd.toString() as string }),
-                            ...(rawPostalAddress.Ctry && { country: rawPostalAddress.Ctry as Alpha2CountryCode }),
+                            ...(rawPostalAddress.Ctry && { country: rawPostalAddress.Ctry as Alpha2Country }),
                         }
                     } : {}),
                 },
