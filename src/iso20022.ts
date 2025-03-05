@@ -208,9 +208,6 @@ export interface RTPCreditPaymentInitiationConfig {
  *     ],
  *     messageId: 'MSGID123', // Optional
  *     creationDate: new Date(), // Optional
- *     localInstrument: 'CCD', // Optional, defaults to CCD
- *     serviceLevel: 'NURG', // Optional, defaults to NURG
- *     instructionPriority: 'NORM', // Optional, defaults to NORM
  * };
  */
 export interface ACHCreditPaymentInitiationConfig {
@@ -231,24 +228,6 @@ export interface ACHCreditPaymentInitiationConfig {
    * @type {Date}
    */
   creationDate?: Date;
-  
-  /**
-   * Optional local instrument code. If not provided, CCD will be used.
-   * @type {string}
-   */
-  localInstrument?: string;
-  
-  /**
-   * Optional service level code. If not provided, NURG will be used.
-   * @type {string}
-   */
-  serviceLevel?: string;
-  
-  /**
-   * Optional instruction priority code. If not provided, NORM will be used.
-   * @type {string}
-   */
-  instructionPriority?: string;
 }
 
 /**
@@ -446,9 +425,6 @@ class ISO20022 {
       paymentInstructions: config.paymentInstructions,
       messageId: config.messageId,
       creationDate: config.creationDate,
-      localInstrument: config.localInstrument,
-      serviceLevel: config.serviceLevel,
-      instructionPriority: config.instructionPriority,
     });
   }
 }

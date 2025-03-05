@@ -17,9 +17,6 @@ type AtLeastOne<T> = [T, ...T[]];
  * @property {AtLeastOne<ACHCreditPaymentInstruction>} paymentInstructions - Array containing at least one payment instruction for the ACH credit transfer.
  * @property {string} [messageId] - Optional unique identifier for the message. If not provided, a UUID will be generated.
  * @property {Date} [creationDate] - Optional creation date for the message. If not provided, current date will be used.
- * @property {string} [localInstrument] - Optional local instrument code. If not provided, CCD will be used.
- * @property {string} [serviceLevel] - Optional service level code. If not provided, NURG will be used.
- * @property {string} [instructionPriority] - Optional instruction priority code. If not provided, NORM will be used.
  */
 export interface ACHCreditPaymentInitiationConfig {
     /** The party initiating the ACH credit transfer. */
@@ -30,12 +27,6 @@ export interface ACHCreditPaymentInitiationConfig {
     messageId?: string
     /** Optional creation date for the message. If not provided, current date will be used. */
     creationDate?: Date
-    /** Optional local instrument code. If not provided, CCD will be used. */
-    localInstrument?: string
-    /** Optional service level code. If not provided, NURG will be used. */
-    serviceLevel?: string
-    /** Optional instruction priority code. If not provided, NORM will be used. */
-    instructionPriority?: string
 }
 
 /**
@@ -101,9 +92,9 @@ export class ACHCreditPaymentInitiation extends PaymentInitiation {
         this.messageId = config.messageId || uuidv4().replace(/-/g, '');
         this.creationDate = config.creationDate || new Date();
         this.paymentInformationId = sanitize(uuidv4(), 35);
-        this.localInstrument = config.localInstrument || 'CCD';
-        this.serviceLevel = config.serviceLevel || 'NURG';
-        this.instructionPriority = config.instructionPriority || 'NORM';
+        this.localInstrument = 'CCD';
+        this.serviceLevel = 'NURG';
+        this.instructionPriority = 'NORM';
         this.formattedPaymentSum = this.sumPaymentInstructions(this.paymentInstructions as AtLeastOne<ACHCreditPaymentInstruction>);
         this.validate();
     }
@@ -318,10 +309,7 @@ export class ACHCreditPaymentInitiation extends PaymentInitiation {
             messageId: messageId,
             creationDate: creationDate,
             initiatingParty: initiatingParty,
-            paymentInstructions: paymentInstructions,
-            localInstrument: localInstrument,
-            serviceLevel: serviceLevel,
-            instructionPriority: instructionPriority
+            paymentInstructions: paymentInstructions
         });
     }
 }

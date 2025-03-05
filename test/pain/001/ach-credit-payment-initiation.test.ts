@@ -142,31 +142,12 @@ describe('ACHCreditPaymentInitiation', () => {
             expect(isValid).toBeTruthy();
         });
 
-        test('should include local instrument code in XML', () => {
-            achPayment = new ACHCreditPaymentInitiation({
-                ...achPaymentInitiationConfig,
-                localInstrument: 'PPD'
-            });
+        test('should include default ACH values in XML', () => {
+            achPayment = new ACHCreditPaymentInitiation(achPaymentInitiationConfig);
             const xml = achPayment.serialize();
-            expect(xml).toMatch(/<LclInstrm>\s*<Prtry>\s*PPD\s*<\/Prtry>\s*<\/LclInstrm>/);
-        });
-
-        test('should include service level code in XML', () => {
-            achPayment = new ACHCreditPaymentInitiation({
-                ...achPaymentInitiationConfig,
-                serviceLevel: 'SDVA'
-            });
-            const xml = achPayment.serialize();
-            expect(xml).toMatch(/<SvcLvl>\s*<Cd>\s*SDVA\s*<\/Cd>\s*<\/SvcLvl>/);
-        });
-
-        test('should include instruction priority in XML', () => {
-            achPayment = new ACHCreditPaymentInitiation({
-                ...achPaymentInitiationConfig,
-                instructionPriority: 'HIGH'
-            });
-            const xml = achPayment.serialize();
-            expect(xml).toMatch(/<InstrPrty>\s*HIGH\s*<\/InstrPrty>/);
+            expect(xml).toMatch(/<LclInstrm>\s*<Prtry>\s*CCD\s*<\/Prtry>\s*<\/LclInstrm>/);
+            expect(xml).toMatch(/<SvcLvl>\s*<Cd>\s*NURG\s*<\/Cd>\s*<\/SvcLvl>/);
+            expect(xml).toMatch(/<InstrPrty>\s*NORM\s*<\/InstrPrty>/);
         });
 
         describe('created with iso20022', () => {
