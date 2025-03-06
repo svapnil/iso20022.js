@@ -11,7 +11,7 @@ export interface PaymentInstruction {
   endToEndId?: string;
   /** Indicates whether the payment is a credit or debit. */
   direction: 'credit' | 'debit';
-  /** The amount of the payment. */
+  /** The amount of the payment. Usually in cents. */
   amount: number;
   /** The currency of the payment. */
   currency: Currency;
