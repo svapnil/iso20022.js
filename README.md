@@ -50,7 +50,7 @@ npx tsx examples/swift-credit-transfer.ts
 
 # Usage
 
-### Payment Initiation: Sending a SEPA Transfer
+### Full Payment Initiation Example: Sending a SEPA Transfer
 
 ```ts
 import { ISO20022 } from 'iso20022.js';
@@ -98,6 +98,31 @@ const creditPaymentInitiation = iso20022.createSEPACreditPaymentInitiation([
 ]);
 
 console.log(creditPaymentInitiation.toString());
+```
+
+### Example: Sending an ACH Payment
+
+```ts
+// Send an ACH Payment Anywhere in the U.S.
+const payment = iso20022.createACHCreditPaymentInitiation({
+    paymentInstructions: [
+        {
+        type: 'ach',
+        direction: 'credit',
+        amount: 1250000, // $12,500.00 Dollars
+        currency: 'USD',
+        creditor: {
+            name: 'Alex Kan',
+            account: {
+                accountNumber: '333456118812',
+            },
+            agent: {
+                abaRoutingNumber: '021000021',
+            }
+        },
+        remittanceInformation: 'PAYROLL - BIWEEKLY SALARY SR SOFTWARE ENGINEER'
+    }],
+});
 ```
 
 ### Cash Management: Ingesting a CAMT.053 file
