@@ -2,7 +2,7 @@ import { ABAAgent, Account, Agent, BaseAccount, Party, RTPCreditPaymentInstructi
 import { v4 as uuidv4 } from 'uuid';
 import Dinero, { Currency } from 'dinero.js';
 import { sanitize } from '../../utils/format';
-import { PaymentInitiation } from './iso20022-payment-initiation';
+import { PaymentInitiation } from './payment-initiation';
 import { XMLParser } from 'fast-xml-parser';
 import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
 import { parseAccount, parseAgent, parseAmountToMinorUnits } from "../../parseUtils";
@@ -58,7 +58,7 @@ export class RTPCreditPaymentInitiation extends PaymentInitiation {
     public paymentInformationId: string;
     private formattedPaymentSum: string;
     constructor(config: RTPCreditPaymentInitiationConfig) {
-        super();
+        super({ type: "rtp" });
         this.initiatingParty = config.initiatingParty;
         this.paymentInstructions = config.paymentInstructions;
         this.messageId = config.messageId || uuidv4().replace(/-/g, '');

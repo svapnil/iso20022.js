@@ -2,7 +2,7 @@ import { ABAAgent, ACHCreditPaymentInstruction, ACHLocalInstrument, ACHLocalInst
 import { v4 as uuidv4 } from 'uuid';
 import Dinero, { Currency } from 'dinero.js';
 import { sanitize } from '../../utils/format';
-import { PaymentInitiation } from './iso20022-payment-initiation';
+import { PaymentInitiation } from './payment-initiation';
 import { XMLParser } from 'fast-xml-parser';
 import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
 import { parseAccount, parseAgent, parseAmountToMinorUnits } from "../../parseUtils";
@@ -88,7 +88,7 @@ export class ACHCreditPaymentInitiation extends PaymentInitiation {
     private formattedPaymentSum: string;
     
     constructor(config: ACHCreditPaymentInitiationConfig) {
-        super();
+        super({ type: "ach" });
         this.initiatingParty = config.initiatingParty;
         this.paymentInstructions = config.paymentInstructions;
         this.messageId = config.messageId || uuidv4().replace(/-/g, '');
