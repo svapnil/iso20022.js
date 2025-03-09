@@ -1,5 +1,5 @@
 import { Account, Agent, BICAgent, ExternalCategoryPurpose, IBANAccount, Party, SEPACreditPaymentInstruction } from "../../lib/types";
-import { PaymentInitiation } from './iso20022-payment-initiation';
+import { PaymentInitiation } from './payment-initiation';
 import { sanitize } from "../../utils/format";
 import Dinero, { Currency } from 'dinero.js';
 import { v4 as uuidv4 } from 'uuid';
@@ -67,7 +67,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
    * @param {SEPACreditPaymentInitiationConfig} config - The configuration object for the SEPA credit transfer.
    */
   constructor(config: SEPACreditPaymentInitiationConfig) {
-    super();
+    super({ type: "sepa" });
     this.initiatingParty = config.initiatingParty;
     this.paymentInstructions = config.paymentInstructions;
     this.messageId = config.messageId || uuidv4().replace(/-/g, '');

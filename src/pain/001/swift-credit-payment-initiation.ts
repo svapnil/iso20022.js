@@ -12,7 +12,7 @@ import {
 } from '../../lib/types.js';
 import { parseAccount, parseAmountToMinorUnits } from "../../parseUtils";
 import { sanitize } from '../../utils/format';
-import { PaymentInitiation } from './iso20022-payment-initiation';
+import { PaymentInitiation } from './payment-initiation';
 
 type AtLeastOne<T> = [T, ...T[]];
 
@@ -66,7 +66,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
    * @param {SWIFTCreditPaymentInitiationConfig} config - The configuration object.
    */
   constructor(config: SWIFTCreditPaymentInitiationConfig) {
-    super();
+    super({ type: "swift" });
     this.initiatingParty = config.initiatingParty;
     this.paymentInstructions = config.paymentInstructions;
     this.messageId =

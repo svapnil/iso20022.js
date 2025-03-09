@@ -14,6 +14,12 @@ import {
    * @abstract
    */
   export abstract class PaymentInitiation {
+    public type: "swift" | "rtp" | "sepa" | "ach";
+
+    constructor({ type }: { type: "swift" | "rtp" | "sepa" | "ach" }) {
+      this.type = type;
+    }
+
     /**
      * Serializes the payment initiation to a string format.
      * @abstract
