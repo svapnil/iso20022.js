@@ -10,7 +10,7 @@ export interface PaymentInstruction {
   /** Unique end-to-end identifier for the payment. */
   endToEndId?: string;
   /** Indicates whether the payment is a credit or debit. */
-  direction: 'credit' | 'debit';
+  direction?: 'credit' | 'debit';
   /** The amount of the payment. Usually in cents. */
   amount: number;
   /** The currency of the payment. */
@@ -27,7 +27,7 @@ export interface PaymentInstruction {
  * Represents a credit payment instruction, extending the base PaymentInstruction.
  */
 export interface CreditPaymentInstruction extends PaymentInstruction {
-  direction: 'credit';
+  direction?: 'credit';
   creditor: Party;
 }
 
