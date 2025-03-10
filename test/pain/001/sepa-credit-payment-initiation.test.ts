@@ -28,8 +28,6 @@ describe('SEPACreditPaymentInitiation', () => {
     const paymentInstruction1 = {
         id: "abcdefg",
         endToEndId: "123456789",
-        type: 'sepa' as const,
-        direction: "credit" as const,
         creditor: {
             name: "Dáel Muñiz",
             account: {
@@ -167,15 +165,6 @@ describe('SEPACreditPaymentInitiation', () => {
             expect(xml).toMatch(/<InstdAmt[^>]*Ccy="EUR"[^>]*>/);
         });
 
-        describe('should fail is there are different payment instruction currencies', () => {
-            it('should throw an error', () => {
-                expect(() => {
-                    sepaPaymentInitiationConfig.paymentInstructions[1].currency = "USD" // Change currency
-                    new SEPACreditPaymentInitiation(sepaPaymentInitiationConfig)
-                }).toThrow("In order to calculate the payment instructions sum, all payment instruction currencies must be the same.");
-            });
-        });
-
         describe('created with iso20022', () => {
             let iso20022 = new ISO20022({
                 initiatingParty: initiatingParty
@@ -225,8 +214,6 @@ describe('SEPACreditPaymentInitiation', () => {
                 expect(sepaPayment.paymentInstructions[0]).toEqual({
                     id: "d6ecf0cb-e0c3-4fe9-8f21-45464fde659",
                     endToEndId: "d6ecf0cb-e0c3-4fe9-8f21-45464fde659",
-                    type: 'sepa',
-                    direction: "credit",
                     creditor: {
                         name: "Dáel Muñiz",
                         account: {

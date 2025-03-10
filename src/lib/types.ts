@@ -10,7 +10,7 @@ export interface PaymentInstruction {
   /** Unique end-to-end identifier for the payment. */
   endToEndId?: string;
   /** Indicates whether the payment is a credit or debit. */
-  direction: 'credit' | 'debit';
+  direction?: 'credit' | 'debit';
   /** The amount of the payment. Usually in cents. */
   amount: number;
   /** The currency of the payment. */
@@ -24,15 +24,39 @@ export interface PaymentInstruction {
 }
 
 /**
+ * Represents a credit payment instruction, extending the base PaymentInstruction.
+ */
+export interface CreditPaymentInstruction extends PaymentInstruction {
+  direction?: 'credit';
+  creditor: Party;
+}
+
+/**
  * Represents a SWIFT credit payment instruction, extending the base PaymentInstruction.
  */
-export interface SWIFTCreditPaymentInstruction extends PaymentInstruction {
+export interface SWIFTCreditPaymentInstruction extends CreditPaymentInstruction {
   /** Specifies that this is a SWIFT payment. */
-  type: 'swift';
-  /** SWIFT payments are always credit payments. */
-  direction: 'credit';
-  /** The party to which the payment is credited (required for SWIFT payments). */
-  creditor: Party;
+  type?: 'swift';
+}
+
+export interface SEPACreditPaymentInstruction extends CreditPaymentInstruction {
+  type?: 'sepa',
+  currency: 'EUR',
+}
+
+export interface RTPCreditPaymentInstruction extends CreditPaymentInstruction {
+  type?: 'rtp',
+  currency: 'USD',
+}
+
+/**
+ * Represents an ACH credit payment instruction, extending the base PaymentInstruction.
+ */
+export interface ACHCreditPaymentInstruction extends CreditPaymentInstruction {
+  /** Specifies that this is an ACH payment. */
+  type?: 'ach',
+  /** ACH payments must use USD as currency. */
+  currency: 'USD',
 }
 
 /*
@@ -191,33 +215,6 @@ export const ExternalCategoryPurposeCodeDescriptionMap = {
 
 export type ExternalCategoryPurpose =
   (typeof ExternalCategoryPurposeCode)[keyof typeof ExternalCategoryPurposeCode];
-
-export interface SEPACreditPaymentInstruction extends PaymentInstruction {
-  type: 'sepa',
-  direction: 'credit',
-  creditor: Party,
-}
-
-export interface RTPCreditPaymentInstruction extends PaymentInstruction {
-  type: 'rtp',
-  direction: 'credit',
-  currency: 'USD',
-  creditor: Party,
-}
-
-/**
- * Represents an ACH credit payment instruction, extending the base PaymentInstruction.
- */
-export interface ACHCreditPaymentInstruction extends PaymentInstruction {
-  /** Specifies that this is an ACH payment. */
-  type: 'ach',
-  /** ACH payments are always credit payments. */
-  direction: 'credit',
-  /** ACH payments must use USD as currency. */
-  currency: 'USD',
-  /** The party to which the payment is credited (required for ACH payments). */
-  creditor: Party,
-}
 
 /**
  * Represents a structured address format.
