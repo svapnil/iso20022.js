@@ -214,6 +214,8 @@ describe('SEPACreditPaymentInitiation', () => {
                 expect(sepaPayment.paymentInstructions[0]).toEqual({
                     id: "d6ecf0cb-e0c3-4fe9-8f21-45464fde659",
                     endToEndId: "d6ecf0cb-e0c3-4fe9-8f21-45464fde659",
+                    direction: 'credit',
+                    type: 'sepa',
                     creditor: {
                         name: "Dáel Muñiz",
                         account: {
@@ -331,7 +333,8 @@ describe('SEPACreditPaymentInitiation', () => {
            expect(recreatedSepaPayment.messageId).toBe(messageId);
            expect(recreatedSepaPayment.creationDate).toStrictEqual(creationDate);
            expect(recreatedSepaPayment.paymentInstructions).toHaveLength(2);
-           expect(recreatedSepaPayment.paymentInstructions[0]).toEqual(paymentInstruction1);
+        //    expect(recreatedSepaPayment.paymentInstructions[0]).toEqual(paymentInstruction1);
+           expect(recreatedSepaPayment.paymentInstructions[0]).toEqual({...paymentInstruction1, direction: 'credit', type: 'sepa'});
            expect(recreatedSepaPayment.paymentInstructions[1]).toEqual(paymentInstruction2);
         })
     })
