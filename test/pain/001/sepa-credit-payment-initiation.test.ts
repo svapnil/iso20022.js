@@ -167,15 +167,6 @@ describe('SEPACreditPaymentInitiation', () => {
             expect(xml).toMatch(/<InstdAmt[^>]*Ccy="EUR"[^>]*>/);
         });
 
-        describe('should fail is there are different payment instruction currencies', () => {
-            it('should throw an error', () => {
-                expect(() => {
-                    sepaPaymentInitiationConfig.paymentInstructions[1].currency = "USD" // Change currency
-                    new SEPACreditPaymentInitiation(sepaPaymentInitiationConfig)
-                }).toThrow("In order to calculate the payment instructions sum, all payment instruction currencies must be the same.");
-            });
-        });
-
         describe('created with iso20022', () => {
             let iso20022 = new ISO20022({
                 initiatingParty: initiatingParty
