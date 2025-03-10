@@ -28,8 +28,6 @@ describe('SEPACreditPaymentInitiation', () => {
     const paymentInstruction1 = {
         id: "abcdefg",
         endToEndId: "123456789",
-        type: 'sepa' as const,
-        direction: "credit" as const,
         creditor: {
             name: "Dáel Muñiz",
             account: {
@@ -216,8 +214,6 @@ describe('SEPACreditPaymentInitiation', () => {
                 expect(sepaPayment.paymentInstructions[0]).toEqual({
                     id: "d6ecf0cb-e0c3-4fe9-8f21-45464fde659",
                     endToEndId: "d6ecf0cb-e0c3-4fe9-8f21-45464fde659",
-                    type: 'sepa',
-                    direction: "credit",
                     creditor: {
                         name: "Dáel Muñiz",
                         account: {
