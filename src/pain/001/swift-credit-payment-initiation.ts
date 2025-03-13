@@ -59,7 +59,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
   public messageId: string;
   public creationDate: Date;
   public paymentInstructions: SWIFTCreditPaymentInstruction[];
-  private paymentInformationId: string;
+  public paymentInformationId: string;
 
   /**
    * Creates an instance of SWIFTCreditPaymentInitiation.
