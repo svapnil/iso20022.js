@@ -239,6 +239,57 @@ describe('CashManagementEndOfDayReport', () => {
       });
     });
 
+    describe('with a Bank of Montreal 053 v2 file', () => {
+      it('should create an instance with valid config', () => {
+        xmlFilePath = `${process.cwd()}/test/assets/bank_of_montreal/camt053_v2.xml`;
+        const camt053V2Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        report = CashManagementEndOfDayReport.fromXML(camt053V2Sample);
+
+        expect(report.messageId).toBe('CAMT053-30223079-20211123020616');
+        expect(report.creationDate).toBeInstanceOf(Date);
+        expect(report.recipient).toEqual({
+          id: 12345678,
+          name: 'ABC Corp.',
+        });
+        expect(report).toBeInstanceOf(CashManagementEndOfDayReport);
+
+        // Synthetic methods (map reduced)
+        expect(report.statements.length).toBe(1);
+        expect(report.transactions.length).toBe(1);
+        expect(report.entries.length).toBe(1);
+        expect(report.balances.length).toBe(11);
+
+        // Statement is correct
+        const statement = report.statements[0];
+        expect(statement.id).toBe('1');
+        expect(statement.creationDate).toBeInstanceOf(Date);
+        expect(statement.fromDate).toBeInstanceOf(Date);
+        expect(statement.toDate).toBeInstanceOf(Date);
+        expect(statement.account).toEqual({
+          accountNumber: '7654321',
+          currency: 'USD'
+        });
+        expect(statement.agent).toEqual({
+          "abaRoutingNumber": '71000288'
+        });
+
+        // Balances
+        expect(statement.balances.length).toBe(11);
+        const firstBalance = statement.balances[0];
+        expect(firstBalance.amount).toBe(26164474_57);
+        expect(firstBalance.currency).toBe('USD');
+        expect(firstBalance.creditDebitIndicator).toBe('credit');
+        expect(firstBalance.date).toBeInstanceOf(Date);
+
+        // Transactions
+        const transaction = report.transactions[0];
+        expect(transaction.amountDetails?.transactionAmount).toBe(69_69);
+        expect(transaction.amountDetails?.transactionCurrency).toBe('USD');
+        expect(transaction.amountDetails?.instructedAmount).toBe(78_78);
+        expect(transaction.amountDetails?.instructedCurrency).toBe('EUR');
+      });
+    });
+
     describe('with a non-XML file', () => {
       it('should throw an error', () => {
         expect(() => {
