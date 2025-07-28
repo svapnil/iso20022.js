@@ -102,10 +102,6 @@ export interface Transaction {
   instructionId?: string;
   /** Unique transaction ID. */
   transactionId?: string;
-  /** Instructed amount for the transaction. */
-  instructedAmount?: number;
-  /** Currency of the instructed amount. */
-  instructedCurrency?: Currency;
   /** Proprietary purpose code for the transaction. */
   proprietaryPurpose?: string;
   /** Details of the debtor party. */
@@ -120,6 +116,19 @@ export interface Transaction {
   returnAdditionalInformation?: string;
   /** End-to-end ID for the entry. */
   endToEndId?: string;
+  /** Amount details for the transaction. */
+  amountDetails?: AmountDetails;
+}
+
+export interface AmountDetails {
+  /** Instructed amount for the transaction. */
+  instructedAmount?: number;
+  /** Currency of the instructed amount. */
+  instructedCurrency?: Currency;
+  /** Transaction amount for the transaction. */
+  transactionAmount?: number;
+  /** Currency of the transaction amount. */
+  transactionCurrency?: Currency;
 }
 
 // NOTE: We should consider creating DomainCode, FamilyCode, and SubFamilyCode types from:

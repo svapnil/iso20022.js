@@ -1,9 +1,10 @@
 import {
+  AmountDetails,
   Balance,
   BankTransactionCode,
   Entry,
   Statement,
-  Transaction,
+  Transaction
 } from 'camt/types';
 import { Party } from '../../lib/types';
 import { parseAdditionalInformation, parseDate } from '../../parseUtils';
@@ -27,9 +28,9 @@ export const parseStatement = (stmt: any): Statement => {
   }
 
   // Txn Summaries
-  const numOfEntries = stmt.TxsSummry?.TtlNtries.NbOfNtries;
-  const sumOfEntries = stmt.TxsSummry?.TtlNtries.Sum;
-  const rawNetAmountOfEntries = stmt.TxsSummry?.TtlNtries.TtlNetNtryAmt;
+  const numOfEntries = stmt.TxsSummry?.TtlNtries?.NbOfNtries;
+  const sumOfEntries = stmt.TxsSummry?.TtlNtries?.Sum;
+  const rawNetAmountOfEntries = stmt.TxsSummry?.TtlNtries?.TtlNetNtryAmt;
   let netAmountOfEntries;
   // No currency information, default to USD
   if (rawNetAmountOfEntries) {
@@ -155,6 +156,27 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
   const returnAdditionalInformation = transactionDetail.RtrInf?.AddtlInf;
   const endToEndId = transactionDetail.Refs?.EndToEndId;
 
+  // Get Amount Details if 'AmtDtls' is present
+  let amountDetails;
+  if (transactionDetail.AmtDtls) {
+    amountDetails = {
+      instructedAmount: transactionDetail.AmtDtls.InstdAmt
+        ? parseAmountToMinorUnits(
+            transactionDetail.AmtDtls.InstdAmt.Amt['#text'],
+            transactionDetail.AmtDtls.InstdAmt.Amt['@_Ccy'],
+          )
+        : undefined,
+      instructedCurrency: transactionDetail.AmtDtls.InstdAmt?.Amt['@_Ccy'],
+      transactionAmount: transactionDetail.AmtDtls.TxAmt
+        ? parseAmountToMinorUnits(
+            transactionDetail.AmtDtls.TxAmt.Amt['#text'],
+            transactionDetail.AmtDtls.TxAmt.Amt['@_Ccy'],
+          )
+        : undefined,
+      transactionCurrency: transactionDetail.AmtDtls.TxAmt?.Amt['@_Ccy'],
+    } as AmountDetails;
+  }
+
   // Get Debtor information if 'Dbtr' is present
   let debtor;
   let debtorName;
@@ -212,6 +234,7 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
     returnAdditionalInformation,
     debtor,
     creditor,
+    amountDetails,
   } as Transaction;
 };
 
