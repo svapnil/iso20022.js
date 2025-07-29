@@ -116,11 +116,6 @@ export interface Transaction {
   returnAdditionalInformation?: string;
   /** End-to-end ID for the entry. */
   endToEndId?: string;
-  /** Amount details for the transaction. */
-  amountDetails?: AmountDetails;
-}
-
-export interface AmountDetails {
   /** Instructed amount for the transaction. */
   instructedAmount?: number;
   /** Currency of the instructed amount. */
