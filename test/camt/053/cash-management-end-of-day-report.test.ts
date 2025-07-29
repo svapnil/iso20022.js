@@ -283,10 +283,10 @@ describe('CashManagementEndOfDayReport', () => {
 
         // Transactions
         const transaction = report.transactions[0];
-        expect(transaction.amountDetails?.transactionAmount).toBe(69_69);
-        expect(transaction.amountDetails?.transactionCurrency).toBe('USD');
-        expect(transaction.amountDetails?.instructedAmount).toBe(78_78);
-        expect(transaction.amountDetails?.instructedCurrency).toBe('EUR');
+        expect(transaction.transactionAmount).toBe(69_69);
+        expect(transaction.transactionCurrency).toBe('USD');
+        expect(transaction.instructedAmount).toBe(78_78);
+        expect(transaction.instructedCurrency).toBe('EUR');
       });
     });
 

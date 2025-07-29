@@ -1,5 +1,4 @@
 import {
-  AmountDetails,
   Balance,
   BankTransactionCode,
   Entry,
@@ -157,24 +156,25 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
   const endToEndId = transactionDetail.Refs?.EndToEndId;
 
   // Get Amount Details if 'AmtDtls' is present
-  let amountDetails;
+  let instructedAmount;
+  let instructedCurrency;
+  let transactionAmount;
+  let transactionCurrency;
   if (transactionDetail.AmtDtls) {
-    amountDetails = {
-      instructedAmount: transactionDetail.AmtDtls.InstdAmt
+      instructedAmount = transactionDetail.AmtDtls.InstdAmt
         ? parseAmountToMinorUnits(
             transactionDetail.AmtDtls.InstdAmt.Amt['#text'],
             transactionDetail.AmtDtls.InstdAmt.Amt['@_Ccy'],
           )
-        : undefined,
-      instructedCurrency: transactionDetail.AmtDtls.InstdAmt?.Amt['@_Ccy'],
-      transactionAmount: transactionDetail.AmtDtls.TxAmt
+        : undefined;
+      instructedCurrency = transactionDetail.AmtDtls.InstdAmt?.Amt['@_Ccy']
+      transactionAmount = transactionDetail.AmtDtls.TxAmt
         ? parseAmountToMinorUnits(
             transactionDetail.AmtDtls.TxAmt.Amt['#text'],
             transactionDetail.AmtDtls.TxAmt.Amt['@_Ccy'],
           )
-        : undefined,
-      transactionCurrency: transactionDetail.AmtDtls.TxAmt?.Amt['@_Ccy'],
-    } as AmountDetails;
+        : undefined;
+      transactionCurrency = transactionDetail.AmtDtls.TxAmt?.Amt['@_Ccy'];
   }
 
   // Get Debtor information if 'Dbtr' is present
@@ -234,7 +234,10 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
     returnAdditionalInformation,
     debtor,
     creditor,
-    amountDetails,
+    instructedAmount,
+    instructedCurrency,
+    transactionAmount,
+    transactionCurrency,
   } as Transaction;
 };
 
