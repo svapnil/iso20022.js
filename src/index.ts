@@ -97,9 +97,19 @@ export type {
 export { BalanceTypeCode, BalanceTypeCodeDescriptionMap } from './camt/types';
 export { CashManagementEndOfDayReport } from './camt/053/cash-management-end-of-day-report';
 
+// mt.941
+export type {
+  BalanceReport,
+  EntriesSum,
+} from './mt/types';
+export { MT941Tag } from './mt/types';
+export { BalanceReportMessage } from './mt/941/balance-report';
+
 // errors
 export {
   Iso20022JsError,
   InvalidXmlError,
   InvalidXmlNamespaceError,
+  InvalidFormatError,
+  InvalidCurrencyConsistencyError,
 } from './errors';
