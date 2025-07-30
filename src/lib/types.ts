@@ -256,6 +256,8 @@ export interface Party {
 export interface IBANAccount {
   /** The International Bank Account Number. */
   iban: string;
+  /** The currency of the account. */
+  currency?: Currency;
 }
 
 /**
