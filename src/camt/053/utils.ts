@@ -147,6 +147,8 @@ export const parseEntry = (entry: any): Entry => {
 
 const parseTransactionDetail = (transactionDetail: any): Transaction => {
   const messageId = transactionDetail.Refs?.MsgId;
+  const transactionId = transactionDetail.Refs?.TxId;
+  const transactionDate = transactionDetail.RltdDts?.TxDtTm;
   const accountServicerReferenceId = transactionDetail.Refs?.AcctSvcrRef;
   const paymentInformationId = transactionDetail.Refs?.PmtInfId;
   const remittanceInformation = transactionDetail.RmtInf?.Ustrd;
@@ -225,6 +227,7 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
 
   return {
     messageId,
+    transactionId,
     accountServicerReferenceId,
     endToEndId,
     paymentInformationId,
@@ -238,6 +241,7 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
     instructedCurrency,
     transactionAmount,
     transactionCurrency,
+    transactionDate,
   } as Transaction;
 };
 

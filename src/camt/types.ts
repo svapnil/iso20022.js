@@ -124,6 +124,8 @@ export interface Transaction {
   transactionAmount?: number;
   /** Currency of the transaction amount. */
   transactionCurrency?: Currency;
+  /** Date when the transaction occurred. */
+  transactionDate?: Date;
 }
 
 // NOTE: We should consider creating DomainCode, FamilyCode, and SubFamilyCode types from:
