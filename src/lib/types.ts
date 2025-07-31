@@ -251,33 +251,37 @@ export interface Party {
 }
 
 /**
- * Represents an account identified by IBAN.
+ * Base interface for all account types with common fields.
  */
-export interface IBANAccount {
-  /** The International Bank Account Number. */
-  iban: string;
+export interface AccountBase {
   /** The currency of the account. */
   currency?: Currency;
 }
 
 /**
- * Represents a basic account with account number and optional type.
+ * Represents an account identified by IBAN.
  */
-export interface BaseAccount {
+export interface IBANAccount extends AccountBase {
+  /** The International Bank Account Number. */
+  iban: string;
+}
+
+/**
+ * Represents a local account with account number and optional type.
+ */
+export interface LocalAccount extends AccountBase {
   /** The account number. */
   accountNumber: string;
   /** The type of the account. */
   accountType?: 'checking' | 'savings';
-  /** The currency of the account. */
-  currency?: Currency;
   /** The name of the account. */
   name?: string;
 }
 
 /**
- * Represents either an IBAN account or a basic account.
+ * Represents either an IBAN account or a local account.
  */
-export type Account = IBANAccount | BaseAccount;
+export type Account = IBANAccount | LocalAccount;
 
 /**
  * Represents a financial agent identified by BIC.

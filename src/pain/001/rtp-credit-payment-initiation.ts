@@ -1,4 +1,4 @@
-import { ABAAgent, Account, Agent, BaseAccount, Party, RTPCreditPaymentInstruction } from '../../lib/types';
+import { ABAAgent, Account, Agent, LocalAccount, Party, RTPCreditPaymentInstruction } from '../../lib/types';
 import { v4 as uuidv4 } from 'uuid';
 import Dinero, { Currency } from 'dinero.js';
 import { sanitize } from '../../utils/format';
@@ -123,7 +123,7 @@ export class RTPCreditPaymentInitiation extends PaymentInitiation {
             CdtrAcct: {
                 Id: {
                     Othr: {
-                        Id: (instruction.creditor.account as BaseAccount).accountNumber,
+                        Id: (instruction.creditor.account as LocalAccount).accountNumber,
                     },
                 },
             },

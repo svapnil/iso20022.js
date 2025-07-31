@@ -31,7 +31,8 @@ describe('SEPACreditPaymentInitiation', () => {
         creditor: {
             name: "Dáel Muñiz",
             account: {
-                iban: "ES8201822200150201504058"
+                iban: "ES8201822200150201504058",
+                currency: "EUR" as const,
             },
             agent: {
                 bic: "BBVAESMMXXX"
@@ -57,7 +58,8 @@ describe('SEPACreditPaymentInitiation', () => {
         creditor: {
             name: "Guli Mancini",
             account: {
-                iban: "ES9121000418450200051332"
+                iban: "ES9121000418450200051332",
+                currency: "EUR" as const,
             },
             agent: {
                 bic: "BBVAESMMXXX"
@@ -219,7 +221,8 @@ describe('SEPACreditPaymentInitiation', () => {
                     creditor: {
                         name: "Dáel Muñiz",
                         account: {
-                            iban: "ES8201822200150201504058"
+                            iban: "ES8201822200150201504058",
+                            currency: "EUR"
                         },
                         agent: {
                             bic: "BBVAESMMXXX"

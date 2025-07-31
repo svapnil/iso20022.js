@@ -1,4 +1,4 @@
-import { ABAAgent, ACHCreditPaymentInstruction, ACHLocalInstrument, ACHLocalInstrumentCode, Account, Agent, BaseAccount, Party } from '../../lib/types';
+import { ABAAgent, ACHCreditPaymentInstruction, ACHLocalInstrument, ACHLocalInstrumentCode, Account, Agent, LocalAccount, Party } from '../../lib/types';
 import { v4 as uuidv4 } from 'uuid';
 import Dinero, { Currency } from 'dinero.js';
 import { sanitize } from '../../utils/format';
@@ -86,7 +86,7 @@ export class ACHCreditPaymentInitiation extends PaymentInitiation {
     public serviceLevel: string;
     public instructionPriority: string;
     private formattedPaymentSum: string;
-    
+
     constructor(config: ACHCreditPaymentInitiationConfig) {
         super({ type: "ach" });
         this.initiatingParty = config.initiatingParty;
@@ -100,7 +100,7 @@ export class ACHCreditPaymentInitiation extends PaymentInitiation {
         this.formattedPaymentSum = this.sumPaymentInstructions(this.paymentInstructions as AtLeastOne<ACHCreditPaymentInstruction>);
         this.validate();
     }
-    
+
     /**
      * Calculates the sum of all payment instructions.
      * @private
@@ -129,7 +129,7 @@ export class ACHCreditPaymentInitiation extends PaymentInitiation {
         if (this.messageId.length > 35) {
             throw new Error('messageId must not exceed 35 characters');
         }
-        
+
         // Ensure all payment instructions have USD as currency
         for (const instruction of this.paymentInstructions) {
             if (instruction.currency !== 'USD') {
@@ -164,7 +164,7 @@ export class ACHCreditPaymentInitiation extends PaymentInitiation {
             CdtrAcct: {
                 Id: {
                     Othr: {
-                        Id: (instruction.creditor.account as BaseAccount).accountNumber,
+                        Id: (instruction.creditor.account as LocalAccount).accountNumber,
                     },
                 },
                 Tp: {

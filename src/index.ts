@@ -54,7 +54,7 @@ export type {
   ACHCreditPaymentInstruction,
   StructuredAddress,
   IBANAccount,
-  BaseAccount,
+  LocalAccount,
   BICAgent,
   ABAAgent,
   ACHLocalInstrument,

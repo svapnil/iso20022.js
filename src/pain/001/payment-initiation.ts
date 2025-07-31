@@ -4,11 +4,11 @@ import {
     IBANAccount,
     BICAgent,
     Account,
-    BaseAccount,
+    LocalAccount,
     Agent,
     ABAAgent,
   } from '../../lib/types';
-  
+
   /**
    * Abstract base class for ISO20022 payment initiation (PAIN) messages.
    * @abstract
@@ -26,7 +26,7 @@ import {
      * @returns {string} The serialized payment initiation.
      */
     abstract serialize(): string;
-  
+
     /**
      * Formats a party's information according to ISO20022 standards.
      * @param {Party} party - The party's information.
@@ -36,7 +36,7 @@ import {
       const result: any = {
         Nm: party.name,
       };
-  
+
       // Only include address information if it exists
       if (party.address) {
         result.PstlAdr = {
@@ -48,15 +48,15 @@ import {
           Ctry: party.address.country,
         };
       }
-  
+
       return result;
     }
-  
+
     /**
      * Formats an account according to ISO20022 standards.
      * This method handles both IBAN and non-IBAN accounts.
      *
-     * @param {Account} account - The account to be formatted. Can be either an IBANAccount or a BaseAccount.
+     * @param {Account} account - The account to be formatted. Can be either an IBANAccount or a LocalAccount.
      * @returns {Object} An object representing the formatted account information.
      *                   For IBAN accounts, it returns an object with an IBAN identifier.
      *                   For non-IBAN accounts, it returns an object with an 'Other' identifier.
@@ -78,12 +78,12 @@ import {
       return {
         Id: {
           Othr: {
-            Id: (account as BaseAccount).accountNumber,
+            Id: (account as LocalAccount).accountNumber,
           },
         },
       };
     }
-  
+
     /**
      * Formats an IBAN account according to ISO20022 standards.
      * @param {IBANAccount} account - The IBAN account information.
@@ -96,7 +96,7 @@ import {
         },
       };
     }
-  
+
     /**
      * Formats an agent according to ISO20022 standards.
      * This method handles both BIC and ABA agents.
@@ -136,7 +136,7 @@ import {
         };
       }
     }
-  
+
     /**
      * Returns the string representation of the payment initiation.
      * @returns {string} The serialized payment initiation.
