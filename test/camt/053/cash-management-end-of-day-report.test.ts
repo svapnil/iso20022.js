@@ -239,54 +239,98 @@ describe('CashManagementEndOfDayReport', () => {
       });
     });
 
-    describe('with a Bank of Montreal 053 v2 file', () => {
-      it('should create an instance with valid config', () => {
-        xmlFilePath = `${process.cwd()}/test/assets/bank_of_montreal/camt053_v2.xml`;
-        const camt053V2Sample = fs.readFileSync(xmlFilePath, 'utf8');
-        report = CashManagementEndOfDayReport.fromXML(camt053V2Sample);
+    describe('with Bank of Montreal 053 v2 files', () => {
+      describe('with camt053_v2_1.xml file', () => {
+        it('should create an instance with valid config', () => {
+          xmlFilePath = `${process.cwd()}/test/assets/bank_of_montreal/camt053_v2_1.xml`;
+          const camt053V2Sample = fs.readFileSync(xmlFilePath, 'utf8');
+          report = CashManagementEndOfDayReport.fromXML(camt053V2Sample);
 
-        expect(report.messageId).toBe('CAMT053-30223079-20211123020616');
-        expect(report.creationDate).toBeInstanceOf(Date);
-        expect(report.recipient).toEqual({
-          id: 12345678,
-          name: 'ABC Corp.',
+          expect(report.messageId).toBe('CAMT053-30223079-20211123020616');
+          expect(report.creationDate).toBeInstanceOf(Date);
+          expect(report.recipient).toEqual({
+            id: 12345678,
+            name: 'ABC Corp.',
+          });
+          expect(report).toBeInstanceOf(CashManagementEndOfDayReport);
+
+          // Synthetic methods (map reduced)
+          expect(report.statements.length).toBe(1);
+          expect(report.transactions.length).toBe(1);
+          expect(report.entries.length).toBe(1);
+          expect(report.balances.length).toBe(11);
+
+          // Statement is correct
+          const statement = report.statements[0];
+          expect(statement.id).toBe('1');
+          expect(statement.creationDate).toBeInstanceOf(Date);
+          expect(statement.fromDate).toBeInstanceOf(Date);
+          expect(statement.toDate).toBeInstanceOf(Date);
+          expect(statement.account).toEqual({
+            accountNumber: '7654321',
+            currency: 'USD'
+          });
+          expect(statement.agent).toEqual({
+            "abaRoutingNumber": '71000288'
+          });
+
+          // Balances
+          expect(statement.balances.length).toBe(11);
+          const firstBalance = statement.balances[0];
+          expect(firstBalance.amount).toBe(26164474_57);
+          expect(firstBalance.currency).toBe('USD');
+          expect(firstBalance.creditDebitIndicator).toBe('credit');
+          expect(firstBalance.date).toBeInstanceOf(Date);
+
+          // Transactions
+          const transaction = report.transactions[0];
+          expect(transaction.transactionAmount).toBe(69_69);
+          expect(transaction.transactionCurrency).toBe('USD');
+          expect(transaction.instructedAmount).toBe(78_78);
+          expect(transaction.instructedCurrency).toBe('EUR');
         });
-        expect(report).toBeInstanceOf(CashManagementEndOfDayReport);
+      });
 
-        // Synthetic methods (map reduced)
-        expect(report.statements.length).toBe(1);
-        expect(report.transactions.length).toBe(1);
-        expect(report.entries.length).toBe(1);
-        expect(report.balances.length).toBe(11);
+      describe('with camt053_v2_2.xml file', () => {
+        it('should create an instance with valid config', () => {
+          xmlFilePath = `${process.cwd()}/test/assets/bank_of_montreal/camt053_v2_2.xml`;
+          const camt053V2Sample = fs.readFileSync(xmlFilePath, 'utf8');
+          report = CashManagementEndOfDayReport.fromXML(camt053V2Sample);
 
-        // Statement is correct
-        const statement = report.statements[0];
-        expect(statement.id).toBe('1');
-        expect(statement.creationDate).toBeInstanceOf(Date);
-        expect(statement.fromDate).toBeInstanceOf(Date);
-        expect(statement.toDate).toBeInstanceOf(Date);
-        expect(statement.account).toEqual({
-          accountNumber: '7654321',
-          currency: 'USD'
+          expect(report.messageId).toBe('CAMT053-30290641-20250805071739');
+          expect(report.creationDate).toBeInstanceOf(Date);
+          expect(report.recipient).toEqual({
+            id: 30290641,
+            name: 'Huron Inc.',
+          });
+          expect(report).toBeInstanceOf(CashManagementEndOfDayReport);
+
+          // Synthetic methods (map reduced)
+          expect(report.statements.length).toBe(14);
+          
+          // First statement is correct
+          const statement = report.statements[0];
+          expect(statement.id).toBe('1');
+          expect(statement.creationDate).toBeInstanceOf(Date);
+          expect(statement.fromDate).toBeInstanceOf(Date);
+          expect(statement.toDate).toBeInstanceOf(Date);
+          expect(statement.account).toEqual({
+            accountNumber: '21470183',
+            currency: 'CAD'
+          });
+          expect(statement.agent).toEqual({
+            bic: 'BOFMCAM2'
+          });
+
+          // Balances
+          expect(statement.balances.length).toBeGreaterThan(0);
+          const firstBalance = statement.balances[0];
+          expect(firstBalance.amount).toBe(0);
+          expect(firstBalance.currency).toBe('CAD');
+          expect(firstBalance.creditDebitIndicator).toBe('credit');
+          expect(firstBalance.proprietary).toBe('15');
+          expect(firstBalance.date).toBeInstanceOf(Date);
         });
-        expect(statement.agent).toEqual({
-          "abaRoutingNumber": '71000288'
-        });
-
-        // Balances
-        expect(statement.balances.length).toBe(11);
-        const firstBalance = statement.balances[0];
-        expect(firstBalance.amount).toBe(26164474_57);
-        expect(firstBalance.currency).toBe('USD');
-        expect(firstBalance.creditDebitIndicator).toBe('credit');
-        expect(firstBalance.date).toBeInstanceOf(Date);
-
-        // Transactions
-        const transaction = report.transactions[0];
-        expect(transaction.transactionAmount).toBe(69_69);
-        expect(transaction.transactionCurrency).toBe('USD');
-        expect(transaction.instructedAmount).toBe(78_78);
-        expect(transaction.instructedCurrency).toBe('EUR');
       });
     });
 

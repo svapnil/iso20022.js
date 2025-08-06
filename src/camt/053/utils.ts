@@ -90,6 +90,7 @@ export const parseBalance = (balance: any): Balance => {
   const creditDebitIndicator =
     balance.CdtDbtInd === 'CRDT' ? 'credit' : 'debit';
   const type = balance.Tp.CdOrPrtry.Cd;
+  const proprietary = String(balance.Tp.CdOrPrtry.Prtry);
   const date = parseDate(balance.Dt);
   return {
     date,
@@ -97,6 +98,7 @@ export const parseBalance = (balance: any): Balance => {
     currency,
     creditDebitIndicator,
     type,
+    proprietary,
   } as Balance;
 };
 

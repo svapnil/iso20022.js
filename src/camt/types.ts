@@ -51,6 +51,8 @@ export interface Balance {
   date: Date;
   /** Type of the balance. */
   type: BalanceType;
+  /** Proprietary */
+  proprietary: string;
   /** Amount of the balance. */
   amount: number;
   /** Indicates whether the balance is credit (positive) or debit (negative). */
