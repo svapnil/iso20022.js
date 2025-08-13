@@ -1,6 +1,6 @@
 {
   "name": "@bond-financial-technologies/iso20022.js",
-  "version": "0.2.11",
+  "version": "0.2.14",
   "readme": "README.md",
   "description": "Library to create payment messages.",
   "main": "dist/index.js",
@@ -29,7 +29,7 @@
   "files": [
     "dist"
   ],
-  "type": "module",
+  "type": "commonjs",
   "keywords": [
     "iso20022",
     "finance",
