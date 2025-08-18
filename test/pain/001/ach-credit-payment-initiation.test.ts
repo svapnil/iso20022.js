@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import { Alpha2Country } from "../../../src/lib/countries";
 import ISO20022 from '../../../src/iso20022';
 import { v4 as uuidv4 } from 'uuid';
-import { ABAAgent, BaseAccount } from "../../../src/lib/types";
+import { ABAAgent, LocalAccount } from "../../../src/lib/types";
 import { Currency } from "dinero.js";
 
 describe('ACHCreditPaymentInitiation', () => {
@@ -199,7 +199,7 @@ describe('ACHCreditPaymentInitiation', () => {
             expect(achPayment.paymentInstructions[0].amount).toBe(1);
             expect(achPayment.paymentInstructions[0].currency).toBe("USD");
             expect(achPayment.paymentInstructions[0].creditor.name).toBe("John Doe Funding LLC");
-            expect((achPayment.paymentInstructions[0]?.creditor?.account as BaseAccount)?.accountNumber).toBe("123456789");
+            expect((achPayment.paymentInstructions[0]?.creditor?.account as LocalAccount)?.accountNumber).toBe("123456789");
             expect((achPayment.paymentInstructions[0]?.creditor.agent as ABAAgent)?.abaRoutingNumber ).toBe("123456789");
             expect(achPayment.paymentInstructions[0]?.creditor.address?.streetName).toBe("999 Any Avenue");
             expect(achPayment.paymentInstructions[0]?.creditor.address?.postalCode).toBe("10000");

@@ -4,7 +4,7 @@ import fs from 'fs';
 import { Alpha2Country } from "lib/countries";
 import ISO20022 from '../../../src/iso20022';
 import { v4 as uuidv4 } from 'uuid';
-import { ABAAgent, BaseAccount } from "index";
+import { ABAAgent, LocalAccount } from "index";
 
 describe('RTPCreditPaymentInitiation', () => {
     let rtpPaymentInitiationConfig: RTPCreditPaymentInitiationConfig;
@@ -192,7 +192,7 @@ describe('RTPCreditPaymentInitiation', () => {
 
                 // Check account information
                 expect(rtpPayment.initiatingParty.account).toBeDefined();
-                expect((rtpPayment.initiatingParty.account as BaseAccount).accountNumber).toBe('1123456789');
+                expect((rtpPayment.initiatingParty.account as LocalAccount).accountNumber).toBe('1123456789');
 
                 // Check agent (bank) information
                 expect(rtpPayment.initiatingParty.agent).toBeDefined();
@@ -211,7 +211,7 @@ describe('RTPCreditPaymentInitiation', () => {
 
                 // Check creditor information
                 expect(instruction.creditor.name).toBe('John Doe Funding LLC');
-                expect((instruction.creditor.account as BaseAccount).accountNumber).toBe('1123456789');
+                expect((instruction.creditor.account as LocalAccount).accountNumber).toBe('1123456789');
                 expect((instruction.creditor.agent as ABAAgent).abaRoutingNumber).toBe('123456789');
 
                 // Check address information

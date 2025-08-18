@@ -1,4 +1,4 @@
-import { Account, Agent, Party, StructuredAddress } from 'lib/types';
+import { Account, Agent, LocalAccount, IBANAccount, Party, StructuredAddress } from 'lib/types';
 import Dinero, { Currency } from 'dinero.js';
 
 export const parseAccount = (account: any): Account => {
@@ -6,14 +6,15 @@ export const parseAccount = (account: any): Account => {
   if (account.Id.IBAN) {
     return {
       iban: account.Id.IBAN,
-    } as Account;
+      currency: account.Ccy,
+    } as IBANAccount;
   }
 
   return {
     ...(account.Id?.Othr?.Id && { accountNumber: String(account.Id.Othr.Id) }),
     ...(account.Nm && { name: account.Nm }),
     ...(account.Ccy && { currency: account.Ccy }),
-  } as Account;
+  } as LocalAccount;
 };
 
 // TODO: Add both BIC and ABA routing numbers at the same time

@@ -51,6 +51,8 @@ export interface Balance {
   date: Date;
   /** Type of the balance. */
   type: BalanceType;
+  /** Proprietary */
+  proprietary: string;
   /** Amount of the balance. */
   amount: number;
   /** Indicates whether the balance is credit (positive) or debit (negative). */
@@ -124,6 +126,8 @@ export interface Transaction {
   transactionAmount?: number;
   /** Currency of the transaction amount. */
   transactionCurrency?: Currency;
+  /** Date when the transaction occurred. */
+  transactionDate?: Date;
 }
 
 // NOTE: We should consider creating DomainCode, FamilyCode, and SubFamilyCode types from:

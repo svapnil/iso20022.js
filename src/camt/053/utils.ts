@@ -90,6 +90,7 @@ export const parseBalance = (balance: any): Balance => {
   const creditDebitIndicator =
     balance.CdtDbtInd === 'CRDT' ? 'credit' : 'debit';
   const type = balance.Tp.CdOrPrtry.Cd;
+  const proprietary = String(balance.Tp.CdOrPrtry.Prtry);
   const date = parseDate(balance.Dt);
   return {
     date,
@@ -97,6 +98,7 @@ export const parseBalance = (balance: any): Balance => {
     currency,
     creditDebitIndicator,
     type,
+    proprietary,
   } as Balance;
 };
 
@@ -147,6 +149,8 @@ export const parseEntry = (entry: any): Entry => {
 
 const parseTransactionDetail = (transactionDetail: any): Transaction => {
   const messageId = transactionDetail.Refs?.MsgId;
+  const transactionId = transactionDetail.Refs?.TxId;
+  const transactionDate = transactionDetail.RltdDts?.TxDtTm;
   const accountServicerReferenceId = transactionDetail.Refs?.AcctSvcrRef;
   const paymentInformationId = transactionDetail.Refs?.PmtInfId;
   const remittanceInformation = transactionDetail.RmtInf?.Ustrd;
@@ -225,6 +229,7 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
 
   return {
     messageId,
+    transactionId,
     accountServicerReferenceId,
     endToEndId,
     paymentInformationId,
@@ -238,6 +243,7 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
     instructedCurrency,
     transactionAmount,
     transactionCurrency,
+    transactionDate,
   } as Transaction;
 };
 
