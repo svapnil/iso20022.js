@@ -332,6 +332,48 @@ describe('CashManagementEndOfDayReport', () => {
           expect(firstBalance.date).toBeInstanceOf(Date);
         });
       });
+
+      describe('with camt053_v2_3.xml file', () => {
+        it('should create an instance with valid config', () => {
+          xmlFilePath = `${process.cwd()}/test/assets/bank_of_montreal/camt053_v2_3.xml`;
+          const camt053V2Sample = fs.readFileSync(xmlFilePath, 'utf8');
+          report = CashManagementEndOfDayReport.fromXML(camt053V2Sample);
+
+          expect(report.messageId).toBe('CAMT053-30290641-20250819071620');
+          expect(report.creationDate).toBeInstanceOf(Date);
+          expect(report.recipient).toEqual({
+            id: 30290641,
+            name: 'Huron Inc.',
+          });
+          expect(report).toBeInstanceOf(CashManagementEndOfDayReport);
+
+          // Synthetic methods (map reduced)
+          expect(report.statements.length).toBe(14);
+
+          // First statement is correct
+          const statement = report.statements[0];
+          expect(statement.id).toBe('1');
+          expect(statement.creationDate).toBeInstanceOf(Date);
+          expect(statement.fromDate).toBeInstanceOf(Date);
+          expect(statement.toDate).toBeInstanceOf(Date);
+          expect(statement.account).toEqual({
+            accountNumber: '21470183',
+            currency: 'CAD'
+          });
+          expect(statement.agent).toEqual({
+            bic: 'BOFMCAM2'
+          });
+
+          // Balances
+          expect(statement.balances.length).toBeGreaterThan(0);
+          const firstBalance = statement.balances[0];
+          expect(firstBalance.amount).toBe(0);
+          expect(firstBalance.currency).toBe('CAD');
+          expect(firstBalance.creditDebitIndicator).toBe('credit');
+          expect(firstBalance.proprietary).toBe('15');
+          expect(firstBalance.date).toBeInstanceOf(Date);
+        });
+      });
     });
 
     describe('with a non-XML file', () => {

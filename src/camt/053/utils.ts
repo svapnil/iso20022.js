@@ -31,11 +31,11 @@ export const parseStatement = (stmt: any): Statement => {
   const sumOfEntries = stmt.TxsSummry?.TtlNtries?.Sum;
   const netAmountOfEntries = stmt.TxsSummry?.TtlNtries?.TtlNetNtryAmt;
 
-  const numOfCredits = stmt.TxsSummry?.TtlCdtNtries.NbOfNtries;
-  const sumOfCredits = stmt.TxsSummry?.TtlCdtNtries.Sum;
+  const numOfCredits = stmt.TxsSummry?.TtlCdtNtries?.NbOfNtries;
+  const sumOfCredits = stmt.TxsSummry?.TtlCdtNtries?.Sum;
 
-  const numOfDebits = stmt.TxsSummry?.TtlDbtNtries.NbOfNtries;
-  const sumOfDebits = stmt.TxsSummry?.TtlDbtNtries.Sum;
+  const numOfDebits = stmt.TxsSummry?.TtlDbtNtries?.NbOfNtries;
+  const sumOfDebits = stmt.TxsSummry?.TtlDbtNtries?.Sum;
 
   // Get account information
   // TODO: Save account types here
