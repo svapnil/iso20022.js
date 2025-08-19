@@ -36,7 +36,7 @@ describe('CashManagementEndOfDayReport', () => {
         expect(statement.toDate).toBeInstanceOf(Date);
         expect(statement.numOfEntries).toBe(14);
         expect(statement.sumOfEntries).toBe(140);
-        expect(statement.netAmountOfEntries).toBe(40_00);
+        expect(statement.netAmountOfEntries).toBe(40);
         expect(statement.account).toEqual({
           accountNumber: 'DD01100056869',
           currency: 'USD',
@@ -49,7 +49,7 @@ describe('CashManagementEndOfDayReport', () => {
         // Balances
         expect(statement.balances.length).toBe(4);
         const firstBalance = statement.balances[0];
-        expect(firstBalance.amount).toBe(843686_20);
+        expect(firstBalance.amount).toBe(843686.20);
         expect(firstBalance.currency).toBe('USD');
         expect(firstBalance.creditDebitIndicator).toBe('debit');
         expect(firstBalance.type).toBe('OPBD');
@@ -65,7 +65,7 @@ describe('CashManagementEndOfDayReport', () => {
 
         expect(statement.entries.length).toBe(15);
         const firstEntry = statement.entries[0];
-        expect(firstEntry.amount).toBe(10_00);
+        expect(firstEntry.amount).toBe(10);
         expect(firstEntry.currency).toBe('USD');
         expect(firstEntry.creditDebitIndicator).toBe('credit');
         expect(firstEntry.proprietaryCode).toBe('ACH Credit Reject');
@@ -185,7 +185,7 @@ describe('CashManagementEndOfDayReport', () => {
         expect(firstEntry.creditDebitIndicator).toBe('credit');
         expect(firstEntry.reversal).toBe(false);
         expect(firstEntry.bookingDate).toEqual(new Date('2013-04-02'));
-        expect(firstEntry.amount).toBe(100);
+        expect(firstEntry.amount).toBe(1);
         expect(firstEntry.currency).toBe('EUR');
         expect(firstEntry.proprietaryCode).toBe('N196');
         expect(firstEntry.transactions.length).toBe(0);
@@ -223,7 +223,7 @@ describe('CashManagementEndOfDayReport', () => {
         expect(firstEntry.creditDebitIndicator).toBe('credit');
         expect(firstEntry.reversal).toBe(false);
         expect(firstEntry.bookingDate).toEqual(new Date('2014-01-03'));
-        expect(firstEntry.amount).toBe(35000);
+        expect(firstEntry.amount).toBe(350);
         expect(firstEntry.currency).toBe('EUR');
         expect(firstEntry.proprietaryCode).toBe('00100');
         expect(firstEntry.transactions.length).toBe(1);
@@ -277,16 +277,16 @@ describe('CashManagementEndOfDayReport', () => {
           // Balances
           expect(statement.balances.length).toBe(11);
           const firstBalance = statement.balances[0];
-          expect(firstBalance.amount).toBe(26164474_57);
+          expect(firstBalance.amount).toBe(26164474.57);
           expect(firstBalance.currency).toBe('USD');
           expect(firstBalance.creditDebitIndicator).toBe('credit');
           expect(firstBalance.date).toBeInstanceOf(Date);
 
           // Transactions
           const transaction = report.transactions[0];
-          expect(transaction.transactionAmount).toBe(69_69);
+          expect(transaction.transactionAmount).toBe(69.69);
           expect(transaction.transactionCurrency).toBe('USD');
-          expect(transaction.instructedAmount).toBe(78_78);
+          expect(transaction.instructedAmount).toBe(78.78);
           expect(transaction.instructedCurrency).toBe('EUR');
         });
       });
