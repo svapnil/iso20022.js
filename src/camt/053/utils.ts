@@ -10,7 +10,7 @@ import { parseAdditionalInformation, parseDate } from '../../parseUtils';
 import {
   parseAccount,
   parseAgent,
-  parseAmountToMinorUnits,
+
 } from '../../parseUtils';
 
 export const parseStatement = (stmt: any): Statement => {
@@ -29,12 +29,7 @@ export const parseStatement = (stmt: any): Statement => {
   // Txn Summaries
   const numOfEntries = stmt.TxsSummry?.TtlNtries?.NbOfNtries;
   const sumOfEntries = stmt.TxsSummry?.TtlNtries?.Sum;
-  const rawNetAmountOfEntries = stmt.TxsSummry?.TtlNtries?.TtlNetNtryAmt;
-  let netAmountOfEntries;
-  // No currency information, default to USD
-  if (rawNetAmountOfEntries) {
-    netAmountOfEntries = parseAmountToMinorUnits(rawNetAmountOfEntries);
-  }
+  const netAmountOfEntries = stmt.TxsSummry?.TtlNtries?.TtlNetNtryAmt;
 
   const numOfCredits = stmt.TxsSummry?.TtlCdtNtries.NbOfNtries;
   const sumOfCredits = stmt.TxsSummry?.TtlCdtNtries.Sum;
@@ -84,9 +79,8 @@ export const parseStatement = (stmt: any): Statement => {
 };
 
 export const parseBalance = (balance: any): Balance => {
-  const rawAmount = balance.Amt['#text'];
+  const amount = balance.Amt['#text'];
   const currency = balance.Amt['@_Ccy'];
-  const amount = parseAmountToMinorUnits(rawAmount, currency);
   const creditDebitIndicator =
     balance.CdtDbtInd === 'CRDT' ? 'credit' : 'debit';
   const type = balance.Tp.CdOrPrtry.Cd;
@@ -107,9 +101,8 @@ export const parseEntry = (entry: any): Entry => {
   const creditDebitIndicator = entry.CdtDbtInd === 'CRDT' ? 'credit' : 'debit';
   const bookingDate = parseDate(entry.BookgDt);
   const reversal = entry.RvslInd === true;
-  const rawAmount = entry.Amt['#text'];
+  const amount = entry.Amt['#text'];
   const currency = entry.Amt['@_Ccy'];
-  const amount = parseAmountToMinorUnits(rawAmount, currency);
   const proprietaryCode = entry.BkTxCd.Prtry?.Cd;
   const additionalInformation = parseAdditionalInformation(entry.AddtlNtryInf);
   const accountServicerReferenceId = entry.AcctSvcrRef;
@@ -165,19 +158,9 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
   let transactionAmount;
   let transactionCurrency;
   if (transactionDetail.AmtDtls) {
-      instructedAmount = transactionDetail.AmtDtls.InstdAmt
-        ? parseAmountToMinorUnits(
-            transactionDetail.AmtDtls.InstdAmt.Amt['#text'],
-            transactionDetail.AmtDtls.InstdAmt.Amt['@_Ccy'],
-          )
-        : undefined;
+      instructedAmount = transactionDetail.AmtDtls.InstdAmt?.Amt['#text'];
       instructedCurrency = transactionDetail.AmtDtls.InstdAmt?.Amt['@_Ccy']
-      transactionAmount = transactionDetail.AmtDtls.TxAmt
-        ? parseAmountToMinorUnits(
-            transactionDetail.AmtDtls.TxAmt.Amt['#text'],
-            transactionDetail.AmtDtls.TxAmt.Amt['@_Ccy'],
-          )
-        : undefined;
+      transactionAmount = transactionDetail.AmtDtls.TxAmt?.Amt['#text'];
       transactionCurrency = transactionDetail.AmtDtls.TxAmt?.Amt['@_Ccy'];
   }
 
