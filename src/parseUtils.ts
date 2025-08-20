@@ -26,6 +26,12 @@ export const parseAgent = (agent: any): Agent => {
     } as Agent;
   }
 
+  if (agent.FinInstnId.BICFI) {
+    return {
+      bic: agent.FinInstnId.BICFI,
+    } as Agent;
+  }
+
   return {
     abaRoutingNumber: (agent.FinInstnId.Othr?.Id || agent.FinInstnId.ClrSysMmbId.MmbId).toString(),
   } as Agent;

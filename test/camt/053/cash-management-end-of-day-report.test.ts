@@ -384,18 +384,18 @@ describe('CashManagementEndOfDayReport', () => {
           report = CashManagementEndOfDayReport.fromXML(camt053V2Sample);
 
           // TODO: assert based on the file content
-          // expect(report.messageId).toBe('CAMT053-30223079-20211123020616');
-          // expect(report.creationDate).toBeInstanceOf(Date);
-          // expect(report.recipient).toEqual({
-          //   id: 12345678,
-          //   name: 'ABC Corp.',
-          // });
-          // expect(report).toBeInstanceOf(CashManagementEndOfDayReport);
+          expect(report.messageId).toBe('CAMT053_20250820_03422587_ETSH30M4');
+          expect(report.creationDate).toBeInstanceOf(Date);
+          expect(report.recipient).toEqual({
+            id: '160a4a118f544aba832adf430cebf51e',
+            name: 'Mercury Global',
+          });
+          expect(report).toBeInstanceOf(CashManagementEndOfDayReport);
           //
           // // Synthetic methods (map reduced)
-          // expect(report.statements.length).toBe(1);
+          expect(report.statements.length).toBe(38);
           // expect(report.transactions.length).toBe(1);
-          // expect(report.entries.length).toBe(1);
+          expect(report.entries.length).toBe(90);
           // expect(report.balances.length).toBe(11);
           //
           // // Statement is correct
