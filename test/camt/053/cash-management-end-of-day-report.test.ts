@@ -376,6 +376,60 @@ describe('CashManagementEndOfDayReport', () => {
       });
     });
 
+    describe('with Mercury 053 v2 files', () => {
+      describe('with camt053_v2_1.xml file', () => {
+        it('should create an instance with valid config', () => {
+          xmlFilePath = `${process.cwd()}/test/assets/mercury/camt053_v2_1.xml`;
+          const camt053V2Sample = fs.readFileSync(xmlFilePath, 'utf8');
+          report = CashManagementEndOfDayReport.fromXML(camt053V2Sample);
+
+          // TODO: assert based on the file content
+          // expect(report.messageId).toBe('CAMT053-30223079-20211123020616');
+          // expect(report.creationDate).toBeInstanceOf(Date);
+          // expect(report.recipient).toEqual({
+          //   id: 12345678,
+          //   name: 'ABC Corp.',
+          // });
+          // expect(report).toBeInstanceOf(CashManagementEndOfDayReport);
+          //
+          // // Synthetic methods (map reduced)
+          // expect(report.statements.length).toBe(1);
+          // expect(report.transactions.length).toBe(1);
+          // expect(report.entries.length).toBe(1);
+          // expect(report.balances.length).toBe(11);
+          //
+          // // Statement is correct
+          // const statement = report.statements[0];
+          // expect(statement.id).toBe('1');
+          // expect(statement.creationDate).toBeInstanceOf(Date);
+          // expect(statement.fromDate).toBeInstanceOf(Date);
+          // expect(statement.toDate).toBeInstanceOf(Date);
+          // expect(statement.account).toEqual({
+          //   accountNumber: '7654321',
+          //   currency: 'USD'
+          // });
+          // expect(statement.agent).toEqual({
+          //   "abaRoutingNumber": '71000288'
+          // });
+          //
+          // // Balances
+          // expect(statement.balances.length).toBe(11);
+          // const firstBalance = statement.balances[0];
+          // expect(firstBalance.amount).toBe(26164474.57);
+          // expect(firstBalance.currency).toBe('USD');
+          // expect(firstBalance.creditDebitIndicator).toBe('credit');
+          // expect(firstBalance.date).toBeInstanceOf(Date);
+          //
+          // // Transactions
+          // const transaction = report.transactions[0];
+          // expect(transaction.transactionAmount).toBe(69.69);
+          // expect(transaction.transactionCurrency).toBe('USD');
+          // expect(transaction.instructedAmount).toBe(78.78);
+          // expect(transaction.instructedCurrency).toBe('EUR');
+        });
+      });
+    });
+
     describe('with a non-XML file', () => {
       it('should throw an error', () => {
         expect(() => {

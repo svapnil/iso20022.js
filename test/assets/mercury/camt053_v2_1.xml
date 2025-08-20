@@ -1,0 +1,12559 @@
+<Document
+        xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.11\">
+    <BkToCstmrStmt>\n
+
+        <GrpHdr>\n
+
+            <MsgId>CAMT053_20250820_03422587_ETSH30M4</MsgId>\n
+
+            <CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+            <MsgRcpt>\n
+
+                <Nm>Mercury Global</Nm>\n
+
+                <Id>\n
+
+                    <OrgId>\n
+
+                        <Othr>\n
+
+                            <Id>160a4a118f544aba832adf430cebf51e</Id>\n
+
+                        </Othr>\n
+
+                    </OrgId>\n
+
+                </Id>\n
+
+            </MsgRcpt>\n
+
+            <MsgPgntn>\n
+
+                <PgNb>1</PgNb>\n
+
+                <LastPgInd>true</LastPgInd>\n
+
+            </MsgPgntn>\n
+
+        </GrpHdr>\n
+
+        <Stmt>\n
+
+            <Id>6aa9bb1f9031458184e739ce0e753ef0</Id>\n
+
+            <ElctrncSeqNb>1</ElctrncSeqNb>\n
+
+            <CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+            <FrToDt>\n
+
+                <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+                <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+            </FrToDt>\n
+
+            <Acct>\n
+
+                <Id>\n
+
+                    <IBAN>GB30CLRB04274800099563</IBAN>\n
+
+                </Id>\n
+
+                <Tp>\n
+
+                    <Cd>CACC</Cd>\n
+
+                </Tp>\n
+
+                <Ccy>DKK</Ccy>\n
+
+                <Nm>Gen Seg Mercury Foreign Exchange Limited</Nm>\n
+
+                <Ownr>\n
+
+                    <Nm>Mercury Segregated Client Account</Nm>\n
+
+                </Ownr>\n
+
+                <Svcr>\n
+
+                    <FinInstnId>\n
+
+                        <BICFI>CLRBGB22309</BICFI>\n
+
+                        <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+                    </FinInstnId>\n
+
+                </Svcr>\n
+
+            </Acct>\n
+
+            <Bal>\n
+
+                <Tp>\n
+
+                    <CdOrPrtry>\n
+
+                        <Cd>OPBD</Cd>\n
+
+                    </CdOrPrtry>\n
+
+                </Tp>\n
+
+                <Amt Ccy=\"DKK\">106.46</Amt>\n
+
+            <CdtDbtInd>CRDT</CdtDbtInd>\n
+
+            <Dt>\n
+
+                <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+            </Dt>\n
+
+        </Bal>\n
+
+        <Bal>\n
+
+            <Tp>\n
+
+                <CdOrPrtry>\n
+
+                    <Cd>CLBD</Cd>\n
+
+                </CdOrPrtry>\n
+
+            </Tp>\n
+
+            <Amt Ccy=\"DKK\">106.46</Amt>\n
+
+        <CdtDbtInd>CRDT</CdtDbtInd>\n
+
+        <Dt>\n
+
+            <DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+        </Dt>\n
+
+    </Bal>\n
+
+    <TxsSummry>\n
+
+        <TtlNtries>\n
+
+            <NbOfNtries>0</NbOfNtries>\n
+
+            <TtlNetNtry>\n
+
+                <Amt>0.00</Amt>\n
+
+                <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+            </TtlNetNtry>\n
+
+        </TtlNtries>\n
+
+        <TtlCdtNtries>\n
+
+            <NbOfNtries>0</NbOfNtries>\n
+
+        </TtlCdtNtries>\n
+
+        <TtlDbtNtries>\n
+
+            <NbOfNtries>0</NbOfNtries>\n
+
+        </TtlDbtNtries>\n
+
+    </TxsSummry>\n
+
+</Stmt>\n
+
+<Stmt>\n
+
+<Id>6aa9bb1f9031458184e739ce0e753ef0</Id>\n
+
+<ElctrncSeqNb>1</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB30CLRB04274800099563</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>HUF</Ccy>\n
+
+    <Nm>Gen Seg Mercury Foreign Exchange Limited</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Mercury Segregated Client Account</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"HUF\">25895.26</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"HUF\">25895.26</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6aa9bb1f9031458184e739ce0e753ef0</Id>\n
+
+<ElctrncSeqNb>1</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB30CLRB04274800099563</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>CHF</Ccy>\n
+
+    <Nm>Gen Seg Mercury Foreign Exchange Limited</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Mercury Segregated Client Account</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"CHF\">838.79</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"CHF\">838.79</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6aa9bb1f9031458184e739ce0e753ef0</Id>\n
+
+<ElctrncSeqNb>1</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB30CLRB04274800099563</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>CZK</Ccy>\n
+
+    <Nm>Gen Seg Mercury Foreign Exchange Limited</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Mercury Segregated Client Account</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"CZK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"CZK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6aa9bb1f9031458184e739ce0e753ef0</Id>\n
+
+<ElctrncSeqNb>1</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB30CLRB04274800099563</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>CAD</Ccy>\n
+
+    <Nm>Gen Seg Mercury Foreign Exchange Limited</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Mercury Segregated Client Account</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"CAD\">164203.29</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"CAD\">164203.29</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6aa9bb1f9031458184e739ce0e753ef0</Id>\n
+
+<ElctrncSeqNb>1</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB30CLRB04274800099563</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>NOK</Ccy>\n
+
+    <Nm>Gen Seg Mercury Foreign Exchange Limited</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Mercury Segregated Client Account</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"NOK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"NOK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6aa9bb1f9031458184e739ce0e753ef0</Id>\n
+
+<ElctrncSeqNb>1</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB30CLRB04274800099563</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>RON</Ccy>\n
+
+    <Nm>Gen Seg Mercury Foreign Exchange Limited</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Mercury Segregated Client Account</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"RON\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"RON\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6aa9bb1f9031458184e739ce0e753ef0</Id>\n
+
+<ElctrncSeqNb>1</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB30CLRB04274800099563</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>PLN</Ccy>\n
+
+    <Nm>Gen Seg Mercury Foreign Exchange Limited</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Mercury Segregated Client Account</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"PLN\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"PLN\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6aa9bb1f9031458184e739ce0e753ef0</Id>\n
+
+<ElctrncSeqNb>1</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB30CLRB04274800099563</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>SEK</Ccy>\n
+
+    <Nm>Gen Seg Mercury Foreign Exchange Limited</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Mercury Segregated Client Account</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"SEK\">764.25</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"SEK\">764.25</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6aa9bb1f9031458184e739ce0e753ef0</Id>\n
+
+<ElctrncSeqNb>2</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB30CLRB04274800099563</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>EUR</Ccy>\n
+
+    <Nm>Gen Seg Mercury Foreign Exchange Limited</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Mercury Segregated Client Account</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"EUR\">583586.50</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"EUR\">535283.38</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>3</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>48303.12</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>1</NbOfNtries>\n
+
+    <Sum>7636.88</Sum>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>2</NbOfNtries>\n
+
+    <Sum>55940.00</Sum>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"EUR\">5940.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T08:07:38.836666Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>c440d4704daa47429f4cf4e11f4ef902</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>International</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>c440d4704daa47429f4cf4e11f4ef902</AcctSvcrRef>\n
+
+        <PmtInfId>25-1007</PmtInfId>\n
+
+        <EndToEndId>OPI00042701</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"EUR\">5940.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Alexander Ustyugov s p </Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"EUR\">50000.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T11:02:06.003333Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>379128dbe30a4082b0560837643bbbc8</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>International</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>379128dbe30a4082b0560837643bbbc8</AcctSvcrRef>\n
+
+        <PmtInfId>Intracompany transfer</PmtInfId>\n
+
+        <EndToEndId>OPI00042872</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"EUR\">50000.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"EUR\">7636.88</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T12:58:25.013333Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>ecc8823bf0444ed38a2fff855d800d16</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>Partner 1</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>ecc8823bf0444ed38a2fff855d800d16</AcctSvcrRef>\n
+
+        <PmtInfId>Not Provided</PmtInfId>\n
+
+        <InstrId>PET593458230</InstrId>\n
+
+        <EndToEndId>PET593458230</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"EUR\">7636.88</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>VELOCITY TRADE INTERNATIONAL LIMITE D T/AS VELOCITY TRADE 2ND FLOOR QUEENS HOUSE 8-9 QUEEN ST REET LONDON EC4N 1SP LONDON/GB</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6aa9bb1f9031458184e739ce0e753ef0</Id>\n
+
+<ElctrncSeqNb>3</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB30CLRB04274800099563</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>USD</Ccy>\n
+
+    <Nm>Gen Seg Mercury Foreign Exchange Limited</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Mercury Segregated Client Account</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"USD\">2288713.85</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"USD\">2008912.07</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>6</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>279801.78</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>3</NbOfNtries>\n
+
+    <Sum>4898.22</Sum>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>3</NbOfNtries>\n
+
+    <Sum>284700.00</Sum>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"USD\">135000.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T10:40:07.870Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>a14fe4989b2644728f383ed4d79ed663</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>International</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>a14fe4989b2644728f383ed4d79ed663</AcctSvcrRef>\n
+
+        <PmtInfId>Allectus CLN</PmtInfId>\n
+
+        <EndToEndId>OPI00042877</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"USD\">135000.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Nautilus Data Technologies Inc </Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"USD\">147500.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T12:19:11.746666Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>a2314a48691e4ddfaf05558628a21d9d</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>International</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>a2314a48691e4ddfaf05558628a21d9d</AcctSvcrRef>\n
+
+        <PmtInfId>Purchase of 93 M</PmtInfId>\n
+
+        <EndToEndId>OPI00042665</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"USD\">147500.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Moseley Persaud Attorneys</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"USD\">650.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T12:32:41.533333Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>eedc46a6622e4b759aeed0b4a2f876ac</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>Partner 1</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>eedc46a6622e4b759aeed0b4a2f876ac</AcctSvcrRef>\n
+
+        <PmtInfId>DEBIT REF SWF029116230</PmtInfId>\n
+
+        <InstrId>PET597044230</InstrId>\n
+
+        <EndToEndId>PET597044230</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"USD\">650.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>APG PI LIMITED 1 FREDRICK PLACE CROUCH END LONDON N8 8AF LONDON/GB</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"USD\">650.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T12:32:41.926666Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>01bebac83e53420396106895913d29a7</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>Partner 1</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>01bebac83e53420396106895913d29a7</AcctSvcrRef>\n
+
+        <PmtInfId>DEBIT REF SWF025930230</PmtInfId>\n
+
+        <InstrId>PET652343230</InstrId>\n
+
+        <EndToEndId>PET652343230</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"USD\">650.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>APG PI LIMITED 1 FREDRICK PLACE CROUCH END LONDON N8 8AF LONDON/GB</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"USD\">3598.22</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T13:20:35.610Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>115c3ce2a10b40208830073b33ffbe33</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>Partner 1</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>115c3ce2a10b40208830073b33ffbe33</AcctSvcrRef>\n
+
+        <PmtInfId>DEBIT REF SWF029036230</PmtInfId>\n
+
+        <InstrId>PET596752230</InstrId>\n
+
+        <EndToEndId>PET596752230</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"USD\">3598.22</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>VELOCITY TRADE INTERNATIONAL LIMITE D T/AS VELOCITY TRADE 2ND FLOOR QUEENS HOUSE 8-9 QUEEN ST REET LONDON EC4N 1SP LONDON/GB</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"USD\">2200.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T13:25:11.036666Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>35e75e0a8d414570ae411a7592728a73</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>International</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>35e75e0a8d414570ae411a7592728a73</AcctSvcrRef>\n
+
+        <PmtInfId>Other</PmtInfId>\n
+
+        <EndToEndId>OPI00042885</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"USD\">2200.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Arie Capital Investment  ACBM  Ltd</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6d7453c2644846c796026b75b2c43988</Id>\n
+
+<ElctrncSeqNb>4</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB83CLRB04274819586200</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>DKK</Ccy>\n
+
+    <Nm>Institution Operating</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Operating</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"DKK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"DKK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6d7453c2644846c796026b75b2c43988</Id>\n
+
+<ElctrncSeqNb>4</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB83CLRB04274819586200</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>HUF</Ccy>\n
+
+    <Nm>Institution Operating</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Operating</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"HUF\">14845.74</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"HUF\">14845.74</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6d7453c2644846c796026b75b2c43988</Id>\n
+
+<ElctrncSeqNb>4</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB83CLRB04274819586200</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>CHF</Ccy>\n
+
+    <Nm>Institution Operating</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Operating</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"CHF\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"CHF\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6d7453c2644846c796026b75b2c43988</Id>\n
+
+<ElctrncSeqNb>4</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB83CLRB04274819586200</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>CZK</Ccy>\n
+
+    <Nm>Institution Operating</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Operating</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"CZK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"CZK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6d7453c2644846c796026b75b2c43988</Id>\n
+
+<ElctrncSeqNb>4</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB83CLRB04274819586200</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>CAD</Ccy>\n
+
+    <Nm>Institution Operating</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Operating</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"CAD\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"CAD\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6d7453c2644846c796026b75b2c43988</Id>\n
+
+<ElctrncSeqNb>4</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB83CLRB04274819586200</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>EUR</Ccy>\n
+
+    <Nm>Institution Operating</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Operating</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"EUR\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"EUR\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6d7453c2644846c796026b75b2c43988</Id>\n
+
+<ElctrncSeqNb>4</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB83CLRB04274819586200</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>NOK</Ccy>\n
+
+    <Nm>Institution Operating</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Operating</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"NOK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"NOK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6d7453c2644846c796026b75b2c43988</Id>\n
+
+<ElctrncSeqNb>4</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB83CLRB04274819586200</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>RON</Ccy>\n
+
+    <Nm>Institution Operating</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Operating</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"RON\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"RON\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6d7453c2644846c796026b75b2c43988</Id>\n
+
+<ElctrncSeqNb>4</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB83CLRB04274819586200</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>PLN</Ccy>\n
+
+    <Nm>Institution Operating</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Operating</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"PLN\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"PLN\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6d7453c2644846c796026b75b2c43988</Id>\n
+
+<ElctrncSeqNb>4</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB83CLRB04274819586200</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>USD</Ccy>\n
+
+    <Nm>Institution Operating</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Operating</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"USD\">5630.84</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"USD\">5630.84</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>6d7453c2644846c796026b75b2c43988</Id>\n
+
+<ElctrncSeqNb>4</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB83CLRB04274819586200</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>SEK</Ccy>\n
+
+    <Nm>Institution Operating</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Operating</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"SEK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"SEK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>8cd449a28bb24afbbcefc6031f4e7a5e</Id>\n
+
+<ElctrncSeqNb>5</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB43CLRB04082700000014</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>GBP</Ccy>\n
+
+    <Nm>Gen Seg Acc Wsale - Mercury Foreign Exchange Limited</Nm>\n
+
+    <Ownr />\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"GBP\">1571547.93</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"GBP\">1470706.86</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>9</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>100841.07</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>5</NbOfNtries>\n
+
+    <Sum>47923.00</Sum>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>4</NbOfNtries>\n
+
+    <Sum>148764.07</Sum>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">46464.07</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T07:41:54.603Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>17c2668e29654039b5869c7b31ad4a7a</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>17c2668e29654039b5869c7b31ad4a7a</AcctSvcrRef>\n
+
+        <PmtInfId>INV171</PmtInfId>\n
+
+        <InstrId>2024599bfed742fc9f10202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042669</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">46464.07</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Larkshead Licensing</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB22ARBU30139351975301</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Larkshead Licensing</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">95000.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T07:41:55.197Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>27ce94f1443b4d228db06af16acd3cbb</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>27ce94f1443b4d228db06af16acd3cbb</AcctSvcrRef>\n
+
+        <PmtInfId>ICM-ICMIM</PmtInfId>\n
+
+        <InstrId>dc312d337b934c649810202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042645</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">95000.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>ICM Investment Management Limited</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB02MYMB23058015872397</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>ICM Investment Management Limited</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">20000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T07:48:33.153Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>a0bc1a2707504208acc58017f355fb0b</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>Chaps</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>a0bc1a2707504208acc58017f355fb0b</AcctSvcrRef>\n
+
+        <PmtInfId>NOTPROVIDED  PROFESSIONAL FEES APR </PmtInfId>\n
+
+        <InstrId>NWBDM2I86137569</InstrId>\n
+
+        <EndToEndId>II-NWBDM2I86137569</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">20000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>AE230351001326903454004</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>MEGACORP AVIATION CONSULTANTS FZE</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">250.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T08:11:50.110Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>0814233a5eb54258a03a891c70c703fd</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>0814233a5eb54258a03a891c70c703fd</AcctSvcrRef>\n
+
+        <PmtInfId>MFXNUW6402</PmtInfId>\n
+
+        <InstrId>PUJEHU28C2KND1MITH10202508188260400</InstrId>\n
+
+        <EndToEndId>c7165b08af5f46378f4de7f7b7b62ac7</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">250.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB67MONZ04000391813501</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>NUWAY CAPITAL LTD</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">8090.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T11:38:08.597Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>89b346256b78413fb1c4cad016b17eb8</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>89b346256b78413fb1c4cad016b17eb8</AcctSvcrRef>\n
+
+        <PmtInfId>RICH</PmtInfId>\n
+
+        <InstrId>40000000161867911610202508188263099</InstrId>\n
+
+        <EndToEndId>af8be50076344432a9cf1157c5948075</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">8090.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB72LOYD30995075509368</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>NUWAY CAPITAL LTD</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">7000.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T13:09:56.077Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>4c9c22a65d0e4571ba12412080a2331d</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>4c9c22a65d0e4571ba12412080a2331d</AcctSvcrRef>\n
+
+        <PmtInfId>Transfer</PmtInfId>\n
+
+        <InstrId>be3816f187e04031b510202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042908</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">7000.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Nuway Capital Ltd</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB67MONZ04000391813501</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Nuway Capital Ltd</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">300.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T13:09:56.403Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>6f9d84b2aab6464aae723d67d27addce</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>6f9d84b2aab6464aae723d67d27addce</AcctSvcrRef>\n
+
+        <PmtInfId>Dir Loan</PmtInfId>\n
+
+        <InstrId>66693bdb5e6e4a539210202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042909</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">300.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>William Fielding</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB93REVO04007512186236</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>William Fielding</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">11500.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T16:30:47.020Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>aa541b10898a4667a83e20437a39fbab</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>aa541b10898a4667a83e20437a39fbab</AcctSvcrRef>\n
+
+        <InstrId>50000000161401829010202508188263067</InstrId>\n
+
+        <EndToEndId>42152576f1f34e70be83bcf3ea944418</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">11500.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB04LOYD30679916267963</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>M Argyle</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">8083.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-19T01:36:02.250Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>95b6a50e12394772bc3ef0aaa7c9d3f1</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>95b6a50e12394772bc3ef0aaa7c9d3f1</AcctSvcrRef>\n
+
+        <PmtInfId>LONDON FIN OS PAY</PmtInfId>\n
+
+        <InstrId>07023221385544000N40202508198266009</InstrId>\n
+
+        <EndToEndId>0c129b164b604a938975db7987bef70b</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">8083.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB68NWBK60093978685435</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>NEVILLE REGISTRARS</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>a139aeeb5c1e43ff994eccb1467b57a0</Id>\n
+
+<ElctrncSeqNb>6</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB84CLRB04082700000052</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>GBP</Ccy>\n
+
+    <Nm>Bacs Suspense Account</Nm>\n
+
+    <Ownr />\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"GBP\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"GBP\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>dfc232d43278441081b8bd083de8444e</Id>\n
+
+<ElctrncSeqNb>7</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB53CLRB04082700000028</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>GBP</Ccy>\n
+
+    <Nm>Operating Account</Nm>\n
+
+    <Ownr />\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"GBP\">46289.93</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"GBP\">45512.04</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>2</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>777.89</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>2</NbOfNtries>\n
+
+    <Sum>777.89</Sum>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">4.86</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T04:09:36.183Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>78c5b8aba9c746e6882924bcdf96aa05</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>Transfer</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>78c5b8aba9c746e6882924bcdf96aa05</AcctSvcrRef>\n
+
+        <PmtInfId>ClearBank Charges</PmtInfId>\n
+
+        <InstrId>78c5b8aba9c746e6882924bcdf96aa05</InstrId>\n
+
+        <EndToEndId>78c5b8aba9c746e6882924bcdf96aa05</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">4.86</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB17CLRB04040500000035</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>ClearBank Current Account</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">773.03</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-19T03:08:00.307Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>b93daa0bc3f646be8146c0361ac76569</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>Bacs</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>b93daa0bc3f646be8146c0361ac76569</AcctSvcrRef>\n
+
+        <PmtInfId>04C00355VZ15-10001</PmtInfId>\n
+
+        <InstrId>0408270000002804C00355VZ15-10001040</InstrId>\n
+
+        <EndToEndId>63f07b32c4e040d0b69eb4ea80b14de2</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">773.03</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>PREMIUM CREDIT LTD</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>PREMIUM CREDIT LTD</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>e579cb6411ca4ee1a1c70c1a9df4e919</Id>\n
+
+<ElctrncSeqNb>8</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB31CLRB04082700002849</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>GBP</Ccy>\n
+
+    <Nm>Gen Seg Acc Wsale - Mercury Foreign Exchange Limited - CoinCorner Ltd</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>COINCORNER LTD</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"GBP\">2079563.74</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"GBP\">3468376.87</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>70</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>1388813.13</Amt>\n
+
+        <CdtDbtInd>CRDT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>43</NbOfNtries>\n
+
+    <Sum>1781992.88</Sum>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>27</NbOfNtries>\n
+
+    <Sum>393179.75</Sum>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">36.93</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T04:25:22.733Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>b26cae4b624841a385b197e14012eea2</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>b26cae4b624841a385b197e14012eea2</AcctSvcrRef>\n
+
+        <PmtInfId>Payment</PmtInfId>\n
+
+        <InstrId>e03646b032f04ac29f10202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042851</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">36.93</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Jack Tartan</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB60MYMB23058020357894</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Jack Tartan</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">198.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T05:53:32.403Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>ab861513660c4e78aa7ee196653ac03a</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>ab861513660c4e78aa7ee196653ac03a</AcctSvcrRef>\n
+
+        <PmtInfId>Payment</PmtInfId>\n
+
+        <InstrId>0be9ca78ecc34bcdb910202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042856</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">198.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Ian Scanlon</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB46NAIA07043616056668</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Ian Scanlon</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">250.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T06:09:43.053Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>d41f99da1f27474dade9edfd9219fd9b</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>d41f99da1f27474dade9edfd9219fd9b</AcctSvcrRef>\n
+
+        <PmtInfId>DCA476882</PmtInfId>\n
+
+        <InstrId>REV55497381780476210202508188260429</InstrId>\n
+
+        <EndToEndId>1eeaffe9b1a54c3fbe92adb54364b37a</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">250.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB52REVO04290922383174</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>EOT HQ LTD</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">40000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T06:10:36.813Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>9077a93489c043958320d89a2bae49a3</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>9077a93489c043958320d89a2bae49a3</AcctSvcrRef>\n
+
+        <PmtInfId>450922</PmtInfId>\n
+
+        <InstrId>72712080329061800140202508188264007</InstrId>\n
+
+        <EndToEndId>5eef7194b2d7471c9ab3e9544c823dd9</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">40000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB39HBUK40073072580144</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>LIFE SCIENCE</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">100.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T07:10:03.610Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>a958cf38de08449d99f765ea55469d80</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>a958cf38de08449d99f765ea55469d80</AcctSvcrRef>\n
+
+        <PmtInfId>DCA 464785</PmtInfId>\n
+
+        <InstrId>REV55501002295219810202508188260400</InstrId>\n
+
+        <EndToEndId>07446a5042df49d69a97277cef493030</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">100.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB23REVO04007502675870</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>Yannick Chenot</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">75.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T07:17:15.397Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>027e001a0fef4fd7a9ae4a9711587ee0</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>027e001a0fef4fd7a9ae4a9711587ee0</AcctSvcrRef>\n
+
+        <PmtInfId>Shaun BTC</PmtInfId>\n
+
+        <InstrId>P6WM88HA4WP3FYHZ1H10202508188260400</InstrId>\n
+
+        <EndToEndId>94500f9986364a79b83c5c94be7e7447</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">75.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB06MONZ04000482153900</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>Shaun Fender</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">250.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T07:19:25.800Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>d5556582a4554446a9f9d3845847388b</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>d5556582a4554446a9f9d3845847388b</AcctSvcrRef>\n
+
+        <PmtInfId>DCA 445424</PmtInfId>\n
+
+        <InstrId>REV55501564479629210202508188260429</InstrId>\n
+
+        <EndToEndId>508ed6b956994efdaf96413c21879b03</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">250.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB72REVO04290966043387</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>Jasjit Singh</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">100.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T07:21:08.777Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>89058a60dc08489ca068b11d8497ee3c</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>89058a60dc08489ca068b11d8497ee3c</AcctSvcrRef>\n
+
+        <PmtInfId>DCA 484761</PmtInfId>\n
+
+        <InstrId>TW000000146147565410202508188262308</InstrId>\n
+
+        <EndToEndId>92a78a220fb7454e8a731da4d8fc9550</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">100.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB03TRWI23080193789413</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>Next Slim Thing Ltd</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">10.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T07:54:21.140Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>3fa8517759e14f52ba1ccded26725b4a</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>3fa8517759e14f52ba1ccded26725b4a</AcctSvcrRef>\n
+
+        <PmtInfId>DCA 465597</PmtInfId>\n
+
+        <InstrId>REV55503659391938210202508188260400</InstrId>\n
+
+        <EndToEndId>fe17c677fa074027923e4c4fdd6fce1a</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">10.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB41REVO04007539271900</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>Rebecca Kaye</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">4650.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T07:54:38.943Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>a8e9b2bdaecf48cfa5b7d6c5ba40c2da</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>a8e9b2bdaecf48cfa5b7d6c5ba40c2da</AcctSvcrRef>\n
+
+        <PmtInfId>AlanEw</PmtInfId>\n
+
+        <InstrId>f9024e19c9864b18a610202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042866</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">4650.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Alan Ewbank</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB81MONZ04000340576588</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Alan Ewbank</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">30141.65</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T07:58:57.777Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>2467464658e646ddb11229afdbb2c03d</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>2467464658e646ddb11229afdbb2c03d</AcctSvcrRef>\n
+
+        <PmtInfId>KG Savings</PmtInfId>\n
+
+        <InstrId>53b8d484cc4f41febd10202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042868</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">30141.65</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Kevin Graham</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB56ABBY09012853371068</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Kevin Graham</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">7.91</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T08:16:39.507Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>f2b35fd973ec4eb89ddb6af2525e8b02</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>f2b35fd973ec4eb89ddb6af2525e8b02</AcctSvcrRef>\n
+
+        <PmtInfId>Payment</PmtInfId>\n
+
+        <InstrId>5189b3275d9643f5a710202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042870</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">7.91</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Lee Pickering</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB90HLFX11000109336779</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Lee Pickering</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">5063.46</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T08:40:37.663Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>45fcbebd42f24d3daf521806210ab111</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>45fcbebd42f24d3daf521806210ab111</AcctSvcrRef>\n
+
+        <PmtInfId>CCUKSI</PmtInfId>\n
+
+        <InstrId>86e1063208f4440b8b10202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042876</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">5063.46</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Tamir Ishkanes</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB48HBUK40011351221477</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Tamir Ishkanes</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">300000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T08:41:05.993Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>76d589d41f73468a9d46f36d18798a57</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>Transfer</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>76d589d41f73468a9d46f36d18798a57</AcctSvcrRef>\n
+
+        <PmtInfId>B2C2 Settlement</PmtInfId>\n
+
+        <InstrId>3ce18a8b0b454632ae10202508188260405</InstrId>\n
+
+        <EndToEndId>bad840424cae4cee8eb55f34eea2736a</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">300000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Dbtr>\n
+
+        <Pty>\n
+
+            <Nm>B2C2 OVERSEAS LTD.</Nm>\n
+
+        </Pty>\n
+
+    </Dbtr>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB33BCPY04054100003836</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>Des Seg Acc Wsale - B2C2 Overseas Ltd.</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">100000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T08:41:06.043Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>cd352c73ef694673ab077fc167b0c6c6</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>Transfer</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>cd352c73ef694673ab077fc167b0c6c6</AcctSvcrRef>\n
+
+        <PmtInfId>B2C2 Settlement</PmtInfId>\n
+
+        <InstrId>5834a8557f2a4a069710202508188260405</InstrId>\n
+
+        <EndToEndId>f344f9f480204cf6ac970ce16f0068f9</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">100000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Dbtr>\n
+
+        <Pty>\n
+
+            <Nm>B2C2 OVERSEAS LTD.</Nm>\n
+
+        </Pty>\n
+
+    </Dbtr>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB33BCPY04054100003836</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>Des Seg Acc Wsale - B2C2 Overseas Ltd.</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">1200000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T08:43:21.363Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>4d69013f842c45f2a52c4e3cc4922ff3</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>Chaps</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>4d69013f842c45f2a52c4e3cc4922ff3</AcctSvcrRef>\n
+
+        <PmtInfId>DMW-XV68869-1  Alex Holt</PmtInfId>\n
+
+        <InstrId>PET531021230</InstrId>\n
+
+        <EndToEndId>II-PET531021230</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">1200000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB20BARC20267493259692</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>MR ALEXANDER ROBERT HOLT, MRS ALISO</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">71.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T08:53:32.837Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>373339246b874b3b9d1ce931adcc1d82</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>373339246b874b3b9d1ce931adcc1d82</AcctSvcrRef>\n
+
+        <PmtInfId>DCA 366786</PmtInfId>\n
+
+        <InstrId>PWGOX7104TYLW1ZM4C10202508188260400</InstrId>\n
+
+        <EndToEndId>60ae0729051d4d68994e9a0313546b1d</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">71.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB39MONZ04000478932809</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>Bruno Nardi</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">50000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T09:04:06.210Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>e028d4fe9087499e91148f7ad89172a6</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>e028d4fe9087499e91148f7ad89172a6</AcctSvcrRef>\n
+
+        <PmtInfId>HSBC transfer</PmtInfId>\n
+
+        <InstrId>37836940400181800110202508188264025</InstrId>\n
+
+        <EndToEndId>0a4195832f02406fa340cf14fb5125d6</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">50000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB32HBUK40250311322583</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>PATTERSON C</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">2500.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T09:22:18.890Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>8b6388a720704935ac89f8b2e45c2154</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>8b6388a720704935ac89f8b2e45c2154</AcctSvcrRef>\n
+
+        <PmtInfId>DCA 435055</PmtInfId>\n
+
+        <InstrId>56516671220181800110202508188264006</InstrId>\n
+
+        <EndToEndId>2dc78515d5dc46859ceaf1b283148c4c</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">2500.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB37HBUK40062152786168</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>ORTIZ SANCHE</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">2000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T09:46:15.863Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>796a697b7d1b420689d764fad228b191</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>796a697b7d1b420689d764fad228b191</AcctSvcrRef>\n
+
+        <InstrId>30000000161720262310202508188263015</InstrId>\n
+
+        <EndToEndId>6bc1799cafe94428b4ac00869dbac958</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">2000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB23LOYD30155389626168</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>PERFECT AQUATICS L</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">185.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T09:53:10.883Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>7db136210aa54099864d14299535c658</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>7db136210aa54099864d14299535c658</AcctSvcrRef>\n
+
+        <PmtInfId>79317</PmtInfId>\n
+
+        <InstrId>25081810530995678510202508188268737</InstrId>\n
+
+        <EndToEndId>1e20baeba7e04b5db2735ce7a6a45bd4</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">185.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB91TSBS87371684270468</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>Andrew Elliot</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">165.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T09:58:47.343Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>74fd2deb6d624ed98695be709fcb50f8</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>74fd2deb6d624ed98695be709fcb50f8</AcctSvcrRef>\n
+
+        <PmtInfId>COINCORNER</PmtInfId>\n
+
+        <InstrId>89394762254358607 10202508188260704</InstrId>\n
+
+        <EndToEndId>ddb70c77d943463a8b77e4ada6a9b956</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">165.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB78NAIA07080602540697</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>Ryan Seymour</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">880.88</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T09:59:51.200Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>0620bc5b1f3141ec83d5d8d2bb6899a1</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>0620bc5b1f3141ec83d5d8d2bb6899a1</AcctSvcrRef>\n
+
+        <PmtInfId>COINCORNER PS</PmtInfId>\n
+
+        <InstrId>30000000161721058710202508188263099</InstrId>\n
+
+        <EndToEndId>941aa38a961b4b97b4460e871290237e</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">880.88</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB83LOYD30995033812362</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>POKE STOP LTD</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">20.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T10:03:11.050Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>ed1a248d14394e4f926ce5a8a8e9659a</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>ed1a248d14394e4f926ce5a8a8e9659a</AcctSvcrRef>\n
+
+        <PmtInfId>Sent from Revolut</PmtInfId>\n
+
+        <InstrId>REV55511389787431610202508188260400</InstrId>\n
+
+        <EndToEndId>5cbe12c604d74d8081714c4c0160fe88</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">20.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB35REVO04007553793684</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>Francis Paul Arellano</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">692.01</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T10:13:42.160Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>ca6be2fddc2049959030462924278613</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>ca6be2fddc2049959030462924278613</AcctSvcrRef>\n
+
+        <PmtInfId>Payment</PmtInfId>\n
+
+        <InstrId>e82f0bed940c495b9110202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042887</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">692.01</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Julian Adutwim</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB57HLFX11064701723800</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Julian Adutwim</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">6500.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T10:34:46.683Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>21500fc7ccb94650a7f06882c2b58f18</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>21500fc7ccb94650a7f06882c2b58f18</AcctSvcrRef>\n
+
+        <PmtInfId>Btctransfet</PmtInfId>\n
+
+        <InstrId>ba6086c92ff74f1f9310202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042891</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">6500.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Dave Chapman</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB37NWBK56000321587493</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Dave Chapman</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">25000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T11:30:01.627Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>178a953e68c8410499496ea9a3f5b0df</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>178a953e68c8410499496ea9a3f5b0df</AcctSvcrRef>\n
+
+        <PmtInfId>B HODL HERBERT</PmtInfId>\n
+
+        <InstrId>04783065428081800140202508188264019</InstrId>\n
+
+        <EndToEndId>9e0fadd85ab444c7923cf17da87aeb87</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">25000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB36MIDL40193812203847</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>HERBERT R&amp;D</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">2000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T11:41:52.923Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>d8d4616dde3a4c94908a56075bbcbf0e</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>Chaps</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>d8d4616dde3a4c94908a56075bbcbf0e</AcctSvcrRef>\n
+
+        <PmtInfId>NOTPROVIDED</PmtInfId>\n
+
+        <InstrId>PET640763230</InstrId>\n
+
+        <EndToEndId>II-PET640763230</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">2000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GI88MOYP000008300826063</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>ASIAN BGE (ISLE OF MAN) LIMITED</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">40.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T11:48:37.840Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>0fdbdae2d75f4b468dcf449c1d09ca5e</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>0fdbdae2d75f4b468dcf449c1d09ca5e</AcctSvcrRef>\n
+
+        <PmtInfId>COINCORNER</PmtInfId>\n
+
+        <InstrId>57124836661371000N10202508188265410</InstrId>\n
+
+        <EndToEndId>90b7ed9eae8f42998640c3598529642c</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">40.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB18NWBK54102336868078</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>FOAD A</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">298552.31</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T11:58:35.360Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>1f806d4506bd4019a45b086055635623</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>1f806d4506bd4019a45b086055635623</AcctSvcrRef>\n
+
+        <PmtInfId>MC Rejuvenation</PmtInfId>\n
+
+        <InstrId>76b959349f094fc3ab10202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042883</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">298552.31</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>MC Rejuvenation Global Ltd</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB88SBIC40485212278599</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>MC Rejuvenation Global Ltd</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">13024.70</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T11:59:04.097Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>14ec77fb5bc94c489212f8f18b34126e</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>14ec77fb5bc94c489212f8f18b34126e</AcctSvcrRef>\n
+
+        <PmtInfId>KG Savings</PmtInfId>\n
+
+        <InstrId>a3804c9fd0b24239b510202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042896</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">13024.70</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Kevin Graham</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB56ABBY09012853371068</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Kevin Graham</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">258.49</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T11:59:17.473Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>d10698b4650a484ca7169e267b1629a5</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>d10698b4650a484ca7169e267b1629a5</AcctSvcrRef>\n
+
+        <PmtInfId>U2685892</PmtInfId>\n
+
+        <InstrId>e82bc49efa23406da610202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042898</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">258.49</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>MANX UTILITIES AUTH</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB92RBOS55910010955461</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>MANX UTILITIES AUTH</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">168.54</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T11:59:17.500Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>8ba3a1430c6f4dfda3609ed70231382f</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>8ba3a1430c6f4dfda3609ed70231382f</AcctSvcrRef>\n
+
+        <PmtInfId>Payment</PmtInfId>\n
+
+        <InstrId>a7bd0f97d1c04f289a10202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042897</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">168.54</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Joseph  Harding</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB29HBUK40083981844598</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Joseph  Harding</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">6000.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T12:01:35.880Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>2ef08365cc5b44cda83cf96cda730370</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>2ef08365cc5b44cda83cf96cda730370</AcctSvcrRef>\n
+
+        <PmtInfId>Sharon</PmtInfId>\n
+
+        <InstrId>4c7c2e84a7a6404c8b10202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042901</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">6000.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Sharon Breslin</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB37RBOS55910057196060</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Sharon Breslin</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">2999.10</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T12:02:37.573Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>b3b689643a04431f87a5ad37084848c4</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>b3b689643a04431f87a5ad37084848c4</AcctSvcrRef>\n
+
+        <PmtInfId>Payment</PmtInfId>\n
+
+        <InstrId>edd679f9e23848afbf10202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042904</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">2999.10</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Yesar Almousawi</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB86HLFX11082701070147</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Yesar Almousawi</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">4949.82</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T12:02:38.657Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>8932448873d74f50ad729a04b63271f0</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>8932448873d74f50ad729a04b63271f0</AcctSvcrRef>\n
+
+        <PmtInfId>CC to REV MID AUG</PmtInfId>\n
+
+        <InstrId>3f57f76e5cc344e69610202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042902</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">4949.82</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Mark Holland</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB84REVO04007508208719</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Mark Holland</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">215.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T12:50:40.183Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>fad54b18692a4cdbb49b06a95764b03f</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>fad54b18692a4cdbb49b06a95764b03f</AcctSvcrRef>\n
+
+        <InstrId>P716O7BC6IZKUIILFS10202508188260400</InstrId>\n
+
+        <EndToEndId>e4e8efc471904db1bb45b31629d69b42</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">215.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB62MONZ04000399070064</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>Jack Talbot</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">2954.31</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T12:56:51.647Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>bb88ec17f00743d19b18878c83ecd04a</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>bb88ec17f00743d19b18878c83ecd04a</AcctSvcrRef>\n
+
+        <PmtInfId>Jim Loan</PmtInfId>\n
+
+        <InstrId>687f233d5da842b99210202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042914</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">2954.31</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>James Finnegan</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB77DABA95039200192767</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>James Finnegan</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">1000.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T12:57:40.290Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>1162908987894637b67fb72ae6500072</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>1162908987894637b67fb72ae6500072</AcctSvcrRef>\n
+
+        <PmtInfId>MarkVe</PmtInfId>\n
+
+        <InstrId>c76624c1e5cc4760b110202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042915</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">1000.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Mark Vernon</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB69ABBY09012788205555</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Mark Vernon</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">10.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T13:02:34.290Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>ce4c99df0e5e40fcad3a10744b482449</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>ce4c99df0e5e40fcad3a10744b482449</AcctSvcrRef>\n
+
+        <PmtInfId>DCA 465597  guy wi</PmtInfId>\n
+
+        <InstrId>REV55522152781296410202508188260400</InstrId>\n
+
+        <EndToEndId>bed9b07e21814d43badcebdcb105cc99</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">10.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB41REVO04007539271900</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>Rebecca Kaye</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">2000.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T13:39:53.847Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>8707b2a7275f452c99c6301b42631db4</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>8707b2a7275f452c99c6301b42631db4</AcctSvcrRef>\n
+
+        <PmtInfId>Payment</PmtInfId>\n
+
+        <InstrId>0441e723101c4128b710202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042922</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">2000.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Ian Saville</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB27BUKB20508290863750</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Ian Saville</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">300.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T13:40:14.960Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>913d9869075c426ca2938830a0bf8a22</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>913d9869075c426ca2938830a0bf8a22</AcctSvcrRef>\n
+
+        <PmtInfId>465184</PmtInfId>\n
+
+        <InstrId>RP465998026230320010202508188262000</InstrId>\n
+
+        <EndToEndId>a4968842ac39489e9912d2bf2a820f36</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">300.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB91BUKB20632533462269</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>OUSELEY NJ</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">255.39</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T13:54:54.023Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>01c885eb70bf41d9b119394d70f79c8c</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>01c885eb70bf41d9b119394d70f79c8c</AcctSvcrRef>\n
+
+        <PmtInfId>Payment</PmtInfId>\n
+
+        <InstrId>c713df70db744f70ac10202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042924</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">255.39</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Arthur Mangolini</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB45BARC20267433917649</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Arthur Mangolini</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">20.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T14:01:28.193Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>b0e45c6af2ef48528fa23397eaf24687</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>b0e45c6af2ef48528fa23397eaf24687</AcctSvcrRef>\n
+
+        <PmtInfId>DCA 402498</PmtInfId>\n
+
+        <InstrId>FO250818150000211140202508188260901</InstrId>\n
+
+        <EndToEndId>e34e224e48a14af78a76f470b3dc00da</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">20.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB22ABBY09012746679246</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>MR DANIEL THOMAS N</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">11668.06</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T14:08:54.500Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>358e265e8bd54193930ca323bff024cd</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>358e265e8bd54193930ca323bff024cd</AcctSvcrRef>\n
+
+        <PmtInfId>MBoothCC</PmtInfId>\n
+
+        <InstrId>5ce15ffa4b804e9c9c10202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042927</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">11668.06</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Margarethe Booth</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB18NAIA07043626644916</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Margarethe Booth</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">166.53</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T14:42:56.743Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>0ad6140922b34eb3bea2c3012c388e81</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>0ad6140922b34eb3bea2c3012c388e81</AcctSvcrRef>\n
+
+        <PmtInfId>Payment</PmtInfId>\n
+
+        <InstrId>909aece896ea47c88810202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042930</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">166.53</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Ali Mahmood</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB37NWBK01032533646481</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Ali Mahmood</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">500.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T14:52:12.787Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>68ca095a00294026b5fdcb32706e6739</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>68ca095a00294026b5fdcb32706e6739</AcctSvcrRef>\n
+
+        <PmtInfId>MARK JOHNSON</PmtInfId>\n
+
+        <InstrId>23131484891952194 10202508188260704</InstrId>\n
+
+        <EndToEndId>2268b431b86c4c48af32d4b4a70f90d7</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">500.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB68NAIA07122603232417</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>Mark Johnson</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">832.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T14:53:57.310Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>f1b820b109b847779d31043d0aeb2347</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>f1b820b109b847779d31043d0aeb2347</AcctSvcrRef>\n
+
+        <PmtInfId>Payment</PmtInfId>\n
+
+        <InstrId>d5db665a92ea44138b10202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042932</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">832.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Craig Simons</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB17MONZ04000453571585</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Craig Simons</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">5000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T15:01:04.943Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>23428e564b1a4305900a28138d37050f</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>23428e564b1a4305900a28138d37050f</AcctSvcrRef>\n
+
+        <PmtInfId>B HODL S MAXWELL</PmtInfId>\n
+
+        <InstrId>RP465998027285900010202508188262000</InstrId>\n
+
+        <EndToEndId>d4451d3e65744d219073ed425e57b579</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">5000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB74BARC20267453776131</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>SKELCHER-MAXWELL</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">50000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T15:12:26.293Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>16d6e9639e224417946e1a210b20a387</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>16d6e9639e224417946e1a210b20a387</AcctSvcrRef>\n
+
+        <PmtInfId>B HODL MAYBIN</PmtInfId>\n
+
+        <InstrId>RP465998027436480010202508188262000</InstrId>\n
+
+        <EndToEndId>12ccf392b5204539ab79befe2d64500b</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">50000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB47BARC20267443202453</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>MAYBIN ND</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">97.76</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T15:29:57.773Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>5016703293484d1ebf3742391d4287fe</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>5016703293484d1ebf3742391d4287fe</AcctSvcrRef>\n
+
+        <PmtInfId>mymoney</PmtInfId>\n
+
+        <InstrId>f80c06c739a44ecf9310202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042938</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">97.76</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Ross Park</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB15REVO04290973418838</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Ross Park</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">200.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T15:36:06.837Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>287fd8cc0da84f1997b341188e63f7c0</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>287fd8cc0da84f1997b341188e63f7c0</AcctSvcrRef>\n
+
+        <PmtInfId>CC</PmtInfId>\n
+
+        <InstrId>RP465998027753030010202508188262000</InstrId>\n
+
+        <EndToEndId>6781259d69b54a82b90efef31f84e604</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">200.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB42BUKB20258550679690</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>OGDEN JC</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">792.08</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T15:45:58.723Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>57d6acbb4bb5446493bc5fcff5b2e7d4</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>57d6acbb4bb5446493bc5fcff5b2e7d4</AcctSvcrRef>\n
+
+        <PmtInfId>Withdraw</PmtInfId>\n
+
+        <InstrId>0b8f64b2558b4d6da710202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042942</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">792.08</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Christopher Allan</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB83HBUK40352652036614</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Christopher Allan</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">820.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T16:13:10.823Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>0fba9e5193d84269af17da28c49a47b1</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>0fba9e5193d84269af17da28c49a47b1</AcctSvcrRef>\n
+
+        <PmtInfId>491286</PmtInfId>\n
+
+        <InstrId>00151512632BBJSLTY10202508188260901</InstrId>\n
+
+        <EndToEndId>3c62d55c1a2d4b88a552dfe2f461d912</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">820.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB81ABBY09012659740770</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>ANTHONY ANDREWS</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">71.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T16:30:56.257Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>18176962c74a486283f7cd2809fb0281</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>18176962c74a486283f7cd2809fb0281</AcctSvcrRef>\n
+
+        <PmtInfId>Payment</PmtInfId>\n
+
+        <InstrId>2f7b18b233244885bf10202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042946</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">71.00</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Jack Tartan</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB60MYMB23058020357894</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Jack Tartan</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">250.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T16:38:05.707Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>14929f95ac014b5db7211e4b248e92cf</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>14929f95ac014b5db7211e4b248e92cf</AcctSvcrRef>\n
+
+        <InstrId>20000000161002144110202508188263093</InstrId>\n
+
+        <EndToEndId>81307ce7087544568bdb6ca37b0d8066</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">250.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB06LOYD30936141718360</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>T Raine</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">100.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T19:19:24.553Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>8802fd70bbb94d308b410d07d04d8482</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>8802fd70bbb94d308b410d07d04d8482</AcctSvcrRef>\n
+
+        <PmtInfId>PAYMENT</PmtInfId>\n
+
+        <InstrId>35201923809904000N10202508188265591</InstrId>\n
+
+        <EndToEndId>0b480c30f5fc4d159e302fb2c0d0de0d</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">100.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB50RBOS55910413099981</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>LAKIN ZJ</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">140.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T19:46:00.493Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>a498841c885146129b661675ec5bdcf7</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>a498841c885146129b661675ec5bdcf7</AcctSvcrRef>\n
+
+        <PmtInfId>COIN</PmtInfId>\n
+
+        <InstrId>54204559651651000N10202508188265591</InstrId>\n
+
+        <EndToEndId>2835fa1a023b444cb391fd454471e6fc</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">140.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB70RBOS55910012789836</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>SAUNDERS ST</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">49.85</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T21:37:10.703Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>1bd5c56b29c14f16b9ec6893f5268d77</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>1bd5c56b29c14f16b9ec6893f5268d77</AcctSvcrRef>\n
+
+        <PmtInfId>Payment</PmtInfId>\n
+
+        <InstrId>81cf7bfc292347baa510202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042953</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">49.85</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Robbie Davison</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB31MONZ04000434368243</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Robbie Davison</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">49.85</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T22:25:11.937Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>b6ea6590f0d04fb4a8060c7d4681e10c</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>b6ea6590f0d04fb4a8060c7d4681e10c</AcctSvcrRef>\n
+
+        <PmtInfId>Payment</PmtInfId>\n
+
+        <InstrId>d3f8a9022a08432e8810202508188260408</InstrId>\n
+
+        <EndToEndId>OPI00042955</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">49.85</Amt>\n
+
+<CdtDbtInd>DBIT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <Cdtr>\n
+
+        <Pty>\n
+
+            <Nm>Robbie Davison</Nm>\n
+
+        </Pty>\n
+
+    </Cdtr>\n
+
+    <CdtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB31MONZ04000434368243</IBAN>\n
+
+        </Id>\n
+
+    </CdtrAcct>\n
+
+    <UltmtCdtr>\n
+
+        <Pty>\n
+
+            <Nm>Robbie Davison</Nm>\n
+
+        </Pty>\n
+
+    </UltmtCdtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">100.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-18T23:07:01.693Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>d10efd5bd32143f9a398807c5992f73c</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>d10efd5bd32143f9a398807c5992f73c</AcctSvcrRef>\n
+
+        <PmtInfId>DCA 487811</PmtInfId>\n
+
+        <InstrId>HUBX634F399EF2620F30202508198260901</InstrId>\n
+
+        <EndToEndId>e0b2465508c447ab9b3695571421541f</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">100.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB50ABBY09012823748249</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>ANDREW GARLAND</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">50.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-19T00:05:15.090Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>1505e4f2847f4f6891e4c636872ff115</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>1505e4f2847f4f6891e4c636872ff115</AcctSvcrRef>\n
+
+        <PmtInfId>DCA476354</PmtInfId>\n
+
+        <InstrId>RD182Y36ELWREN4Y6030202508198266083</InstrId>\n
+
+        <EndToEndId>ea0dc49e1de947998d8f27820bc3850e</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">50.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB12SRLG60837162377398</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>By The Book Accountancy Limited</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">250.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-19T00:06:29.773Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>10cfdfa96b7f49798ba58a2f71fc0274</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>10cfdfa96b7f49798ba58a2f71fc0274</AcctSvcrRef>\n
+
+        <PmtInfId>DCA 370942</PmtInfId>\n
+
+        <InstrId>L2lXMUv0000116697130202508198263091</InstrId>\n
+
+        <EndToEndId>c7afbc1c14144cc5bd6a1af12ebebf91</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">250.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB92LOYD30916000964284</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>M PLATTEN</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">70.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-19T00:13:08.643Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>267a61f225934ade94ff1562df23ec15</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>267a61f225934ade94ff1562df23ec15</AcctSvcrRef>\n
+
+        <PmtInfId>DCA 432672</PmtInfId>\n
+
+        <InstrId>RP467126591267570030202508198262000</InstrId>\n
+
+        <EndToEndId>4400b23771bd48428d66497ccb4d426b</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">70.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB20BUKB20448660692093</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>CONCATO J C</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">20.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-19T00:13:49.913Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>135405182d94447c926119cab9e927fd</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>135405182d94447c926119cab9e927fd</AcctSvcrRef>\n
+
+        <PmtInfId>DCA474700</PmtInfId>\n
+
+        <InstrId>RP465148198374060030202508198262000</InstrId>\n
+
+        <EndToEndId>c118b44e075f47a59bd6ae90893329d3</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">20.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB74BARC20267453776131</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>SKELCHER-MAXWELL</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">75.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-19T00:18:14.027Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>9ecce5d44ddb4fca91fea45c1261d4f0</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>9ecce5d44ddb4fca91fea45c1261d4f0</AcctSvcrRef>\n
+
+        <PmtInfId>DCA 190341</PmtInfId>\n
+
+        <InstrId>RP465118702666230030202508198262000</InstrId>\n
+
+        <EndToEndId>e50b6dd94af24518847cebacd4e827c3</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">75.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB62BUKB20400940269085</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>LIVELY ME</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">21.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-19T00:35:05.863Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>c5c7c1a99761467fb1333a90e9a7a1e5</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>c5c7c1a99761467fb1333a90e9a7a1e5</AcctSvcrRef>\n
+
+        <PmtInfId>DCA 366786</PmtInfId>\n
+
+        <InstrId>P65MVI973GEN1RMS2D10202508198260400</InstrId>\n
+
+        <EndToEndId>82e0ebe931854d76973facf166c6a3b6</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">21.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB39MONZ04000478932809</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>Bruno Nardi</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">50.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-19T01:05:29.273Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>514253dd5f8248f0a50543c77d7f25ef</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>514253dd5f8248f0a50543c77d7f25ef</AcctSvcrRef>\n
+
+        <PmtInfId>DCA 214739</PmtInfId>\n
+
+        <InstrId>0292630354328114SO30202508198264047</InstrId>\n
+
+        <EndToEndId>5fa6bdabc46f4a7894fbcefe701bf2ac</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">50.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB44HBUK40476381387871</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>STARKIE N</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">150.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-19T01:06:05.740Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>34645c53eb9e482f91b7bf214cb6bda1</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>34645c53eb9e482f91b7bf214cb6bda1</AcctSvcrRef>\n
+
+        <PmtInfId>DCA 435055</PmtInfId>\n
+
+        <InstrId>1243338254328102SO30202508198264006</InstrId>\n
+
+        <EndToEndId>7f9378639f1d4a7a8e0be45b9916cb84</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">150.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB37HBUK40062152786168</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>ORTIZ SANCHE</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+<Ntry>\n
+
+<Amt Ccy=\"GBP\">5.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Sts>\n
+
+<Cd>BOOK</Cd>\n
+
+</Sts>\n
+
+<ValDt>\n
+
+<DtTm>2025-08-19T01:07:35.143Z</DtTm>\n
+
+</ValDt>\n
+
+<AcctSvcrRef>e2fa060139e54047b5efd231f89074d2</AcctSvcrRef>\n
+
+<BkTxCd>\n
+
+<Prtry>\n
+
+    <Cd>FasterPayments</Cd>\n
+
+</Prtry>\n
+
+</BkTxCd>\n
+
+<NtryDtls>\n
+
+<TxDtls>\n
+
+    <Refs>\n
+
+        <AcctSvcrRef>e2fa060139e54047b5efd231f89074d2</AcctSvcrRef>\n
+
+        <PmtInfId>DCA 472146</PmtInfId>\n
+
+        <InstrId>8865013354328103SO30202508198264011</InstrId>\n
+
+        <EndToEndId>96af103bd7754a04baf441667e1cb3bd</EndToEndId>\n
+
+    </Refs>\n
+
+    <Amt Ccy=\"GBP\">5.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<RltdPties>\n
+
+    <DbtrAcct>\n
+
+        <Id>\n
+
+            <IBAN>GB28HBUK40115600461741</IBAN>\n
+
+        </Id>\n
+
+    </DbtrAcct>\n
+
+    <UltmtDbtr>\n
+
+        <Pty>\n
+
+            <Nm>SUTHAR R</Nm>\n
+
+        </Pty>\n
+
+    </UltmtDbtr>\n
+
+</RltdPties>\n
+
+</TxDtls>\n
+
+        </NtryDtls>\n
+
+        </Ntry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>ec1dea4f01d6422b96d69f8274a26fa1</Id>\n
+
+<ElctrncSeqNb>9</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB15CLRB04082700000033</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>GBP</Ccy>\n
+
+    <Nm>Mandated Minimum Balance Account</Nm>\n
+
+    <Ownr />\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"GBP\">25000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"GBP\">25000.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>f4199c310d334327b336cd9298179ced</Id>\n
+
+<ElctrncSeqNb>10</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB24CLRB04274858532180</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>DKK</Ccy>\n
+
+    <Nm>Institution Master</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Master</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"DKK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"DKK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>f4199c310d334327b336cd9298179ced</Id>\n
+
+<ElctrncSeqNb>10</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB24CLRB04274858532180</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>HUF</Ccy>\n
+
+    <Nm>Institution Master</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Master</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"HUF\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"HUF\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>f4199c310d334327b336cd9298179ced</Id>\n
+
+<ElctrncSeqNb>10</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB24CLRB04274858532180</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>CHF</Ccy>\n
+
+    <Nm>Institution Master</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Master</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"CHF\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"CHF\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>f4199c310d334327b336cd9298179ced</Id>\n
+
+<ElctrncSeqNb>10</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB24CLRB04274858532180</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>CZK</Ccy>\n
+
+    <Nm>Institution Master</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Master</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"CZK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"CZK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>f4199c310d334327b336cd9298179ced</Id>\n
+
+<ElctrncSeqNb>10</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB24CLRB04274858532180</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>CAD</Ccy>\n
+
+    <Nm>Institution Master</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Master</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"CAD\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"CAD\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>f4199c310d334327b336cd9298179ced</Id>\n
+
+<ElctrncSeqNb>10</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB24CLRB04274858532180</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>EUR</Ccy>\n
+
+    <Nm>Institution Master</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Master</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"EUR\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"EUR\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>f4199c310d334327b336cd9298179ced</Id>\n
+
+<ElctrncSeqNb>10</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB24CLRB04274858532180</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>NOK</Ccy>\n
+
+    <Nm>Institution Master</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Master</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"NOK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"NOK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>f4199c310d334327b336cd9298179ced</Id>\n
+
+<ElctrncSeqNb>10</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB24CLRB04274858532180</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>RON</Ccy>\n
+
+    <Nm>Institution Master</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Master</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"RON\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"RON\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>f4199c310d334327b336cd9298179ced</Id>\n
+
+<ElctrncSeqNb>10</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB24CLRB04274858532180</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>PLN</Ccy>\n
+
+    <Nm>Institution Master</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Master</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"PLN\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"PLN\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>f4199c310d334327b336cd9298179ced</Id>\n
+
+<ElctrncSeqNb>10</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB24CLRB04274858532180</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>USD</Ccy>\n
+
+    <Nm>Institution Master</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Master</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"USD\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"USD\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+<Stmt>\n
+
+<Id>f4199c310d334327b336cd9298179ced</Id>\n
+
+<ElctrncSeqNb>10</ElctrncSeqNb>\n
+
+<CreDtTm>2025-08-20T03:42:25.871Z</CreDtTm>\n
+
+<FrToDt>\n
+
+    <FrDtTm>2025-08-18T04:00:00Z</FrDtTm>\n
+
+    <ToDtTm>2025-08-19T04:00:00Z</ToDtTm>\n
+
+</FrToDt>\n
+
+<Acct>\n
+
+    <Id>\n
+
+        <IBAN>GB24CLRB04274858532180</IBAN>\n
+
+    </Id>\n
+
+    <Tp>\n
+
+        <Cd>CACC</Cd>\n
+
+    </Tp>\n
+
+    <Ccy>SEK</Ccy>\n
+
+    <Nm>Institution Master</Nm>\n
+
+    <Ownr>\n
+
+        <Nm>Institution Master</Nm>\n
+
+    </Ownr>\n
+
+    <Svcr>\n
+
+        <FinInstnId>\n
+
+            <BICFI>CLRBGB22309</BICFI>\n
+
+            <Nm>Mercury Foreign Exchange Limited</Nm>\n
+
+        </FinInstnId>\n
+
+    </Svcr>\n
+
+</Acct>\n
+
+<Bal>\n
+
+    <Tp>\n
+
+        <CdOrPrtry>\n
+
+            <Cd>OPBD</Cd>\n
+
+        </CdOrPrtry>\n
+
+    </Tp>\n
+
+    <Amt Ccy=\"SEK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+    <DtTm>2025-08-18T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+</Bal>\n
+
+<Bal>\n
+
+<Tp>\n
+
+    <CdOrPrtry>\n
+
+        <Cd>CLBD</Cd>\n
+
+    </CdOrPrtry>\n
+
+</Tp>\n
+
+<Amt Ccy=\"SEK\">0.00</Amt>\n
+
+<CdtDbtInd>CRDT</CdtDbtInd>\n
+
+<Dt>\n
+
+<DtTm>2025-08-19T04:00:00Z</DtTm>\n
+
+</Dt>\n
+
+        </Bal>\n
+
+<TxsSummry>\n
+
+<TtlNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+    <TtlNetNtry>\n
+
+        <Amt>0.00</Amt>\n
+
+        <CdtDbtInd>DBIT</CdtDbtInd>\n
+
+    </TtlNetNtry>\n
+
+</TtlNtries>\n
+
+<TtlCdtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlCdtNtries>\n
+
+<TtlDbtNtries>\n
+
+    <NbOfNtries>0</NbOfNtries>\n
+
+</TtlDbtNtries>\n
+
+</TxsSummry>\n
+
+        </Stmt>\n
+
+        </BkToCstmrStmt>\n
+
+        </Document>"
