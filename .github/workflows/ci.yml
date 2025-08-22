@@ -34,7 +34,7 @@ jobs:
           scope: '@bond-financial-technologies'
 
       - name: Configure npm auth
-        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.PUBLISH_TOKEN }}" > ~/.npmrc
 
       - name: Install dependencies
         run: npm ci
@@ -46,3 +46,5 @@ jobs:
 
       - name: Build, version and publish
         run: npm run create-patch-version
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
