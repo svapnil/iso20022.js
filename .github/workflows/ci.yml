@@ -11,9 +11,6 @@ jobs:
   publish:
     if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    permissions:
-      contents: write   # allows pushing commits & tags
-      packages: write   # For publishing to GitHub Packages
 
     steps:
       - name: Checkout code
