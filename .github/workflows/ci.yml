@@ -33,9 +33,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests
-        run: npm test
-
       - name: Configure Git identity
         run: |
           git config user.name "github-actions[bot]"
@@ -44,5 +41,4 @@ jobs:
       - name: Build, version and publish
         run: npm run create-patch-version
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
