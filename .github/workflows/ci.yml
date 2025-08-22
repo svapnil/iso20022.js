@@ -34,7 +34,7 @@ jobs:
           scope: '@bond-financial-technologies'
 
       - name: Configure npm auth
-        run: npm config set //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
 
       - name: Install dependencies
         run: npm ci
