@@ -7,17 +7,13 @@ on:
       - main
   workflow_dispatch:
 
-permissions:
-  contents: write   # allows pushing commits & tags
-  packages: write   # if you ever publish to GitHub Packages
-
 jobs:
   publish:
     if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     permissions:
       contents: write   # allows pushing commits & tags
-      packages: write   # if you ever publish to GitHub Packages
+      packages: write   # For publishing to GitHub Packages
 
     steps:
       - name: Checkout code
