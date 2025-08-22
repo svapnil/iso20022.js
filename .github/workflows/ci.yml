@@ -41,4 +41,4 @@ jobs:
       - name: Build, version and publish
         run: npm run create-patch-version
         env:
-          GH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
