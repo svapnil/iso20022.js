@@ -6,13 +6,16 @@ on:
     branches:
       - main
   workflow_dispatch:
-  # This enables manual triggering from the GitHub UI
+
+permissions:
+  contents: write   # allows pushing commits & tags
+  packages: write   # if you ever publish to GitHub Packages
 
 jobs:
   publish:
-    # For PR triggers, only run if the PR was merged
     if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
