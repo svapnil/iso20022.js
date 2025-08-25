@@ -88,6 +88,8 @@ export interface Entry {
   accountServicerReferenceId?: string;
   /** Details about the type of transaction */
   bankTransactionCode: BankTransactionCode;
+  /** Value date of the entry. */
+  valueDate: Date;
 }
 
 /**
