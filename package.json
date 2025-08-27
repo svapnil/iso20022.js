@@ -1,6 +1,6 @@
 {
   "name": "@bond-financial-technologies/iso20022.js",
-  "version": "0.2.39",
+  "version": "0.2.40",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
