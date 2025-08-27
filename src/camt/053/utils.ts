@@ -176,6 +176,8 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
   let debtorAgent;
   if (transactionDetail.RltdPties?.Dbtr) {
     debtorName = transactionDetail.RltdPties.Dbtr.Nm || transactionDetail.RltdPties.Dbtr.Pty?.Nm;
+  } else if (transactionDetail.RltdPties?.UltmtDbtr) {
+    debtorName = transactionDetail.RltdPties.UltmtDbtr.Nm || transactionDetail.RltdPties.UltmtDbtr.Pty?.Nm;
   }
   if (transactionDetail.RltdPties?.DbtrAcct) {
     debtorAccount = parseAccount(transactionDetail.RltdPties.DbtrAcct);
@@ -199,6 +201,8 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
   let creditorAgent;
   if (transactionDetail.RltdPties?.Cdtr) {
     creditorName = transactionDetail.RltdPties.Cdtr.Nm || transactionDetail.RltdPties.Cdtr.Pty?.Nm;
+  } else if (transactionDetail.RltdPties?.UltmtCdtr) {
+    creditorName = transactionDetail.RltdPties.UltmtCdtr.Nm || transactionDetail.RltdPties.UltmtCdtr.Pty?.Nm;
   }
   if (transactionDetail.RltdPties?.CdtrAcct) {
     creditorAccount = parseAccount(transactionDetail.RltdPties.CdtrAcct);
