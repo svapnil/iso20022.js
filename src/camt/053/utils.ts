@@ -100,6 +100,7 @@ export const parseEntry = (entry: any): Entry => {
   const referenceId = entry.NtryRef;
   const creditDebitIndicator = entry.CdtDbtInd === 'CRDT' ? 'credit' : 'debit';
   const bookingDate = parseDate(entry.BookgDt);
+  const valueDate = parseDate(entry.ValDt);
   const reversal = entry.RvslInd === true;
   const amount = entry.Amt['#text'];
   const currency = entry.Amt['@_Ccy'];
@@ -129,6 +130,7 @@ export const parseEntry = (entry: any): Entry => {
     referenceId,
     creditDebitIndicator,
     bookingDate,
+    valueDate,
     reversal,
     amount,
     currency,
@@ -162,6 +164,9 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
       instructedCurrency = transactionDetail.AmtDtls.InstdAmt?.Amt['@_Ccy']
       transactionAmount = transactionDetail.AmtDtls.TxAmt?.Amt['#text'];
       transactionCurrency = transactionDetail.AmtDtls.TxAmt?.Amt['@_Ccy'];
+  } else if (transactionDetail.Amt) {
+    transactionAmount = transactionDetail.Amt['#text'];
+    transactionCurrency = transactionDetail.Amt['@_Ccy'];
   }
 
   // Get Debtor information if 'Dbtr' is present
@@ -170,7 +175,7 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
   let debtorAccount;
   let debtorAgent;
   if (transactionDetail.RltdPties?.Dbtr) {
-    debtorName = transactionDetail.RltdPties.Dbtr.Nm;
+    debtorName = transactionDetail.RltdPties.Dbtr.Nm || transactionDetail.RltdPties.Dbtr.Pty?.Nm;
   }
   if (transactionDetail.RltdPties?.DbtrAcct) {
     debtorAccount = parseAccount(transactionDetail.RltdPties.DbtrAcct);
@@ -193,7 +198,7 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
   let creditorAccount;
   let creditorAgent;
   if (transactionDetail.RltdPties?.Cdtr) {
-    creditorName = transactionDetail.RltdPties.Cdtr.Nm;
+    creditorName = transactionDetail.RltdPties.Cdtr.Nm || transactionDetail.RltdPties.Cdtr.Pty?.Nm;
   }
   if (transactionDetail.RltdPties?.CdtrAcct) {
     creditorAccount = parseAccount(transactionDetail.RltdPties.CdtrAcct);

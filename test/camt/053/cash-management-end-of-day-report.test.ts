@@ -384,7 +384,7 @@ describe('CashManagementEndOfDayReport', () => {
           report = CashManagementEndOfDayReport.fromXML(camt053V2Sample);
 
           // TODO: assert based on the file content
-          expect(report.messageId).toBe('CAMT053_20250820_03422587_ETSH30M4');
+          expect(report.messageId).toBe('CAMT053_20250820_14520420_D9B02WXB');
           expect(report.creationDate).toBeInstanceOf(Date);
           expect(report.recipient).toEqual({
             id: '160a4a118f544aba832adf430cebf51e',
@@ -395,7 +395,7 @@ describe('CashManagementEndOfDayReport', () => {
           // // Synthetic methods (map reduced)
           expect(report.statements.length).toBe(38);
           // expect(report.transactions.length).toBe(1);
-          expect(report.entries.length).toBe(90);
+          expect(report.entries.length).toBe(50);
           // expect(report.balances.length).toBe(11);
           //
           // // Statement is correct
@@ -449,4 +449,5 @@ describe('CashManagementEndOfDayReport', () => {
       }).toThrow('Invalid CAMT.053 namespace');
     });
   });
+
 });

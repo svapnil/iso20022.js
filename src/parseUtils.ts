@@ -49,9 +49,12 @@ export const parseAmountToMinorUnits = (
   return Math.floor(Number(rawAmount) * 10 ** currencyObject.getPrecision());
 };
 
-export const parseDate = (dateElement: any): Date => {
+export const parseDate = (dateElement: any): Date | undefined => {
   // Find the date element, which can be DtTm or Dt
   const date = dateElement?.DtTm || dateElement?.Dt;
+  if (!date) {
+    return undefined;
+  }
   return new Date(date);
 };
 
