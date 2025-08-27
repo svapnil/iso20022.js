@@ -133,14 +133,14 @@ export class CamtToBondMapper implements IMapper<string> {
         let debtorName;
         let debtorMetadata;
         if (transaction.creditor) {
-            if ((transaction.creditor?.account as IBANAccount).iban) {
-                creditorAccountIdentifier = (transaction.creditor?.account as IBANAccount).iban;
+            if ((transaction.creditor?.account as IBANAccount)?.iban) {
+                creditorAccountIdentifier = (transaction.creditor?.account as IBANAccount).iban.toString();
                 creditorName = transaction.creditor?.name;
                 creditorMetadata = {
                    ...transaction.creditor
                 }
             } else {
-                creditorAccountIdentifier = (transaction.creditor?.account as LocalAccount).accountNumber;
+                creditorAccountIdentifier = (transaction.creditor?.account as LocalAccount)?.accountNumber?.toString();
                 creditorName = transaction.creditor?.name;
                 creditorMetadata = {
                    ...transaction.creditor
@@ -149,13 +149,13 @@ export class CamtToBondMapper implements IMapper<string> {
         }
         if (transaction.debtor) {
             if ((transaction.debtor?.account as IBANAccount)?.iban) {
-                debtorAccountIdentifier = (transaction.debtor?.account as IBANAccount).iban;
+                debtorAccountIdentifier = (transaction.debtor?.account as IBANAccount).iban.toString();
                 debtorName = transaction.debtor?.name;
                 debtorMetadata = {
                     ...transaction.debtor
                 }
             } else {
-                debtorAccountIdentifier = (transaction.debtor?.account as LocalAccount)?.accountNumber;
+                debtorAccountIdentifier = (transaction.debtor?.account as LocalAccount)?.accountNumber?.toString();
                 debtorName = transaction.debtor?.name;
                 debtorMetadata = {
                     ...transaction.debtor
