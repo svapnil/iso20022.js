@@ -15,11 +15,12 @@ export const transactionSchema = object({
   description: optionalWithWarning(string()),
   beneficiary: object({
     accountIdentifier: string(),
-    metadata: object({}),
+    metadata: object({
+      name: optionalWithWarning(string()),
+    }),
   }),
 });
 
 export const transactionsSchema = array(transactionSchema);
 
 export type TransactionSchema = InferOutput<typeof transactionSchema>;
-

@@ -21,7 +21,11 @@ describe('CamtToBondMapper', () => {
       const fieldWarnings = consoleWarnSpy.mock.calls.filter(call => 
         call[0].toString().startsWith('- Field')
       ).length;
-      expect(fieldWarnings).toBe(0);
+      expect(fieldWarnings).toBe(31);
+      const nameWarnings = consoleWarnSpy.mock.calls.filter(call => 
+        call[0].toString().startsWith('- Field "name"')
+      ).length;
+      expect(nameWarnings).toBe(31);
       consoleWarnSpy.mockRestore();
     });
   });

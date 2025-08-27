@@ -60,7 +60,10 @@ export type {
   ACHLocalInstrument,
 } from './lib/types';
 
-export { ACHLocalInstrumentCode, ACHLocalInstrumentCodeDescriptionMap } from './lib/types';
+export {
+  ACHLocalInstrumentCode,
+  ACHLocalInstrumentCodeDescriptionMap,
+} from './lib/types';
 
 // pain.001
 export type { SWIFTCreditPaymentInitiationConfig } from './pain/001/swift-credit-payment-initiation';
@@ -96,6 +99,13 @@ export type {
 } from './camt/types';
 export { BalanceTypeCode, BalanceTypeCodeDescriptionMap } from './camt/types';
 export { CashManagementEndOfDayReport } from './camt/053/cash-management-end-of-day-report';
+export { CamtToBondMapper } from './camt/camt-to-bond.mapper';
+
+export type {
+  AccountSchema,
+  AccountSchemaWithTransactions,
+} from './schemas/bond-banking/account.schema';
+export type { TransactionSchema } from './schemas/bond-banking/transaction.schema';
 
 // errors
 export {

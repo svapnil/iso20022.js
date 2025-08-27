@@ -166,7 +166,7 @@ export class CamtToBondMapper implements IMapper<string> {
         runningBalance += transactionAmount;
         transactions.push({
           amount: transactionAmount?.toString() || entry.amount?.toString(),
-          currency: transaction.transactionCurrency! as CurrencyEnum || entry.currency,
+          currency: transaction.transactionCurrency as CurrencyEnum || entry.currency,
           type:
             entry.bankTransactionCode?.domainCode ||
             entry.bankTransactionCode?.proprietaryCode ||
@@ -183,7 +183,7 @@ export class CamtToBondMapper implements IMapper<string> {
           providerId: transaction.endToEndId!,
           beneficiary: {
             accountIdentifier: creditorAccountIdentifier || debtorAccountIdentifier || creditorName || debtorName!,
-            metadata: creditorMetadata || debtorMetadata!,
+            metadata: creditorMetadata || debtorMetadata as any,
           },
           
         });
