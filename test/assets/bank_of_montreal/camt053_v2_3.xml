@@ -4,8 +4,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <BkToCstmrStmt>
         <GrpHdr>
-            <MsgId>CAMT053-30290641-20250805071739</MsgId>
-            <CreDtTm>2025-08-05T07:17:39.53</CreDtTm>
+            <MsgId>CAMT053-30290641-20250819071620</MsgId>
+            <CreDtTm>2025-08-19T07:16:20.640</CreDtTm>
             <MsgRcpt>
                 <Nm>Huron Inc.</Nm>
                 <Id>
@@ -20,10 +20,10 @@
         </GrpHdr>
         <Stmt>
             <Id>1</Id>
-            <CreDtTm>2025-08-05T07:17:39.54</CreDtTm>
+            <CreDtTm>2025-08-19T07:16:20.641</CreDtTm>
             <FrToDt>
-                <FrDtTm>2025-08-04T00:00:00</FrDtTm>
-                <ToDtTm>2025-08-04T23:59:59</ToDtTm>
+                <FrDtTm>2025-08-18T00:00:00</FrDtTm>
+                <ToDtTm>2025-08-18T23:59:59</ToDtTm>
             </FrToDt>
             <Acct>
                 <Id>
@@ -47,7 +47,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -59,7 +59,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -71,7 +71,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -83,7 +83,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -95,7 +95,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -107,7 +107,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -119,16 +119,16 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
         </Stmt>
         <Stmt>
             <Id>2</Id>
-            <CreDtTm>2025-08-05T07:17:39.56</CreDtTm>
+            <CreDtTm>2025-08-19T07:16:20.642</CreDtTm>
             <FrToDt>
-                <FrDtTm>2025-08-04T00:00:00</FrDtTm>
-                <ToDtTm>2025-08-04T23:59:59</ToDtTm>
+                <FrDtTm>2025-08-18T00:00:00</FrDtTm>
+                <ToDtTm>2025-08-18T23:59:59</ToDtTm>
             </FrToDt>
             <Acct>
                 <Id>
@@ -152,7 +152,7 @@
                 <Amt Ccy="CAD">5200000.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -164,7 +164,7 @@
                 <Amt Ccy="CAD">5200000.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -176,7 +176,7 @@
                 <Amt Ccy="CAD">5200000.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -188,7 +188,7 @@
                 <Amt Ccy="CAD">5200000.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -200,7 +200,7 @@
                 <Amt Ccy="CAD">5200000.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -212,7 +212,7 @@
                 <Amt Ccy="CAD">5200000.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -224,16 +224,16 @@
                 <Amt Ccy="CAD">5200000.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
         </Stmt>
         <Stmt>
             <Id>3</Id>
-            <CreDtTm>2025-08-05T07:17:39.57</CreDtTm>
+            <CreDtTm>2025-08-19T07:16:20.645</CreDtTm>
             <FrToDt>
-                <FrDtTm>2025-08-04T00:00:00</FrDtTm>
-                <ToDtTm>2025-08-04T23:59:59</ToDtTm>
+                <FrDtTm>2025-08-18T00:00:00</FrDtTm>
+                <ToDtTm>2025-08-18T23:59:59</ToDtTm>
             </FrToDt>
             <Acct>
                 <Id>
@@ -257,7 +257,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -269,7 +269,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -281,7 +281,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -293,7 +293,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -305,7 +305,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -317,7 +317,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -329,16 +329,16 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
         </Stmt>
         <Stmt>
             <Id>4</Id>
-            <CreDtTm>2025-08-05T07:17:39.59</CreDtTm>
+            <CreDtTm>2025-08-19T07:16:20.647</CreDtTm>
             <FrToDt>
-                <FrDtTm>2025-08-04T00:00:00</FrDtTm>
-                <ToDtTm>2025-08-04T23:59:59</ToDtTm>
+                <FrDtTm>2025-08-18T00:00:00</FrDtTm>
+                <ToDtTm>2025-08-18T23:59:59</ToDtTm>
             </FrToDt>
             <Acct>
                 <Id>
@@ -362,7 +362,7 @@
                 <Amt Ccy="CAD">1000.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -374,7 +374,7 @@
                 <Amt Ccy="CAD">1000.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -386,7 +386,7 @@
                 <Amt Ccy="CAD">1000.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -398,7 +398,7 @@
                 <Amt Ccy="CAD">1000.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -410,7 +410,7 @@
                 <Amt Ccy="CAD">1000.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -422,7 +422,7 @@
                 <Amt Ccy="CAD">1000.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -434,16 +434,16 @@
                 <Amt Ccy="CAD">1000.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
         </Stmt>
         <Stmt>
             <Id>5</Id>
-            <CreDtTm>2025-08-05T07:17:39.60</CreDtTm>
+            <CreDtTm>2025-08-19T07:16:20.650</CreDtTm>
             <FrToDt>
-                <FrDtTm>2025-08-04T00:00:00</FrDtTm>
-                <ToDtTm>2025-08-04T23:59:59</ToDtTm>
+                <FrDtTm>2025-08-18T00:00:00</FrDtTm>
+                <ToDtTm>2025-08-18T23:59:59</ToDtTm>
             </FrToDt>
             <Acct>
                 <Id>
@@ -464,10 +464,10 @@
                         <Prtry>015</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">0.00</Amt>
-                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Amt Ccy="CAD">15.71</Amt>
+                <CdtDbtInd>DBIT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -476,10 +476,10 @@
                         <Prtry>901</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">0.00</Amt>
-                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Amt Ccy="CAD">15.71</Amt>
+                <CdtDbtInd>DBIT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -488,10 +488,10 @@
                         <Prtry>010</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">0.00</Amt>
-                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Amt Ccy="CAD">15.71</Amt>
+                <CdtDbtInd>DBIT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -500,10 +500,22 @@
                         <Prtry>030</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">0.00</Amt>
-                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Amt Ccy="CAD">15.71</Amt>
+                <CdtDbtInd>DBIT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
+                </Dt>
+            </Bal>
+            <Bal>
+                <Tp>
+                    <CdOrPrtry>
+                        <Prtry>066</Prtry>
+                    </CdOrPrtry>
+                </Tp>
+                <Amt Ccy="CAD">15.71</Amt>
+                <CdtDbtInd>DBIT</CdtDbtInd>
+                <Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -515,7 +527,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -527,28 +539,16 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
-                </Dt>
-            </Bal>
-            <Bal>
-                <Tp>
-                    <CdOrPrtry>
-                        <Prtry>066</Prtry>
-                    </CdOrPrtry>
-                </Tp>
-                <Amt Ccy="CAD">0.00</Amt>
-                <CdtDbtInd>CRDT</CdtDbtInd>
-                <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
         </Stmt>
         <Stmt>
             <Id>6</Id>
-            <CreDtTm>2025-08-05T07:17:39.62</CreDtTm>
+            <CreDtTm>2025-08-19T07:16:20.653</CreDtTm>
             <FrToDt>
-                <FrDtTm>2025-08-04T00:00:00</FrDtTm>
-                <ToDtTm>2025-08-04T23:59:59</ToDtTm>
+                <FrDtTm>2025-08-18T00:00:00</FrDtTm>
+                <ToDtTm>2025-08-18T23:59:59</ToDtTm>
             </FrToDt>
             <Acct>
                 <Id>
@@ -572,7 +572,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -584,7 +584,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -596,7 +596,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -608,7 +608,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -620,7 +620,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -632,7 +632,7 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -644,16 +644,17 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
         </Stmt>
         <Stmt>
             <Id>7</Id>
-            <CreDtTm>2025-08-05T07:17:39.63</CreDtTm>
+            <CreDtTm>2025-08-19T07:16:20.654</CreDtTm>
             <FrToDt>
-                <FrDtTm>2025-08-04T00:00:00</FrDtTm>
-                <ToDtTm>2025-08-04T23:59:59</ToDtTm>
+                <FrDtTm>2025-08-18T00:00:00</FrDtTm>
+                <ToDtTm>2025-08-18T23
+                    :59:59</ToDtTm>
             </FrToDt>
             <Acct>
                 <Id>
@@ -671,61 +672,13 @@
             <Bal>
                 <Tp>
                     <CdOrPrtry>
-                        <Prtry>015</Prtry>
-                    </CdOrPrtry>
-                </Tp>
-                <Amt Ccy="CAD">1000.00</Amt>
-                <CdtDbtInd>CRDT</CdtDbtInd>
-                <Dt>
-                    <Dt>2025-08-04</Dt>
-                </Dt>
-            </Bal>
-            <Bal>
-                <Tp>
-                    <CdOrPrtry>
-                        <Prtry>901</Prtry>
-                    </CdOrPrtry>
-                </Tp>
-                <Amt Ccy="CAD">1000.00</Amt>
-                <CdtDbtInd>CRDT</CdtDbtInd>
-                <Dt>
-                    <Dt>2025-08-04</Dt>
-                </Dt>
-            </Bal>
-            <Bal>
-                <Tp>
-                    <CdOrPrtry>
-                        <Prtry>010</Prtry>
-                    </CdOrPrtry>
-                </Tp>
-                <Amt Ccy="CAD">1000.00</Amt>
-                <CdtDbtInd>CRDT</CdtDbtInd>
-                <Dt>
-                    <Dt>2025-08-04</Dt>
-                </Dt>
-            </Bal>
-            <Bal>
-                <Tp>
-                    <CdOrPrtry>
                         <Prtry>030</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">1000.00</Amt>
+                <Amt Ccy="CAD">800.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
-                </Dt>
-            </Bal>
-            <Bal>
-                <Tp>
-                    <CdOrPrtry>
-                        <Prtry>040</Prtry>
-                    </CdOrPrtry>
-                </Tp>
-                <Amt Ccy="CAD">1000.00</Amt>
-                <CdtDbtInd>CRDT</CdtDbtInd>
-                <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -734,10 +687,10 @@
                         <Prtry>060</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">1000.00</Amt>
+                <Amt Ccy="CAD">800.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -749,16 +702,104 @@
                 <Amt Ccy="CAD">1000.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
+            <Bal>
+                <Tp>
+                    <CdOrPrtry>
+                        <Prtry>015</Prtry>
+                    </CdOrPrtry>
+                </Tp>
+                <Amt Ccy="CAD">800.00</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Dt>
+                    <Dt>2025-08-18</Dt>
+                </Dt>
+            </Bal>
+            <Bal>
+                <Tp>
+                    <CdOrPrtry>
+                        <Prtry>901</Prtry>
+                    </CdOrPrtry>
+                </Tp>
+                <Amt Ccy="CAD">800.00</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Dt>
+                    <Dt>2025-08-18</Dt>
+                </Dt>
+            </Bal>
+            <Bal>
+                <Tp>
+                    <CdOrPrtry>
+                        <Prtry>010</Prtry>
+                    </CdOrPrtry>
+                </Tp>
+                <Amt Ccy="CAD">1000.00</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Dt>
+                    <Dt>2025-08-18</Dt>
+                </Dt>
+            </Bal>
+            <Bal>
+                <Tp>
+                    <CdOrPrtry>
+                        <Prtry>040</Prtry>
+                    </CdOrPrtry>
+                </Tp>
+                <Amt Ccy="CAD">1000.00</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Dt>
+                    <Dt>2025-08-18</Dt>
+                </Dt>
+            </Bal>
+            <TxsSummry>
+                <TtlDbtNtries>
+                    <NbOfNtries>1</NbOfNtries>
+                    <Sum>200.00</Sum>
+                </TtlDbtNtries>
+            </TxsSummry>
+            <Ntry>
+                <Amt Ccy="CAD">200.00</Amt>
+                <CdtDbtInd>DBIT</CdtDbtInd>
+                <Sts>BOOK</Sts>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>506</Cd>
+                        <Issr>BAI</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <AmtDtls>
+                            <TxAmt>
+                                <Amt Ccy="CAD">200.00</Amt>
+                            </TxAmt>
+                        </AmtDtls>
+                        <Avlbty>
+                            <Dt>
+                                <ActlDt>2025-08-18</ActlDt>
+                            </Dt>
+                            <Amt Ccy="CAD">200.00</Amt>
+                            <CdtDbtInd>DBIT</CdtDbtInd>
+                        </Avlbty>
+                        <BkTxCd>
+                            <Prtry>
+                                <Cd>506</Cd>
+                                <Issr>BAI</Issr>
+                            </Prtry>
+                        </BkTxCd>
+                        <AddtlTxInf>Transfer of Funds, 0002-1476-446 3587</AddtlTxInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
         </Stmt>
         <Stmt>
             <Id>8</Id>
-            <CreDtTm>2025-08-05T07:17:39.65</CreDtTm>
+            <CreDtTm>2025-08-19T07:16:20.656</CreDtTm>
             <FrToDt>
-                <FrDtTm>2025-08-04T00:00:00</FrDtTm>
-                <ToDtTm>2025-08-04T23:59:59</ToDtTm>
+                <FrDtTm>2025-08-18T00:00:00</FrDtTm>
+                <ToDtTm>2025-08-18T23:59:59</ToDtTm>
             </FrToDt>
             <Acct>
                 <Id>
@@ -776,37 +817,13 @@
             <Bal>
                 <Tp>
                     <CdOrPrtry>
-                        <Prtry>015</Prtry>
+                        <Prtry>066</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">0.00</Amt>
-                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Amt Ccy="CAD">93.54</Amt>
+                <CdtDbtInd>DBIT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
-                </Dt>
-            </Bal>
-            <Bal>
-                <Tp>
-                    <CdOrPrtry>
-                        <Prtry>901</Prtry>
-                    </CdOrPrtry>
-                </Tp>
-                <Amt Ccy="CAD">0.00</Amt>
-                <CdtDbtInd>CRDT</CdtDbtInd>
-                <Dt>
-                    <Dt>2025-08-04</Dt>
-                </Dt>
-            </Bal>
-            <Bal>
-                <Tp>
-                    <CdOrPrtry>
-                        <Prtry>010</Prtry>
-                    </CdOrPrtry>
-                </Tp>
-                <Amt Ccy="CAD">0.00</Amt>
-                <CdtDbtInd>CRDT</CdtDbtInd>
-                <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -815,10 +832,58 @@
                         <Prtry>030</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">0.00</Amt>
+                <Amt Ccy="CAD">106.46</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
+                </Dt>
+            </Bal>
+            <Bal>
+                <Tp>
+                    <CdOrPrtry>
+                        <Prtry>060</Prtry>
+                    </CdOrPrtry>
+                </Tp>
+                <Amt Ccy="CAD">106.46</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Dt>
+                    <Dt>2025-08-18</Dt>
+                </Dt>
+            </Bal>
+            <Bal>
+                <Tp>
+                    <CdOrPrtry>
+                        <Prtry>015</Prtry>
+                    </CdOrPrtry>
+                </Tp>
+                <Amt Ccy="CAD">106.46</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Dt>
+                    <Dt>2025-08-18</Dt>
+                </Dt>
+            </Bal>
+            <Bal>
+                <Tp>
+                    <CdOrPrtry>
+                        <Prtry>901</Prtry>
+                    </CdOrPrtry>
+                </Tp>
+                <Amt Ccy="CAD">106.46</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Dt>
+                    <Dt>2025-08-18</Dt>
+                </Dt>
+            </Bal>
+            <Bal>
+                <Tp>
+                    <CdOrPrtry>
+                        <Prtry>010</Prtry>
+                    </CdOrPrtry>
+                </Tp>
+                <Amt Ccy="CAD">93.54</Amt>
+                <CdtDbtInd>DBIT</CdtDbtInd>
+                <Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -830,40 +895,56 @@
                 <Amt Ccy="CAD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
-            <Bal>
-                <Tp>
-                    <CdOrPrtry>
-                        <Prtry>060</Prtry>
-                    </CdOrPrtry>
-                </Tp>
-                <Amt Ccy="CAD">0.00</Amt>
+            <TxsSummry>
+                <TtlCdtNtries>
+                    <NbOfNtries>1</NbOfNtries>
+                    <Sum>200.00</Sum>
+                </TtlCdtNtries>
+            </TxsSummry>
+            <Ntry>
+                <Amt Ccy="CAD">200.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
-                <Dt>
-                    <Dt>2025-08-04</Dt>
-                </Dt>
-            </Bal>
-            <Bal>
-                <Tp>
-                    <CdOrPrtry>
-                        <Prtry>066</Prtry>
-                    </CdOrPrtry>
-                </Tp>
-                <Amt Ccy="CAD">0.00</Amt>
-                <CdtDbtInd>CRDT</CdtDbtInd>
-                <Dt>
-                    <Dt>2025-08-04</Dt>
-                </Dt>
-            </Bal>
+                <Sts>BOOK</Sts>
+                <BkTxCd>
+                    <Prtry>
+                        <Cd>206</Cd>
+                        <Issr>BAI</Issr>
+                    </Prtry>
+                </BkTxCd>
+                <NtryDtls>
+                    <TxDtls>
+                        <AmtDtls>
+                            <TxAmt>
+                                <Amt Ccy="CAD">200.00</Amt>
+                            </TxAmt>
+                        </AmtDtls>
+                        <Avlbty>
+                            <Dt>
+                                <ActlDt>2025-08-18</ActlDt>
+                            </Dt>
+                            <Amt Ccy="CAD">200.00</Amt>
+                            <CdtDbtInd>CRDT</CdtDbtInd>
+                        </Avlbty>
+                        <BkTxCd>
+                            <Prtry>
+                                <Cd>206</Cd>
+                                <Issr>BAI</Issr>
+                            </Prtry>
+                        </BkTxCd>
+                        <AddtlTxInf>Transfer of Funds, 0002-1476-438 3587</AddtlTxInf>
+                    </TxDtls>
+                </NtryDtls>
+            </Ntry>
         </Stmt>
         <Stmt>
             <Id>9</Id>
-            <CreDtTm>2025-08-05T07:17:39.66</CreDtTm>
+            <CreDtTm>2025-08-19T07:16:20.658</CreDtTm>
             <FrToDt>
-                <FrDtTm>2025-08-04T00:00:00</FrDtTm>
-                <ToDtTm>2025-08-04T23:59:59</ToDtTm>
+                <FrDtTm>2025-08-18T00:00:00</FrDtTm>
+                <ToDtTm>2025-08-18T23:59:59</ToDtTm>
             </FrToDt>
             <Acct>
                 <Id>
@@ -884,10 +965,10 @@
                         <Prtry>015</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">10142.07</Amt>
+                <Amt Ccy="CAD">10134.88</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -896,10 +977,11 @@
                         <Prtry>901</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">10142.07</Amt>
-                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Amt Ccy="CAD">10134.88</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd
+                >
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -908,10 +990,10 @@
                         <Prtry>010</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">10142.07</Amt>
+                <Amt Ccy="CAD">10134.88</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -920,10 +1002,10 @@
                         <Prtry>030</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">10142.07</Amt>
+                <Amt Ccy="CAD">10134.88</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -932,10 +1014,10 @@
                         <Prtry>040</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">10142.07</Amt>
+                <Amt Ccy="CAD">10134.88</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -944,10 +1026,10 @@
                         <Prtry>060</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">10142.07</Amt>
+                <Amt Ccy="CAD">10134.88</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -956,19 +1038,19 @@
                         <Prtry>066</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">10142.07</Amt>
+                <Amt Ccy="CAD">10134.88</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
         </Stmt>
         <Stmt>
             <Id>10</Id>
-            <CreDtTm>2025-08-05T07:17:39.68</CreDtTm>
+            <CreDtTm>2025-08-19T07:16:20.660</CreDtTm>
             <FrToDt>
-                <FrDtTm>2025-08-04T00:00:00</FrDtTm>
-                <ToDtTm>2025-08-04T23:59:59</ToDtTm>
+                <FrDtTm>2025-08-18T00:00:00</FrDtTm>
+                <ToDtTm>2025-08-18T23:59:59</ToDtTm>
             </FrToDt>
             <Acct>
                 <Id>
@@ -989,10 +1071,11 @@
                         <Prtry>015</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">9357.48</Amt>
-                <CdtDbtInd>CRDT</CdtDbtInd>< Dt>
-                <Dt>2025-08-04</Dt>
-            </Dt>
+                <Amt Ccy="CAD">9333.24</Amt>
+                <CdtDbtInd>CRDT</CdtDbtInd>
+                <Dt>
+                    <Dt>2025-08-18</Dt>
+                </Dt>
             </Bal>
             <Bal>
                 <Tp>
@@ -1000,10 +1083,10 @@
                         <Prtry>901</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">9357.48</Amt>
+                <Amt Ccy="CAD">9333.24</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1012,10 +1095,10 @@
                         <Prtry>010</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">9357.48</Amt>
+                <Amt Ccy="CAD">9333.24</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1024,10 +1107,10 @@
                         <Prtry>030</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">9357.48</Amt>
+                <Amt Ccy="CAD">9333.24</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1036,10 +1119,10 @@
                         <Prtry>040</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">9357.48</Amt>
+                <Amt Ccy="CAD">9333.24</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1048,10 +1131,10 @@
                         <Prtry>060</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">9357.48</Amt>
+                <Amt Ccy="CAD">9333.24</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1060,19 +1143,19 @@
                         <Prtry>066</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">9357.48</Amt>
+                <Amt Ccy="CAD">9333.24</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
         </Stmt>
         <Stmt>
             <Id>11</Id>
-            <CreDtTm>2025-08-05T07:17:39.69</CreDtTm>
+            <CreDtTm>2025-08-19T07:16:20.661</CreDtTm>
             <FrToDt>
-                <FrDtTm>2025-08-04T00:00:00</FrDtTm>
-                <ToDtTm>2025-08-04T23:59:59</ToDtTm>
+                <FrDtTm>2025-08-18T00:00:00</FrDtTm>
+                <ToDtTm>2025-08-18T23:59:59</ToDtTm>
             </FrToDt>
             <Acct>
                 <Id>
@@ -1093,10 +1176,10 @@
                         <Prtry>015</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">238377.12</Amt>
+                <Amt Ccy="CAD">238252.48</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1105,10 +1188,10 @@
                         <Prtry>901</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">238377.12</Amt>
+                <Amt Ccy="CAD">238252.48</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1117,10 +1200,10 @@
                         <Prtry>010</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">238377.12</Amt>
+                <Amt Ccy="CAD">238252.48</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1129,10 +1212,10 @@
                         <Prtry>030</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">238377.12</Amt>
+                <Amt Ccy="CAD">238252.48</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1141,10 +1224,10 @@
                         <Prtry>040</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">238377.12</Amt>
+                <Amt Ccy="CAD">238252.48</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1153,10 +1236,10 @@
                         <Prtry>060</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">238377.12</Amt>
+                <Amt Ccy="CAD">238252.48</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1165,19 +1248,19 @@
                         <Prtry>066</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="CAD">238377.12</Amt>
+                <Amt Ccy="CAD">238252.48</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
         </Stmt>
         <Stmt>
             <Id>12</Id>
-            <CreDtTm>2025-08-05T07:17:39.71</CreDtTm>
+            <CreDtTm>2025-08-19T07:16:20.663</CreDtTm>
             <FrToDt>
-                <FrDtTm>2025-08-04T00:00:00</FrDtTm>
-                <ToDtTm>2025-08-04T23:59:59</ToDtTm>
+                <FrDtTm>2025-08-18T00:00:00</FrDtTm>
+                <ToDtTm>2025-08-18T23:59:59</ToDtTm>
             </FrToDt>
             <Acct>
                 <Id>
@@ -1201,7 +1284,7 @@
                 <Amt Ccy="USD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1213,7 +1296,7 @@
                 <Amt Ccy="USD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1225,19 +1308,20 @@
                 <Amt Ccy="USD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
                 <Tp>
                     <CdOrPrtry>
                         <Prtry>030</Prtry>
-                    </CdOrPrtry>
+                    </
+                            CdOrPrtry>
                 </Tp>
                 <Amt Ccy="USD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1249,7 +1333,7 @@
                 <Amt Ccy="USD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1261,7 +1345,7 @@
                 <Amt Ccy="USD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1273,16 +1357,16 @@
                 <Amt Ccy="USD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
         </Stmt>
         <Stmt>
             <Id>13</Id>
-            <CreDtTm>2025-08-05T07:17:39.72</CreDtTm>
+            <CreDtTm>2025-08-19T07:16:20.665</CreDtTm>
             <FrToDt>
-                <FrDtTm>2025-08-04T00:00:00</FrDtTm>
-                <ToDtTm>2025-08-04T23:59:59</ToDtTm>
+                <FrDtTm>2025-08-18T00:00:00</FrDtTm>
+                <ToDtTm>2025-08-18T23:59:59</ToDtTm>
             </FrToDt>
             <Acct>
                 <Id>
@@ -1303,10 +1387,10 @@
                         <Prtry>015</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="USD">483.73</Amt>
+                <Amt Ccy="USD">471.73</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1315,10 +1399,10 @@
                         <Prtry>901</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="USD">483.73</Amt>
+                <Amt Ccy="USD">471.73</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1327,10 +1411,10 @@
                         <Prtry>010</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="USD">483.73</Amt>
+                <Amt Ccy="USD">471.73</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1339,10 +1423,10 @@
                         <Prtry>030</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="USD">483.73</Amt>
+                <Amt Ccy="USD">471.73</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1351,10 +1435,10 @@
                         <Prtry>040</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="USD">483.73</Amt>
+                <Amt Ccy="USD">471.73</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1363,10 +1447,10 @@
                         <Prtry>060</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="USD">483.73</Amt>
+                <Amt Ccy="USD">471.73</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1375,19 +1459,19 @@
                         <Prtry>066</Prtry>
                     </CdOrPrtry>
                 </Tp>
-                <Amt Ccy="USD">483.73</Amt>
+                <Amt Ccy="USD">471.73</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
         </Stmt>
         <Stmt>
             <Id>14</Id>
-            <CreDtTm>2025-08-05T07:17:39.74</CreDtTm>
+            <CreDtTm>2025-08-19T07:16:20.666</CreDtTm>
             <FrToDt>
-                <FrDtTm>2025-08-04T00:00:00</FrDtTm>
-                <ToDtTm>2025-08-04T23:59:59</ToDtTm>
+                <FrDtTm>2025-08-18T00:00:00</FrDtTm>
+                <ToDtTm>2025-08-18T23:59:59</ToDtTm>
             </FrToDt>
             <Acct>
                 <Id>
@@ -1411,7 +1495,7 @@
                 <Amt Ccy="USD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1423,7 +1507,7 @@
                 <Amt Ccy="USD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1435,7 +1519,7 @@
                 <Amt Ccy="USD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1447,7 +1531,7 @@
                 <Amt Ccy="USD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1459,7 +1543,7 @@
                 <Amt Ccy="USD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1471,7 +1555,7 @@
                 <Amt Ccy="USD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
             <Bal>
@@ -1483,8 +1567,9 @@
                 <Amt Ccy="USD">0.00</Amt>
                 <CdtDbtInd>CRDT</CdtDbtInd>
                 <Dt>
-                    <Dt>2025-08-04</Dt>
+                    <Dt>2025-08-18</Dt>
                 </Dt>
             </Bal>
         </Stmt>
-    </BkToCstmrStmt>undefined</Document>
+    </BkToCstmrStmt>
+</Document>

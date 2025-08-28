@@ -27,9 +27,9 @@ describe('CamtToBondMapper', () => {
   describe('parse bom files', () => {
     let xmlFilePath: string;
 
-    it('should parse a valid camt053_v2_2.xml file', () => {
+    it('should parse a valid camt053_v2_4.xml file', () => {
       const consoleWarnSpy = jest.spyOn(console, 'warn');
-      xmlFilePath = `${process.cwd()}/test/assets/bank_of_montreal/camt053_v2_2.xml`;
+      xmlFilePath = `${process.cwd()}/test/assets/bank_of_montreal/camt053_v2_4.xml`;
       const camt053V2Sample = fs.readFileSync(xmlFilePath, 'utf8');
       const mapper = new CamtToBondMapper();
       const accounts = mapper.parse(camt053V2Sample);
