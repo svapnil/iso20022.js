@@ -1,11 +1,9 @@
-import { CashManagementEndOfDayReport } from '../../../src/camt/053/cash-management-end-of-day-report';
 import fs from 'fs';
 import { CamtToBondMapper } from '../../../src/camt/camt-to-bond.mapper';
 
 describe('CamtToBondMapper', () => {
-  describe('parse', () => {
+  describe('parse mercury files', () => {
     let xmlFilePath: string;
-    let report: CashManagementEndOfDayReport;
 
     it('should parse a valid camt053_v2_1.xml file', () => {
       const consoleWarnSpy = jest.spyOn(console, 'warn');
@@ -19,6 +17,26 @@ describe('CamtToBondMapper', () => {
       expect(totalTransactions).toBe(50);
       // Count console.warn calls with "- Field"
       const fieldWarnings = consoleWarnSpy.mock.calls.filter(call => 
+        call[0].toString().startsWith('- Field')
+      ).length;
+      expect(fieldWarnings).toBe(0);
+      consoleWarnSpy.mockRestore();
+    });
+  });
+
+  describe('parse bom files', () => {
+    let xmlFilePath: string;
+
+    it('should parse a valid camt053_v2_2.xml file', () => {
+      const consoleWarnSpy = jest.spyOn(console, 'warn');
+      xmlFilePath = `${process.cwd()}/test/assets/bank_of_montreal/camt053_v2_2.xml`;
+      const camt053V2Sample = fs.readFileSync(xmlFilePath, 'utf8');
+      const mapper = new CamtToBondMapper();
+      const accounts = mapper.parse(camt053V2Sample);
+      expect(accounts).toBeDefined();
+      expect(accounts.length).toBe(14);
+      // Count console.warn calls with "- Field"
+      const fieldWarnings = consoleWarnSpy.mock.calls.filter(call =>
         call[0].toString().startsWith('- Field')
       ).length;
       expect(fieldWarnings).toBe(0);

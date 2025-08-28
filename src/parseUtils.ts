@@ -51,7 +51,7 @@ export const parseAmountToMinorUnits = (
 
 export const parseDate = (dateElement: any): Date | undefined => {
   // Find the date element, which can be DtTm or Dt
-  const date = dateElement?.DtTm || dateElement?.Dt;
+  const date = dateElement?.DtTm || dateElement?.Dt || dateElement?.TxDtTm;
   if (!date) {
     return undefined;
   }

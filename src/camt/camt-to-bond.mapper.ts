@@ -176,11 +176,11 @@ export class CamtToBondMapper implements IMapper<string> {
           endingBalance: runningBalance.toString(),
           date: transaction.transactionDate || entry.bookingDate || entry.valueDate,
           reference:
-            transaction.endToEndId ||
+            (transaction.endToEndId ||
             transaction.transactionId ||
-            entry.referenceId!,
+            entry.referenceId!)?.toString(),
           description: transaction.paymentInformationId ? `Payment Info ${transaction.paymentInformationId}` : transaction.remittanceInformation,
-          providerId: transaction.endToEndId!,
+          providerId: transaction.endToEndId?.toString(),
           beneficiary: {
             accountIdentifier: creditorAccountIdentifier || debtorAccountIdentifier || creditorName || debtorName!,
             metadata: creditorMetadata || debtorMetadata as any,
