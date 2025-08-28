@@ -290,7 +290,6 @@ describe('CashManagementEndOfDayReport', () => {
           expect(transaction.instructedCurrency).toBe('EUR');
         });
       });
-
       describe('with camt053_v2_2.xml file', () => {
         it('should create an instance with valid config', () => {
           xmlFilePath = `${process.cwd()}/test/assets/bank_of_montreal/camt053_v2_2.xml`;
@@ -307,7 +306,7 @@ describe('CashManagementEndOfDayReport', () => {
 
           // Synthetic methods (map reduced)
           expect(report.statements.length).toBe(14);
-          
+
           // First statement is correct
           const statement = report.statements[0];
           expect(statement.id).toBe('1');
