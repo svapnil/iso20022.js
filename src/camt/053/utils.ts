@@ -145,7 +145,7 @@ export const parseEntry = (entry: any): Entry => {
 const parseTransactionDetail = (transactionDetail: any): Transaction => {
   const messageId = transactionDetail.Refs?.MsgId;
   const transactionId = transactionDetail.Refs?.TxId;
-  const transactionDate = parseDate(transactionDetail.RltdDts);
+  const transactionDate = parseDate(transactionDetail.RltdDts) || parseDate(transactionDetail.Avlbty);
   const accountServicerReferenceId = transactionDetail.Refs?.AcctSvcrRef;
   const paymentInformationId = transactionDetail.Refs?.PmtInfId;
   const remittanceInformation = transactionDetail.RmtInf?.Ustrd || transactionDetail.AddtlTxInf;

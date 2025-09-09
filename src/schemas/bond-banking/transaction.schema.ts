@@ -1,4 +1,12 @@
-import { array, date, enum_, InferOutput, object, string } from 'valibot';
+import {
+  array,
+  date,
+  enum_,
+  InferOutput,
+  object,
+  optional,
+  string,
+} from 'valibot';
 import { optionalWithWarning } from '../../lib/schema/optional-with-warning';
 import { CurrencyEnum } from '../../lib/enums/currency.enum';
 
@@ -13,12 +21,12 @@ export const transactionSchema = object({
   date: date(),
   reference: string(),
   description: optionalWithWarning(string()),
-  beneficiary: object({
+  beneficiary: optionalWithWarning(object({
     accountIdentifier: string(),
     metadata: object({
       name: optionalWithWarning(string()),
     }),
-  }),
+  })),
 });
 
 export const transactionsSchema = array(transactionSchema);

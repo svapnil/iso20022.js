@@ -10,7 +10,6 @@ import { CurrencyEnum } from '../lib/enums/currency.enum';
 import { IMapper } from '../lib/mapper.interface';
 import {
   TransactionSchema,
-  transactionSchema,
   transactionsSchema,
 } from '../schemas/bond-banking/transaction.schema';
 import { CashManagementEndOfDayReport } from './053/cash-management-end-of-day-report';
@@ -66,7 +65,7 @@ export class CamtToBondMapper implements IMapper<string> {
 
     const accounts = statements.map(statement => {
       const account = this.parseAccount(statement);
-      const transactions = this._parseTransactions(statement);
+      const transactions = this._parseTransactions(statement, account);
       return {
         ...account,
         transactions,
@@ -118,7 +117,7 @@ export class CamtToBondMapper implements IMapper<string> {
     );
   }
 
-  _parseTransactions(input: Statement): TransactionSchema[] {
+  _parseTransactions(input: Statement, account?: AccountSchema): TransactionSchema[] {
     const transactions: TransactionSchema[] = [];
     const { openingBalance } = this.extractBalancesFromCamtStatement(input);
     for (const entry of input.entries) {
@@ -164,6 +163,25 @@ export class CamtToBondMapper implements IMapper<string> {
         }
         const transactionAmount = transaction.transactionAmount!;
         runningBalance += transactionAmount;
+
+        // Extract date for the synthetic reference
+        const transactionDate = transaction.transactionDate || entry.bookingDate || entry.valueDate;
+        
+        // Format date as YYYYMMDD for the synthetic reference
+        const formattedDate = transactionDate.toISOString().slice(0, 10).replace(/-/g, '');
+        
+        // Try to get a reference from the original sources
+        const originalReference = transaction.endToEndId || 
+                                 transaction.transactionId || 
+                                 entry.referenceId;
+        
+        // Generate a synthetic reference if no original reference exists
+        const reference = originalReference 
+          ? originalReference.toString()
+          : `SYN_${account?.accountIdentifier.substring(0, 10)}_${formattedDate}_${transactionAmount.toString().replace(/[.-]/g, '')}`;
+
+        const beneficiaryAccountIdentifier = creditorAccountIdentifier || debtorAccountIdentifier || creditorName || debtorName;
+        
         transactions.push({
           amount: transactionAmount?.toString() || entry.amount?.toString(),
           currency: transaction.transactionCurrency as CurrencyEnum || entry.currency,
@@ -174,17 +192,14 @@ export class CamtToBondMapper implements IMapper<string> {
             entry.bankTransactionCode?.domainSubFamilyCode ||
             entry.bankTransactionCode?.proprietaryCodeIssuer!,
           endingBalance: runningBalance.toString(),
-          date: transaction.transactionDate || entry.bookingDate || entry.valueDate,
-          reference:
-            (transaction.endToEndId ||
-            transaction.transactionId ||
-            entry.referenceId!)?.toString(),
+          date: transactionDate,
+          reference: reference,
           description: transaction.paymentInformationId ? `Payment Info ${transaction.paymentInformationId}` : transaction.remittanceInformation,
           providerId: transaction.endToEndId?.toString(),
-          beneficiary: {
-            accountIdentifier: creditorAccountIdentifier || debtorAccountIdentifier || creditorName || debtorName!,
+          beneficiary: beneficiaryAccountIdentifier ? {
+            accountIdentifier: beneficiaryAccountIdentifier,
             metadata: creditorMetadata || debtorMetadata as any,
-          },
+          } : undefined,
           
         });
       }
