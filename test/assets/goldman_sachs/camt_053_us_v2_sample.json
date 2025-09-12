@@ -1,0 +1,841 @@
+{
+  "Document": {
+    "BkToCstmrStmt": {
+      "GrpHdr": {
+        "MsgId": "235549650",
+        "CreDtTm": "2023-10-05T12:43:51.979Z",
+        "MsgRcpt": {
+          "Id": {
+            "OrgId": {
+              "Othr": {
+                "Id": "test001"
+              }
+            }
+          },
+          "Nm": "Test Client Ltd."
+        }
+      },
+      "Stmt": [
+        {
+          "Id": "258158850",
+          "ElctrncSeqNb": 1,
+          "LglSeqNb": 1,
+          "CreDtTm": "2023-10-05T12:43:52.098Z",
+          "FrToDt": {
+            "FrDtTm": "2023-09-30",
+            "ToDtTm": "2023-10-01"
+          },
+          "TxsSummry": {
+            "TtlNtries": {
+              "NbOfNtries": 14,
+              "Sum": 140,
+              "TtlNetNtryAmt": "40.00"
+            },
+            "TtlCdtNtries": {
+              "NbOfNtries": 9,
+              "Sum": 90
+            },
+            "TtlDbtNtries": {
+              "NbOfNtries": 5,
+              "Sum": 50
+            }
+          },
+          "Acct": {
+            "Id": {
+              "Othr": {
+                "Id": "DD01100056869"
+              }
+            },
+            "Ccy": "USD",
+            "Nm": "Sample Name 123",
+            "Svcr": {
+              "FinInstnId": {
+                "BIC": "GSCRUS30"
+              }
+            }
+          },
+          "Bal": [
+            {
+              "Amt": {
+                "#text": "843686.20",
+                "@_Ccy": "USD"
+              },
+              "CdtDbtInd": "DBIT",
+              "Tp": {
+                "CdOrPrtry": {
+                  "Cd": "OPBD"
+                }
+              },
+              "Dt": {
+                "DtTm": "2023-09-30T18:00:00.000Z"
+              }
+            },
+            {
+              "Amt": {
+                "#text": "846665.15",
+                "@_Ccy": "USD"
+              },
+              "CdtDbtInd": "DBIT",
+              "Tp": {
+                "CdOrPrtry": {
+                  "Cd": "CLBD"
+                }
+              },
+              "Dt": {
+                "DtTm": "2023-09-30T18:00:00.000Z"
+              }
+            },
+            {
+              "Amt": {
+                "#text": "334432492.92",
+                "@_Ccy": "USD"
+              },
+              "CdtDbtInd": "CRDT",
+              "Tp": {
+                "CdOrPrtry": {
+                  "Cd": "OPAV"
+                }
+              },
+              "Dt": {
+                "DtTm": "2023-09-30T23:59:00.000Z"
+              }
+            },
+            {
+              "Amt": {
+                "#text": "334432401.27",
+                "@_Ccy": "USD"
+              },
+              "CdtDbtInd": "CRDT",
+              "Tp": {
+                "CdOrPrtry": {
+                  "Cd": "CLAV"
+                }
+              },
+              "Dt": {
+                "DtTm": "2023-10-01T23:59:00.000Z"
+              }
+            }
+          ],
+          "Ntry": [
+            {
+              "NtryRef": "52198201",
+              "CdtDbtInd": "CRDT",
+              "BookgDt": {
+                "DtTm": "2023-10-01T11:37:14.000Z"
+              },
+              "RvslInd": true,
+              "Amt": {
+                "#text": "10.00",
+                "@_Ccy": "USD"
+              },
+              "BkTxCd": {
+                "Prtry": {
+                  "Cd": "ACH Credit Reject"
+                },
+                "Domn": {
+                  "Fmly": {}
+                }
+              },
+              "NtryDtls": [
+                {
+                  "TxDtls": {
+                    "Refs": {
+                      "MsgId": "GSNULXSKMMJ479NMKS",
+                      "AcctSvcrRef": "B20092800002225",
+                      "PmtInfId": "RP/GS/CTFILERP0002/CTBA0003",
+                      "EndToEndId": "GSGWGDNCTAHQM8"
+                    },
+                    "RmtInf": {
+                      "Ustrd": "Sample Unstructured Remittance 123"
+                    },
+                    "Purp": {},
+                    "RtrInf": {
+                      "AddtlInf": "Status changed to REJECTED : REJECT REVERSAL"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "NtryRef": "52198251",
+              "CdtDbtInd": "DBIT",
+              "BookgDt": {
+                "DtTm": "2023-10-01T11:37:11.000Z"
+              },
+              "RvslInd": false,
+              "Amt": {
+                "#text": "10.00",
+                "@_Ccy": "USD"
+              },
+              "BkTxCd": {
+                "Prtry": {
+                  "Cd": "ACH Credit Payment"
+                },
+                "Domn": {
+                  "Fmly": {}
+                }
+              },
+              "NtryDtls": [
+                {
+                  "TxDtls": {
+                    "Refs": {
+                      "MsgId": "GSNULXSKMMJ479NMKS",
+                      "AcctSvcrRef": "SPB20092845886394",
+                      "PmtInfId": "RP/GS/CTFILERP0002/CTBA0003"
+                    },
+                    "RmtInf": {},
+                    "Purp": {},
+                    "RtrInf": {},
+                    "RltdPties": {
+                      "Cdtr": {
+                        "Nm": "GS Bank USA"
+                      },
+                      "CdtrAcct": {
+                        "Id": {
+                          "Othr": {
+                            "Id": "ACHCONTROLOUTUSD01"
+                          }
+                        }
+                      }
+                    },
+                    "RltdAgts": {}
+                  }
+                }
+              ]
+            },
+            {
+              "NtryRef": "52198301",
+              "CdtDbtInd": "CRDT",
+              "BookgDt": {
+                "DtTm": "2023-10-01T11:36:04.000Z"
+              },
+              "RvslInd": false,
+              "Amt": {
+                "#text": "10.00",
+                "@_Ccy": "USD"
+              },
+              "BkTxCd": {
+                "Prtry": {
+                  "Cd": "Incoming Wire"
+                },
+                "Domn": {
+                  "Fmly": {}
+                }
+              },
+              "NtryDtls": [
+                {
+                  "TxDtls": {
+                    "Refs": {
+                      "MsgId": "20230928LTERMID100000312221631FT01",
+                      "AcctSvcrRef": "I20092800008308",
+                      "EndToEndId": "20230928LTERMID2000003"
+                    },
+                    "RmtInf": {},
+                    "Purp": {},
+                    "RtrInf": {}
+                  }
+                }
+              ]
+            },
+            {
+              "NtryRef": "111214350",
+              "CdtDbtInd": "CRDT",
+              "BookgDt": {
+                "DtTm": "2023-10-01T21:05:02.000Z"
+              },
+              "RvslInd": false,
+              "Amt": {
+                "#text": "10.00",
+                "@_Ccy": "USD"
+              },
+              "BkTxCd": {
+                "Prtry": {
+                  "Cd": "ACH Debit Collection"
+                },
+                "Domn": {
+                  "Cd": "PMNT",
+                  "Fmly": {
+                    "Cd": "IDDT",
+                    "SubFmlyCd": "PADD"
+                  }
+                }
+              },
+              "NtryDtls": [
+                {
+                  "TxDtls": {
+                    "Refs": {
+                      "MsgId": "cs3SJXv1RN_20230918_A",
+                      "AcctSvcrRef": "SPB2326182390753",
+                      "PmtInfId": "cs3SJXv1RN230918A0000022"
+                    },
+                    "RmtInf": {},
+                    "Purp": {
+                      "Prtry": "gsbt_Of8X0"
+                    },
+                    "RtrInf": {}
+                  }
+                }
+              ]
+            },
+            {
+              "NtryRef": "107770750",
+              "CdtDbtInd": "CRDT",
+              "BookgDt": {
+                "DtTm": "2023-10-01T15:14:51.000Z"
+              },
+              "RvslInd": false,
+              "Amt": {
+                "#text": "10.00",
+                "@_Ccy": "USD"
+              },
+              "BkTxCd": {
+                "Prtry": {
+                  "Cd": "Transfer"
+                },
+                "Domn": {
+                  "Cd": "PMNT",
+                  "Fmly": {
+                    "Cd": "RCDT",
+                    "SubFmlyCd": "BOOK"
+                  }
+                }
+              },
+              "NtryDtls": [
+                {
+                  "TxDtls": {
+                    "Refs": {
+                      "MsgId": "GTOS4BN19D124XV",
+                      "AcctSvcrRef": "GI2325100009148",
+                      "EndToEndId": "GTOS4BN19D124XV"
+                    },
+                    "RmtInf": {
+                      "Ustrd": "TEST 2023"
+                    },
+                    "Purp": {},
+                    "RtrInf": {},
+                    "RltdPties": {
+                      "Dbtr": {
+                        "Nm": "TEST CLIENT"
+                      },
+                      "DbtrAcct": {
+                        "Id": {
+                          "Othr": {
+                            "Id": "6883105620"
+                          }
+                        },
+                        "Nm": "TEST CLIENT"
+                      }
+                    },
+                    "RltdAgts": {
+                      "DbtrAgt": {
+                        "FinInstnId": {
+                          "BIC": "GOLDUS33XXX"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "NtryRef": "103825900",
+              "CdtDbtInd": "CRDT",
+              "BookgDt": {
+                "DtTm": "2023-10-01T00:03:19.000Z"
+              },
+              "RvslInd": false,
+              "Amt": {
+                "#text": "10.00",
+                "@_Ccy": "USD"
+              },
+              "BkTxCd": {
+                "Prtry": {
+                  "Cd": "Interest"
+                },
+                "Domn": {
+                  "Cd": "ACMT",
+                  "Fmly": {
+                    "Cd": "MCOP",
+                    "SubFmlyCd": "INTR"
+                  }
+                }
+              },
+              "NtryDtls": [
+                {
+                  "TxDtls": {
+                    "Refs": {
+                      "AcctSvcrRef": "SBD91894_20230831_0011",
+                      "EndToEndId": "SBD91894_20230831_0011"
+                    },
+                    "RmtInf": {},
+                    "Purp": {},
+                    "RtrInf": {}
+                  }
+                }
+              ]
+            },
+            {
+              "NtryRef": "111217750",
+              "CdtDbtInd": "DBIT",
+              "BookgDt": {
+                "DtTm": "2023-10-01T19:00:47.000Z"
+              },
+              "RvslInd": false,
+              "Amt": {
+                "#text": "10.00",
+                "@_Ccy": "USD"
+              },
+              "BkTxCd": {
+                "Prtry": {
+                  "Cd": "Outgoing Wire"
+                },
+                "Domn": {
+                  "Cd": "PMNT",
+                  "Fmly": {
+                    "Cd": "ICDT",
+                    "SubFmlyCd": "DMCT"
+                  }
+                }
+              },
+              "NtryDtls": [
+                {
+                  "TxDtls": {
+                    "Refs": {
+                      "MsgId": "ntsub_Of6teoIeoK9HKo",
+                      "AcctSvcrRef": "GI2326100013419",
+                      "PmtInfId": "gswire_11112AAGW0QyETo",
+                      "EndToEndId": "D2M0Y6P0D3Q0M3Z2S5T3F0X0S7G3S7V8L0S"
+                    },
+                    "RmtInf": {
+                      "Ustrd": "TBT OF6LBKDOHYVGZL"
+                    },
+                    "Purp": {},
+                    "RtrInf": {},
+                    "RltdPties": {
+                      "Cdtr": {
+                        "Nm": "ABC INC"
+                      },
+                      "CdtrAcct": {
+                        "Id": {
+                          "Othr": {
+                            "Id": "4356695007"
+                          }
+                        }
+                      }
+                    },
+                    "RltdAgts": {
+                      "CdtrAgt": {
+                        "FinInstnId": {
+                          "BIC": "WFBIUS6S"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "NtryRef": "172404700",
+              "CdtDbtInd": "DBIT",
+              "BookgDt": {
+                "DtTm": "2023-08-02T14:52:06.000Z"
+              },
+              "RvslInd": false,
+              "Amt": {
+                "#text": "29.06",
+                "@_Ccy": "EUR"
+              },
+              "BkTxCd": {
+                "Prtry": {
+                  "Cd": "Outgoing Wire"
+                },
+                "Domn": {
+                  "Cd": "PMNT",
+                  "Fmly": {
+                    "Cd": "ICDT",
+                    "SubFmlyCd": "DMCT"
+                  }
+                }
+              },
+              "NtryDtls": [
+                {
+                  "TxDtls": {
+                    "Refs": {
+                      "MsgId": 5741312,
+                      "AcctSvcrRef": "GI2321400001068",
+                      "PmtInfId": 1,
+                      "EndToEndId": 5741412
+                    },
+                    "RmtInf": {
+                      "Ustrd": "FFC"
+                    },
+                    "Purp": {},
+                    "RtrInf": {},
+                    "RltdPties": {
+                      "Cdtr": {
+                        "Nm": "Test creditor name"
+                      },
+                      "CdtrAcct": {
+                        "Id": {
+                          "Othr": {
+                            "Id": "GB14BARC20325340846481"
+                          }
+                        }
+                      }
+                    },
+                    "RltdAgts": {
+                      "CdtrAgt": {
+                        "FinInstnId": {
+                          "BIC": "BARCGB22XXX"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "NtryRef": "177684750",
+              "CdtDbtInd": "DBIT",
+              "BookgDt": {
+                "DtTm": "2023-10-01T08:36:45.000Z"
+              },
+              "RvslInd": false,
+              "Amt": {
+                "#text": "10.00",
+                "@_Ccy": "USD"
+              },
+              "BkTxCd": {
+                "Prtry": {
+                  "Cd": "RTP Outgoing"
+                },
+                "Domn": {
+                  "Cd": "PMNT",
+                  "Fmly": {
+                    "Cd": "IRCT",
+                    "SubFmlyCd": "DMCT"
+                  }
+                }
+              },
+              "NtryDtls": [
+                {
+                  "TxDtls": {
+                    "Refs": {
+                      "MsgId": "GS20QAPQIKN9ZY",
+                      "AcctSvcrRef": "CHFPS1000097489",
+                      "PmtInfId": "RTR0808001",
+                      "EndToEndId": "GSIISSUKTI8QBQER05IK"
+                    },
+                    "RmtInf": {},
+                    "Purp": {},
+                    "RtrInf": {},
+                    "RltdPties": {
+                      "Cdtr": {
+                        "Nm": "RTR-CdtrName"
+                      },
+                      "CdtrAcct": {
+                        "Id": {
+                          "Othr": {
+                            "Id": "102133906"
+                          }
+                        }
+                      }
+                    },
+                    "RltdAgts": {
+                      "CdtrAgt": {
+                        "FinInstnId": {
+                          "Othr": {
+                            "Id": "10"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "NtryRef": "268885951",
+              "CdtDbtInd": "CRDT",
+              "BookgDt": {
+                "DtTm": "2023-10-01T16:03:53.023Z"
+              },
+              "RvslInd": true,
+              "Amt": {
+                "#text": "10.00",
+                "@_Ccy": "USD"
+              },
+              "BkTxCd": {
+                "Prtry": {
+                  "Cd": "Outgoing Wire Return"
+                },
+                "Domn": {
+                  "Cd": "PMNT",
+                  "Fmly": {
+                    "Cd": "ICDT",
+                    "SubFmlyCd": "RRTN"
+                  }
+                }
+              },
+              "NtryDtls": [
+                {
+                  "TxDtls": {
+                    "Refs": {
+                      "MsgId": "20210706MMQFMPU700000106301050FT03",
+                      "AcctSvcrRef": "GI2118700002010",
+                      "EndToEndId": "GSWDEZOJDF"
+                    },
+                    "RmtInf": {},
+                    "Purp": {},
+                    "RtrInf": {},
+                    "RltdPties": {
+                      "Dbtr": {
+                        "Nm": "OPY USA INC."
+                      },
+                      "DbtrAcct": {
+                        "Id": {
+                          "Othr": {
+                            "Id": "107049932"
+                          }
+                        },
+                        "Ccy": "USD"
+                      }
+                    },
+                    "RltdAgts": {
+                      "DbtrAgt": {
+                        "FinInstnId": {
+                          "BIC": "GSCRUS33"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "NtryRef": "274748251",
+              "CdtDbtInd": "CRDT",
+              "BookgDt": {
+                "DtTm": "2023-10-01T14:21:59.000Z"
+              },
+              "RvslInd": false,
+              "Amt": {
+                "#text": "10.00",
+                "@_Ccy": "USD"
+              },
+              "BkTxCd": {
+                "Prtry": {
+                  "Cd": "Check Deposit"
+                },
+                "Domn": {
+                  "Cd": "PMNT",
+                  "Fmly": {
+                    "Cd": "RCHQ",
+                    "SubFmlyCd": "CCHQ"
+                  }
+                }
+              },
+              "NtryDtls": [
+                {
+                  "TxDtls": {
+                    "Refs": {
+                      "MsgId": "D-DEP-TEST-FILE-G",
+                      "AcctSvcrRef": "SX21271060439231",
+                      "PmtInfId": "d-uniqueid-test123-G"
+                    },
+                    "RmtInf": {},
+                    "Purp": {},
+                    "RtrInf": {}
+                  }
+                }
+              ]
+            },
+            {
+              "NtryRef": "52198401",
+              "CdtDbtInd": "CRDT",
+              "BookgDt": {
+                "DtTm": "2023-10-01T16:39:54.000Z"
+              },
+              "RvslInd": false,
+              "Amt": {
+                "#text": "10.00",
+                "@_Ccy": "USD"
+              },
+              "BkTxCd": {
+                "Prtry": {
+                  "Cd": "ACH Credit Receipt"
+                },
+                "Domn": {
+                  "Fmly": {}
+                }
+              },
+              "NtryDtls": [
+                {
+                  "TxDtls": {
+                    "Refs": {
+                      "MsgId": "FEDACHIN092820P",
+                      "AcctSvcrRef": "B20092800009509",
+                      "PmtInfId": 1,
+                      "EndToEndId": 21000020000017
+                    },
+                    "RmtInf": {},
+                    "Purp": {},
+                    "RtrInf": {},
+                    "RltdPties": {
+                      "Dbtr": {
+                        "Nm": "JPMCHASEClient"
+                      }
+                    },
+                    "RltdAgts": {}
+                  }
+                }
+              ]
+            },
+            {
+              "NtryRef": "52198451",
+              "CdtDbtInd": "CRDT",
+              "BookgDt": {
+                "DtTm": "2023-10-01T14:27:53.000Z"
+              },
+              "RvslInd": true,
+              "Amt": {
+                "#text": "10.00",
+                "@_Ccy": "USD"
+              },
+              "BkTxCd": {
+                "Prtry": {
+                  "Cd": "ACH Credit Payment Return"
+                },
+                "Domn": {
+                  "Fmly": {}
+                }
+              },
+              "NtryDtls": [
+                {
+                  "TxDtls": {
+                    "Refs": {
+                      "MsgId": "FEDACHIN092820G",
+                      "AcctSvcrRef": "B20092800008542",
+                      "PmtInfId": 1,
+                      "EndToEndId": "GSKWTHM25VCGE5"
+                    },
+                    "RmtInf": {},
+                    "Purp": {},
+                    "RtrInf": {
+                      "Rsn": {
+                        "Prtry": "R02"
+                      }
+                    },
+                    "RltdPties": {
+                      "Dbtr": {
+                        "Nm": "Primrose"
+                      },
+                      "DbtrAcct": {
+                        "Id": {
+                          "Othr": {
+                            "Id": "456000000"
+                          }
+                        },
+                        "Nm": "Primrose"
+                      }
+                    },
+                    "RltdAgts": {
+                      "DbtrAgt": {
+                        "FinInstnId": {
+                          "Othr": {
+                            "Id": "82000549"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "NtryRef": "52198501",
+              "CdtDbtInd": "CRDT",
+              "BookgDt": {
+                "DtTm": "2023-10-01T11:35:06.000Z"
+              },
+              "RvslInd": false,
+              "Amt": {
+                "#text": "10.00",
+                "@_Ccy": "USD"
+              },
+              "BkTxCd": {
+                "Prtry": {
+                  "Cd": "Incoming Wire"
+                },
+                "Domn": {
+                  "Fmly": {}
+                }
+              },
+              "NtryDtls": [
+                {
+                  "TxDtls": {
+                    "Refs": {
+                      "MsgId": "20230928LTERMID100000212221631FT01",
+                      "AcctSvcrRef": "I20092800008305",
+                      "EndToEndId": "20230928LTERMID2000002"
+                    },
+                    "RmtInf": {},
+                    "Purp": {},
+                    "RtrInf": {}
+                  }
+                }
+              ]
+            },
+            {
+              "NtryRef": "52198551",
+              "CdtDbtInd": "DBIT",
+              "BookgDt": {
+                "DtTm": "2023-10-01T08:17:07.000Z"
+              },
+              "RvslInd": false,
+              "Amt": {
+                "#text": "10.00",
+                "@_Ccy": "USD"
+              },
+              "BkTxCd": {
+                "Prtry": {
+                  "Cd": "ACH Credit Payment"
+                },
+                "Domn": {
+                  "Fmly": {}
+                }
+              },
+              "NtryDtls": [
+                {
+                  "TxDtls": {
+                    "Refs": {
+                      "MsgId": 1058863,
+                      "AcctSvcrRef": "PB20092845805853",
+                      "PmtInfId": "CLIENTID200928A0000001"
+                    },
+                    "RmtInf": {},
+                    "Purp": {},
+                    "RtrInf": {},
+                    "RltdPties": {
+                      "Cdtr": {
+                        "Nm": "GS Bank USA"
+                      },
+                      "CdtrAcct": {
+                        "Id": {
+                          "Othr": {
+                            "Id": "ACHCONTROLOUTUSD01"
+                          }
+                        }
+                      }
+                    },
+                    "RltdAgts": {}
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

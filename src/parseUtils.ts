@@ -1,4 +1,5 @@
-import { Account, Agent, Party, StructuredAddress } from 'lib/types';
+import { Account, Agent, BaseAccount, IBANAccount, Party, StructuredAddress } from 'lib/types';
+import { getCurrencyPrecision } from './lib/currencies';
 import Dinero, { Currency } from 'dinero.js';
 
 export const parseAccount = (account: any): Account => {
@@ -16,6 +17,25 @@ export const parseAccount = (account: any): Account => {
   } as Account;
 };
 
+export const exportAccount = (
+  account: Account
+): any => {
+  const obj: any = {};
+  if ((account as any).iban) {
+    obj.Id = { IBAN: (account as IBANAccount).iban };
+  } else {
+    obj.Id = {
+      Othr: {
+        Id: (account as BaseAccount).accountNumber,
+      },
+    };
+    obj.Ccy = (account as BaseAccount).currency;
+    obj.Nm = (account as BaseAccount).name;
+  }
+
+  return obj;
+};
+
 // TODO: Add both BIC and ABA routing numbers at the same time
 export const parseAgent = (agent: any): Agent => {
   // Get BIC if it exists first
@@ -30,6 +50,18 @@ export const parseAgent = (agent: any): Agent => {
   } as Agent;
 };
 
+export const exportAgent = (agent: Agent): any => {
+  const obj: any = {
+    FinInstnId: {},
+  };
+  if ((agent as any).bic) {
+    obj.FinInstnId.BIC = (agent as any).bic;
+  } else if ((agent as any).abaRoutingNumber) {
+    obj.FinInstnId.Othr = { Id: (agent as any).abaRoutingNumber };
+  }
+  return obj;
+};
+
 // Parse raw currency data, turn into Dinero object and turn into minor units
 export const parseAmountToMinorUnits = (
   rawAmount: number,
@@ -37,10 +69,25 @@ export const parseAmountToMinorUnits = (
 ): number => {
   const currencyObject = Dinero({
     currency: currency,
+    precision: getCurrencyPrecision(currency),
   });
   // Also make sure Javascript number parsing error do not happen.
   return Math.floor(Number(rawAmount) * 10 ** currencyObject.getPrecision());
 };
+
+export const exportAmountToString = (
+  amount: number,
+  currency: Currency = 'USD',
+): string => {
+  const currencyObject = Dinero({
+    amount,
+    currency: currency,
+    precision: getCurrencyPrecision(currency),
+  });
+  const precision = currencyObject.getPrecision();
+  const zeroes = '0'.repeat(precision);
+  return currencyObject.toFormat('0'+(zeroes.length > 0 ? '.'+zeroes : ''));
+}
 
 export const parseDate = (dateElement: any): Date => {
   // Find the date element, which can be DtTm or Dt
@@ -65,6 +112,13 @@ export const parseRecipient = (recipient: any): {
     name: recipient.Nm,
   };
 };
+
+export const exportRecipient = (recipient: ReturnType<typeof parseRecipient>): any => {
+  return {
+    Id: recipient.id ? { OrgId: { Othr: { Id: recipient.id } } } : undefined,
+    Nm: recipient.name,
+  }
+}
 
 // Standardize into a single string
 export const parseAdditionalInformation = (

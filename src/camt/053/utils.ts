@@ -6,7 +6,7 @@ import {
   Transaction,
 } from 'camt/types';
 import { Party } from '../../lib/types';
-import { parseAdditionalInformation, parseDate } from '../../parseUtils';
+import { exportAccount, exportAgent, exportAmountToString, parseAdditionalInformation, parseDate } from '../../parseUtils';
 import {
   parseAccount,
   parseAgent,
@@ -36,11 +36,11 @@ export const parseStatement = (stmt: any): Statement => {
     netAmountOfEntries = parseAmountToMinorUnits(rawNetAmountOfEntries);
   }
 
-  const numOfCredits = stmt.TxsSummry?.TtlCdtNtries.NbOfNtries;
-  const sumOfCredits = stmt.TxsSummry?.TtlCdtNtries.Sum;
+  const numOfCreditEntries = stmt.TxsSummry?.TtlCdtNtries.NbOfNtries;
+  const sumOfCreditEntries = stmt.TxsSummry?.TtlCdtNtries.Sum;
 
-  const numOfDebits = stmt.TxsSummry?.TtlDbtNtries.NbOfNtries;
-  const sumOfDebits = stmt.TxsSummry?.TtlDbtNtries.Sum;
+  const numOfDebitEntries = stmt.TxsSummry?.TtlDbtNtries.NbOfNtries;
+  const sumOfDebitEntries = stmt.TxsSummry?.TtlDbtNtries.Sum;
 
   // Get account information
   // TODO: Save account types here
@@ -74,14 +74,54 @@ export const parseStatement = (stmt: any): Statement => {
     numOfEntries,
     sumOfEntries,
     netAmountOfEntries,
-    numOfCredits,
-    sumOfCredits,
-    numOfDebits,
-    sumOfDebits,
+    numOfCreditEntries,
+    sumOfCreditEntries,
+    numOfDebitEntries,
+    sumOfDebitEntries,
     balances,
     entries,
-  } as Statement;
+  };
 };
+
+export const exportStatement = (stmt: Statement): any => {
+  const obj = {
+    Id: stmt.id,
+    ElctrncSeqNb: stmt.electronicSequenceNumber,
+    LglSeqNb: stmt.legalSequenceNumber,
+    CreDtTm: stmt.creationDate.toISOString(),
+    FrToDt:
+      stmt.fromDate && stmt.toDate
+        ? {
+            FrDtTm: stmt.fromDate.toISOString().slice(0, 10),
+            ToDtTm: stmt.toDate.toISOString().slice(0, 10),
+          }
+        : undefined,
+    TxsSummry: {
+      TtlNtries: {
+        NbOfNtries: stmt.numOfEntries,
+        Sum: stmt.sumOfEntries,
+        TtlNetNtryAmt: stmt.netAmountOfEntries
+          ? exportAmountToString(stmt.netAmountOfEntries, stmt.balances[0]?.currency)
+          : undefined,
+      },
+      TtlCdtNtries: {
+        NbOfNtries: stmt.numOfCreditEntries,
+        Sum: stmt.sumOfCreditEntries,
+      },
+      TtlDbtNtries: {
+        NbOfNtries: stmt.numOfDebitEntries,
+        Sum: stmt.sumOfDebitEntries,
+      },
+    },
+    Acct: {
+      ...exportAccount(stmt.account), 
+      Svcr: exportAgent(stmt.agent)
+    },
+    Bal: stmt.balances.map((bal) => exportBalance(bal)),
+    Ntry: stmt.entries.map((entry) => exportEntry(entry)),
+  }
+  return obj;
+}
 
 export const parseBalance = (balance: any): Balance => {
   const rawAmount = balance.Amt['#text'];
@@ -99,6 +139,26 @@ export const parseBalance = (balance: any): Balance => {
     type,
   } as Balance;
 };
+
+export const exportBalance = (balance: Balance): any => {
+  const obj: any = {
+    Amt: {
+      '#text': exportAmountToString(balance.amount, balance.currency),
+      '@_Ccy': balance.currency,
+    },
+    CdtDbtInd: balance.creditDebitIndicator === 'credit' ? 'CRDT' : 'DBIT',
+    Tp: {
+      CdOrPrtry: {
+        Cd: balance.type,
+      },
+    },
+    Dt: {
+      DtTm: balance.date.toISOString(),
+    },
+  };
+
+  return obj;
+}
 
 export const parseEntry = (entry: any): Entry => {
   const referenceId = entry.NtryRef;
@@ -144,6 +204,26 @@ export const parseEntry = (entry: any): Entry => {
     bankTransactionCode,
   } as Entry;
 };
+
+export const exportEntry = (entry: Entry): any => {
+  const obj: any = {
+    NtryRef: entry.referenceId,
+    CdtDbtInd: entry.creditDebitIndicator === 'credit' ? 'CRDT' : 'DBIT',
+    BookgDt: {
+      DtTm: entry.bookingDate.toISOString(),
+    },
+    RvslInd: entry.reversal,
+    Amt: {
+      '#text': exportAmountToString(entry.amount, entry.currency),
+      '@_Ccy': entry.currency,
+    },
+    BkTxCd: exportBankTransactionCode(entry.bankTransactionCode, entry.proprietaryCode),
+    AddtlNtryInf: entry.additionalInformation,
+    AcctSvcrRef: entry.accountServicerReferenceId,
+    NtryDtls: entry.transactions.map((tx) => ({TxDtls: exportTransactionDetails(tx)}))
+  }
+  return obj;
+}
 
 const parseTransactionDetail = (transactionDetail: any): Transaction => {
   const messageId = transactionDetail.Refs?.MsgId;
@@ -215,6 +295,52 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
   } as Transaction;
 };
 
+const exportTransactionDetails = (tx: Transaction): any => {
+  const obj: any = {
+    Refs: {
+      MsgId: tx.messageId,
+      AcctSvcrRef: tx.accountServicerReferenceId,
+      PmtInfId: tx.paymentInformationId,
+      EndToEndId: tx.endToEndId,
+    },
+    RmtInf: {
+      Ustrd: tx.remittanceInformation,
+    },
+    Purp: {
+      Prtry: tx.proprietaryPurpose,
+    },
+    RtrInf: {
+      Rsn: tx.returnReason,
+      AddtlInf: tx.returnAdditionalInformation,
+    },
+  };
+  if (tx.debtor) {
+    obj.RltdPties = {
+      ...obj.RltdPties,
+      Dbtr: {
+        Nm: tx.debtor.name,
+      },
+      DbtrAcct: tx.debtor.account ? exportAccount(tx.debtor.account) : undefined,
+    };
+    obj.RltdAgts = {
+      DbtrAgt: tx.debtor.agent ? exportAgent(tx.debtor.agent) : undefined,
+    };
+  }
+  if (tx.creditor) {
+    obj.RltdPties = {
+      ...obj.RltdPties,
+      Cdtr: {
+        Nm: tx.creditor.name,
+      },
+      CdtrAcct: tx.creditor.account ? exportAccount(tx.creditor.account) : undefined,
+    };
+    obj.RltdAgts = {
+      CdtrAgt: tx.creditor.agent ? exportAgent(tx.creditor.agent) : undefined,
+    };
+  }
+  return obj;
+}
+
 const parseBankTransactionCode = (
   transactionCode: any,
 ): BankTransactionCode | undefined => {
@@ -232,3 +358,30 @@ const parseBankTransactionCode = (
     proprietaryCodeIssuer,
   };
 };
+
+const exportBankTransactionCode = (
+  bankTransactionCode: BankTransactionCode | undefined,
+  proprietaryCode?: string,
+): any => {
+  const obj: any = {
+  }
+  if (proprietaryCode) {
+    obj.Prtry = { Cd: proprietaryCode };
+  }
+  if (bankTransactionCode) {
+    obj.Domn = {
+      Cd: bankTransactionCode.domainCode,
+      Fmly: {
+        Cd: bankTransactionCode.domainFamilyCode,
+        SubFmlyCd: bankTransactionCode.domainSubFamilyCode,
+      },
+    };
+    if (bankTransactionCode.proprietaryCode) {
+      obj.Prtry = {
+        Cd: bankTransactionCode.proprietaryCode,
+        Issr: bankTransactionCode.proprietaryCodeIssuer,
+      };
+    }
+  }
+  return obj;
+}

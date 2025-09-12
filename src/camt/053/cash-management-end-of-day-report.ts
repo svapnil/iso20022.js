@@ -1,8 +1,8 @@
 import { Balance, Entry, Statement, Transaction } from '../types';
 import { Party, StructuredAddress } from '../../lib/types';
 import { XMLParser } from 'fast-xml-parser';
-import { parseStatement } from './utils';
-import { parseRecipient } from '../../parseUtils';
+import { exportStatement, parseStatement } from './utils';
+import { exportRecipient, parseRecipient } from '../../parseUtils';
 import {
   InvalidXmlError,
   InvalidXmlNamespaceError,
@@ -75,6 +75,29 @@ export class CashManagementEndOfDayReport {
     });
   }
 
+  static fromDocumentObject(obj: {Document: any}): CashManagementEndOfDayReport {
+    const bankToCustomerStatement = obj.Document.BkToCstmrStmt;
+    const rawCreationDate = bankToCustomerStatement.GrpHdr.CreDtTm;
+    const creationDate = new Date(rawCreationDate);
+
+    let statements: Statement[] = [];
+    if (Array.isArray(bankToCustomerStatement.Stmt)) {
+      statements = bankToCustomerStatement.Stmt.map((stmt: any) =>
+        parseStatement(stmt),
+      );
+    } else {
+      statements = [parseStatement(bankToCustomerStatement.Stmt)];
+    }
+
+    const rawRecipient = bankToCustomerStatement.GrpHdr.MsgRcpt;
+    return new CashManagementEndOfDayReport({
+      messageId: bankToCustomerStatement.GrpHdr.MsgId.toString(),
+      creationDate,
+      recipient: rawRecipient ? parseRecipient(rawRecipient) : undefined,
+      statements: statements,
+    });
+  }
+
   /**
    * Creates a CashManagementEndOfDayReport instance from a raw XML string.
    *
@@ -95,26 +118,37 @@ export class CashManagementEndOfDayReport {
       throw new InvalidXmlNamespaceError('Invalid CAMT.053 namespace');
     }
 
-    const bankToCustomerStatement = xml.Document.BkToCstmrStmt;
-    const rawCreationDate = bankToCustomerStatement.GrpHdr.CreDtTm;
-    const creationDate = new Date(rawCreationDate);
+    return CashManagementEndOfDayReport.fromDocumentObject(xml);
+  }
 
-    let statements: Statement[] = [];
-    if (Array.isArray(bankToCustomerStatement.Stmt)) {
-      statements = bankToCustomerStatement.Stmt.map((stmt: any) =>
-        parseStatement(stmt),
-      );
-    } else {
-      statements = [parseStatement(bankToCustomerStatement.Stmt)];
+  /**
+   * 
+   * @param json - JSON string representing a CashManagementEndOfDayReport
+   * @returns {CashManagementEndOfDayReport} A new instance of CashManagementEndOfDayReport
+   * @throws {Error} If the JSON parsing fails or required data is missing.
+   */
+  static fromJSON(json: string): CashManagementEndOfDayReport {
+    const obj = JSON.parse(json);
+
+    if (!obj.Document) {
+      throw new InvalidXmlError("Invalid JSON format");
     }
 
-    const rawRecipient = bankToCustomerStatement.GrpHdr.MsgRcpt;
-    return new CashManagementEndOfDayReport({
-      messageId: bankToCustomerStatement.GrpHdr.MsgId.toString(),
-      creationDate,
-      recipient: rawRecipient ? parseRecipient(rawRecipient) : undefined,
-      statements: statements,
-    });
+    return CashManagementEndOfDayReport.fromDocumentObject(obj);
+  }
+
+  toJSON(): any {
+    const Document = {
+      BkToCstmrStmt: {
+        GrpHdr: {
+          MsgId: this._messageId,
+          CreDtTm: this._creationDate.toISOString(),
+          MsgRcpt: this._recipient ? exportRecipient(this._recipient) : undefined,
+        },
+        Stmt: this._statements.map((stmt) => exportStatement(stmt)),
+      }
+    }
+    return { Document };
   }
 
   /**
