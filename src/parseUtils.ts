@@ -9,7 +9,7 @@ export const parseAccount = (account: any): Account => {
       iban: account.Id.IBAN,
     } as Account;
   }
-
+  // TODO: Add support for .Tp.Cd and .Tp.Prtry
   return {
     ...(account.Id?.Othr?.Id && { accountNumber: String(account.Id.Othr.Id) }),
     ...(account.Nm && { name: account.Nm }),

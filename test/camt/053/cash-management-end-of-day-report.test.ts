@@ -132,6 +132,9 @@ describe('CashManagementEndOfDayReport', () => {
         const json = report.toJSON();
         fs.writeFileSync(filePath.replace('.xml', '.json'), JSON.stringify(json, null, 2), "utf8");
         
+        // Generate XML from object for testing the serialize method
+        const xml = report.serialize();
+        fs.writeFileSync(filePath.replace('.xml', '.out.xml'), xml, "utf8");
 
       });
       it('should create an instance with valid config from JSON', () => {

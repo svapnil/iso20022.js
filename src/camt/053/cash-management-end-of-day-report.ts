@@ -1,12 +1,13 @@
 import { Balance, Entry, Statement, Transaction } from '../types';
 import { Party, StructuredAddress } from '../../lib/types';
-import { XMLParser } from 'fast-xml-parser';
+import { XMLBuilder, XMLParser } from 'fast-xml-parser';
 import { exportStatement, parseStatement } from './utils';
 import { exportRecipient, parseRecipient } from '../../parseUtils';
 import {
   InvalidXmlError,
   InvalidXmlNamespaceError,
 } from '../../errors';
+import { GenericISO20022Message } from 'lib/interfaces';
 
 /**
  * Configuration interface for creating a CashManagementEndOfDayReport instance.
@@ -30,7 +31,7 @@ interface CashManagementEndOfDayReportConfig {
  * This class encapsulates the data and functionality related to processing
  * and accessing information from a CAMT.053 XML file.
  */
-export class CashManagementEndOfDayReport {
+export class CashManagementEndOfDayReport implements GenericISO20022Message {
   private _messageId: string;
   private _creationDate: Date;
   private _recipient?: {
@@ -55,6 +56,8 @@ export class CashManagementEndOfDayReport {
   private static getParser(): XMLParser {
     return new XMLParser({
       ignoreAttributes: false,
+      attributeNamePrefix: '@_',
+      textNodeName: '#text',
       tagValueProcessor: (
         tagName,
         tagValue,
@@ -72,6 +75,15 @@ export class CashManagementEndOfDayReport {
         if (isLeafNode && ['Cd', 'NtryRef'].includes(tagName)) return undefined;
         return tagValue;
       },
+    });
+  }
+
+  static getBuilder(): XMLBuilder {
+    return new XMLBuilder({
+      ignoreAttributes: false,
+      attributeNamePrefix: '@_',
+      textNodeName: '#text',
+      format: true,
     });
   }
 
@@ -151,6 +163,14 @@ export class CashManagementEndOfDayReport {
     return { Document };
   }
 
+  serialize(): string {
+    const builder = CashManagementEndOfDayReport.getBuilder();
+    const obj = this.toJSON();
+    obj.Document['@_xmlns'] = 'urn:iso:std:iso:20022:tech:xsd:camt.053.001.02';
+    obj.Document['@_xmlns:xsi'] = 'http://www.w3.org/2001/XMLSchema-instance';
+
+    return builder.build(obj);
+  }
   /**
    * Retrieves all balances from all statements in the report.
    * @returns {Balance[]} An array of all balances across all statements.
