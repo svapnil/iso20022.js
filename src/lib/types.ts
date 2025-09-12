@@ -272,6 +272,16 @@ export interface BaseAccount {
   name?: string;
 }
 
+export type AccountIdentification = AccountIdentificationIBAN | AccountIdentificationOther;
+export interface AccountIdentificationIBAN {
+  iban: string;
+}
+export interface AccountIdentificationOther {
+  id: string;
+  schemeName?: string;
+  issuer?: string;
+}
+
 /**
  * Represents either an IBAN account or a basic account.
  */

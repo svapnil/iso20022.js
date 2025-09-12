@@ -1,4 +1,4 @@
-import { Account, Agent, BaseAccount, IBANAccount, MessageHeader, Party, StructuredAddress } from 'lib/types';
+import { Account, AccountIdentification, AccountIdentificationIBAN, AccountIdentificationOther, Agent, BaseAccount, IBANAccount, MessageHeader, Party, StructuredAddress } from 'lib/types';
 import { getCurrencyPrecision } from './lib/currencies';
 import Dinero, { Currency } from 'dinero.js';
 
@@ -35,6 +35,39 @@ export const exportAccount = (
 
   return obj;
 };
+
+export const parseAccountIdentification = (accountId: any): AccountIdentification => {
+  if (accountId.IBAN) {
+    return {
+      iban: accountId.IBAN,
+    } as AccountIdentificationIBAN;
+  } else {
+    return {
+      id: accountId.Othr?.Id,
+      schemeName: accountId.Othr?.SchmeNm?.Cd || accountId.Othr?.SchmeNm?.Prtry,
+      issuer: accountId.Othr?.Issr,
+    } as AccountIdentificationOther;
+  }
+}
+
+export const exportAccountIdentification = (accountId: AccountIdentification): any => {
+  if ((accountId as any).iban) {
+    return { IBAN: (accountId as AccountIdentificationIBAN).iban };
+  } else {
+    const obj: any = {
+      Othr: {
+        Id: (accountId as AccountIdentificationOther).id,
+      }
+    };
+    if ((accountId as AccountIdentificationOther).schemeName) {
+      obj.Othr.SchmeNm = { Cd: (accountId as AccountIdentificationOther).schemeName }; // TODO: Add support for Prtry scheme name
+    }
+    if ((accountId as AccountIdentificationOther).issuer) {
+      obj.Othr.Issr = (accountId as AccountIdentificationOther).issuer;
+    }
+    return obj;
+  }
+}
 
 // TODO: Add both BIC and ABA routing numbers at the same time
 export const parseAgent = (agent: any): Agent => {
