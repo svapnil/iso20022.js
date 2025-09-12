@@ -1,0 +1,23 @@
+{
+"Document": {
+"GetTx": {
+"MsgHdr": {
+"MsgId": "ABCDEFGHIXXX1202104120040299876543",
+"CreDtTm": "2021-09-28T13:42:47.123Z"
+},
+"TxQryDef": {
+"TxCrit": {
+"NewCrit": {
+"SchCrit": [{
+"PmtSch": {
+"MsgId":["FXCDEFGHIXXX1202104120040291234567",
+"ABCDEFGHIXXX1202104120040291234588"]
+}
+}
+]
+}
+}
+}
+}
+}
+}
