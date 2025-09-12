@@ -338,3 +338,11 @@ export const ACHLocalInstrumentCodeDescriptionMap = {
   'BOC': 'Back Office Conversion',
   'RCK': 'Represented Check Entry',
 } as const;
+
+export interface MessageHeader {
+  id: string;
+  creationDateTime?: Date;
+  originalMessageHeader?: Partial<MessageHeader>;
+  requestType?: string;
+  queryName?: string;
+}

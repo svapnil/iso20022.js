@@ -2,8 +2,7 @@
   "Document": {
     "GetTx": {
       "MsgHdr": {
-        "MsgId": "ABCDEFGHIXXX1202104120040299876543",
-        "CreDtTm": "2021-09-28T13:42:47.123Z"
+        "MsgId": "ABCDEFGHIXXX1202104120040299876543"
       },
       "TxQryDef": {
         "TxCrit": {
@@ -11,9 +10,9 @@
             "SchCrit": [
               {
                 "PmtSch": {
-                  "MsgId": [
-                    "FXCDEFGHIXXX1202104120040291234567",
-                    "ABCDEFGHIXXX1202104120040291234588"
+                  "PmtId": [
+                    {"LngBizId": {"EndToEndId": "FXCDEFGHIXXX1202104120040291234567"}},
+                    {"LngBizId": {"EndToEndId": "ABCDEFGHIXXX1202104120040291234588"}}
                   ]
                 }
               }

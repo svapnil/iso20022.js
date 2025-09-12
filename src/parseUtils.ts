@@ -1,4 +1,4 @@
-import { Account, Agent, BaseAccount, IBANAccount, Party, StructuredAddress } from 'lib/types';
+import { Account, Agent, BaseAccount, IBANAccount, MessageHeader, Party, StructuredAddress } from 'lib/types';
 import { getCurrencyPrecision } from './lib/currencies';
 import Dinero, { Currency } from 'dinero.js';
 
@@ -91,7 +91,7 @@ export const exportAmountToString = (
 
 export const parseDate = (dateElement: any): Date => {
   // Find the date element, which can be DtTm or Dt
-  const date = dateElement.DtTm || dateElement.Dt;
+  const date = dateElement.DtTm || dateElement.Dt || dateElement;
   return new Date(date);
 };
 
@@ -134,3 +134,31 @@ export const parseAdditionalInformation = (
     return additionalInformation;
   }
 };
+
+
+export const parseMessageHeader = (rawHeader: any): MessageHeader => {
+  return {
+    id: rawHeader.MsgId,
+    creationDateTime: rawHeader.CreDtTm? parseDate(rawHeader.CreDtTm): undefined,
+    queryName: rawHeader.QueryNm,
+    requestType: rawHeader.ReqTp?.PmtCtrl || rawHeader.ReqTp?.Enqry || rawHeader.ReqTp?.Prtry,
+    originalMessageHeader: rawHeader.OrgnlBizQry ? parseMessageHeader(rawHeader.OrgnlBizQry.MsgHdr) : undefined,
+  };
+}
+
+export const exportMessageHeader = (header: MessageHeader): any => {
+  const obj: any = {
+    MsgId: header.id,
+    CreDtTm: header.creationDateTime?.toISOString(),
+  };
+  if (header.originalMessageHeader) {
+    obj.OrgnlMsgHdr = exportMessageHeader(header.originalMessageHeader as MessageHeader);
+  }
+  if (header.requestType) {
+    obj.ReqTp = { Prtry: header.requestType }; // TODO: Add support for PmtCtrl and Enqry types
+  }
+  if (header.queryName) {
+    obj.QueryNm = header.queryName;
+  }
+  return obj;
+}

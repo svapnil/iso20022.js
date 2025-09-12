@@ -140,3 +140,8 @@ dist
 
 # Claude Code
 CLAUDE.md
+
+
+# Generated files during unit testing
+test/assets/**/*.out.json
+test/assets/**/*.out.xml

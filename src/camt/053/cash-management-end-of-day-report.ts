@@ -1,13 +1,12 @@
 import { Balance, Entry, Statement, Transaction } from '../types';
 import { Party, StructuredAddress } from '../../lib/types';
-import { XMLBuilder, XMLParser } from 'fast-xml-parser';
 import { exportStatement, parseStatement } from './utils';
 import { exportRecipient, parseRecipient } from '../../parseUtils';
 import {
   InvalidXmlError,
   InvalidXmlNamespaceError,
 } from '../../errors';
-import { GenericISO20022Message } from 'lib/interfaces';
+import { GenericISO20022Message, XML } from '../../lib/interfaces';
 
 /**
  * Configuration interface for creating a CashManagementEndOfDayReport instance.
@@ -48,44 +47,6 @@ export class CashManagementEndOfDayReport implements GenericISO20022Message {
     this._statements = config.statements;
   }
 
-  /**
-   * Creates and configures the XML Parser
-   *
-   * @returns {XMLParser} A configured instance of XMLParser
-   */
-  private static getParser(): XMLParser {
-    return new XMLParser({
-      ignoreAttributes: false,
-      attributeNamePrefix: '@_',
-      textNodeName: '#text',
-      tagValueProcessor: (
-        tagName,
-        tagValue,
-        _jPath,
-        _hasAttributes,
-        isLeafNode,
-      ) => {
-        /**
-         * Codes and Entry References can look like numbers and get parsed
-         * appropriately. We don't want this to happen, as they contain leading
-         * zeros or are too long and overflow.
-         *
-         * Ex. <Cd>0001234<Cd> Should resolve to "0001234"
-         */
-        if (isLeafNode && ['Cd', 'NtryRef'].includes(tagName)) return undefined;
-        return tagValue;
-      },
-    });
-  }
-
-  static getBuilder(): XMLBuilder {
-    return new XMLBuilder({
-      ignoreAttributes: false,
-      attributeNamePrefix: '@_',
-      textNodeName: '#text',
-      format: true,
-    });
-  }
 
   static fromDocumentObject(obj: {Document: any}): CashManagementEndOfDayReport {
     const bankToCustomerStatement = obj.Document.BkToCstmrStmt;
@@ -118,7 +79,7 @@ export class CashManagementEndOfDayReport implements GenericISO20022Message {
    * @throws {Error} If the XML parsing fails or required data is missing.
    */
   static fromXML(rawXml: string): CashManagementEndOfDayReport {
-    const parser = CashManagementEndOfDayReport.getParser();
+    const parser = XML.getParser();
     const xml = parser.parse(rawXml);
 
     if (!xml.Document) {
@@ -164,7 +125,7 @@ export class CashManagementEndOfDayReport implements GenericISO20022Message {
   }
 
   serialize(): string {
-    const builder = CashManagementEndOfDayReport.getBuilder();
+    const builder = XML.getBuilder();
     const obj = this.toJSON();
     obj.Document['@_xmlns'] = 'urn:iso:std:iso:20022:tech:xsd:camt.053.001.02';
     obj.Document['@_xmlns:xsi'] = 'http://www.w3.org/2001/XMLSchema-instance';
