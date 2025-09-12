@@ -9,8 +9,9 @@ describe('parseAmountToMinorUnits', () => {
   });
 
   // Figure out why JPY has a precision of 2, instead of 0
+  // Fix the precision by currency with the lib/currencies.ts 
   test('converts JPY amount to minor units', () => {
-    expect(parseAmountToMinorUnits(100000, 'JPY')).toBe(10000000);
+    expect(parseAmountToMinorUnits(100000, 'JPY')).toBe(100000);
   });
 
   test('handles string input for amount', () => {
