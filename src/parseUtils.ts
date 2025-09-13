@@ -175,7 +175,7 @@ export const parseMessageHeader = (rawHeader: any): MessageHeader => {
     creationDateTime: rawHeader.CreDtTm? parseDate(rawHeader.CreDtTm): undefined,
     queryName: rawHeader.QueryNm,
     requestType: rawHeader.ReqTp?.PmtCtrl || rawHeader.ReqTp?.Enqry || rawHeader.ReqTp?.Prtry,
-    originalMessageHeader: rawHeader.OrgnlBizQry ? parseMessageHeader(rawHeader.OrgnlBizQry.MsgHdr) : undefined,
+    originalMessageHeader: rawHeader.OrgnlBizQry ? parseMessageHeader(rawHeader.OrgnlBizQry) : undefined,
   };
 }
 

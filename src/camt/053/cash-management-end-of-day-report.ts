@@ -1,6 +1,6 @@
 import { Balance, Entry, Statement, Transaction } from '../types';
 import { Party, StructuredAddress } from '../../lib/types';
-import { exportStatement, parseStatement } from './utils';
+import { exportStatement, parseStatement } from '../utils';
 import { exportRecipient, parseRecipient } from '../../parseUtils';
 import {
   InvalidXmlError,
