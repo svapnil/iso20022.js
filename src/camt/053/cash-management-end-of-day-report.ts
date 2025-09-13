@@ -6,7 +6,7 @@ import {
   InvalidXmlError,
   InvalidXmlNamespaceError,
 } from '../../errors';
-import { GenericISO20022Message, XML } from '../../lib/interfaces';
+import { GenericISO20022Message, ISO20022Messages, ISO20022MessageTypeName, XML } from '../../lib/interfaces';
 
 /**
  * Configuration interface for creating a CashManagementEndOfDayReport instance.
@@ -47,6 +47,9 @@ export class CashManagementEndOfDayReport implements GenericISO20022Message {
     this._statements = config.statements;
   }
 
+  supportedMessages(): ISO20022MessageTypeName[] {
+    return [ISO20022Messages.CAMT_053];
+  }
 
   static fromDocumentObject(obj: {Document: any}): CashManagementEndOfDayReport {
     const bankToCustomerStatement = obj.Document.BkToCstmrStmt;

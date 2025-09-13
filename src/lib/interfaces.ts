@@ -1,10 +1,24 @@
 import { XMLBuilder, XMLParser } from 'fast-xml-parser';
 
+export type ISO20022MessageTypeName = `${string}.${string}`;
+export const ISO20022Messages: {[msg: string]: ISO20022MessageTypeName} = {
+  CAMT_003: "CAMT.003",
+  CAMT_004: "CAMT.004",
+  CAMT_005: "CAMT.005",
+  CAMT_006: "CAMT.006",
+  CAMT_053: "CAMT.053",
+  
+  PAIN_001: "PAIN.001",
+  PAIN_002: "PAIN.002",
+};
+
 export interface GenericISO20022Message {
   /** serialize to XML string */
   serialize(): string;
   /** export to a json object that can then be serialized */
   toJSON(): any;
+  /** tells what messages are supported */
+  supportedMessages(): ISO20022MessageTypeName[];
 }
 
 export interface GenericISO20022MessageFactory<
