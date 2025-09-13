@@ -1,4 +1,5 @@
 import { XMLBuilder, XMLParser } from 'fast-xml-parser';
+import { get } from 'http';
 
 export type ISO20022MessageTypeName = `${string}.${string}`;
 export const ISO20022Messages: {[msg: string]: ISO20022MessageTypeName} = {
@@ -17,17 +18,28 @@ export interface GenericISO20022Message {
   serialize(): string;
   /** export to a json object that can then be serialized */
   toJSON(): any;
-  /** tells what messages are supported */
-  supportedMessages(): ISO20022MessageTypeName[];
+  readonly data: any;
 }
 
 export interface GenericISO20022MessageFactory<
-  T extends GenericISO20022Message,
+T extends GenericISO20022Message,
 > {
+  /** tells what messages are supported */
+  supportedMessages(): ISO20022MessageTypeName[];
   fromXML(xml: string): T;
   fromJSON(json: string): T;
+  new(data: any): T;
 }
 
+const ISO20022Implementations: Map<ISO20022MessageTypeName, GenericISO20022MessageFactory<GenericISO20022Message>> = new Map();
+export function registerISO20022Implementation(cl: GenericISO20022MessageFactory<GenericISO20022Message>) {
+  cl.supportedMessages().forEach((msg) => {
+    ISO20022Implementations.set(msg, cl);
+  });
+}
+export function getISO20022Implementation(type: ISO20022MessageTypeName): GenericISO20022MessageFactory<GenericISO20022Message> | undefined {
+  return ISO20022Implementations.get(type);
+}
 export class XML {
   /**
    * Creates and configures the XML Parser

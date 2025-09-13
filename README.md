@@ -46,6 +46,7 @@ Examples of ISO20022 messages being created across different payment types:
 npx tsx examples/sepa-credit-transfer.ts
 npx tsx examples/rtp-credit-transfer.ts
 npx tsx examples/swift-credit-transfer.ts
+npx tsx examples/get-account-messages.ts
 ```
 
 # Usage
@@ -100,6 +101,8 @@ const creditPaymentInitiation = iso20022.createSEPACreditPaymentInitiation([
 console.log(creditPaymentInitiation.toString());
 ```
 
+Note that amounts are reresented in the smallest decimal unit (`$100.55` is stored as a number `10055`) and the decimal precision of a currency can be retrieved from `getCurrencyPrecision(Ccy)`
+
 ### Example: Sending an ACH Payment
 
 ```ts
@@ -136,6 +139,41 @@ const report = CashManagementEndOfDayReport.fromXML(xml);
 console.log(report.transactions);
 ```
 
+### Cash Management: Create an account request CAMT.003 file
+
+```ts
+import { ISO20022 } from 'iso20022.js';
+import { CashManagementGetAccount } from 'iso20022.js';
+
+const msg = new CashManagementGetAccount({
+  ...
+});
+const xml = msg.serialize();
+const json = msg.toJSON();
+
+const msg2 = CashManagementGetAccount.fromXML(xml);
+const msg3 = CashManagementGetAccount.fromJSON(json);
+```
+
+### Generic class implementation (preview)
+
+If you need generic implementation to a type of message implemented you can do the following
+
+```ts
+const type = "CAMT.006"; // can come as an input
+import { getISO20022Implementation } from 'iso20022.js';
+
+let impl = getISO20022Implementation(type);
+if (impl) {
+  const msg1 = impl.fromXml("some xml content");
+  const msg2 = impl.fromJSON({ some: object }); // following the ISO format
+  const msg3 = new impl({config: object}); // following the internal data definition
+  const xml1 = msg1.serialize(); // generate a xml message as string
+  const json2 = msg1.toJSON(); // generate a js object that can then be stringify
+  const data = msg1.data; // the internal representation of the message
+}
+```
+
 ### Testing
 
 ```bash
@@ -154,6 +192,7 @@ You might want to use this package if you need to create these types of files.
 | ---------------------- | ---------------------------------------------------- | ---- |
 | SWIFT Credit Transfer  | Create SWIFT credit transfer messages                | ✅   |
 | CAMT Transactions      | Ingest transaction data from CAMT files              | ✅   |
+| CAMT Requests      | Query and Responses on accounts and transactions   | ✅   |
 | SEPA Credit Transfer   | Create SEPA credit transfer messages                 | ✅   |
 | ACH Credit Transfer    | Create ACH credit transfer messages                  | ✅   |
 | RTP / Fednow Credit Transfer | Create Fednow credit transfer messages         | ✅   |

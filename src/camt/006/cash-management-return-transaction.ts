@@ -1,9 +1,9 @@
-import { BalanceInReport, BusinessError, Transaction } from "../types";
+import { BusinessError } from "../types";
 import { InvalidStructureError, InvalidXmlNamespaceError } from "../../errors";
-import { GenericISO20022Message, ISO20022Messages, ISO20022MessageTypeName, XML } from "../../lib/interfaces";
-import { AccountIdentification, Agent, CashAccountType, MessageHeader, Party } from "../../lib/types";
-import { exportAccountIdentification, exportAmountToString, exportMessageHeader, parseAccountIdentification, parseAmountToMinorUnits, parseDate, parseMessageHeader, parseParty as parsePartyExt} from "../../parseUtils";
-import { exportBalanceReport, exportBusinessError, parseBalanceReport, parseBusinessError } from "../utils";
+import { GenericISO20022Message, ISO20022Messages, ISO20022MessageTypeName, registerISO20022Implementation, XML } from "../../lib/interfaces";
+import { Agent, MessageHeader, Party } from "../../lib/types";
+import { exportAmountToString, exportMessageHeader, parseAmountToMinorUnits, parseDate, parseMessageHeader, parseParty as parsePartyExt} from "../../parseUtils";
+import { exportBusinessError, parseBusinessError } from "../utils";
 import { Currency } from "dinero.js";
 
 export interface TransactionReport {
@@ -56,7 +56,7 @@ export class CashManagementReturnTransaction implements GenericISO20022Message {
   }
 
 
-  supportedMessages(): ISO20022MessageTypeName[] {
+  static supportedMessages(): ISO20022MessageTypeName[] {
     return [ISO20022Messages.CAMT_006];
   }
 
@@ -258,3 +258,5 @@ export class CashManagementReturnTransaction implements GenericISO20022Message {
     return { Document };
   }
 }
+
+registerISO20022Implementation(CashManagementReturnTransaction);

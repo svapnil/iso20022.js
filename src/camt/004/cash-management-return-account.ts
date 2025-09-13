@@ -1,6 +1,6 @@
 import { BalanceInReport, BusinessError } from "../types";
 import { InvalidStructureError, InvalidXmlNamespaceError } from "../../errors";
-import { GenericISO20022Message, ISO20022Messages, ISO20022MessageTypeName, XML } from "../../lib/interfaces";
+import { GenericISO20022Message, ISO20022Messages, ISO20022MessageTypeName, registerISO20022Implementation, XML } from "../../lib/interfaces";
 import { AccountIdentification, CashAccountType, MessageHeader } from "../../lib/types";
 import { exportAccountIdentification, exportMessageHeader, parseAccountIdentification, parseMessageHeader } from "../../parseUtils";
 import { exportBalanceReport, exportBusinessError, parseBalanceReport, parseBusinessError } from "../utils";
@@ -37,7 +37,7 @@ export class CashManagementReturnAccount implements GenericISO20022Message {
   get data(): CashManagementReturnAccountData {
     return this._data;
   }
-  supportedMessages(): ISO20022MessageTypeName[] {
+  static supportedMessages(): ISO20022MessageTypeName[] {
     return [ISO20022Messages.CAMT_004];
   }
 
@@ -155,3 +155,5 @@ export class CashManagementReturnAccount implements GenericISO20022Message {
     return { Document };
   }
 }
+
+registerISO20022Implementation(CashManagementReturnAccount);

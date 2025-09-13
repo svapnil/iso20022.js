@@ -6,7 +6,7 @@ import {
   InvalidXmlError,
   InvalidXmlNamespaceError,
 } from '../../errors';
-import { GenericISO20022Message, ISO20022Messages, ISO20022MessageTypeName, XML } from '../../lib/interfaces';
+import { GenericISO20022Message, ISO20022Messages, ISO20022MessageTypeName, registerISO20022Implementation, XML } from '../../lib/interfaces';
 
 /**
  * Configuration interface for creating a CashManagementEndOfDayReport instance.
@@ -47,8 +47,18 @@ export class CashManagementEndOfDayReport implements GenericISO20022Message {
     this._statements = config.statements;
   }
 
-  supportedMessages(): ISO20022MessageTypeName[] {
+  static supportedMessages(): ISO20022MessageTypeName[] {
     return [ISO20022Messages.CAMT_053];
+  }
+
+  
+  get data(): CashManagementEndOfDayReportConfig {
+    return {
+      messageId: this._messageId,
+      creationDate: this._creationDate,
+      recipient: this._recipient,
+      statements: this._statements,
+    };
   }
 
   static fromDocumentObject(obj: {Document: any}): CashManagementEndOfDayReport {
@@ -194,3 +204,5 @@ export class CashManagementEndOfDayReport implements GenericISO20022Message {
   }
 
 }
+
+registerISO20022Implementation(CashManagementEndOfDayReport);

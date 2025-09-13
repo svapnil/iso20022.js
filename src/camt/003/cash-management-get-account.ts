@@ -1,5 +1,5 @@
 import { InvalidStructureError, InvalidXmlNamespaceError } from "../../errors";
-import { GenericISO20022Message, ISO20022Messages, ISO20022MessageTypeName, XML } from "../../lib/interfaces";
+import { GenericISO20022Message, ISO20022Messages, ISO20022MessageTypeName, registerISO20022Implementation, XML } from "../../lib/interfaces";
 import { AccountIdentification, MessageHeader } from "../../lib/types";
 import { exportAccountIdentification, exportMessageHeader, parseAccountIdentification, parseDate, parseMessageHeader } from "../../parseUtils";
 
@@ -34,7 +34,7 @@ export class CashManagementGetAccount implements GenericISO20022Message {
     return this._data;
   }
 
-  supportedMessages(): ISO20022MessageTypeName[] {
+  static supportedMessages(): ISO20022MessageTypeName[] {
     return [ISO20022Messages.CAMT_003];
   }
 
@@ -191,3 +191,5 @@ export class CashManagementGetAccount implements GenericISO20022Message {
     return { Document };
   }
 }
+
+registerISO20022Implementation(CashManagementGetAccount);
