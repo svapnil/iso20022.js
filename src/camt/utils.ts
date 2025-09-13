@@ -1,17 +1,20 @@
 import {
   Balance,
+  BalanceInReport,
   BankTransactionCode,
+  BusinessError,
   Entry,
   Statement,
   Transaction,
 } from 'camt/types';
-import { Party } from '../../lib/types';
-import { exportAccount, exportAgent, exportAmountToString, parseAdditionalInformation, parseDate } from '../../parseUtils';
+import { Party } from '../lib/types';
+import { exportAccount, exportAgent, exportAmountToString, parseAdditionalInformation, parseDate } from '../parseUtils';
 import {
   parseAccount,
   parseAgent,
   parseAmountToMinorUnits,
-} from '../../parseUtils';
+} from '../parseUtils';
+import { Currency } from 'dinero.js';
 
 export const parseStatement = (stmt: any): Statement => {
   const id = stmt.Id.toString();
@@ -154,6 +157,41 @@ export const exportBalance = (balance: Balance): any => {
     },
     Dt: {
       DtTm: balance.date.toISOString(),
+    },
+  };
+
+  return obj;
+}
+
+export const parseBalanceReport = (currency: Currency, balance: any): BalanceInReport => {
+  const rawAmount = balance.Amt;
+  const amount = parseAmountToMinorUnits(rawAmount, currency);
+  const creditDebitIndicator =
+    balance.CdtDbtInd === 'CRDT' ? 'credit' : 'debit';
+  const type = balance.Tp?.Cd || balance.Tp?.Prtry;
+  const valueDate = parseDate(balance.ValDt?.Dt);
+  const processingDate = parseDate(balance.PrcgDt?.DtTm);
+  return {
+    amount,
+    creditDebitIndicator,
+    type,
+    valueDate,
+    processingDate,
+  };
+};
+
+export const exportBalanceReport = (currency: Currency, balance: BalanceInReport): any => {
+  const obj: any = {
+    Amt: exportAmountToString(balance.amount, currency),
+    CdtDbtInd: balance.creditDebitIndicator === 'credit' ? 'CRDT' : 'DBIT',
+    Tp: {
+      Cd: balance.type, // TODO add Prtry handling
+    },
+    ValDt: {
+      Dt: balance.valueDate?.toISOString().slice(0, 10),
+    },
+    PrcgDt: {
+      DtTm: balance.processingDate?.toISOString(),
     },
   };
 
@@ -383,5 +421,24 @@ const exportBankTransactionCode = (
       };
     }
   }
+  return obj;
+}
+
+export const parseBusinessError = (bizErr: any): BusinessError => {
+  const code = bizErr.Err?.Cd || bizErr.Err?.Prtry || "UKNW";
+  const description = bizErr.Desc;
+  return {
+    code,
+    description,
+  };
+}
+
+export const exportBusinessError = (bizErr: BusinessError): any => {
+  const obj: any = {
+    Err: {
+      Cd: bizErr.code, // TODO: Add Prtry handling
+    },
+    Desc: bizErr.description,
+  };
   return obj;
 }
