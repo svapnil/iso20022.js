@@ -1,11 +1,7 @@
-import ISO, {
-  getCurrencyPrecision,
-  getISO20022Implementation,
-  ISO20022Messages,
-} from '../src/iso20022.js';
+import ISO20022, { getCurrencyPrecision, getISO20022Implementation, ISO20022Messages } from '../src/iso20022';
 import fs from 'fs';
 
-const iso = new ISO({
+const iso = new ISO20022({
   initiatingParty: {}, // minimal initiating party (can be empty)
 });
 

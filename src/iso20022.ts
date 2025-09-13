@@ -3,7 +3,7 @@ import { SWIFTCreditPaymentInitiation } from './pain/001/swift-credit-payment-in
 import { SEPACreditPaymentInitiation } from './pain/001/sepa-credit-payment-initiation';
 import { RTPCreditPaymentInitiation } from './pain/001/rtp-credit-payment-initiation';
 import { ACHCreditPaymentInitiation } from './pain/001/ach-credit-payment-initiation';
-import { GenericISO20022Message, getISO20022Implementation, ISO20022MessageTypeName } from './lib/interfaces.js';
+import { GenericISO20022Message, getISO20022Implementation, ISO20022MessageTypeName } from './lib/interfaces';
 export * from './camt';
 export * from './lib';
 
