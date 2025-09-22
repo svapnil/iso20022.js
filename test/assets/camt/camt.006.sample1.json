@@ -1,0 +1,187 @@
+{
+  "Document": {
+    "RtrTx": {
+      "MsgHdr": {
+        "MsgId": "PTCDEFGHIXXX1202104120040299872243",
+        "CreDtTm": "2024-04-22T13:47:44.413Z",
+        "OrgnlBizQry": {
+          "MsgId": "ABCDEFGHIXXX1202104120040297654321"
+        }
+      },
+      "RptOrErr": {
+        "BizRpt": {
+          "TxRpt": [
+            {
+              "PmtId": {
+                "LngBizId": {
+                  "IntrBkSttlmAmt": {
+                    "Ccy": "EUR",
+                    "Amount": 90.00
+                  },
+                  "EndToEndId": "E2E1242435245345"
+                }
+              },
+              "TxOrErr": {
+                "Tx": {
+                  "Pmt": {
+                    "MsgId": "FXCDEFGHIXXX1202104120040291234567",
+                    "ReqdExctnDt": {
+                      "Dt": "2024-04-22"
+                    },
+                    "Sts": [
+                      {
+                        "Cd": {
+                          "Sttlm": "ACCC"
+                        }
+                      }
+                    ],
+                    "Pties": {
+                      "Dbtr": {
+                        "Pty": {
+                          "Id": {
+                            "OrgId": {
+                              "Othr": {
+                                "Id": "02345678941"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "DbtrAgt": {
+                        "FinInstnId": {
+                          "BICFI": "AGRIFRPPXXX"
+                        }
+                      },
+                      "CdtrAgt": {
+                        "FinInstnId": {
+                          "BICFI": "BNPAFRPPXXX"
+                        }
+                      },
+                      "Cdtr": {
+                        "Pty": {
+                          "Id": {
+                            "OrgId": {
+                              "Othr": {
+                                "Id": "02345678943"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "PmtId": {
+                "LngBizId": {
+                  "IntrBkSttlmAmt": {
+                    "Ccy": "EUR",
+                    "Amount": 180.00
+                  },
+                  "EndToEndId": "E2E1242435245366"
+                }
+              },
+              "TxOrErr": {
+                "Tx": {
+                  "Pmt": {
+                    "MsgId": "ABCDEFGHIXXX1202104120040291234588",
+                    "ReqdExctnDt": {
+                      "Dt": "2024-04-22"
+                    },
+                    "Sts": [
+                      {
+                        "Cd": {
+                          "Sttlm": "ACCC"
+                        }
+                      }
+                    ],
+                    "Pties": {
+                      "Dbtr": {
+                        "Pty": {
+                          "Id": {
+                            "OrgId": {
+                              "Othr": {
+                                "Id": "02345678941"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "DbtrAgt": {
+                        "FinInstnId": {
+                          "BICFI": " "
+                        }
+                      },
+                      "CdtrAgt": {
+                        "FinInstnId": {
+                          "BICFI": " "
+                        }
+                      },
+                      "Cdtr": {
+                        "Pty": {
+                          "Id": {
+                            "OrgId": {
+                              "Othr": {
+                                "Id": "02345678943"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "SplmtryData": [
+        {
+          "Envlp": {
+            "FxSuplData": [
+              {
+                "MsgId": "FXCDEFGHIXXX1202104120040291234567",
+                "EndToEndId": "E2E1242435245345",
+                "XchgRateInf": {
+                  "SrcCcy": "EUR",
+                  "TrgtCcy": "USD",
+                  "UnitCcy": "EUR",
+                  "XchgRate": "1.11",
+                  "CtrctId": "T123456789gdwehklygdd3455688",
+                  "ConfdAmt": {
+                    "Amount": 100.06,
+                    "Ccy": "USD"
+                  },
+                  "ConfdDt": {
+                    "Date": "2024-04-22"
+                  }
+                }
+              },
+              {
+                "MsgId": "ABCDEFGHIXXX1202104120040291234588",
+                "EndToEndId": "E2E1242435245366",
+                "XchgRateInf": {
+                  "SrcCcy": "EUR",
+                  "TrgtCcy": "USD",
+                  "UnitCcy": "EUR",
+                  "XchgRate": "1.11",
+                  "CtrctId": "T123456789gdwehklygdd3455699",
+                  "ConfdAmt": {
+                    "Amount": 200.13,
+                    "Ccy": "USD"
+                  },
+                  "ConfdDt": {
+                    "Date": "2024-04-22"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

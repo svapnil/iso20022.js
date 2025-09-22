@@ -272,6 +272,16 @@ export interface BaseAccount {
   name?: string;
 }
 
+export type AccountIdentification = AccountIdentificationIBAN | AccountIdentificationOther;
+export interface AccountIdentificationIBAN {
+  iban: string;
+}
+export interface AccountIdentificationOther {
+  id: string;
+  schemeName?: string;
+  issuer?: string;
+}
+
 /**
  * Represents either an IBAN account or a basic account.
  */
@@ -337,4 +347,90 @@ export const ACHLocalInstrumentCodeDescriptionMap = {
   'ARC': 'Accounts Receivable Entry',
   'BOC': 'Back Office Conversion',
   'RCK': 'Represented Check Entry',
+} as const;
+
+export interface MessageHeader {
+  id: string;
+  creationDateTime?: Date;
+  originalMessageHeader?: Partial<MessageHeader>;
+  requestType?: string;
+  queryName?: string;
+}
+
+/* From ISO specifications 
+Code  Name  Definition
+CACC	Current	Account used to post debits and credits when no specific account has been nominated.
+CASH	CashPayment	Account used for the payment of cash.
+CHAR	Charges	"Account used for charges if different from the account for
+payment."
+CISH	CashIncome	Account used for payment of income if different from the current cash account
+COMM	Commission	"Account used for commission if different from the account
+for payment."
+CPAC	ClearingParticipantSettlementAccount	Account used to post settlement debit and credit entries on behalf of a designated Clearing Participant.
+LLSV	LimitedLiquiditySavingsAccount	Account used for savings with special interest and withdrawal terms.  
+LOAN	Loan	Account used for loans.
+MGLD	Marginal Lending	Account used for a marginal lending facility.
+MOMA	Money Market	"Account used for money markets if different from the cash
+account."
+NREX	NonResidentExternal	Account used for non-resident external.
+ODFT	Overdraft	Account is used for overdrafts.
+ONDP	OverNightDeposit	Account used for overnight deposits.
+OTHR	OtherAccount	Account not otherwise specified. 
+SACC	Settlement	Account used to post debit and credit entries, as a result of transactions cleared and settled through a specific clearing and settlement system.
+SLRY	Salary	Accounts used for salary payments.
+SVGS	Savings	Account used for savings.
+TAXE	Tax	"Account used for taxes if different from the account for
+payment."
+TRAN	TransactingAccount	A transacting account is the most basic type of bank account that you can get. The main difference between transaction and cheque accounts is that you usually do not get a cheque book with your transacting account and neither are you offered an overdraft facility.
+TRAS	Cash Trading	"Account used for trading if different from the current cash
+account."
+*/
+
+export const CashAccountTypeCode = {
+  Current: 'CACC',
+  CashPayment: 'CASH',
+  Charges: 'CHAR',
+  CashIncome: 'CISH',
+  Commission: 'COMM',
+  ClearingParticipantSettlementAccount: 'CPAC',
+  LimitedLiquiditySavingsAccount: 'LLSV',
+  Loan: 'LOAN',
+  MarginalLending: 'MGLD',
+  MoneyMarket: 'MOMA',
+  NonResidentExternal: 'NREX',
+  Overdraft: 'ODFT',
+  OverNightDeposit: 'ONDP',
+  OtherAccount: 'OTHR',
+  Settlement: 'SACC',
+  Salary: 'SLRY',
+  Savings: 'SVGS',
+  Tax: 'TAXE',
+  TransactingAccount: 'TRAN',
+  CashTrading: 'TRAS',
+} as const;
+
+export type CashAccountType =
+  (typeof CashAccountTypeCode)[keyof typeof CashAccountTypeCode];
+  
+export const CashAccountTypeCodeDescriptionMap = {
+  'CACC': 'Current',
+  'CASH': 'Cash Payment',
+  'CHAR': 'Charges',
+  'CISH': 'Cash Income',
+  'COMM': 'Commission',
+  'CPAC': 'Clearing Participant Settlement Account',
+  'LLSV': 'Limited Liquidity Savings Account',
+  'LOAN': 'Loan',
+  'MGLD': 'Marginal Lending',
+  'MOMA': 'Money Market',
+  'NREX': 'Non Resident External',
+  'ODFT': 'Overdraft',
+  'ONDP': 'Over Night Deposit',
+  'OTHR': 'Other Account',
+  'SACC': 'Settlement',
+  'SLRY': 'Salary',
+  'SVGS': 'Savings',
+  'TAXE': 'Tax',
+  'TRAN': 'Transacting Account',
+  'TRAS': 'Cash Trading',
 } as const;

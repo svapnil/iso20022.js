@@ -1,0 +1,44 @@
+{
+  "Document": {
+    "GetAcct": {
+      "MsgHdr": {
+        "MsgId": "ABCDEFGHIXXX1202104120040297654321",
+        "CreDtTm": "2021-09-28T13:41:47.123Z"
+      },
+      "AcctQryDef": {
+        "AcctCrit": {
+          "NewCrit": {
+            "SchCrit": [
+              {
+                "AcctId": [
+                  {
+                    "EQ": {
+                      "Othr": {
+                        "Id": "02345678943",
+                        "Issr": "AGRIFRPPXXX"
+                      }
+                    }
+                  }
+                ],
+                "Ccy": [
+                  "USD"
+                ],
+                "Bal": [
+                  {
+                    "ValDt": [
+                      {
+                        "Dt": {
+                          "EQDt": "2021-09-28"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

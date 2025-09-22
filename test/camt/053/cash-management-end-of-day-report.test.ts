@@ -2,16 +2,12 @@ import { CashManagementEndOfDayReport } from '../../../src/camt/053/cash-managem
 import fs from 'fs';
 
 describe('CashManagementEndOfDayReport', () => {
-  describe('fromXML', () => {
-    let xmlFilePath: string;
+  describe('from XML and JSON', () => {
+    let filePath: string;
     let report: CashManagementEndOfDayReport;
 
     describe('with a Goldman Sachs 053 v2 US file', () => {
-      it('should create an instance with valid config', () => {
-        xmlFilePath = `${process.cwd()}/test/assets/goldman_sachs/camt_053_us_v2_sample.xml`;
-        const camt053V2Sample = fs.readFileSync(xmlFilePath, 'utf8');
-        report = CashManagementEndOfDayReport.fromXML(camt053V2Sample);
-
+      function checkStatementReport() {
         expect(report.messageId).toBe('235549650');
         expect(report.creationDate).toBeInstanceOf(Date);
         expect(report.recipient).toEqual({
@@ -124,13 +120,38 @@ describe('CashManagementEndOfDayReport', () => {
             bic: 'GSCRUS33',
           },
         });
+      }
+      it('should create an instance with valid config from XML', () => {
+        filePath = `${process.cwd()}/test/assets/goldman_sachs/camt_053_us_v2_sample.xml`;
+        const camt053V2Sample = fs.readFileSync(filePath, 'utf8');
+        report = CashManagementEndOfDayReport.fromXML(camt053V2Sample);
+
+        checkStatementReport();
+
+        // Generate a json object for the JSON parsing test
+        const json = report.toJSON();
+        fs.writeFileSync(filePath.replace('.xml', '.json'), JSON.stringify(json, null, 2), "utf8");
+        
+        // Generate XML from object for testing the serialize method
+        const xml = report.serialize();
+        fs.writeFileSync(filePath.replace('.xml', '.out.xml'), xml, "utf8");
+
+      });
+      it('should create an instance with valid config from JSON', () => {
+        filePath = `${process.cwd()}/test/assets/goldman_sachs/camt_053_us_v2_sample.json`;
+        const camt053V2Sample = fs.readFileSync(filePath, 'utf8');
+        report = CashManagementEndOfDayReport.fromJSON(camt053V2Sample);
+
+        checkStatementReport();
+
+
       });
     });
 
     describe('with the first Goldman Sachs 053 v2 UK file', () => {
       it('should create an instance with valid config', () => {
-        xmlFilePath = `${process.cwd()}/test/assets/goldman_sachs/camt_053_uk_v2_1.xml`;
-        const camt053V2Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        filePath = `${process.cwd()}/test/assets/goldman_sachs/camt_053_uk_v2_1.xml`;
+        const camt053V2Sample = fs.readFileSync(filePath, 'utf8');
         report = CashManagementEndOfDayReport.fromXML(camt053V2Sample);
         expect(report.messageId).toBe('9184021900');
       });
@@ -138,8 +159,8 @@ describe('CashManagementEndOfDayReport', () => {
 
     describe('with the second Goldman Sachs 053 v2 UK file', () => {
       it('should create an instance with valid config', () => {
-        xmlFilePath = `${process.cwd()}/test/assets/goldman_sachs/camt_053_uk_v2_2.xml`;
-        const camt053V2Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        filePath = `${process.cwd()}/test/assets/goldman_sachs/camt_053_uk_v2_2.xml`;
+        const camt053V2Sample = fs.readFileSync(filePath, 'utf8');
         report = CashManagementEndOfDayReport.fromXML(camt053V2Sample);
         expect(report.messageId).toBe('9184021900');
       });
@@ -147,8 +168,8 @@ describe('CashManagementEndOfDayReport', () => {
 
     describe('with a Goldman Sachs 053 v2 UK file with virtual accounts', () => {
       it('should create an instance with valid config', () => {
-        xmlFilePath = `${process.cwd()}/test/assets/goldman_sachs/camt_053_uk_v2_virtual_accounts.xml`;
-        const camt053V2Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        filePath = `${process.cwd()}/test/assets/goldman_sachs/camt_053_uk_v2_virtual_accounts.xml`;
+        const camt053V2Sample = fs.readFileSync(filePath, 'utf8');
         report = CashManagementEndOfDayReport.fromXML(camt053V2Sample);
         expect(report.messageId).toBe('9184021900');
       });
@@ -156,8 +177,8 @@ describe('CashManagementEndOfDayReport', () => {
 
     describe('with a Nordea 053 v2 file', () => {
       it('should create an instance with valid config', () => {
-        xmlFilePath = `${process.cwd()}/test/assets/nordea/example_camt.xml`;
-        const camt053V2Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        filePath = `${process.cwd()}/test/assets/nordea/example_camt.xml`;
+        const camt053V2Sample = fs.readFileSync(filePath, 'utf8');
         report = CashManagementEndOfDayReport.fromXML(camt053V2Sample);
         expect(report.messageId).toBe('XML12345678901234567890123456789012');
 
@@ -169,8 +190,8 @@ describe('CashManagementEndOfDayReport', () => {
 
     describe('with a ABN AMRO 053 NL file', () => {
       it('should create an instance with valid config', () => {
-        xmlFilePath = `${process.cwd()}/test/assets/abn_amro/example_camt.xml`;
-        const camt053Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        filePath = `${process.cwd()}/test/assets/abn_amro/example_camt.xml`;
+        const camt053Sample = fs.readFileSync(filePath, 'utf8');
         report = CashManagementEndOfDayReport.fromXML(camt053Sample);
         expect(report.messageId).toBe('0574908765.2013-04-02');
         expect(report.entries.length).toBe(13);
@@ -207,8 +228,8 @@ describe('CashManagementEndOfDayReport', () => {
 
     describe('with an ING 053 NL file', () => {
       it('should create an instance with valid config', () => {
-        xmlFilePath = `${process.cwd()}/test/assets/ing/example_camt.xml`;
-        const camt053Sample = fs.readFileSync(xmlFilePath, 'utf8');
+        filePath = `${process.cwd()}/test/assets/ing/example_camt.xml`;
+        const camt053Sample = fs.readFileSync(filePath, 'utf8');
         report = CashManagementEndOfDayReport.fromXML(camt053Sample);
         expect(report.messageId).toBe('201401030009999_20140104015504378');
         expect(report.entries.length).toBe(9);

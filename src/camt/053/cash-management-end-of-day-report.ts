@@ -1,12 +1,12 @@
 import { Balance, Entry, Statement, Transaction } from '../types';
 import { Party, StructuredAddress } from '../../lib/types';
-import { XMLParser } from 'fast-xml-parser';
-import { parseStatement } from './utils';
-import { parseRecipient } from '../../parseUtils';
+import { exportStatement, parseStatement } from '../utils';
+import { exportRecipient, parseRecipient } from '../../parseUtils';
 import {
   InvalidXmlError,
   InvalidXmlNamespaceError,
 } from '../../errors';
+import { GenericISO20022Message, ISO20022Messages, ISO20022MessageTypeName, registerISO20022Implementation, XML } from '../../lib/interfaces';
 
 /**
  * Configuration interface for creating a CashManagementEndOfDayReport instance.
@@ -30,7 +30,7 @@ interface CashManagementEndOfDayReportConfig {
  * This class encapsulates the data and functionality related to processing
  * and accessing information from a CAMT.053 XML file.
  */
-export class CashManagementEndOfDayReport {
+export class CashManagementEndOfDayReport implements GenericISO20022Message {
   private _messageId: string;
   private _creationDate: Date;
   private _recipient?: {
@@ -47,55 +47,22 @@ export class CashManagementEndOfDayReport {
     this._statements = config.statements;
   }
 
-  /**
-   * Creates and configures the XML Parser
-   *
-   * @returns {XMLParser} A configured instance of XMLParser
-   */
-  private static getParser(): XMLParser {
-    return new XMLParser({
-      ignoreAttributes: false,
-      tagValueProcessor: (
-        tagName,
-        tagValue,
-        _jPath,
-        _hasAttributes,
-        isLeafNode,
-      ) => {
-        /**
-         * Codes and Entry References can look like numbers and get parsed
-         * appropriately. We don't want this to happen, as they contain leading
-         * zeros or are too long and overflow.
-         *
-         * Ex. <Cd>0001234<Cd> Should resolve to "0001234"
-         */
-        if (isLeafNode && ['Cd', 'NtryRef'].includes(tagName)) return undefined;
-        return tagValue;
-      },
-    });
+  static supportedMessages(): ISO20022MessageTypeName[] {
+    return [ISO20022Messages.CAMT_053];
   }
 
-  /**
-   * Creates a CashManagementEndOfDayReport instance from a raw XML string.
-   *
-   * @param {string} rawXml - The raw XML string containing the CAMT.053 data.
-   * @returns {CashManagementEndOfDayReport} A new instance of CashManagementEndOfDayReport.
-   * @throws {Error} If the XML parsing fails or required data is missing.
-   */
-  static fromXML(rawXml: string): CashManagementEndOfDayReport {
-    const parser = CashManagementEndOfDayReport.getParser();
-    const xml = parser.parse(rawXml);
+  
+  get data(): CashManagementEndOfDayReportConfig {
+    return {
+      messageId: this._messageId,
+      creationDate: this._creationDate,
+      recipient: this._recipient,
+      statements: this._statements,
+    };
+  }
 
-    if (!xml.Document) {
-      throw new InvalidXmlError("Invalid XML format");
-    }
-
-    const namespace = (xml.Document['@_xmlns'] || xml.Document['@_Xmlns']) as string;
-    if (!namespace.startsWith('urn:iso:std:iso:20022:tech:xsd:camt.053.001.')) {
-      throw new InvalidXmlNamespaceError('Invalid CAMT.053 namespace');
-    }
-
-    const bankToCustomerStatement = xml.Document.BkToCstmrStmt;
+  static fromDocumentObject(obj: {Document: any}): CashManagementEndOfDayReport {
+    const bankToCustomerStatement = obj.Document.BkToCstmrStmt;
     const rawCreationDate = bankToCustomerStatement.GrpHdr.CreDtTm;
     const creationDate = new Date(rawCreationDate);
 
@@ -117,6 +84,67 @@ export class CashManagementEndOfDayReport {
     });
   }
 
+  /**
+   * Creates a CashManagementEndOfDayReport instance from a raw XML string.
+   *
+   * @param {string} rawXml - The raw XML string containing the CAMT.053 data.
+   * @returns {CashManagementEndOfDayReport} A new instance of CashManagementEndOfDayReport.
+   * @throws {Error} If the XML parsing fails or required data is missing.
+   */
+  static fromXML(rawXml: string): CashManagementEndOfDayReport {
+    const parser = XML.getParser();
+    const xml = parser.parse(rawXml);
+
+    if (!xml.Document) {
+      throw new InvalidXmlError("Invalid XML format");
+    }
+
+    const namespace = (xml.Document['@_xmlns'] || xml.Document['@_Xmlns']) as string;
+    if (!namespace.startsWith('urn:iso:std:iso:20022:tech:xsd:camt.053.001.')) {
+      throw new InvalidXmlNamespaceError('Invalid CAMT.053 namespace');
+    }
+
+    return CashManagementEndOfDayReport.fromDocumentObject(xml);
+  }
+
+  /**
+   * 
+   * @param json - JSON string representing a CashManagementEndOfDayReport
+   * @returns {CashManagementEndOfDayReport} A new instance of CashManagementEndOfDayReport
+   * @throws {Error} If the JSON parsing fails or required data is missing.
+   */
+  static fromJSON(json: string): CashManagementEndOfDayReport {
+    const obj = JSON.parse(json);
+
+    if (!obj.Document) {
+      throw new InvalidXmlError("Invalid JSON format");
+    }
+
+    return CashManagementEndOfDayReport.fromDocumentObject(obj);
+  }
+
+  toJSON(): any {
+    const Document = {
+      BkToCstmrStmt: {
+        GrpHdr: {
+          MsgId: this._messageId,
+          CreDtTm: this._creationDate.toISOString(),
+          MsgRcpt: this._recipient ? exportRecipient(this._recipient) : undefined,
+        },
+        Stmt: this._statements.map((stmt) => exportStatement(stmt)),
+      }
+    }
+    return { Document };
+  }
+
+  serialize(): string {
+    const builder = XML.getBuilder();
+    const obj = this.toJSON();
+    obj.Document['@_xmlns'] = 'urn:iso:std:iso:20022:tech:xsd:camt.053.001.02';
+    obj.Document['@_xmlns:xsi'] = 'http://www.w3.org/2001/XMLSchema-instance';
+
+    return builder.build(obj);
+  }
   /**
    * Retrieves all balances from all statements in the report.
    * @returns {Balance[]} An array of all balances across all statements.
@@ -176,3 +204,5 @@ export class CashManagementEndOfDayReport {
   }
 
 }
+
+registerISO20022Implementation(CashManagementEndOfDayReport);

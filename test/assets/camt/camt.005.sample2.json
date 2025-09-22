@@ -1,0 +1,26 @@
+{
+  "Document": {
+    "GetTx": {
+      "MsgHdr": {
+        "MsgId": "ABCDEFGHIXXX1202104120040299876543"
+      },
+      "TxQryDef": {
+        "TxCrit": {
+          "NewCrit": {
+            "SchCrit": [
+              {
+                "PmtSch": {
+                  "ReqdExctnDt": {
+                    "DtSch": {
+                      "EQDt": "2021-10-01"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

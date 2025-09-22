@@ -3,6 +3,9 @@ import { SWIFTCreditPaymentInitiation } from './pain/001/swift-credit-payment-in
 import { SEPACreditPaymentInitiation } from './pain/001/sepa-credit-payment-initiation';
 import { RTPCreditPaymentInitiation } from './pain/001/rtp-credit-payment-initiation';
 import { ACHCreditPaymentInitiation } from './pain/001/ach-credit-payment-initiation';
+import { GenericISO20022Message, getISO20022Implementation, ISO20022MessageTypeName } from './lib/interfaces';
+export * from './camt';
+export * from './lib';
 
 type AtLeastOne<T> = [T, ...T[]];
 
@@ -424,6 +427,16 @@ class ISO20022 {
       creationDate: config.creationDate,
     });
   }
+
+  /** Create a message CAMT or other */
+  createMessage(type: ISO20022MessageTypeName, config: any): GenericISO20022Message {
+    const implementation = getISO20022Implementation(type);
+    if (!implementation) {
+      throw new Error(`No implementation found for message type ${type}`);
+    }
+    return new implementation(config);
+  }
+  
 }
 
 export default ISO20022;

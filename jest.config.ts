@@ -12,10 +12,5 @@ module.exports = {
     ],
   },
   testMatch: ['**/test/**/*.test.(ts|js)'],
-  globals: {
-    'ts-jest': {
-      tsconfig: 'tsconfig.json',
-    },
-  },
   verbose: true,
 };

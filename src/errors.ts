@@ -33,3 +33,9 @@ export class InvalidXmlNamespaceError extends Iso20022JsError {
     super(message);
   }
 }
+
+export class InvalidStructureError extends Iso20022JsError {
+  constructor(message: string) {
+    super(message);
+  }
+}

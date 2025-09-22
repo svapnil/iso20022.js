@@ -59,6 +59,21 @@ export interface Balance {
   currency: Currency;
 }
 
+/**
+ * Represents a balance in the CAMT.004 report message.
+ * Currency is not in the balance object but in the parent Report object.
+ */
+export interface BalanceInReport {
+  /** Amount of the balance. */
+  amount: number;
+  /** Indicates whether the balance is credit (positive) or debit (negative). */
+  creditDebitIndicator: 'credit' | 'debit';
+  /** Type of the balance. */
+  type?: BalanceType;
+  valueDate?: Date;
+  processingDate?: Date;
+}
+
 // NOTE: Excluded fields that may be future work:
 /**
  * Represents a transaction entry in the statement.
@@ -185,3 +200,9 @@ export const BalanceTypeCodeDescriptionMap = {
 
 export type BalanceType =
   (typeof BalanceTypeCode)[keyof typeof BalanceTypeCode];
+
+
+export interface BusinessError {
+  code: string; // Code or proprietary code identifying the error
+  description?: string;
+}

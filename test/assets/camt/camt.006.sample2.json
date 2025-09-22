@@ -1,0 +1,81 @@
+{
+  "Document": {
+    "RtrTx": {
+      "MsgHdr": {
+        "MsgId": "PTCDEFGHIXXX1202104120040299872243",
+        "CreDtTm": "2021-09-28T13:47:44.413Z",
+        "OrgnlBizQry": {
+          "MsgId": "ABCDEFGHIXXX1202104120040297654321"
+        }
+      },
+      "RptOrErr": {
+        "BizRpt": {
+          "TxRpt": [
+            {
+              "PmtId": {
+                "LngBizId": {
+                  "IntrBkSttlmAmt": {
+                    "Ccy": "USD",
+                    "Amount": 1436.08
+                  },
+                  "EndToEndId": "E2E1242435245345"
+                }
+              },
+              "TxOrErr": {
+                "Tx": {
+                  "Pmt": {
+                    "MsgId": "ABCDEFGHIXXX1202104120040291234567",
+                    "ReqdExctnDt": {
+                      "Dt": "2021-09-28"
+                    },
+                    "Sts": [
+                      {
+                        "Cd": {
+                          "Sttlm": "ACCC"
+                        }
+                      }
+                    ],
+                    "Pties": {
+                      "Dbtr": {
+                        "Pty": {
+                          "Id": {
+                            "OrgId": {
+                              "Othr": {
+                                "Id": "89000000943"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "DbtrAgt": {
+                        "FinInstnId": {
+                          "BICFI": " X"
+                        }
+                      },
+                      "CdtrAgt": {
+                        "FinInstnId": {
+                          "BICFI": " "
+                        }
+                      },
+                      "Cdtr": {
+                        "Pty": {
+                          "Id": {
+                            "OrgId": {
+                              "Othr": {
+                                "Id": "02345678943"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

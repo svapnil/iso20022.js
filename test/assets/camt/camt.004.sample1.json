@@ -1,0 +1,97 @@
+{
+  "Document": {
+    "RtrAcct": {
+      "MsgHdr": {
+        "MsgId": "5ac6cf3224284559ba3b3bb667f9c00",
+        "CreDtTm": "2024-03-18T13:47:44.413Z",
+        "OrgnlBizQry": {
+          "MsgId": "5ac6cf3224284559ba3b3bb667f9f589"
+        }
+      },
+      "RptOrErr": {
+        "AcctRpt": [
+          {
+            "AcctId": {
+              "Othr": {
+                "Id": "02345678943",
+                "Issr": "AGRIFRPPXXX"
+              }
+            },
+            "AcctOrErr": {
+              "Acct": {
+                "Ccy": "USD",
+                "MulBal": [
+                  {
+                    "Amt": 1436.08,
+                    "CdtDbtInd": "CRDT",
+                    "Tp": {
+                      "Cd": "CLAV"
+                    },
+                    "ValDt": {
+                      "Dt": "2024-03-18"
+                    },
+                    "PrcgDt": {
+                      "DtTm": "2024-03-18T13:44:00.000Z"
+                    }
+                  },
+                  {
+                    "Amt": 1436.08,
+                    "CdtDbtInd": "CRDT",
+                    "Tp": {
+                      "Cd": "CLRD"
+                    },
+                    "ValDt": {
+                      "Dt": "2024-03-18"
+                    },
+                    "PrcgDt": {
+                      "DtTm": "2024-03-18T13:44:00.000Z"
+                    }
+                  },
+                  {
+                    "Amt": 1436.08,
+                    "CdtDbtInd": "CRDT",
+                    "Tp": {
+                      "Cd": "BOOK"
+                    },
+                    "ValDt": {
+                      "Dt": "2024-03-18"
+                    },
+                    "PrcgDt": {
+                      "DtTm": "2024-03-18T13:44:00.000Z"
+                    }
+                  },
+                  {
+                    "Amt": 1436.08,
+                    "CdtDbtInd": "CRDT",
+                    "Tp": {
+                      "Cd": "VLDT"
+                    },
+                    "ValDt": {
+                      "Dt": "2024-03-18"
+                    },
+                    "PrcgDt": {
+                      "DtTm": "2024-03-18T13:44:00.000Z"
+                    }
+                  },
+                  {
+                    "Amt": 0.00,
+                    "CdtDbtInd": "CRDT",
+                    "Tp": {
+                      "Cd": "HOLD"
+                    },
+                    "ValDt": {
+                      "Dt": "2024-03-18"
+                    },
+                    "PrcgDt": {
+                      "DtTm": "2024-03-18T13:44:00.000Z"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
