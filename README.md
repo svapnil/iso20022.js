@@ -1,8 +1,3 @@
-> [!IMPORTANT]
-> Introducing [Fiat Web Services](https://fiatwebservices.com), a managed platform and SDK to save and send B2B payments.
->
-> Check it out at https://fiatwebservices.com.
-
 <div align="center">
   <a href="https://iso20022js.com">
     <img alt="iso20022.js logo" src="https://github.com/user-attachments/assets/662bc55f-2be0-41dc-b79e-d62f325b1f80" height="128">
