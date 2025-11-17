@@ -1,6 +1,7 @@
 import { Account, AccountIdentification, AccountIdentificationIBAN, AccountIdentificationOther, Agent, BaseAccount, IBANAccount, MessageHeader, Party, StructuredAddress } from 'lib/types';
 import { getCurrencyPrecision } from './lib/currencies';
 import Dinero, { Currency } from 'dinero.js';
+import { Decimal } from 'decimal.js';
 
 export const parseAccount = (account: any): Account => {
   // Return just IBAN if it exists, else detailed local account details
@@ -105,7 +106,7 @@ export const parseAmountToMinorUnits = (
     precision: getCurrencyPrecision(currency),
   });
   // Also make sure Javascript number parsing error do not happen.
-  return Math.floor(Number(rawAmount) * 10 ** currencyObject.getPrecision());
+  return new Decimal(rawAmount).mul(10 ** currencyObject.getPrecision()).toNumber();
 };
 
 export const exportAmountToString = (
