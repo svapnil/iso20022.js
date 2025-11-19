@@ -67,6 +67,8 @@ export type { SWIFTCreditPaymentInitiationConfig } from './pain/001/swift-credit
 export { SWIFTCreditPaymentInitiation } from './pain/001/swift-credit-payment-initiation';
 export type { SEPACreditPaymentInitiationConfig } from './pain/001/sepa-credit-payment-initiation';
 export { SEPACreditPaymentInitiation } from './pain/001/sepa-credit-payment-initiation';
+export type { SEPAMultiCreditPaymentInitiationConfig, SEPAMultiCreditPaymentInstructionGroup } from './pain/001/sepa-multi-credit-payment-initiation';
+export { SEPAMultiCreditPaymentInitiation } from './pain/001/sepa-multi-credit-payment-initiation';
 export type { RTPCreditPaymentInitiationConfig } from './pain/001/rtp-credit-payment-initiation';
 export { RTPCreditPaymentInitiation } from './pain/001/rtp-credit-payment-initiation';
 export type { ACHCreditPaymentInitiationConfig } from './pain/001/ach-credit-payment-initiation';

@@ -1,6 +1,7 @@
 import { Party, SWIFTCreditPaymentInstruction, SEPACreditPaymentInstruction, RTPCreditPaymentInstruction, ACHCreditPaymentInstruction } from './lib/types.js';
 import { SWIFTCreditPaymentInitiation } from './pain/001/swift-credit-payment-initiation';
 import { SEPACreditPaymentInitiation } from './pain/001/sepa-credit-payment-initiation';
+import { SEPAMultiCreditPaymentInitiation, SEPAMultiCreditPaymentInstructionGroup } from './pain/001/sepa-multi-credit-payment-initiation';
 import { RTPCreditPaymentInitiation } from './pain/001/rtp-credit-payment-initiation';
 import { ACHCreditPaymentInitiation } from './pain/001/ach-credit-payment-initiation';
 import { GenericISO20022Message, getISO20022Implementation, ISO20022MessageTypeName } from './lib/interfaces';
@@ -125,6 +126,56 @@ export interface SEPACreditPaymentInitiationConfig {
    * @type {AtLeastOne<SEPACreditPaymentInstruction>}
    */
   paymentInstructions: AtLeastOne<SEPACreditPaymentInstruction>;
+  
+  /**
+   * Optional unique identifier for the message. If not provided, a UUID will be generated.
+   * @type {string}
+   */
+  messageId?: string;
+  
+  /**
+   * Optional creation date for the message. If not provided, current date will be used.
+   * @type {Date}
+   */
+  creationDate?: Date;
+}
+
+/**
+ * Configuration interface for SEPA Multi Credit Payment Initiation.
+ * @interface SEPAMultiCreditPaymentInitiationConfig
+ * @example
+ * const config: SEPAMultiCreditPaymentInitiationConfig = {
+ *     paymentInstructions: [
+ *       {
+ *         initiatingParty: debtor1,
+ *         payments: [
+ *           {
+ *             type: 'sepa',
+ *             direction: 'credit',
+ *             amount: 1000, // €10.00 Euros
+ *             currency: 'EUR',
+ *             creditor: {
+ *               name: 'Hans Schneider',
+ *               account: {
+ *                 iban: 'DE1234567890123456',
+ *               },
+ *             },
+ *             remittanceInformation: 'Invoice payment #123',
+ *           },
+ *         ],
+ *         categoryPurpose: 'SALA', // Optional
+ *       },
+ *     ],
+ *     messageId: 'MSGID123', // Optional
+ *     creationDate: new Date(), // Optional
+ * };
+ */
+export interface SEPAMultiCreditPaymentInitiationConfig {
+  /**
+   * An array of payment instruction groups, each with its own debtor.
+   * @type {AtLeastOne<SEPAMultiCreditPaymentInstructionGroup>}
+   */
+  paymentInstructions: AtLeastOne<SEPAMultiCreditPaymentInstructionGroup>;
   
   /**
    * Optional unique identifier for the message. If not provided, a UUID will be generated.
@@ -343,6 +394,48 @@ class ISO20022 {
     config: SEPACreditPaymentInitiationConfig,
   ) {
     return new SEPACreditPaymentInitiation({
+      initiatingParty: this.initiatingParty,
+      paymentInstructions: config.paymentInstructions,
+      messageId: config.messageId,
+      creationDate: config.creationDate,
+    });
+  }
+
+  /**
+   * Creates a SEPA Multi Credit Payment Initiation message with multiple payment information blocks.
+   * @param {SEPAMultiCreditPaymentInitiationConfig} config - Configuration containing payment instruction groups and optional parameters.
+   * @example
+   * const payment = iso20022.createSEPAMultiCreditPaymentInitiation({
+   *   paymentInstructions: [
+   *     {
+   *       initiatingParty: debtor1,
+   *       payments: [
+   *         {
+   *           type: 'sepa',
+   *           direction: 'credit',
+   *           amount: 1000, // €10.00 Euros
+   *           currency: 'EUR',
+   *           creditor: {
+   *             name: 'Hans Schneider',
+   *             account: {
+   *               iban: 'DE1234567890123456',
+   *             },
+   *           },
+   *           remittanceInformation: 'Invoice payment #123',
+   *         },
+   *       ],
+   *       categoryPurpose: 'SALA', // Optional
+   *     },
+   *   ],
+   *   messageId: 'SEPA-MULTI-MSG-001', // Optional
+   *   creationDate: new Date('2025-03-01'), // Optional
+   * });
+   * @returns {SEPAMultiCreditPaymentInitiation} A new SEPA Multi Credit Payment Initiation object.
+   */
+  createSEPAMultiCreditPaymentInitiation(
+    config: SEPAMultiCreditPaymentInitiationConfig,
+  ) {
+    return new SEPAMultiCreditPaymentInitiation({
       initiatingParty: this.initiatingParty,
       paymentInstructions: config.paymentInstructions,
       messageId: config.messageId,
