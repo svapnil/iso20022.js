@@ -42,6 +42,8 @@ export interface SWIFTCreditPaymentInstruction extends CreditPaymentInstruction 
 export interface SEPACreditPaymentInstruction extends CreditPaymentInstruction {
   type?: 'sepa',
   currency: 'EUR',
+  /** Optional requested payment execution date. If not provided, defaults to current date. */
+  requestedPaymentExecutionDate?: Date,
 }
 
 export interface RTPCreditPaymentInstruction extends CreditPaymentInstruction {

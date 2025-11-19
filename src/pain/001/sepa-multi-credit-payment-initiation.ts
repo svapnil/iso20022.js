@@ -131,23 +131,6 @@ export class SEPAMultiCreditPaymentInitiation extends PaymentInitiation {
     return Dinero({ amount: totalAmount, currency }).toFormat('0.00');
   }
 
-  /**
-   * Calculates the sum of payment instructions for a single group.
-   * @private
-   * @param {AtLeastOne<SEPACreditPaymentInstruction>} payments - Array of payment instructions.
-   * @returns {string} The total sum formatted as a string with 2 decimal places.
-   * @throws {Error} If payment instructions have different currencies.
-   */
-  private sumPaymentInstructions(payments: AtLeastOne<SEPACreditPaymentInstruction>): string {
-    this.validateGroupInstructionsHaveSameCurrency(payments);
-    const instructionDineros = payments.map(instruction => Dinero({ amount: instruction.amount, currency: instruction.currency }));
-    return instructionDineros.reduce(
-      (acc: Dinero.Dinero, next): Dinero.Dinero => {
-        return acc.add(next as Dinero.Dinero);
-      },
-      Dinero({ amount: 0, currency: payments[0].currency }),
-    ).toFormat('0.00');
-  }
 
   /**
    * Validates the payment initiation data according to SEPA requirements.
@@ -220,29 +203,32 @@ export class SEPAMultiCreditPaymentInitiation extends PaymentInitiation {
   public serialize(): string {
     const builder = PaymentInitiation.getBuilder();
     
-    // Generate multiple PmtInf entries, one per payment instruction group
-    const paymentInfoEntries = this.paymentInstructions.map((group, index) => {
-      const groupSum = this.sumPaymentInstructions(group.payments);
-      const pmtInfId = sanitize(`${this.paymentInformationIdBase}-${index + 1}`, 35);
+    // Generate one PmtInf entry per individual payment
+    const paymentInfoEntries = this.paymentInstructions.flatMap((group, groupIndex) => {
+      return group.payments.map((payment, paymentIndex) => {
+        const dinero = Dinero({ amount: payment.amount, currency: payment.currency });
+        const pmtInfId = sanitize(`${this.paymentInformationIdBase}-${groupIndex + 1}-${paymentIndex + 1}`, 35);
+        const requestedExecutionDate = payment.requestedPaymentExecutionDate || new Date();
 
-      return {
-        PmtInfId: pmtInfId,
-        PmtMtd: 'TRF',
-        NbOfTxs: group.payments.length.toString(),
-        CtrlSum: groupSum,
-        PmtTpInf: {
-          SvcLvl: { Cd: 'SEPA' },
-          ...(group.categoryPurpose && {
-            CtgyPurp: { Cd: group.categoryPurpose }
-          }),
-        },
-        ReqdExctnDt: this.creationDate.toISOString().split('T')[0],
-        Dbtr: this.party(group.initiatingParty),
-        DbtrAcct: this.account(group.initiatingParty.account as Account),
-        DbtrAgt: this.agent(group.initiatingParty.agent as Agent),
-        ChrgBr: 'SLEV',
-        CdtTrfTxInf: group.payments.map(p => this.creditTransfer(p)),
-      };
+        return {
+          PmtInfId: pmtInfId,
+          PmtMtd: 'TRF',
+          NbOfTxs: '1',
+          CtrlSum: dinero.toFormat('0.00'),
+          PmtTpInf: {
+            SvcLvl: { Cd: 'SEPA' },
+            ...(group.categoryPurpose && {
+              CtgyPurp: { Cd: group.categoryPurpose }
+            }),
+          },
+          ReqdExctnDt: requestedExecutionDate.toISOString().split('T')[0],
+          Dbtr: this.party(group.initiatingParty),
+          DbtrAcct: this.account(group.initiatingParty.account as Account),
+          DbtrAgt: this.agent(group.initiatingParty.agent as Agent),
+          ChrgBr: 'SLEV',
+          CdtTrfTxInf: this.creditTransfer(payment),
+        };
+      });
     });
 
     const xml = {
@@ -331,6 +317,9 @@ export class SEPAMultiCreditPaymentInitiation extends PaymentInitiation {
       // Extract optional category purpose
       const categoryPurpose = pmtInf.PmtTpInf?.CtgyPurp?.Cd as ExternalCategoryPurpose | undefined;
 
+      // Extract requested execution date
+      const requestedExecutionDate = pmtInf.ReqdExctnDt ? new Date(pmtInf.ReqdExctnDt as string) : undefined;
+
       // Normalize CdtTrfTxInf to array
       const rawInstructions = Array.isArray(pmtInf.CdtTrfTxInf) 
         ? pmtInf.CdtTrfTxInf 
@@ -349,6 +338,7 @@ export class SEPAMultiCreditPaymentInitiation extends PaymentInitiation {
           direction: 'credit' as const,
           amount: amount,
           currency: currency,
+          ...(requestedExecutionDate && { requestedPaymentExecutionDate: requestedExecutionDate }),
           creditor: {
             name: (inst.Cdtr?.Nm as string),
             agent: parseAgent(inst.CdtrAgt),
