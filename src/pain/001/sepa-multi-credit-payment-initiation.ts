@@ -261,13 +261,15 @@ export class SEPAMultiCreditPaymentInitiation extends PaymentInitiation {
             CtrlSum: this.formattedPaymentSum,
             InitgPty: {
               Nm: this.initiatingParty.name,
-              Id: {
-                OrgId: {
-                  Othr: {
-                    Id: this.initiatingParty.id,
+              ...(this.initiatingParty.id && {
+                Id: {
+                  OrgId: {
+                    Othr: {
+                      Id: this.initiatingParty.id,
+                    },
                   },
                 },
-              },
+              }),
             },
           },
           PmtInf: paymentInfoEntries,
