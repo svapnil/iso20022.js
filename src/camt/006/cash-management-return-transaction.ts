@@ -1,18 +1,31 @@
-import { BusinessError } from "../types";
-import { InvalidStructureError, InvalidXmlNamespaceError } from "../../errors";
-import { GenericISO20022Message, ISO20022Messages, ISO20022MessageTypeName, registerISO20022Implementation, XML } from "../../lib/interfaces";
-import { Agent, MessageHeader, Party } from "../../lib/types";
-import { exportAmountToString, exportMessageHeader, parseAmountToMinorUnits, parseDate, parseMessageHeader, parseParty as parsePartyExt} from "../../parseUtils";
-import { exportBusinessError, parseBusinessError } from "../utils";
-import { Currency } from "dinero.js";
+import { BusinessError } from '../types';
+import { InvalidStructureError, InvalidXmlNamespaceError } from '../../errors';
+import {
+  GenericISO20022Message,
+  ISO20022Messages,
+  ISO20022MessageTypeName,
+  registerISO20022Implementation,
+  XML,
+} from '../../lib/interfaces';
+import { Agent, MessageHeader, Party } from '../../lib/types';
+import {
+  exportAmountToString,
+  exportMessageHeader,
+  parseAmountToMinorUnits,
+  parseDate,
+  parseMessageHeader,
+  parseParty as parsePartyExt,
+} from '../../parseUtils';
+import { exportBusinessError, parseBusinessError } from '../utils';
+import { Currency } from 'dinero.js';
 
 export interface TransactionReport {
   msgId?: string;
   reqExecutionDate?: Date;
   status?: {
-    code: string; 
+    code: string;
     reason?: string; // always proprietary for now
-  },
+  };
   debtor: Party; // includes the agent
   debtorAgent: Agent; // one who operated the payment
   creditor: Party; // includes the agent
@@ -36,7 +49,6 @@ export interface TransactionReportOrError {
   error?: BusinessError;
 }
 
-
 export interface CashManagementReturnTransactionData {
   // Define the properties of the CAMT.003 message here
   header: MessageHeader;
@@ -55,7 +67,6 @@ export class CashManagementReturnTransaction implements GenericISO20022Message {
     return this._data;
   }
 
-
   static supportedMessages(): ISO20022MessageTypeName[] {
     return [ISO20022Messages.CAMT_006];
   }
@@ -63,33 +74,50 @@ export class CashManagementReturnTransaction implements GenericISO20022Message {
   static fromDocumentOject(doc: any): CashManagementReturnTransaction {
     const rawHeader = doc.Document?.RtrTx?.MsgHdr;
     if (!rawHeader) {
-      throw new InvalidStructureError("Invalid CAMT.006 document: missing MsgHdr");
+      throw new InvalidStructureError(
+        'Invalid CAMT.006 document: missing MsgHdr',
+      );
     }
     const header = parseMessageHeader(rawHeader);
-      
+
     // interpret the report
     let rawReports = doc.Document?.RtrTx?.RptOrErr?.BizRpt?.TxRpt;
     if (!Array.isArray(rawReports)) rawReports = [rawReports];
-    rawReports = rawReports.filter( (r : any) =>!!r); // remove null/undefined
+    rawReports = rawReports.filter((r: any) => !!r); // remove null/undefined
 
     const reports: TransactionReportOrError[] = rawReports.map((r: any) => {
-      const rawAmount = r.PmtId?.LngBizId?.IntrBkSttlmAmt?.Amt || r.PmtId?.LngBizId?.IntrBkSttlmAmt?.Amount; // some implementations use Amount instead of Amt
-      const paymentId : PaymentIdentification = {
+      const rawAmount =
+        r.PmtId?.LngBizId?.IntrBkSttlmAmt?.Amt ||
+        r.PmtId?.LngBizId?.IntrBkSttlmAmt?.Amount; // some implementations use Amount instead of Amt
+      const paymentId: PaymentIdentification = {
         currency: r.PmtId?.LngBizId?.IntrBkSttlmAmt?.Ccy,
-        amount: parseAmountToMinorUnits(rawAmount, r.PmtId?.LngBizId?.IntrBkSttlmAmt?.Ccy),
+        amount: parseAmountToMinorUnits(
+          rawAmount,
+          r.PmtId?.LngBizId?.IntrBkSttlmAmt?.Ccy,
+        ),
         endToEndId: r.PmtId?.LngBizId?.EndToEndId,
         transactionId: r.PmtId?.LngBizId?.TxId,
         uetr: r.PmtId?.LngBizId?.UETR,
       };
       // check required fields
       if (!paymentId.currency) {
-        throw new InvalidStructureError("Invalid CAMT.006 document: missing Ccy in PmtId.LngBizId.IntrBkSttlmAmt");
+        throw new InvalidStructureError(
+          'Invalid CAMT.006 document: missing Ccy in PmtId.LngBizId.IntrBkSttlmAmt',
+        );
       }
-      if (paymentId.amount === undefined || paymentId.amount === null || isNaN(paymentId.amount)) {
-        throw new InvalidStructureError("Invalid CAMT.006 document: missing or invalid Amt in PmtId.LngBizId.IntrBkSttlmAmt");
+      if (
+        paymentId.amount === undefined ||
+        paymentId.amount === null ||
+        isNaN(paymentId.amount)
+      ) {
+        throw new InvalidStructureError(
+          'Invalid CAMT.006 document: missing or invalid Amt in PmtId.LngBizId.IntrBkSttlmAmt',
+        );
       }
       if (!paymentId.endToEndId) {
-        throw new InvalidStructureError("Invalid CAMT.006 document: missing EndToEndId in PmtId.LngBizId");
+        throw new InvalidStructureError(
+          'Invalid CAMT.006 document: missing EndToEndId in PmtId.LngBizId',
+        );
       }
 
       let report: TransactionReport | undefined = undefined;
@@ -98,13 +126,21 @@ export class CashManagementReturnTransaction implements GenericISO20022Message {
       if (r.TxOrErr?.Tx) {
         // report
         const msgId = r.TxOrErr.Tx.Pmt?.MsgId;
-        const reqExecutionDate = r.TxOrErr.Tx.Pmt?.ReqdExctnDt?.Dt ? parseDate(r.TxOrErr.Tx.Pmt.ReqdExctnDt) : undefined;
-        const status = ((sts:any)=>{
+        const reqExecutionDate = r.TxOrErr.Tx.Pmt?.ReqdExctnDt?.Dt
+          ? parseDate(r.TxOrErr.Tx.Pmt.ReqdExctnDt)
+          : undefined;
+        const status = ((sts: any) => {
           if (!sts) return undefined;
           if (Array.isArray(sts) && sts.length === 0) return undefined;
           if (Array.isArray(sts)) sts = sts[0]; // take the first one only
-          let code = sts.Cd?.Pdg || sts.Cd?.Fnl || sts.Cd?.RTGS || sts.Cd?.Sttlm || sts.Cd?.Prtly;
-          if (code) code = Object.keys(sts.Cd)[0] + ":" + code; // prefix with the type of code
+          let code =
+            sts.Cd?.Pdg ||
+            sts.Cd?.Fnl ||
+            sts.Cd?.RTGS ||
+            sts.Cd?.Sttlm ||
+            sts.Cd?.Prtly;
+          if (code)
+            code = Object.keys(sts.Cd)[0] + ':' + code; // prefix with the type of code
           else return undefined;
           const reason = sts.Rsn?.Prtry;
           return { code, reason };
@@ -113,12 +149,11 @@ export class CashManagementReturnTransaction implements GenericISO20022Message {
         // to parse debtor and creditor with their agents
         function parseParty(party: any): Party {
           const p: Party = parsePartyExt(party?.Pty || {}); // force a valid object
-          if (party?.Agt) 
-            p.agent = { bic: party.Agt.FinInstnId?.BICFI };
+          if (party?.Agt) p.agent = { bic: party.Agt.FinInstnId?.BICFI };
           return p;
-        } 
+        }
         function parseAgent(agent: any): Agent {
-          if (!agent) return { bic: "" };
+          if (!agent) return { bic: '' };
           return { bic: agent?.FinInstnId?.BICFI };
         }
 
@@ -130,19 +165,25 @@ export class CashManagementReturnTransaction implements GenericISO20022Message {
           debtorAgent: parseAgent(r.TxOrErr.Tx.Pmt?.Pties?.DbtrAgt),
           creditor: parseParty(r.TxOrErr.Tx.Pmt?.Pties?.Cdtr),
           creditorAgent: parseAgent(r.TxOrErr.Tx.Pmt?.Pties?.CdtrAgt),
-        }
+        };
         // check the debtor and creditor required fields
         if (!report.debtor.id) {
-          throw new InvalidStructureError("Invalid CAMT.006 document: missing Id in TxOrErr.Tx.Dbtr.Pty");
+          throw new InvalidStructureError(
+            'Invalid CAMT.006 document: missing Id in TxOrErr.Tx.Dbtr.Pty',
+          );
         }
         if (!report.creditor.id) {
-          throw new InvalidStructureError("Invalid CAMT.006 document: missing Id in TxOrErr.Tx.Cdtr.Pty");
+          throw new InvalidStructureError(
+            'Invalid CAMT.006 document: missing Id in TxOrErr.Tx.Cdtr.Pty',
+          );
         }
       } else if (r.TxOrErr?.BizErr) {
         // business error
         error = parseBusinessError(r.TxOrErr.BizErr);
       } else {
-        throw new InvalidStructureError("Invalid CAMT.006 document: missing TxOrErr");
+        throw new InvalidStructureError(
+          'Invalid CAMT.006 document: missing TxOrErr',
+        );
       }
       return { paymentId, report, error };
     });
@@ -158,10 +199,11 @@ export class CashManagementReturnTransaction implements GenericISO20022Message {
     const doc = parser.parse(xml);
 
     if (!doc.Document) {
-      throw new Error("Invalid XML format");
+      throw new Error('Invalid XML format');
     }
 
-    const namespace = (doc.Document['@_xmlns'] || doc.Document['@_Xmlns']) as string;
+    const namespace = (doc.Document['@_xmlns'] ||
+      doc.Document['@_Xmlns']) as string;
     if (!namespace.startsWith('urn:iso:std:iso:20022:tech:xsd:camt.004.001.')) {
       throw new InvalidXmlNamespaceError('Invalid CAMT.004 namespace');
     }
@@ -172,7 +214,7 @@ export class CashManagementReturnTransaction implements GenericISO20022Message {
     const obj = JSON.parse(json);
 
     if (!obj.Document) {
-      throw new Error("Invalid JSON format");
+      throw new Error('Invalid JSON format');
     }
 
     return CashManagementReturnTransaction.fromDocumentOject(obj);
@@ -185,7 +227,6 @@ export class CashManagementReturnTransaction implements GenericISO20022Message {
     obj.Document['@_xmlns:xsi'] = 'http://www.w3.org/2001/XMLSchema-instance';
 
     return builder.build(obj);
-
   }
   toJSON(): any {
     // we should not have to serialize but we do it for consistency
@@ -194,21 +235,27 @@ export class CashManagementReturnTransaction implements GenericISO20022Message {
         MsgHdr: exportMessageHeader(this._data.header),
         RptOrErr: {
           BizRpt: {
-            TxRpt: this._data.reports.map((report) => {
+            TxRpt: this._data.reports.map(report => {
               const obj: any = {
                 PmtId: {
                   LngBizId: {
                     IntrBkSttlmAmt: {
-                      Amt: exportAmountToString(report.paymentId.amount, report.paymentId.currency),
-                      Amount: exportAmountToString(report.paymentId.amount, report.paymentId.currency), // some implementations use Amount instead of Amt
+                      Amt: exportAmountToString(
+                        report.paymentId.amount,
+                        report.paymentId.currency,
+                      ),
+                      Amount: exportAmountToString(
+                        report.paymentId.amount,
+                        report.paymentId.currency,
+                      ), // some implementations use Amount instead of Amt
                       Ccy: report.paymentId.currency,
                     },
                     UETR: report.paymentId.uetr,
                     TxId: report.paymentId.transactionId,
                     EndToEndId: report.paymentId.endToEndId,
-                  }
+                  },
                 },
-                TxOrErr: { }, // filled below
+                TxOrErr: {}, // filled below
               };
 
               if (report.report) {
@@ -220,40 +267,50 @@ export class CashManagementReturnTransaction implements GenericISO20022Message {
                       Id: p.id ? { OrgId: { Othr: { Id: p.id } } } : undefined,
                     },
                     Agt: exportAgent(p.agent),
-                  }
+                  };
                 }
                 function exportAgent(a?: Agent): any {
                   if (!a) return undefined;
-                  if ("bic" in a && a.bic) return { FinInstnId: { BICFI: a.bic } };
-                  if ("abaRoutingNumber" in a && a.abaRoutingNumber) return { FinInstId: { Othr: { Id: a.abaRoutingNumber } } };
+                  if ('bic' in a && a.bic)
+                    return { FinInstnId: { BICFI: a.bic } };
+                  if ('abaRoutingNumber' in a && a.abaRoutingNumber)
+                    return { FinInstId: { Othr: { Id: a.abaRoutingNumber } } };
                   return undefined;
                 }
-                const [codeType, code] = report.report.status ? report.report.status.code.split(":") : [undefined, undefined];
+                const [codeType, code] = report.report.status
+                  ? report.report.status.code.split(':')
+                  : [undefined, undefined];
                 obj.TxOrErr.Tx = {
                   Pmt: {
                     MsgId: report.report.msgId,
-                    ReqdExctnDt: {Dt: report.report.reqExecutionDate?.toISOString()?.slice(0,10)},
+                    ReqdExctnDt: {
+                      Dt: report.report.reqExecutionDate
+                        ?.toISOString()
+                        ?.slice(0, 10),
+                    },
                     Sts: {
                       Cd: codeType ? { [codeType]: code } : undefined,
-                      Rsn: report.report.status?.reason ? { Prtry: report.report.status.reason } : undefined,
+                      Rsn: report.report.status?.reason
+                        ? { Prtry: report.report.status.reason }
+                        : undefined,
                     },
                     Pties: {
                       Dbtr: exportParty(report.report.debtor),
                       DbtrAgt: exportAgent(report.report.debtorAgent),
                       Cdtr: exportParty(report.report.creditor),
                       CdtrAgt: exportAgent(report.report.creditorAgent),
-                    }
-                  }
+                    },
+                  },
                 };
               } else if (report.error) {
                 obj.TxOrErr.BizErr = exportBusinessError(report.error);
               }
-              
+
               return obj;
-            })
-          }
-        }
-      }
+            }),
+          },
+        },
+      },
     };
     return { Document };
   }

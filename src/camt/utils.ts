@@ -8,7 +8,13 @@ import {
   Transaction,
 } from 'camt/types';
 import { Party } from '../lib/types';
-import { exportAccount, exportAgent, exportAmountToString, parseAdditionalInformation, parseDate } from '../parseUtils';
+import {
+  exportAccount,
+  exportAgent,
+  exportAmountToString,
+  parseAdditionalInformation,
+  parseDate,
+} from '../parseUtils';
 import {
   parseAccount,
   parseAgent,
@@ -104,7 +110,10 @@ export const exportStatement = (stmt: Statement): any => {
         NbOfNtries: stmt.numOfEntries,
         Sum: stmt.sumOfEntries,
         TtlNetNtryAmt: stmt.netAmountOfEntries
-          ? exportAmountToString(stmt.netAmountOfEntries, stmt.balances[0]?.currency)
+          ? exportAmountToString(
+              stmt.netAmountOfEntries,
+              stmt.balances[0]?.currency,
+            )
           : undefined,
       },
       TtlCdtNtries: {
@@ -117,14 +126,14 @@ export const exportStatement = (stmt: Statement): any => {
       },
     },
     Acct: {
-      ...exportAccount(stmt.account), 
-      Svcr: exportAgent(stmt.agent)
+      ...exportAccount(stmt.account),
+      Svcr: exportAgent(stmt.agent),
     },
-    Bal: stmt.balances.map((bal) => exportBalance(bal)),
-    Ntry: stmt.entries.map((entry) => exportEntry(entry)),
-  }
+    Bal: stmt.balances.map(bal => exportBalance(bal)),
+    Ntry: stmt.entries.map(entry => exportEntry(entry)),
+  };
   return obj;
-}
+};
 
 export const parseBalance = (balance: any): Balance => {
   const rawAmount = balance.Amt['#text'];
@@ -161,9 +170,12 @@ export const exportBalance = (balance: Balance): any => {
   };
 
   return obj;
-}
+};
 
-export const parseBalanceReport = (currency: Currency, balance: any): BalanceInReport => {
+export const parseBalanceReport = (
+  currency: Currency,
+  balance: any,
+): BalanceInReport => {
   const rawAmount = balance.Amt;
   const amount = parseAmountToMinorUnits(rawAmount, currency);
   const creditDebitIndicator =
@@ -180,7 +192,10 @@ export const parseBalanceReport = (currency: Currency, balance: any): BalanceInR
   };
 };
 
-export const exportBalanceReport = (currency: Currency, balance: BalanceInReport): any => {
+export const exportBalanceReport = (
+  currency: Currency,
+  balance: BalanceInReport,
+): any => {
   const obj: any = {
     Amt: exportAmountToString(balance.amount, currency),
     CdtDbtInd: balance.creditDebitIndicator === 'credit' ? 'CRDT' : 'DBIT',
@@ -196,7 +211,7 @@ export const exportBalanceReport = (currency: Currency, balance: BalanceInReport
   };
 
   return obj;
-}
+};
 
 export const parseEntry = (entry: any): Entry => {
   const referenceId = entry.NtryRef;
@@ -255,13 +270,18 @@ export const exportEntry = (entry: Entry): any => {
       '#text': exportAmountToString(entry.amount, entry.currency),
       '@_Ccy': entry.currency,
     },
-    BkTxCd: exportBankTransactionCode(entry.bankTransactionCode, entry.proprietaryCode),
+    BkTxCd: exportBankTransactionCode(
+      entry.bankTransactionCode,
+      entry.proprietaryCode,
+    ),
     AddtlNtryInf: entry.additionalInformation,
     AcctSvcrRef: entry.accountServicerReferenceId,
-    NtryDtls: entry.transactions.map((tx) => ({TxDtls: exportTransactionDetails(tx)}))
-  }
+    NtryDtls: entry.transactions.map(tx => ({
+      TxDtls: exportTransactionDetails(tx),
+    })),
+  };
   return obj;
-}
+};
 
 const parseTransactionDetail = (transactionDetail: any): Transaction => {
   const messageId = transactionDetail.Refs?.MsgId;
@@ -358,7 +378,9 @@ const exportTransactionDetails = (tx: Transaction): any => {
       Dbtr: {
         Nm: tx.debtor.name,
       },
-      DbtrAcct: tx.debtor.account ? exportAccount(tx.debtor.account) : undefined,
+      DbtrAcct: tx.debtor.account
+        ? exportAccount(tx.debtor.account)
+        : undefined,
     };
     obj.RltdAgts = {
       DbtrAgt: tx.debtor.agent ? exportAgent(tx.debtor.agent) : undefined,
@@ -370,14 +392,16 @@ const exportTransactionDetails = (tx: Transaction): any => {
       Cdtr: {
         Nm: tx.creditor.name,
       },
-      CdtrAcct: tx.creditor.account ? exportAccount(tx.creditor.account) : undefined,
+      CdtrAcct: tx.creditor.account
+        ? exportAccount(tx.creditor.account)
+        : undefined,
     };
     obj.RltdAgts = {
       CdtrAgt: tx.creditor.agent ? exportAgent(tx.creditor.agent) : undefined,
     };
   }
   return obj;
-}
+};
 
 const parseBankTransactionCode = (
   transactionCode: any,
@@ -401,8 +425,7 @@ const exportBankTransactionCode = (
   bankTransactionCode: BankTransactionCode | undefined,
   proprietaryCode?: string,
 ): any => {
-  const obj: any = {
-  }
+  const obj: any = {};
   if (proprietaryCode) {
     obj.Prtry = { Cd: proprietaryCode };
   }
@@ -422,16 +445,16 @@ const exportBankTransactionCode = (
     }
   }
   return obj;
-}
+};
 
 export const parseBusinessError = (bizErr: any): BusinessError => {
-  const code = bizErr.Err?.Cd || bizErr.Err?.Prtry || "UKNW";
+  const code = bizErr.Err?.Cd || bizErr.Err?.Prtry || 'UKNW';
   const description = bizErr.Desc;
   return {
     code,
     description,
   };
-}
+};
 
 export const exportBusinessError = (bizErr: BusinessError): any => {
   const obj: any = {
@@ -441,4 +464,4 @@ export const exportBusinessError = (bizErr: BusinessError): any => {
     Desc: bizErr.description,
   };
   return obj;
-}
+};

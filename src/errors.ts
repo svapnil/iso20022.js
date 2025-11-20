@@ -6,7 +6,7 @@ export class Iso20022JsError extends Error {
   constructor(message: string) {
     super(message);
     this.name = this.constructor.name;
-    
+
     // Maintains proper stack trace for where the error was thrown
     if (Error.captureStackTrace) {
       Error.captureStackTrace(this, this.constructor);

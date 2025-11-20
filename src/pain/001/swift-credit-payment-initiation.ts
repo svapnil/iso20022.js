@@ -1,16 +1,16 @@
 import Dinero, { Currency } from 'dinero.js';
 import { XMLBuilder, XMLParser } from 'fast-xml-parser';
 import { v4 as uuidv4 } from 'uuid';
-import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
-import { Alpha2Country } from "../../lib/countries";
+import { InvalidXmlError, InvalidXmlNamespaceError } from '../../errors';
+import { Alpha2Country } from '../../lib/countries';
 import {
   Account,
   BICAgent,
   IBANAccount,
   Party,
-  SWIFTCreditPaymentInstruction
+  SWIFTCreditPaymentInstruction,
 } from '../../lib/types.js';
-import { parseAccount, parseAmountToMinorUnits } from "../../parseUtils";
+import { parseAccount, parseAmountToMinorUnits } from '../../parseUtils';
 import { sanitize } from '../../utils/format';
 import { PaymentInitiation } from './payment-initiation';
 
@@ -66,7 +66,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
    * @param {SWIFTCreditPaymentInitiationConfig} config - The configuration object.
    */
   constructor(config: SWIFTCreditPaymentInitiationConfig) {
-    super({ type: "swift" });
+    super({ type: 'swift' });
     this.initiatingParty = config.initiatingParty;
     this.paymentInstructions = config.paymentInstructions;
     this.messageId =
@@ -105,14 +105,18 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
     // Add more validation as needed
   }
 
-
   /**
    * Generates payment information for a single payment instruction.
    * @param {SWIFTCreditPaymentInstruction} paymentInstruction - The payment instruction.
    * @returns {Object} The credit transfer object.
    */
-  creditTransfer(paymentInstruction: SWIFTCreditPaymentInstruction): Record<string, any> {
-    const paymentInstructionId = sanitize(paymentInstruction.id || uuidv4(), 35);
+  creditTransfer(
+    paymentInstruction: SWIFTCreditPaymentInstruction,
+  ): Record<string, any> {
+    const paymentInstructionId = sanitize(
+      paymentInstruction.id || uuidv4(),
+      35,
+    );
     const amount = Dinero({
       amount: paymentInstruction.amount,
       currency: paymentInstruction.currency,
@@ -139,8 +143,8 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
       ),
       RmtInf: paymentInstruction.remittanceInformation
         ? {
-          Ustrd: paymentInstruction.remittanceInformation,
-        }
+            Ustrd: paymentInstruction.remittanceInformation,
+          }
         : undefined,
     };
   }
@@ -154,16 +158,19 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
     const xml = parser.parse(rawXml);
 
     if (!xml.Document) {
-      throw new InvalidXmlError("Invalid XML format");
+      throw new InvalidXmlError('Invalid XML format');
     }
 
-    const namespace = (xml.Document['@_xmlns'] || xml.Document['@_Xmlns']) as string;
+    const namespace = (xml.Document['@_xmlns'] ||
+      xml.Document['@_Xmlns']) as string;
     if (!namespace.startsWith('urn:iso:std:iso:20022:tech:xsd:pain.001.001')) {
       throw new InvalidXmlNamespaceError('Invalid PAIN.001 namespace');
     }
 
     const messageId = xml.Document.CstmrCdtTrfInitn.GrpHdr.MsgId as string;
-    const creationDate = new Date(xml.Document.CstmrCdtTrfInitn.GrpHdr.CreDtTm as string);
+    const creationDate = new Date(
+      xml.Document.CstmrCdtTrfInitn.GrpHdr.CreDtTm as string,
+    );
 
     // Parse and validate accounts
     // Create base initiating party
@@ -172,33 +179,41 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
       id: xml.Document.CstmrCdtTrfInitn.GrpHdr.InitgPty.Id?.OrgId?.Othr?.Id,
       account: parseAccount(xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAcct),
       agent: {
-        bic: xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAgt?.FinInstnId?.BIC
-      }
+        bic: xml.Document.CstmrCdtTrfInitn.PmtInf.DbtrAgt?.FinInstnId?.BIC,
+      },
     };
 
-    const rawInstructions = Array.isArray(xml.Document.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf)
+    const rawInstructions = Array.isArray(
+      xml.Document.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf,
+    )
       ? xml.Document.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf
       : [xml.Document.CstmrCdtTrfInitn.PmtInf.CdtTrfTxInf];
 
     const paymentInstructions = rawInstructions.map((inst: any) => {
       const currency = inst.Amt.InstdAmt['@_Ccy'] as Currency;
-      const amount = parseAmountToMinorUnits(Number(inst.Amt.InstdAmt['#text']), currency);
+      const amount = parseAmountToMinorUnits(
+        Number(inst.Amt.InstdAmt['#text']),
+        currency,
+      );
 
       // Create base creditor party
       const creditor: Party = {
         name: inst.Cdtr.Nm as string,
         agent: {
-          bic: inst.CdtrAgt?.FinInstnId?.BIC
+          bic: inst.CdtrAgt?.FinInstnId?.BIC,
         },
-        account: (inst.CdtrAcct?.Id?.IBAN || inst.CdtrAcct?.Id?.Othr?.Id) ? parseAccount(inst.CdtrAcct) : undefined,
+        account:
+          inst.CdtrAcct?.Id?.IBAN || inst.CdtrAcct?.Id?.Othr?.Id
+            ? parseAccount(inst.CdtrAcct)
+            : undefined,
         address: {
           streetName: inst.Cdtr.PstlAdr.StrtNm as string,
           buildingNumber: inst.Cdtr.PstlAdr.BldgNb as string,
           postalCode: inst.Cdtr.PstlAdr.PstCd as string,
           townName: inst.Cdtr.PstlAdr.TwnNm as string,
           countrySubDivision: inst.Cdtr.PstlAdr.CtrySubDvsn as string,
-          country: inst.Cdtr.PstlAdr.Ctry as Alpha2Country
-        }
+          country: inst.Cdtr.PstlAdr.Ctry as Alpha2Country,
+        },
       };
 
       // Return instruction with validated data
@@ -206,10 +221,12 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
         type: 'swift' as const,
         direction: 'credit' as const,
         ...(inst.PmtId.InstrId && { id: inst.PmtId.InstrId.toString() }),
-        ...(inst.PmtId.EndToEndId && { endToEndId: inst.PmtId.EndToEndId.toString() }),
+        ...(inst.PmtId.EndToEndId && {
+          endToEndId: inst.PmtId.EndToEndId.toString(),
+        }),
         amount,
         currency,
-        creditor
+        creditor,
       };
     });
 
@@ -217,7 +234,8 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
       messageId,
       creationDate,
       initiatingParty: baseInitiatingParty,
-      paymentInstructions: paymentInstructions as AtLeastOne<SWIFTCreditPaymentInstruction>
+      paymentInstructions:
+        paymentInstructions as AtLeastOne<SWIFTCreditPaymentInstruction>,
     });
   }
 
@@ -226,7 +244,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
     const xml = {
       '?xml': {
         '@version': '1.0',
-        '@encoding': 'UTF-8'
+        '@encoding': 'UTF-8',
       },
       Document: {
         '@xmlns': 'urn:iso:std:iso:20022:tech:xsd:pain.001.001.03',
@@ -261,7 +279,9 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
             DbtrAcct: this.account(this.initiatingParty.account as Account),
             DbtrAgt: this.agent(this.initiatingParty.agent as BICAgent),
             ChrgBr: 'SHAR',
-            CdtTrfTxInf: this.paymentInstructions.map(p => this.creditTransfer(p)),
+            CdtTrfTxInf: this.paymentInstructions.map(p =>
+              this.creditTransfer(p),
+            ),
           },
         },
       },

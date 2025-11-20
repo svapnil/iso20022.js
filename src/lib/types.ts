@@ -34,21 +34,22 @@ export interface CreditPaymentInstruction extends PaymentInstruction {
 /**
  * Represents a SWIFT credit payment instruction, extending the base PaymentInstruction.
  */
-export interface SWIFTCreditPaymentInstruction extends CreditPaymentInstruction {
+export interface SWIFTCreditPaymentInstruction
+  extends CreditPaymentInstruction {
   /** Specifies that this is a SWIFT payment. */
   type?: 'swift';
 }
 
 export interface SEPACreditPaymentInstruction extends CreditPaymentInstruction {
-  type?: 'sepa',
-  currency: 'EUR',
+  type?: 'sepa';
+  currency: 'EUR';
   /** Optional requested payment execution date. If not provided, defaults to current date. */
-  requestedPaymentExecutionDate?: Date,
+  requestedPaymentExecutionDate?: Date;
 }
 
 export interface RTPCreditPaymentInstruction extends CreditPaymentInstruction {
-  type?: 'rtp',
-  currency: 'USD',
+  type?: 'rtp';
+  currency: 'USD';
 }
 
 /**
@@ -56,9 +57,9 @@ export interface RTPCreditPaymentInstruction extends CreditPaymentInstruction {
  */
 export interface ACHCreditPaymentInstruction extends CreditPaymentInstruction {
   /** Specifies that this is an ACH payment. */
-  type?: 'ach',
+  type?: 'ach';
   /** ACH payments must use USD as currency. */
-  currency: 'USD',
+  currency: 'USD';
 }
 
 /*
@@ -167,52 +168,52 @@ export const ExternalCategoryPurposeCode = {
  * Description mapping of ExternalCategoryPurposeCode values to their names.
  */
 export const ExternalCategoryPurposeCodeDescriptionMap = {
-  'BONU': 'Bonus Payment',
-  'CASH': 'Cash Management',
-  'CBLK': 'Card Bulk Settlement',
-  'CCRD': 'Credit Card Payment',
-  'CORT': 'Trade Settlement',
-  'DCRD': 'Debit Card Payment',
-  'DIVI': 'Dividends',
-  'DVPM': 'Deliver Against Payment',
-  'EPAY': 'Electronic Payment',
-  'FCIN': 'Fee and Interest',
-  'FCOL': 'Card Fee Settlement',
-  'GP2P': 'General Person-to-Person',
-  'GOVT': 'Government Payment',
-  'HEDG': 'Hedging Operation',
-  'ICCP': 'Credit Card Reimbursement',
-  'IDCP': 'Debit Card Reimbursement',
-  'INTC': 'Intra-Company Payment',
-  'INTE': 'Interest Payment',
-  'LBOX': 'Lockbox',
-  'LOAN': 'Loan Transfer',
-  'MP2B': 'Mobile Person-to-Business',
-  'MP2P': 'Mobile Person-to-Person',
-  'OTHR': 'Other',
-  'PENS': 'Pension Payment',
-  'RPRE': 'Re-Present Transaction',
-  'RRCT': 'Commercial Reimbursement',
-  'RVPM': 'Receive Against Payment',
-  'SALA': 'Salary Payment',
-  'SECU': 'Securities Payment',
-  'SSBE': 'Social Security Benefit',
-  'SUPP': 'Supplier Payment',
-  'TAXS': 'Tax Payment',
-  'TRAD': 'Trade Finance',
-  'TREA': 'Treasury Operation',
-  'VATX': 'Value Added Tax',
-  'WHLD': 'Withholding Tax',
-  'SWEP': 'Sweep Instruction',
-  'TOPG': 'Top-up Instruction',
-  'ZABA': 'Zero Balance',
-  'VOST': 'Domestic from Foreign',
-  'FCDT': 'Foreign Currency Domestic',
-  'CIPC': 'Cash Order',
-  'CONC': 'Cash Order Consolidated',
-  'CGWV': 'Cash in Transit',
-  'SAVG': 'Savings Transfer',
-  'CTDF': 'Cross Border Dodd Frank',
+  BONU: 'Bonus Payment',
+  CASH: 'Cash Management',
+  CBLK: 'Card Bulk Settlement',
+  CCRD: 'Credit Card Payment',
+  CORT: 'Trade Settlement',
+  DCRD: 'Debit Card Payment',
+  DIVI: 'Dividends',
+  DVPM: 'Deliver Against Payment',
+  EPAY: 'Electronic Payment',
+  FCIN: 'Fee and Interest',
+  FCOL: 'Card Fee Settlement',
+  GP2P: 'General Person-to-Person',
+  GOVT: 'Government Payment',
+  HEDG: 'Hedging Operation',
+  ICCP: 'Credit Card Reimbursement',
+  IDCP: 'Debit Card Reimbursement',
+  INTC: 'Intra-Company Payment',
+  INTE: 'Interest Payment',
+  LBOX: 'Lockbox',
+  LOAN: 'Loan Transfer',
+  MP2B: 'Mobile Person-to-Business',
+  MP2P: 'Mobile Person-to-Person',
+  OTHR: 'Other',
+  PENS: 'Pension Payment',
+  RPRE: 'Re-Present Transaction',
+  RRCT: 'Commercial Reimbursement',
+  RVPM: 'Receive Against Payment',
+  SALA: 'Salary Payment',
+  SECU: 'Securities Payment',
+  SSBE: 'Social Security Benefit',
+  SUPP: 'Supplier Payment',
+  TAXS: 'Tax Payment',
+  TRAD: 'Trade Finance',
+  TREA: 'Treasury Operation',
+  VATX: 'Value Added Tax',
+  WHLD: 'Withholding Tax',
+  SWEP: 'Sweep Instruction',
+  TOPG: 'Top-up Instruction',
+  ZABA: 'Zero Balance',
+  VOST: 'Domestic from Foreign',
+  FCDT: 'Foreign Currency Domestic',
+  CIPC: 'Cash Order',
+  CONC: 'Cash Order Consolidated',
+  CGWV: 'Cash in Transit',
+  SAVG: 'Savings Transfer',
+  CTDF: 'Cross Border Dodd Frank',
 } as const;
 
 export type ExternalCategoryPurpose =
@@ -274,7 +275,9 @@ export interface BaseAccount {
   name?: string;
 }
 
-export type AccountIdentification = AccountIdentificationIBAN | AccountIdentificationOther;
+export type AccountIdentification =
+  | AccountIdentificationIBAN
+  | AccountIdentificationOther;
 export interface AccountIdentificationIBAN {
   iban: string;
 }
@@ -337,18 +340,18 @@ export const ACHLocalInstrumentCode = {
   RepresentedCheck: 'RCK',
 } as const;
 
-export type ACHLocalInstrument = 
+export type ACHLocalInstrument =
   (typeof ACHLocalInstrumentCode)[keyof typeof ACHLocalInstrumentCode];
 
 export const ACHLocalInstrumentCodeDescriptionMap = {
-  'CCD': 'Corporate Credit or Debit',
-  'PPD': 'Prearranged Payment and Deposit',
-  'WEB': 'Internet-Initiated Entry',
-  'TEL': 'Telephone-Initiated Entry',
-  'POP': 'Point-of-Purchase Entry',
-  'ARC': 'Accounts Receivable Entry',
-  'BOC': 'Back Office Conversion',
-  'RCK': 'Represented Check Entry',
+  CCD: 'Corporate Credit or Debit',
+  PPD: 'Prearranged Payment and Deposit',
+  WEB: 'Internet-Initiated Entry',
+  TEL: 'Telephone-Initiated Entry',
+  POP: 'Point-of-Purchase Entry',
+  ARC: 'Accounts Receivable Entry',
+  BOC: 'Back Office Conversion',
+  RCK: 'Represented Check Entry',
 } as const;
 
 export interface MessageHeader {
@@ -413,26 +416,87 @@ export const CashAccountTypeCode = {
 
 export type CashAccountType =
   (typeof CashAccountTypeCode)[keyof typeof CashAccountTypeCode];
-  
+
 export const CashAccountTypeCodeDescriptionMap = {
-  'CACC': 'Current',
-  'CASH': 'Cash Payment',
-  'CHAR': 'Charges',
-  'CISH': 'Cash Income',
-  'COMM': 'Commission',
-  'CPAC': 'Clearing Participant Settlement Account',
-  'LLSV': 'Limited Liquidity Savings Account',
-  'LOAN': 'Loan',
-  'MGLD': 'Marginal Lending',
-  'MOMA': 'Money Market',
-  'NREX': 'Non Resident External',
-  'ODFT': 'Overdraft',
-  'ONDP': 'Over Night Deposit',
-  'OTHR': 'Other Account',
-  'SACC': 'Settlement',
-  'SLRY': 'Salary',
-  'SVGS': 'Savings',
-  'TAXE': 'Tax',
-  'TRAN': 'Transacting Account',
-  'TRAS': 'Cash Trading',
+  CACC: 'Current',
+  CASH: 'Cash Payment',
+  CHAR: 'Charges',
+  CISH: 'Cash Income',
+  COMM: 'Commission',
+  CPAC: 'Clearing Participant Settlement Account',
+  LLSV: 'Limited Liquidity Savings Account',
+  LOAN: 'Loan',
+  MGLD: 'Marginal Lending',
+  MOMA: 'Money Market',
+  NREX: 'Non Resident External',
+  ODFT: 'Overdraft',
+  ONDP: 'Over Night Deposit',
+  OTHR: 'Other Account',
+  SACC: 'Settlement',
+  SLRY: 'Salary',
+  SVGS: 'Savings',
+  TAXE: 'Tax',
+  TRAN: 'Transacting Account',
+  TRAS: 'Cash Trading',
 } as const;
+
+/**
+ * SEPA Direct Debit Local Instrument Codes.
+ * Defines the type of SEPA direct debit scheme.
+ */
+export type SEPALocalInstrument = 'CORE' | 'B2B';
+
+/**
+ * SEPA Direct Debit Sequence Type Codes.
+ * Indicates the position of a direct debit transaction in a series of recurring direct debits.
+ * - FRST: First collection in a series of recurring direct debits
+ * - RCUR: Recurring collection in a series of recurring direct debits
+ * - OOFF: One-off direct debit collection
+ * - FNAL: Final collection in a series of recurring direct debits
+ */
+export type SEPASequenceType = 'FRST' | 'RCUR' | 'OOFF' | 'FNAL';
+
+/**
+ * Information about amendments made to a direct debit mandate.
+ */
+export interface MandateAmendmentInformation {
+  /** Original mandate identification before amendment */
+  originalMandateId?: string;
+  /** Original creditor scheme identification before amendment */
+  originalCreditorSchemeId?: {
+    name?: string;
+    id?: string;
+  };
+  /** Original debtor before amendment */
+  originalDebtor?: Party;
+  /** Original debtor account before amendment */
+  originalDebtorAccount?: Account;
+}
+
+/**
+ * Direct debit mandate information.
+ * A mandate is an authorization from a debtor allowing a creditor to collect payments.
+ */
+export interface MandateInformation {
+  /** Unique mandate identification */
+  mandateId: string;
+  /** Date when the mandate was signed by the debtor */
+  dateOfSignature: Date;
+  /** Indicates whether the mandate has been amended */
+  amendmentIndicator: boolean;
+  /** Amendment details if the mandate has been amended */
+  amendmentInformation?: MandateAmendmentInformation;
+}
+
+/**
+ * Represents a SEPA direct debit payment instruction.
+ */
+export interface SEPADirectDebitPaymentInstruction extends PaymentInstruction {
+  type?: 'sepa';
+  direction?: 'debit';
+  currency: 'EUR';
+  /** The party being debited (money is collected from this party) */
+  debtor: Party;
+  /** Mandate information authorizing the direct debit */
+  mandate: MandateInformation;
+}

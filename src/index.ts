@@ -52,22 +52,33 @@ export type {
   SEPACreditPaymentInstruction,
   RTPCreditPaymentInstruction,
   ACHCreditPaymentInstruction,
+  SEPADirectDebitPaymentInstruction,
   StructuredAddress,
   IBANAccount,
   BaseAccount,
   BICAgent,
   ABAAgent,
   ACHLocalInstrument,
+  SEPALocalInstrument,
+  SEPASequenceType,
+  MandateInformation,
+  MandateAmendmentInformation,
 } from './lib/types';
 
-export { ACHLocalInstrumentCode, ACHLocalInstrumentCodeDescriptionMap } from './lib/types';
+export {
+  ACHLocalInstrumentCode,
+  ACHLocalInstrumentCodeDescriptionMap,
+} from './lib/types';
 
 // pain.001
 export type { SWIFTCreditPaymentInitiationConfig } from './pain/001/swift-credit-payment-initiation';
 export { SWIFTCreditPaymentInitiation } from './pain/001/swift-credit-payment-initiation';
 export type { SEPACreditPaymentInitiationConfig } from './pain/001/sepa-credit-payment-initiation';
 export { SEPACreditPaymentInitiation } from './pain/001/sepa-credit-payment-initiation';
-export type { SEPAMultiCreditPaymentInitiationConfig, SEPAMultiCreditPaymentInstructionGroup } from './pain/001/sepa-multi-credit-payment-initiation';
+export type {
+  SEPAMultiCreditPaymentInitiationConfig,
+  SEPAMultiCreditPaymentInstructionGroup,
+} from './pain/001/sepa-multi-credit-payment-initiation';
 export { SEPAMultiCreditPaymentInitiation } from './pain/001/sepa-multi-credit-payment-initiation';
 export type { RTPCreditPaymentInitiationConfig } from './pain/001/rtp-credit-payment-initiation';
 export { RTPCreditPaymentInitiation } from './pain/001/rtp-credit-payment-initiation';
@@ -87,6 +98,13 @@ export type {
 } from './pain/002/types';
 export { PaymentStatusCode } from './pain/002/types';
 export { PaymentStatusReport } from './pain/002/payment-status-report';
+
+// pain.008
+export type {
+  SEPADirectDebitPaymentInitiationConfig,
+  SEPADirectDebitPaymentInstructionGroup,
+} from './pain/008/sepa-direct-debit-payment-initiation';
+export { SEPADirectDebitPaymentInitiation } from './pain/008/sepa-direct-debit-payment-initiation';
 
 // camt.053
 export type {

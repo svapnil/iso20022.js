@@ -2,11 +2,14 @@ import { Balance, Entry, Statement, Transaction } from '../types';
 import { Party, StructuredAddress } from '../../lib/types';
 import { exportStatement, parseStatement } from '../utils';
 import { exportRecipient, parseRecipient } from '../../parseUtils';
+import { InvalidXmlError, InvalidXmlNamespaceError } from '../../errors';
 import {
-  InvalidXmlError,
-  InvalidXmlNamespaceError,
-} from '../../errors';
-import { GenericISO20022Message, ISO20022Messages, ISO20022MessageTypeName, registerISO20022Implementation, XML } from '../../lib/interfaces';
+  GenericISO20022Message,
+  ISO20022Messages,
+  ISO20022MessageTypeName,
+  registerISO20022Implementation,
+  XML,
+} from '../../lib/interfaces';
 
 /**
  * Configuration interface for creating a CashManagementEndOfDayReport instance.
@@ -51,7 +54,6 @@ export class CashManagementEndOfDayReport implements GenericISO20022Message {
     return [ISO20022Messages.CAMT_053];
   }
 
-  
   get data(): CashManagementEndOfDayReportConfig {
     return {
       messageId: this._messageId,
@@ -61,7 +63,9 @@ export class CashManagementEndOfDayReport implements GenericISO20022Message {
     };
   }
 
-  static fromDocumentObject(obj: {Document: any}): CashManagementEndOfDayReport {
+  static fromDocumentObject(obj: {
+    Document: any;
+  }): CashManagementEndOfDayReport {
     const bankToCustomerStatement = obj.Document.BkToCstmrStmt;
     const rawCreationDate = bankToCustomerStatement.GrpHdr.CreDtTm;
     const creationDate = new Date(rawCreationDate);
@@ -96,10 +100,11 @@ export class CashManagementEndOfDayReport implements GenericISO20022Message {
     const xml = parser.parse(rawXml);
 
     if (!xml.Document) {
-      throw new InvalidXmlError("Invalid XML format");
+      throw new InvalidXmlError('Invalid XML format');
     }
 
-    const namespace = (xml.Document['@_xmlns'] || xml.Document['@_Xmlns']) as string;
+    const namespace = (xml.Document['@_xmlns'] ||
+      xml.Document['@_Xmlns']) as string;
     if (!namespace.startsWith('urn:iso:std:iso:20022:tech:xsd:camt.053.001.')) {
       throw new InvalidXmlNamespaceError('Invalid CAMT.053 namespace');
     }
@@ -108,7 +113,7 @@ export class CashManagementEndOfDayReport implements GenericISO20022Message {
   }
 
   /**
-   * 
+   *
    * @param json - JSON string representing a CashManagementEndOfDayReport
    * @returns {CashManagementEndOfDayReport} A new instance of CashManagementEndOfDayReport
    * @throws {Error} If the JSON parsing fails or required data is missing.
@@ -117,7 +122,7 @@ export class CashManagementEndOfDayReport implements GenericISO20022Message {
     const obj = JSON.parse(json);
 
     if (!obj.Document) {
-      throw new InvalidXmlError("Invalid JSON format");
+      throw new InvalidXmlError('Invalid JSON format');
     }
 
     return CashManagementEndOfDayReport.fromDocumentObject(obj);
@@ -129,11 +134,13 @@ export class CashManagementEndOfDayReport implements GenericISO20022Message {
         GrpHdr: {
           MsgId: this._messageId,
           CreDtTm: this._creationDate.toISOString(),
-          MsgRcpt: this._recipient ? exportRecipient(this._recipient) : undefined,
+          MsgRcpt: this._recipient
+            ? exportRecipient(this._recipient)
+            : undefined,
         },
-        Stmt: this._statements.map((stmt) => exportStatement(stmt)),
-      }
-    }
+        Stmt: this._statements.map(stmt => exportStatement(stmt)),
+      },
+    };
     return { Document };
   }
 
@@ -202,7 +209,6 @@ export class CashManagementEndOfDayReport implements GenericISO20022Message {
   get statements(): Statement[] {
     return this._statements;
   }
-
 }
 
 registerISO20022Implementation(CashManagementEndOfDayReport);

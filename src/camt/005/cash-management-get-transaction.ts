@@ -1,12 +1,22 @@
-import { InvalidStructureError, InvalidXmlNamespaceError } from "../../errors";
-import { GenericISO20022Message, ISO20022Messages, ISO20022MessageTypeName, registerISO20022Implementation, XML } from "../../lib/interfaces";
-import { MessageHeader } from "../../lib/types";
-import { exportMessageHeader, parseDate, parseMessageHeader } from "../../parseUtils";
+import { InvalidStructureError, InvalidXmlNamespaceError } from '../../errors';
+import {
+  GenericISO20022Message,
+  ISO20022Messages,
+  ISO20022MessageTypeName,
+  registerISO20022Implementation,
+  XML,
+} from '../../lib/interfaces';
+import { MessageHeader } from '../../lib/types';
+import {
+  exportMessageHeader,
+  parseDate,
+  parseMessageHeader,
+} from '../../parseUtils';
 
 export interface CashManagementGetTransactionCriterium {
   // Define the properties of a criterium here
   // For example, you might have:
-  type: string; // the tag name of the camt.005 
+  type: string; // the tag name of the camt.005
   msgIdsEqualTo?: string[]; // list of message IDs to match
   dateEqualTo?: Date;
   endToEndIdEqualTo?: string[];
@@ -39,17 +49,21 @@ export class CashManagementGetTransaction implements GenericISO20022Message {
   static fromDocumentOject(doc: any): CashManagementGetTransaction {
     const rawHeader = doc.Document?.GetTx?.MsgHdr;
     if (!rawHeader) {
-      throw new InvalidStructureError("Invalid CAMT.005 document: missing MsgHdr");
+      throw new InvalidStructureError(
+        'Invalid CAMT.005 document: missing MsgHdr',
+      );
     }
     const header = parseMessageHeader(rawHeader);
-      
+
     const newCrit = doc.Document?.GetTx?.TxQryDef?.TxCrit?.NewCrit;
     if (!newCrit) {
-      throw new InvalidStructureError("Invalid CAMT.005 document: missing GetTx.TxQryDef.TxCrit.NewCrit");
+      throw new InvalidStructureError(
+        'Invalid CAMT.005 document: missing GetTx.TxQryDef.TxCrit.NewCrit',
+      );
     }
 
     const name = newCrit.NewQryNm;
-    
+
     let searchCriteria: CashManagementGetTransactionCriterium[] = [];
     let rawCriterias = newCrit.SchCrit;
     if (!Array.isArray(rawCriterias)) {
@@ -57,40 +71,52 @@ export class CashManagementGetTransaction implements GenericISO20022Message {
     }
     rawCriterias = rawCriterias.filter((c: any) => !!c);
     if (rawCriterias.length === 0) {
-      throw new InvalidStructureError("Invalid CAMT.005 document: missing search criteria");
+      throw new InvalidStructureError(
+        'Invalid CAMT.005 document: missing search criteria',
+      );
     }
 
     for (const rawCriterium of rawCriterias) {
       // search on Ids
       if (rawCriterium.PmtSch.MsgId) {
         searchCriteria.push({
-          type: "PmtSch.MsgId",
-          msgIdsEqualTo: Array.isArray(rawCriterium.PmtSch.MsgId) ? rawCriterium.PmtSch.MsgId : [rawCriterium.PmtSch.MsgId],
+          type: 'PmtSch.MsgId',
+          msgIdsEqualTo: Array.isArray(rawCriterium.PmtSch.MsgId)
+            ? rawCriterium.PmtSch.MsgId
+            : [rawCriterium.PmtSch.MsgId],
         });
       }
       // seach on date
       if (rawCriterium.PmtSch.ReqdExctnDt) {
-        if (Array.isArray(rawCriterium.PmtSch.ReqdExctnDt) && rawCriterium.PmtSch.ReqdExctnDt.length > 1) {
-          throw new InvalidStructureError("Invalid CAMT.005 document: multiple ReqdExctnDt criterium not supported");
+        if (
+          Array.isArray(rawCriterium.PmtSch.ReqdExctnDt) &&
+          rawCriterium.PmtSch.ReqdExctnDt.length > 1
+        ) {
+          throw new InvalidStructureError(
+            'Invalid CAMT.005 document: multiple ReqdExctnDt criterium not supported',
+          );
         }
-        const criterium = Array.isArray(rawCriterium.PmtSch.ReqdExctnDt)? rawCriterium.PmtSch.ReqdExctnDt[0] : rawCriterium.PmtSch.ReqdExctnDt;
+        const criterium = Array.isArray(rawCriterium.PmtSch.ReqdExctnDt)
+          ? rawCriterium.PmtSch.ReqdExctnDt[0]
+          : rawCriterium.PmtSch.ReqdExctnDt;
         if (criterium?.DtSch?.EQDt) {
           searchCriteria.push({
-            type: "PmtSch.ReqdExctnDt",
+            type: 'PmtSch.ReqdExctnDt',
             dateEqualTo: parseDate(criterium.DtSch.EQDt),
           });
         }
       }
-      let pmtIds: any[] = Array.isArray(rawCriterium.PmtSch.PmtId) ? rawCriterium.PmtSch.PmtId : [rawCriterium.PmtSch.PmtId];
-      pmtIds = pmtIds.filter((p) => !!p && p.LngBizId?.EndToEndId);
+      let pmtIds: any[] = Array.isArray(rawCriterium.PmtSch.PmtId)
+        ? rawCriterium.PmtSch.PmtId
+        : [rawCriterium.PmtSch.PmtId];
+      pmtIds = pmtIds.filter(p => !!p && p.LngBizId?.EndToEndId);
       if (pmtIds.length > 0) {
         searchCriteria.push({
-          type: "PmtSch.PmtId.LngBizId.EndToEndId",
-          endToEndIdEqualTo: pmtIds.map((id) => id.LngBizId.EndToEndId),
+          type: 'PmtSch.PmtId.LngBizId.EndToEndId',
+          endToEndIdEqualTo: pmtIds.map(id => id.LngBizId.EndToEndId),
         });
       }
     }
-    
 
     return new CashManagementGetTransaction({
       header,
@@ -106,10 +132,11 @@ export class CashManagementGetTransaction implements GenericISO20022Message {
     const doc = parser.parse(xml);
 
     if (!doc.Document) {
-      throw new Error("Invalid XML format");
+      throw new Error('Invalid XML format');
     }
 
-    const namespace = (doc.Document['@_xmlns'] || doc.Document['@_Xmlns']) as string;
+    const namespace = (doc.Document['@_xmlns'] ||
+      doc.Document['@_Xmlns']) as string;
     if (!namespace.startsWith('urn:iso:std:iso:20022:tech:xsd:camt.005.001.')) {
       throw new InvalidXmlNamespaceError('Invalid CAMT.005 namespace');
     }
@@ -120,7 +147,7 @@ export class CashManagementGetTransaction implements GenericISO20022Message {
     const obj = JSON.parse(json);
 
     if (!obj.Document) {
-      throw new Error("Invalid JSON format");
+      throw new Error('Invalid JSON format');
     }
 
     return CashManagementGetTransaction.fromDocumentOject(obj);
@@ -133,7 +160,6 @@ export class CashManagementGetTransaction implements GenericISO20022Message {
     obj.Document['@_xmlns:xsi'] = 'http://www.w3.org/2001/XMLSchema-instance';
 
     return builder.build(obj);
-
   }
   toJSON(): any {
     // we should not have to serialize but we do it for consistency
@@ -144,37 +170,40 @@ export class CashManagementGetTransaction implements GenericISO20022Message {
           TxCrit: {
             NewCrit: {
               NewQryNm: this._data.newCriteria?.name,
-              SchCrit: this._data.newCriteria?.searchCriteria.map((c) => {
+              SchCrit: this._data.newCriteria?.searchCriteria.map(c => {
                 const obj: any = {};
-                if (c.type === "PmtSch.MsgId" && c.msgIdsEqualTo) {
+                if (c.type === 'PmtSch.MsgId' && c.msgIdsEqualTo) {
                   obj.PmtSch = {
-                    MsgId: c.msgIdsEqualTo
+                    MsgId: c.msgIdsEqualTo,
                   };
                 }
-                if (c.type === "PmtSch.ReqdExctnDt" && c.dateEqualTo) {
+                if (c.type === 'PmtSch.ReqdExctnDt' && c.dateEqualTo) {
                   obj.PmtSch = {
                     ReqdExctnDt: {
                       DtSch: {
                         EQDt: c.dateEqualTo.toISOString().slice(0, 10),
-                      }
-                    }
+                      },
+                    },
                   };
                 }
-                if (c.type === "PmtSch.PmtId.LngBizId.EndToEndId" && c.endToEndIdEqualTo) {
+                if (
+                  c.type === 'PmtSch.PmtId.LngBizId.EndToEndId' &&
+                  c.endToEndIdEqualTo
+                ) {
                   obj.PmtSch = {
-                    PmtId: c.endToEndIdEqualTo.map((id) => ({
+                    PmtId: c.endToEndIdEqualTo.map(id => ({
                       LngBizId: {
                         EndToEndId: id,
-                      }
-                    }))
+                      },
+                    })),
                   };
                 }
                 return obj;
               }),
-            }
-          }
-        }
-      }
+            },
+          },
+        },
+      },
     };
     return { Document };
   }

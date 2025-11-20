@@ -1,10 +1,28 @@
-import { Party, SWIFTCreditPaymentInstruction, SEPACreditPaymentInstruction, RTPCreditPaymentInstruction, ACHCreditPaymentInstruction } from './lib/types.js';
+import {
+  Party,
+  SWIFTCreditPaymentInstruction,
+  SEPACreditPaymentInstruction,
+  RTPCreditPaymentInstruction,
+  ACHCreditPaymentInstruction,
+  SEPADirectDebitPaymentInstruction,
+} from './lib/types.js';
 import { SWIFTCreditPaymentInitiation } from './pain/001/swift-credit-payment-initiation';
 import { SEPACreditPaymentInitiation } from './pain/001/sepa-credit-payment-initiation';
-import { SEPAMultiCreditPaymentInitiation, SEPAMultiCreditPaymentInstructionGroup } from './pain/001/sepa-multi-credit-payment-initiation';
+import {
+  SEPAMultiCreditPaymentInitiation,
+  SEPAMultiCreditPaymentInstructionGroup,
+} from './pain/001/sepa-multi-credit-payment-initiation';
 import { RTPCreditPaymentInitiation } from './pain/001/rtp-credit-payment-initiation';
 import { ACHCreditPaymentInitiation } from './pain/001/ach-credit-payment-initiation';
-import { GenericISO20022Message, getISO20022Implementation, ISO20022MessageTypeName } from './lib/interfaces';
+import {
+  SEPADirectDebitPaymentInitiation,
+  SEPADirectDebitPaymentInstructionGroup,
+} from './pain/008/sepa-direct-debit-payment-initiation';
+import {
+  GenericISO20022Message,
+  getISO20022Implementation,
+  ISO20022MessageTypeName,
+} from './lib/interfaces';
 export * from './camt';
 export * from './lib';
 
@@ -82,13 +100,13 @@ export interface SWIFTCreditPaymentInitiationConfig {
    * @type {AtLeastOne<SWIFTCreditPaymentInstruction>}
    */
   paymentInstructions: AtLeastOne<SWIFTCreditPaymentInstruction>;
-  
+
   /**
    * Optional unique identifier for the message. If not provided, a UUID will be generated.
    * @type {string}
    */
   messageId?: string;
-  
+
   /**
    * Optional creation date for the message. If not provided, current date will be used.
    * @type {Date}
@@ -126,13 +144,13 @@ export interface SEPACreditPaymentInitiationConfig {
    * @type {AtLeastOne<SEPACreditPaymentInstruction>}
    */
   paymentInstructions: AtLeastOne<SEPACreditPaymentInstruction>;
-  
+
   /**
    * Optional unique identifier for the message. If not provided, a UUID will be generated.
    * @type {string}
    */
   messageId?: string;
-  
+
   /**
    * Optional creation date for the message. If not provided, current date will be used.
    * @type {Date}
@@ -176,13 +194,13 @@ export interface SEPAMultiCreditPaymentInitiationConfig {
    * @type {AtLeastOne<SEPAMultiCreditPaymentInstructionGroup>}
    */
   paymentInstructions: AtLeastOne<SEPAMultiCreditPaymentInstructionGroup>;
-  
+
   /**
    * Optional unique identifier for the message. If not provided, a UUID will be generated.
    * @type {string}
    */
   messageId?: string;
-  
+
   /**
    * Optional creation date for the message. If not provided, current date will be used.
    * @type {Date}
@@ -223,13 +241,13 @@ export interface RTPCreditPaymentInitiationConfig {
    * @type {AtLeastOne<RTPCreditPaymentInstruction>}
    */
   paymentInstructions: AtLeastOne<RTPCreditPaymentInstruction>;
-  
+
   /**
    * Optional unique identifier for the message. If not provided, a UUID will be generated.
    * @type {string}
    */
   messageId?: string;
-  
+
   /**
    * Optional creation date for the message. If not provided, current date will be used.
    * @type {Date}
@@ -270,13 +288,82 @@ export interface ACHCreditPaymentInitiationConfig {
    * @type {AtLeastOne<ACHCreditPaymentInstruction>}
    */
   paymentInstructions: AtLeastOne<ACHCreditPaymentInstruction>;
-  
+
   /**
    * Optional unique identifier for the message. If not provided, a UUID will be generated.
    * @type {string}
    */
   messageId?: string;
-  
+
+  /**
+   * Optional creation date for the message. If not provided, current date will be used.
+   * @type {Date}
+   */
+  creationDate?: Date;
+}
+
+/**
+ * Configuration interface for SEPA Direct Debit Payment Initiation.
+ * @interface SEPADirectDebitPaymentInitiationConfig
+ * @example
+ * const config: SEPADirectDebitPaymentInitiationConfig = {
+ *     paymentInstructions: [
+ *       {
+ *         creditor: {
+ *           name: 'Landlord Company Ltd',
+ *           account: {
+ *             iban: 'DE54120300001030860744',
+ *           },
+ *           agent: {
+ *             bic: 'BYLADEM1001',
+ *           },
+ *         },
+ *         creditorSchemeId: 'DE96ZZZ00000345986',
+ *         requestedCollectionDate: new Date('2025-11-22'),
+ *         sequenceType: 'RCUR',
+ *         payments: [
+ *           {
+ *             type: 'sepa',
+ *             direction: 'debit',
+ *             amount: 31700, // €317.00 Euros
+ *             currency: 'EUR',
+ *             debtor: {
+ *               name: 'John Doe',
+ *               account: {
+ *                 iban: 'DE20120300001088243355',
+ *               },
+ *               agent: {
+ *                 bic: 'BYLADEM1001',
+ *               },
+ *             },
+ *             mandate: {
+ *               mandateId: 'MR-12345-001',
+ *               dateOfSignature: new Date('2024-01-15'),
+ *               amendmentIndicator: false,
+ *             },
+ *             remittanceInformation: 'Rent payment November 2024',
+ *           },
+ *         ],
+ *         localInstrument: 'CORE', // Optional, defaults to CORE
+ *       },
+ *     ],
+ *     messageId: 'MSGID123', // Optional
+ *     creationDate: new Date(), // Optional
+ * };
+ */
+export interface SEPADirectDebitPaymentInitiationConfig {
+  /**
+   * An array of payment instruction groups, each with its own creditor.
+   * @type {AtLeastOne<SEPADirectDebitPaymentInstructionGroup>}
+   */
+  paymentInstructions: AtLeastOne<SEPADirectDebitPaymentInstructionGroup>;
+
+  /**
+   * Optional unique identifier for the message. If not provided, a UUID will be generated.
+   * @type {string}
+   */
+  messageId?: string;
+
   /**
    * Optional creation date for the message. If not provided, current date will be used.
    * @type {Date}
@@ -390,9 +477,7 @@ class ISO20022 {
    * });
    * @returns {SEPACreditPaymentInitiation} A new SEPA Credit Payment Initiation object.
    */
-  createSEPACreditPaymentInitiation(
-    config: SEPACreditPaymentInitiationConfig,
-  ) {
+  createSEPACreditPaymentInitiation(config: SEPACreditPaymentInitiationConfig) {
     return new SEPACreditPaymentInitiation({
       initiatingParty: this.initiatingParty,
       paymentInstructions: config.paymentInstructions,
@@ -471,9 +556,7 @@ class ISO20022 {
    * });
    * @returns {RTPCreditPaymentInitiation} A new RTP Credit Payment Initiation object.
    */
-  createRTPCreditPaymentInitiation(
-    config: RTPCreditPaymentInitiationConfig,
-  ) {
+  createRTPCreditPaymentInitiation(config: RTPCreditPaymentInitiationConfig) {
     return new RTPCreditPaymentInitiation({
       initiatingParty: this.initiatingParty,
       paymentInstructions: config.paymentInstructions,
@@ -510,9 +593,7 @@ class ISO20022 {
    * });
    * @returns {ACHCreditPaymentInitiation} A new ACH Credit Payment Initiation object.
    */
-  createACHCreditPaymentInitiation(
-    config: ACHCreditPaymentInitiationConfig,
-  ) {
+  createACHCreditPaymentInitiation(config: ACHCreditPaymentInitiationConfig) {
     return new ACHCreditPaymentInitiation({
       initiatingParty: this.initiatingParty,
       paymentInstructions: config.paymentInstructions,
@@ -521,15 +602,78 @@ class ISO20022 {
     });
   }
 
+  /**
+   * Creates a SEPA Direct Debit Payment Initiation message.
+   * @param {SEPADirectDebitPaymentInitiationConfig} config - Configuration containing payment instruction groups and optional parameters.
+   * @example
+   * const payment = iso20022.createSEPADirectDebitPaymentInitiation({
+   *   paymentInstructions: [
+   *     {
+   *       creditor: {
+   *         name: 'Landlord Company Ltd',
+   *         account: {
+   *           iban: 'DE54120300001030860744',
+   *         },
+   *         agent: {
+   *           bic: 'BYLADEM1001',
+   *         },
+   *       },
+   *       creditorSchemeId: 'DE96ZZZ00000345986',
+   *       requestedCollectionDate: new Date('2025-11-22'),
+   *       sequenceType: 'RCUR',
+   *       payments: [
+   *         {
+   *           type: 'sepa',
+   *           direction: 'debit',
+   *           amount: 31700, // €317.00 Euros
+   *           currency: 'EUR',
+   *           debtor: {
+   *             name: 'John Doe',
+   *             account: {
+   *               iban: 'DE20120300001088243355',
+   *             },
+   *             agent: {
+   *               bic: 'BYLADEM1001',
+   *             },
+   *           },
+   *           mandate: {
+   *             mandateId: 'MR-12345-001',
+   *             dateOfSignature: new Date('2024-01-15'),
+   *             amendmentIndicator: false,
+   *           },
+   *           remittanceInformation: 'Rent payment November 2024',
+   *         },
+   *       ],
+   *       localInstrument: 'CORE', // Optional
+   *     },
+   *   ],
+   *   messageId: 'DD-MSG-001', // Optional
+   *   creationDate: new Date('2025-03-01'), // Optional
+   * });
+   * @returns {SEPADirectDebitPaymentInitiation} A new SEPA Direct Debit Payment Initiation object.
+   */
+  createSEPADirectDebitPaymentInitiation(
+    config: SEPADirectDebitPaymentInitiationConfig,
+  ) {
+    return new SEPADirectDebitPaymentInitiation({
+      initiatingParty: this.initiatingParty,
+      paymentInstructions: config.paymentInstructions,
+      messageId: config.messageId,
+      creationDate: config.creationDate,
+    });
+  }
+
   /** Create a message CAMT or other */
-  createMessage(type: ISO20022MessageTypeName, config: any): GenericISO20022Message {
+  createMessage(
+    type: ISO20022MessageTypeName,
+    config: any,
+  ): GenericISO20022Message {
     const implementation = getISO20022Implementation(type);
     if (!implementation) {
       throw new Error(`No implementation found for message type ${type}`);
     }
     return new implementation(config);
   }
-  
 }
 
 export default ISO20022;
