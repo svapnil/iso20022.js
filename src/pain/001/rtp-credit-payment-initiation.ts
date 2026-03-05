@@ -1,6 +1,7 @@
 import { ABAAgent, Account, Agent, BaseAccount, Party, RTPCreditPaymentInstruction } from '../../lib/types';
 import { v4 as uuidv4 } from 'uuid';
-import Dinero, { Currency } from 'dinero.js';
+import { Currency } from '../../lib/currency';
+import { formatAmount, sumAmounts } from '../../dinero-helpers';
 import { sanitize } from '../../utils/format';
 import { PaymentInitiation } from './payment-initiation';
 import { XMLParser } from 'fast-xml-parser';
@@ -75,13 +76,10 @@ export class RTPCreditPaymentInitiation extends PaymentInitiation {
      * @throws {Error} If payment instructions have different currencies.
      */
     private sumPaymentInstructions(instructions: AtLeastOne<RTPCreditPaymentInstruction>): string {
-        const instructionDineros = instructions.map(instruction => Dinero({ amount: instruction.amount, currency: instruction.currency }));
-        return instructionDineros.reduce(
-            (acc: Dinero.Dinero, next): Dinero.Dinero => {
-                return acc.add(next as Dinero.Dinero);
-            },
-            Dinero({ amount: 0, currency: instructions[0].currency }),
-        ).toFormat('0.00');
+        return sumAmounts(
+            instructions.map(i => i.amount),
+            instructions[0].currency,
+        );
     }
 
     /**
@@ -105,7 +103,6 @@ export class RTPCreditPaymentInitiation extends PaymentInitiation {
     creditTransfer(instruction: RTPCreditPaymentInstruction) {
         const paymentInstructionId = sanitize(instruction.id || uuidv4(), 35);
         const endToEndId = sanitize(instruction.endToEndId || instruction.id || uuidv4(), 35);
-        const dinero = Dinero({ amount: instruction.amount, currency: instruction.currency });
 
         return {
             PmtId: {
@@ -114,7 +111,7 @@ export class RTPCreditPaymentInitiation extends PaymentInitiation {
             },
             Amt: {
                 InstdAmt: {
-                    '#': dinero.toFormat('0.00'),
+                    '#': formatAmount(instruction.amount, instruction.currency),
                     '@Ccy': instruction.currency,
                 },
             },

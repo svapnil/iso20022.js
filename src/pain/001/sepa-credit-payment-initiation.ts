@@ -1,7 +1,8 @@
 import { Account, Agent, BICAgent, ExternalCategoryPurpose, IBANAccount, Party, SEPACreditPaymentInstruction } from "../../lib/types";
 import { PaymentInitiation } from './payment-initiation';
 import { sanitize } from "../../utils/format";
-import Dinero, { Currency } from 'dinero.js';
+import { Currency } from '../../lib/currency';
+import { formatAmount, sumAmounts } from '../../dinero-helpers';
 import { v4 as uuidv4 } from 'uuid';
 import { XMLParser } from 'fast-xml-parser';
 import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
@@ -91,13 +92,10 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
    */
   private sumPaymentInstructions(instructions: AtLeastOne<SEPACreditPaymentInstruction>): string {
     this.validateAllInstructionsHaveSameCurrency();
-    const instructionDineros = instructions.map(instruction => Dinero({ amount: instruction.amount, currency: instruction.currency }));
-    return instructionDineros.reduce(
-      (acc: Dinero.Dinero, next): Dinero.Dinero => {
-        return acc.add(next as Dinero.Dinero);
-      },
-      Dinero({ amount: 0, currency: instructions[0].currency }),
-    ).toFormat('0.00');
+    return sumAmounts(
+      instructions.map(i => i.amount),
+      instructions[0].currency,
+    );
   }
 
   /**
@@ -133,7 +131,6 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
   creditTransfer(instruction: SEPACreditPaymentInstruction) {
     const paymentInstructionId = sanitize(instruction.id || uuidv4(), 35);
     const endToEndId = sanitize(instruction.endToEndId || instruction.id || uuidv4(), 35);
-    const dinero = Dinero({ amount: instruction.amount, currency: instruction.currency });
 
     return {
       PmtId: {
@@ -142,7 +139,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
       },
       Amt: {
         InstdAmt: {
-          '#': dinero.toFormat('0.00'),
+          '#': formatAmount(instruction.amount, instruction.currency),
           '@Ccy': instruction.currency,
         },
       },

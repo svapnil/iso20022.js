@@ -1,6 +1,6 @@
 // Types related to CAMT 053
 
-import { Currency } from 'dinero.js';
+import { Currency } from '../lib/currency';
 import { Account, Agent, Party } from '../lib/types';
 
 /**

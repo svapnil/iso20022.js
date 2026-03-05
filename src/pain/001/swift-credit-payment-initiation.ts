@@ -1,8 +1,10 @@
-import Dinero, { Currency } from 'dinero.js';
+import { dinero, toDecimal } from 'dinero.js';
 import { XMLBuilder, XMLParser } from 'fast-xml-parser';
 import { v4 as uuidv4 } from 'uuid';
 import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
 import { Alpha2Country } from "../../lib/countries";
+import { Currency } from '../../lib/currency';
+import { formatAmount, currencyObj } from '../../dinero-helpers';
 import {
   Account,
   BICAgent,
@@ -113,10 +115,9 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
    */
   creditTransfer(paymentInstruction: SWIFTCreditPaymentInstruction): Record<string, any> {
     const paymentInstructionId = sanitize(paymentInstruction.id || uuidv4(), 35);
-    const amount = Dinero({
-      amount: paymentInstruction.amount,
-      currency: paymentInstruction.currency,
-    }).toUnit();
+    const curr = currencyObj(paymentInstruction.currency);
+    const d = dinero({ amount: paymentInstruction.amount, currency: curr });
+    const amount = toDecimal(d);
 
     return {
       PmtId: {

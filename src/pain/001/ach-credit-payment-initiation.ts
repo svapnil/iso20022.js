@@ -1,6 +1,7 @@
 import { ABAAgent, ACHCreditPaymentInstruction, ACHLocalInstrument, ACHLocalInstrumentCode, Account, Agent, BaseAccount, Party } from '../../lib/types';
 import { v4 as uuidv4 } from 'uuid';
-import Dinero, { Currency } from 'dinero.js';
+import { Currency } from '../../lib/currency';
+import { formatAmount, sumAmounts } from '../../dinero-helpers';
 import { sanitize } from '../../utils/format';
 import { PaymentInitiation } from './payment-initiation';
 import { XMLParser } from 'fast-xml-parser';
@@ -68,10 +69,10 @@ export interface ACHCreditPaymentInitiationConfig {
  *     }
  *   }]
  * });
- * 
+ *
  * // Serializing to XML
  * const xml = payment.serialize();
- * 
+ *
  * // Parsing from XML
  * const parsedPayment = ACHCreditPaymentInitiation.fromXML(xml);
  * ```
@@ -86,7 +87,7 @@ export class ACHCreditPaymentInitiation extends PaymentInitiation {
     public serviceLevel: string;
     public instructionPriority: string;
     private formattedPaymentSum: string;
-    
+
     constructor(config: ACHCreditPaymentInitiationConfig) {
         super({ type: "ach" });
         this.initiatingParty = config.initiatingParty;
@@ -100,7 +101,7 @@ export class ACHCreditPaymentInitiation extends PaymentInitiation {
         this.formattedPaymentSum = this.sumPaymentInstructions(this.paymentInstructions as AtLeastOne<ACHCreditPaymentInstruction>);
         this.validate();
     }
-    
+
     /**
      * Calculates the sum of all payment instructions.
      * @private
@@ -109,13 +110,10 @@ export class ACHCreditPaymentInitiation extends PaymentInitiation {
      * @throws {Error} If payment instructions have different currencies.
      */
     private sumPaymentInstructions(instructions: AtLeastOne<ACHCreditPaymentInstruction>): string {
-        const instructionDineros = instructions.map(instruction => Dinero({ amount: instruction.amount, currency: instruction.currency }));
-        return instructionDineros.reduce(
-            (acc: Dinero.Dinero, next): Dinero.Dinero => {
-                return acc.add(next as Dinero.Dinero);
-            },
-            Dinero({ amount: 0, currency: instructions[0].currency }),
-        ).toFormat('0.00');
+        return sumAmounts(
+            instructions.map(i => i.amount),
+            instructions[0].currency,
+        );
     }
 
     /**
@@ -129,7 +127,7 @@ export class ACHCreditPaymentInitiation extends PaymentInitiation {
         if (this.messageId.length > 35) {
             throw new Error('messageId must not exceed 35 characters');
         }
-        
+
         // Ensure all payment instructions have USD as currency
         for (const instruction of this.paymentInstructions) {
             if (instruction.currency !== 'USD') {
@@ -146,7 +144,6 @@ export class ACHCreditPaymentInitiation extends PaymentInitiation {
     creditTransfer(instruction: ACHCreditPaymentInstruction) {
         const paymentInstructionId = sanitize(instruction.id || uuidv4(), 35);
         const endToEndId = sanitize(instruction.endToEndId || instruction.id || uuidv4(), 35);
-        const dinero = Dinero({ amount: instruction.amount, currency: instruction.currency });
 
         return {
             PmtId: {
@@ -155,7 +152,7 @@ export class ACHCreditPaymentInitiation extends PaymentInitiation {
             },
             Amt: {
                 InstdAmt: {
-                    '#': dinero.toFormat('0.00'),
+                    '#': formatAmount(instruction.amount, instruction.currency),
                     '@Ccy': instruction.currency,
                 },
             },

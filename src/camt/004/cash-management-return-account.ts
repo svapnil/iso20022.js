@@ -4,7 +4,7 @@ import { GenericISO20022Message, ISO20022Messages, ISO20022MessageTypeName, regi
 import { AccountIdentification, CashAccountType, MessageHeader } from "../../lib/types";
 import { exportAccountIdentification, exportMessageHeader, parseAccountIdentification, parseMessageHeader } from "../../parseUtils";
 import { exportBalanceReport, exportBusinessError, parseBalanceReport, parseBusinessError } from "../utils";
-import { Currency } from "dinero.js";
+import { Currency } from "../../lib/currency";
 
 export interface AccountReport {
   currency: Currency;
