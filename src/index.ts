@@ -58,9 +58,11 @@ export type {
   BICAgent,
   ABAAgent,
   ACHLocalInstrument,
+  ChargeBearer,
 } from './lib/types';
 
 export { ACHLocalInstrumentCode, ACHLocalInstrumentCodeDescriptionMap } from './lib/types';
+export { ChargeBearerCode } from './lib/types';
 
 // pain.001
 export type { SWIFTCreditPaymentInitiationConfig } from './pain/001/swift-credit-payment-initiation';

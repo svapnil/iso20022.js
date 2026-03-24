@@ -273,6 +273,16 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
   const returnAdditionalInformation = transactionDetail.RtrInf?.AddtlInf;
   const endToEndId = transactionDetail.Refs?.EndToEndId;
 
+  const rawTxAmt = transactionDetail.AmtDtls?.TxAmt?.Amt;
+  const txAmtCurrency = rawTxAmt?.['@_Ccy'] as Currency | undefined;
+  const amount = rawTxAmt ? parseAmountToMinorUnits(rawTxAmt['#text'], txAmtCurrency) : undefined;
+  const currency = txAmtCurrency;
+
+  const rawInstdAmt = transactionDetail.AmtDtls?.InstdAmt?.Amt;
+  const instdAmtCurrency = rawInstdAmt?.['@_Ccy'] as Currency | undefined;
+  const instructedAmount = rawInstdAmt ? parseAmountToMinorUnits(rawInstdAmt['#text'], instdAmtCurrency) : undefined;
+  const instructedCurrency = instdAmtCurrency;
+
   // Get Debtor information if 'Dbtr' is present
   let debtor;
   let debtorName;
@@ -328,6 +338,10 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
     proprietaryPurpose,
     returnReason,
     returnAdditionalInformation,
+    amount,
+    currency,
+    instructedAmount,
+    instructedCurrency,
     debtor,
     creditor,
   } as Transaction;
@@ -341,6 +355,14 @@ const exportTransactionDetails = (tx: Transaction): any => {
       PmtInfId: tx.paymentInformationId,
       EndToEndId: tx.endToEndId,
     },
+    AmtDtls: (tx.amount !== undefined || tx.instructedAmount !== undefined) ? {
+      ...(tx.instructedAmount !== undefined && tx.instructedCurrency && {
+        InstdAmt: { Amt: { '#text': exportAmountToString(tx.instructedAmount, tx.instructedCurrency), '@_Ccy': tx.instructedCurrency } },
+      }),
+      ...(tx.amount !== undefined && tx.currency && {
+        TxAmt: { Amt: { '#text': exportAmountToString(tx.amount, tx.currency), '@_Ccy': tx.currency } },
+      }),
+    } : undefined,
     RmtInf: {
       Ustrd: tx.remittanceInformation,
     },

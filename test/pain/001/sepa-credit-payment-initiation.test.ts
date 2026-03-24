@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { Alpha2Country } from "lib/countries";
-import libxmljs from 'libxmljs';
+import libxmljs from 'libxmljs2';
 import { v4 as uuidv4 } from 'uuid';
 import ISO20022 from '../../../src/iso20022';
 import { ExternalCategoryPurposeCode } from "../../../src/lib/types";
@@ -219,7 +219,8 @@ describe('SEPACreditPaymentInitiation', () => {
                     creditor: {
                         name: "Dáel Muñiz",
                         account: {
-                            iban: "ES8201822200150201504058"
+                            iban: "ES8201822200150201504058",
+                            currency: "EUR"
                         },
                         agent: {
                             bic: "BBVAESMMXXX"
@@ -334,8 +335,16 @@ describe('SEPACreditPaymentInitiation', () => {
            expect(recreatedSepaPayment.creationDate).toStrictEqual(creationDate);
            expect(recreatedSepaPayment.paymentInstructions).toHaveLength(2);
         //    expect(recreatedSepaPayment.paymentInstructions[0]).toEqual(paymentInstruction1);
-           expect(recreatedSepaPayment.paymentInstructions[0]).toEqual({...paymentInstruction1, direction: 'credit', type: 'sepa'});
-           expect(recreatedSepaPayment.paymentInstructions[1]).toEqual(paymentInstruction2);
+           expect(recreatedSepaPayment.paymentInstructions[0]).toEqual({
+              ...paymentInstruction1,
+              direction: 'credit',
+              type: 'sepa',
+              creditor: { ...paymentInstruction1.creditor, account: { iban: paymentInstruction1.creditor.account.iban, currency: 'EUR' } }
+           });
+           expect(recreatedSepaPayment.paymentInstructions[1]).toEqual({
+              ...paymentInstruction2,
+              creditor: { ...paymentInstruction2.creditor, account: { iban: paymentInstruction2.creditor.account.iban, currency: 'EUR' } }
+           });
         })
     })
 })

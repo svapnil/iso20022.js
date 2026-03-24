@@ -1,5 +1,5 @@
 import { RTPCreditPaymentInitiation, RTPCreditPaymentInitiationConfig } from "../../../src/pain/001/rtp-credit-payment-initiation";
-import libxmljs from 'libxmljs';
+import libxmljs from 'libxmljs2';
 import fs from 'fs';
 import { Alpha2Country } from "lib/countries";
 import ISO20022 from '../../../src/iso20022';

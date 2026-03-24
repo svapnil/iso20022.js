@@ -32,6 +32,23 @@ export interface CreditPaymentInstruction extends PaymentInstruction {
 }
 
 /**
+ * Charge bearer codes as defined in ISO 20022 ChargeBearerType1Code.
+ * Specifies which party bears the charges of the transaction.
+ */
+export const ChargeBearerCode = {
+  /** All charges are to be borne by the debtor. */
+  BorneByDebtor: 'DEBT',
+  /** All charges are to be borne by the creditor. */
+  BorneByCreditor: 'CRED',
+  /** Each party bears its own charges. */
+  Shared: 'SHAR',
+  /** Charges are to follow the service level agreement between the parties. */
+  FollowingServiceLevel: 'SLEV',
+} as const;
+
+export type ChargeBearer = (typeof ChargeBearerCode)[keyof typeof ChargeBearerCode];
+
+/**
  * Represents a SWIFT credit payment instruction, extending the base PaymentInstruction.
  */
 export interface SWIFTCreditPaymentInstruction extends CreditPaymentInstruction {
@@ -256,6 +273,10 @@ export interface Party {
 export interface IBANAccount {
   /** The International Bank Account Number. */
   iban: string;
+  /** The currency of the account. */
+  currency?: Currency;
+  /** The name of the account. */
+  name?: string;
 }
 
 /**

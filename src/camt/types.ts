@@ -117,6 +117,10 @@ export interface Transaction {
   instructionId?: string;
   /** Unique transaction ID. */
   transactionId?: string;
+  /** Actual transaction amount. */
+  amount?: number;
+  /** Currency of the transaction amount. */
+  currency?: Currency;
   /** Instructed amount for the transaction. */
   instructedAmount?: number;
   /** Currency of the instructed amount. */

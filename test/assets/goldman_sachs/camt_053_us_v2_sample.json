@@ -3,7 +3,7 @@
     "BkToCstmrStmt": {
       "GrpHdr": {
         "MsgId": "235549650",
-        "CreDtTm": "2023-10-05T12:43:51.979Z",
+        "CreDtTm": "2023-10-05T14:43:51.979Z",
         "MsgRcpt": {
           "Id": {
             "OrgId": {
@@ -20,7 +20,7 @@
           "Id": "258158850",
           "ElctrncSeqNb": 1,
           "LglSeqNb": 1,
-          "CreDtTm": "2023-10-05T12:43:52.098Z",
+          "CreDtTm": "2023-10-05T14:43:52.098Z",
           "FrToDt": {
             "FrDtTm": "2023-09-30",
             "ToDtTm": "2023-10-01"
@@ -67,7 +67,7 @@
                 }
               },
               "Dt": {
-                "DtTm": "2023-09-30T18:00:00.000Z"
+                "DtTm": "2023-09-30T20:00:00.000Z"
               }
             },
             {
@@ -82,7 +82,7 @@
                 }
               },
               "Dt": {
-                "DtTm": "2023-09-30T18:00:00.000Z"
+                "DtTm": "2023-09-30T20:00:00.000Z"
               }
             },
             {
@@ -121,7 +121,7 @@
               "NtryRef": "52198201",
               "CdtDbtInd": "CRDT",
               "BookgDt": {
-                "DtTm": "2023-10-01T11:37:14.000Z"
+                "DtTm": "2023-10-01T13:37:14.000Z"
               },
               "RvslInd": true,
               "Amt": {
@@ -145,6 +145,20 @@
                       "PmtInfId": "RP/GS/CTFILERP0002/CTBA0003",
                       "EndToEndId": "GSGWGDNCTAHQM8"
                     },
+                    "AmtDtls": {
+                      "InstdAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      },
+                      "TxAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      }
+                    },
                     "RmtInf": {
                       "Ustrd": "Sample Unstructured Remittance 123"
                     },
@@ -160,7 +174,7 @@
               "NtryRef": "52198251",
               "CdtDbtInd": "DBIT",
               "BookgDt": {
-                "DtTm": "2023-10-01T11:37:11.000Z"
+                "DtTm": "2023-10-01T13:37:11.000Z"
               },
               "RvslInd": false,
               "Amt": {
@@ -182,6 +196,20 @@
                       "MsgId": "GSNULXSKMMJ479NMKS",
                       "AcctSvcrRef": "SPB20092845886394",
                       "PmtInfId": "RP/GS/CTFILERP0002/CTBA0003"
+                    },
+                    "AmtDtls": {
+                      "InstdAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      },
+                      "TxAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      }
                     },
                     "RmtInf": {},
                     "Purp": {},
@@ -207,7 +235,7 @@
               "NtryRef": "52198301",
               "CdtDbtInd": "CRDT",
               "BookgDt": {
-                "DtTm": "2023-10-01T11:36:04.000Z"
+                "DtTm": "2023-10-01T13:36:04.000Z"
               },
               "RvslInd": false,
               "Amt": {
@@ -229,6 +257,20 @@
                       "MsgId": "20230928LTERMID100000312221631FT01",
                       "AcctSvcrRef": "I20092800008308",
                       "EndToEndId": "20230928LTERMID2000003"
+                    },
+                    "AmtDtls": {
+                      "InstdAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      },
+                      "TxAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      }
                     },
                     "RmtInf": {},
                     "Purp": {},
@@ -267,6 +309,20 @@
                       "MsgId": "cs3SJXv1RN_20230918_A",
                       "AcctSvcrRef": "SPB2326182390753",
                       "PmtInfId": "cs3SJXv1RN230918A0000022"
+                    },
+                    "AmtDtls": {
+                      "InstdAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      },
+                      "TxAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      }
                     },
                     "RmtInf": {},
                     "Purp": {
@@ -307,6 +363,20 @@
                       "MsgId": "GTOS4BN19D124XV",
                       "AcctSvcrRef": "GI2325100009148",
                       "EndToEndId": "GTOS4BN19D124XV"
+                    },
+                    "AmtDtls": {
+                      "InstdAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      },
+                      "TxAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      }
                     },
                     "RmtInf": {
                       "Ustrd": "TEST 2023"
@@ -367,6 +437,14 @@
                       "AcctSvcrRef": "SBD91894_20230831_0011",
                       "EndToEndId": "SBD91894_20230831_0011"
                     },
+                    "AmtDtls": {
+                      "TxAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      }
+                    },
                     "RmtInf": {},
                     "Purp": {},
                     "RtrInf": {}
@@ -405,6 +483,20 @@
                       "AcctSvcrRef": "GI2326100013419",
                       "PmtInfId": "gswire_11112AAGW0QyETo",
                       "EndToEndId": "D2M0Y6P0D3Q0M3Z2S5T3F0X0S7G3S7V8L0S"
+                    },
+                    "AmtDtls": {
+                      "InstdAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      },
+                      "TxAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      }
                     },
                     "RmtInf": {
                       "Ustrd": "TBT OF6LBKDOHYVGZL"
@@ -466,6 +558,20 @@
                       "PmtInfId": 1,
                       "EndToEndId": 5741412
                     },
+                    "AmtDtls": {
+                      "InstdAmt": {
+                        "Amt": {
+                          "#text": "25.00",
+                          "@_Ccy": "USD"
+                        }
+                      },
+                      "TxAmt": {
+                        "Amt": {
+                          "#text": "29.06",
+                          "@_Ccy": "EUR"
+                        }
+                      }
+                    },
                     "RmtInf": {
                       "Ustrd": "FFC"
                     },
@@ -526,6 +632,20 @@
                       "PmtInfId": "RTR0808001",
                       "EndToEndId": "GSIISSUKTI8QBQER05IK"
                     },
+                    "AmtDtls": {
+                      "InstdAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      },
+                      "TxAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      }
+                    },
                     "RmtInf": {},
                     "Purp": {},
                     "RtrInf": {},
@@ -585,6 +705,20 @@
                       "AcctSvcrRef": "GI2118700002010",
                       "EndToEndId": "GSWDEZOJDF"
                     },
+                    "AmtDtls": {
+                      "InstdAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      },
+                      "TxAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      }
+                    },
                     "RmtInf": {},
                     "Purp": {},
                     "RtrInf": {},
@@ -643,6 +777,20 @@
                       "AcctSvcrRef": "SX21271060439231",
                       "PmtInfId": "d-uniqueid-test123-G"
                     },
+                    "AmtDtls": {
+                      "InstdAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      },
+                      "TxAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      }
+                    },
                     "RmtInf": {},
                     "Purp": {},
                     "RtrInf": {}
@@ -654,7 +802,7 @@
               "NtryRef": "52198401",
               "CdtDbtInd": "CRDT",
               "BookgDt": {
-                "DtTm": "2023-10-01T16:39:54.000Z"
+                "DtTm": "2023-10-01T18:39:54.000Z"
               },
               "RvslInd": false,
               "Amt": {
@@ -678,6 +826,20 @@
                       "PmtInfId": 1,
                       "EndToEndId": 21000020000017
                     },
+                    "AmtDtls": {
+                      "InstdAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      },
+                      "TxAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      }
+                    },
                     "RmtInf": {},
                     "Purp": {},
                     "RtrInf": {},
@@ -695,7 +857,7 @@
               "NtryRef": "52198451",
               "CdtDbtInd": "CRDT",
               "BookgDt": {
-                "DtTm": "2023-10-01T14:27:53.000Z"
+                "DtTm": "2023-10-01T16:27:53.000Z"
               },
               "RvslInd": true,
               "Amt": {
@@ -718,6 +880,20 @@
                       "AcctSvcrRef": "B20092800008542",
                       "PmtInfId": 1,
                       "EndToEndId": "GSKWTHM25VCGE5"
+                    },
+                    "AmtDtls": {
+                      "InstdAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      },
+                      "TxAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      }
                     },
                     "RmtInf": {},
                     "Purp": {},
@@ -756,7 +932,7 @@
               "NtryRef": "52198501",
               "CdtDbtInd": "CRDT",
               "BookgDt": {
-                "DtTm": "2023-10-01T11:35:06.000Z"
+                "DtTm": "2023-10-01T13:35:06.000Z"
               },
               "RvslInd": false,
               "Amt": {
@@ -779,6 +955,20 @@
                       "AcctSvcrRef": "I20092800008305",
                       "EndToEndId": "20230928LTERMID2000002"
                     },
+                    "AmtDtls": {
+                      "InstdAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      },
+                      "TxAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      }
+                    },
                     "RmtInf": {},
                     "Purp": {},
                     "RtrInf": {}
@@ -790,7 +980,7 @@
               "NtryRef": "52198551",
               "CdtDbtInd": "DBIT",
               "BookgDt": {
-                "DtTm": "2023-10-01T08:17:07.000Z"
+                "DtTm": "2023-10-01T10:17:07.000Z"
               },
               "RvslInd": false,
               "Amt": {
@@ -812,6 +1002,20 @@
                       "MsgId": 1058863,
                       "AcctSvcrRef": "PB20092845805853",
                       "PmtInfId": "CLIENTID200928A0000001"
+                    },
+                    "AmtDtls": {
+                      "InstdAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      },
+                      "TxAmt": {
+                        "Amt": {
+                          "#text": "10.00",
+                          "@_Ccy": "USD"
+                        }
+                      }
                     },
                     "RmtInf": {},
                     "Purp": {},

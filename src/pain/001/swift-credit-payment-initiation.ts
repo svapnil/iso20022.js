@@ -6,6 +6,7 @@ import { Alpha2Country } from "../../lib/countries";
 import {
   Account,
   BICAgent,
+  ChargeBearer,
   IBANAccount,
   Party,
   SWIFTCreditPaymentInstruction
@@ -33,6 +34,8 @@ export interface SWIFTCreditPaymentInitiationConfig {
   messageId?: string;
   /** Optional creation date for the message. If not provided, current date will be used. */
   creationDate?: Date;
+  /** Specifies which party bears the charges. Defaults to 'SHAR' (shared). */
+  chargeBearer?: ChargeBearer;
 }
 
 /**
@@ -60,6 +63,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
   public creationDate: Date;
   public paymentInstructions: SWIFTCreditPaymentInstruction[];
   public paymentInformationId: string;
+  public chargeBearer: ChargeBearer;
 
   /**
    * Creates an instance of SWIFTCreditPaymentInitiation.
@@ -73,6 +77,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
       config.messageId || uuidv4().replace(/-/g, '').substring(0, 35);
     this.creationDate = config.creationDate || new Date();
     this.paymentInformationId = sanitize(uuidv4(), 35);
+    this.chargeBearer = config.chargeBearer ?? 'SHAR';
     this.validate();
   }
 
@@ -213,11 +218,14 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
       };
     });
 
+    const chargeBearer = xml.Document.CstmrCdtTrfInitn.PmtInf.ChrgBr as ChargeBearer | undefined;
+
     return new SWIFTCreditPaymentInitiation({
       messageId,
       creationDate,
       initiatingParty: baseInitiatingParty,
-      paymentInstructions: paymentInstructions as AtLeastOne<SWIFTCreditPaymentInstruction>
+      paymentInstructions: paymentInstructions as AtLeastOne<SWIFTCreditPaymentInstruction>,
+      ...(chargeBearer && { chargeBearer }),
     });
   }
 
@@ -260,7 +268,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
             Dbtr: this.party(this.initiatingParty),
             DbtrAcct: this.account(this.initiatingParty.account as Account),
             DbtrAgt: this.agent(this.initiatingParty.agent as BICAgent),
-            ChrgBr: 'SHAR',
+            ChrgBr: this.chargeBearer,
             CdtTrfTxInf: this.paymentInstructions.map(p => this.creditTransfer(p)),
           },
         },

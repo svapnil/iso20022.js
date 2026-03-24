@@ -7,6 +7,8 @@ export const parseAccount = (account: any): Account => {
   if (account.Id.IBAN) {
     return {
       iban: account.Id.IBAN,
+      ...(account.Nm && { name: account.Nm }),
+      ...(account.Ccy && { currency: account.Ccy }),
     } as Account;
   }
   // TODO: Add support for .Tp.Cd and .Tp.Prtry
@@ -23,6 +25,8 @@ export const exportAccount = (
   const obj: any = {};
   if ((account as any).iban) {
     obj.Id = { IBAN: (account as IBANAccount).iban };
+    if ((account as IBANAccount).currency) obj.Ccy = (account as IBANAccount).currency;
+    if ((account as IBANAccount).name) obj.Nm = (account as IBANAccount).name;
   } else {
     obj.Id = {
       Othr: {
