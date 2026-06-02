@@ -71,7 +71,14 @@ export const exportAccountIdentification = (accountId: AccountIdentification): a
 }
 
 // TODO: Add both BIC and ABA routing numbers at the same time
-export const parseAgent = (agent: any): Agent => {
+export const parseAgent = (agent: any): Agent | undefined => {
+  // The financial institution block (Svcr / Agt -> FinInstnId) is optional in
+  // ISO 20022. Some banks (e.g. Rabobank) omit it entirely, so guard before
+  // dereferencing FinInstnId to avoid a "Cannot read properties of undefined" throw.
+  if (!agent || !agent.FinInstnId) {
+    return undefined;
+  }
+
   // Get BIC if it exists first
   if (agent.FinInstnId.BIC) {
     return {

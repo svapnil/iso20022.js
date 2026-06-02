@@ -21,8 +21,8 @@ export interface Statement {
   toDate?: Date;
   /** Account details for which the statement is generated. */
   account: Account;
-  /** Financial institution details. */
-  agent: Agent;
+  /** Financial institution details. Optional — the account servicer (Svcr) block is absent in some valid CAMT.053 files (e.g. Rabobank). */
+  agent?: Agent;
   /** Total number of entries in the statement. */
   numOfEntries?: number;
   /** Sum of all entries in the statement. */

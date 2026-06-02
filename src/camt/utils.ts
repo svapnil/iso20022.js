@@ -49,7 +49,8 @@ export const parseStatement = (stmt: any): Statement => {
   // TODO: Save account types here
   const account = parseAccount(stmt.Acct);
 
-  const agent = parseAgent(stmt.Acct.Svcr);
+  // Svcr (account servicer / financial institution) is optional in CAMT.053.
+  const agent = stmt.Acct?.Svcr ? parseAgent(stmt.Acct.Svcr) : undefined;
 
   let balances: Balance[] = [];
   if (Array.isArray(stmt.Bal)) {
@@ -117,8 +118,8 @@ export const exportStatement = (stmt: Statement): any => {
       },
     },
     Acct: {
-      ...exportAccount(stmt.account), 
-      Svcr: exportAgent(stmt.agent)
+      ...exportAccount(stmt.account),
+      ...(stmt.agent ? { Svcr: exportAgent(stmt.agent) } : {}),
     },
     Bal: stmt.balances.map((bal) => exportBalance(bal)),
     Ntry: stmt.entries.map((entry) => exportEntry(entry)),
