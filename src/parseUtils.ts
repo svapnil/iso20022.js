@@ -1,6 +1,7 @@
 import { Account, AccountIdentification, AccountIdentificationIBAN, AccountIdentificationOther, Agent, BaseAccount, IBANAccount, MessageHeader, Party, StructuredAddress } from 'lib/types';
 import { getCurrencyPrecision } from './lib/currencies';
-import Dinero, { Currency } from 'dinero.js';
+import { Currency } from './lib/currency';
+import { formatAmount } from './dinero-helpers';
 
 export const parseAccount = (account: any): Account => {
   // Return just IBAN if it exists, else detailed local account details
@@ -95,31 +96,21 @@ export const exportAgent = (agent: Agent): any => {
   return obj;
 };
 
-// Parse raw currency data, turn into Dinero object and turn into minor units
+// Parse raw currency data and turn into minor units
 export const parseAmountToMinorUnits = (
   rawAmount: number,
   currency: Currency = 'USD',
 ): number => {
-  const currencyObject = Dinero({
-    currency: currency,
-    precision: getCurrencyPrecision(currency),
-  });
+  const precision = getCurrencyPrecision(currency);
   // Also make sure Javascript number parsing error do not happen.
-  return Math.floor(Number(rawAmount) * 10 ** currencyObject.getPrecision());
+  return Math.floor(Number(rawAmount) * 10 ** precision);
 };
 
 export const exportAmountToString = (
   amount: number,
   currency: Currency = 'USD',
 ): string => {
-  const currencyObject = Dinero({
-    amount,
-    currency: currency,
-    precision: getCurrencyPrecision(currency),
-  });
-  const precision = currencyObject.getPrecision();
-  const zeroes = '0'.repeat(precision);
-  return currencyObject.toFormat('0'+(zeroes.length > 0 ? '.'+zeroes : ''));
+  return formatAmount(amount, currency);
 }
 
 export const parseDate = (dateElement: any): Date => {

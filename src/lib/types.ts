@@ -1,4 +1,4 @@
-import { Currency } from 'dinero.js';
+import { Currency } from './currency';
 import { Alpha2Country } from './countries';
 
 /**
@@ -335,7 +335,7 @@ export const ACHLocalInstrumentCode = {
   RepresentedCheck: 'RCK',
 } as const;
 
-export type ACHLocalInstrument = 
+export type ACHLocalInstrument =
   (typeof ACHLocalInstrumentCode)[keyof typeof ACHLocalInstrumentCode];
 
 export const ACHLocalInstrumentCodeDescriptionMap = {
@@ -357,7 +357,7 @@ export interface MessageHeader {
   queryName?: string;
 }
 
-/* From ISO specifications 
+/* From ISO specifications
 Code  Name  Definition
 CACC	Current	Account used to post debits and credits when no specific account has been nominated.
 CASH	CashPayment	Account used for the payment of cash.
@@ -367,7 +367,7 @@ CISH	CashIncome	Account used for payment of income if different from the current
 COMM	Commission	"Account used for commission if different from the account
 for payment."
 CPAC	ClearingParticipantSettlementAccount	Account used to post settlement debit and credit entries on behalf of a designated Clearing Participant.
-LLSV	LimitedLiquiditySavingsAccount	Account used for savings with special interest and withdrawal terms.  
+LLSV	LimitedLiquiditySavingsAccount	Account used for savings with special interest and withdrawal terms.
 LOAN	Loan	Account used for loans.
 MGLD	Marginal Lending	Account used for a marginal lending facility.
 MOMA	Money Market	"Account used for money markets if different from the cash
@@ -375,7 +375,7 @@ account."
 NREX	NonResidentExternal	Account used for non-resident external.
 ODFT	Overdraft	Account is used for overdrafts.
 ONDP	OverNightDeposit	Account used for overnight deposits.
-OTHR	OtherAccount	Account not otherwise specified. 
+OTHR	OtherAccount	Account not otherwise specified.
 SACC	Settlement	Account used to post debit and credit entries, as a result of transactions cleared and settled through a specific clearing and settlement system.
 SLRY	Salary	Accounts used for salary payments.
 SVGS	Savings	Account used for savings.
@@ -411,7 +411,7 @@ export const CashAccountTypeCode = {
 
 export type CashAccountType =
   (typeof CashAccountTypeCode)[keyof typeof CashAccountTypeCode];
-  
+
 export const CashAccountTypeCodeDescriptionMap = {
   'CACC': 'Current',
   'CASH': 'Cash Payment',

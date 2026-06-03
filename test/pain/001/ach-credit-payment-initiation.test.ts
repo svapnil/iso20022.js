@@ -5,7 +5,7 @@ import { Alpha2Country } from "../../../src/lib/countries";
 import ISO20022 from '../../../src/iso20022';
 import { v4 as uuidv4 } from 'uuid';
 import { ABAAgent, BaseAccount } from "../../../src/lib/types";
-import { Currency } from "dinero.js";
+import { Currency } from "../../../src/lib/currency";
 
 describe('ACHCreditPaymentInitiation', () => {
     let achPaymentInitiationConfig: ACHCreditPaymentInitiationConfig;

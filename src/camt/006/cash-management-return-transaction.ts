@@ -4,7 +4,7 @@ import { GenericISO20022Message, ISO20022Messages, ISO20022MessageTypeName, regi
 import { Agent, MessageHeader, Party } from "../../lib/types";
 import { exportAmountToString, exportMessageHeader, parseAmountToMinorUnits, parseDate, parseMessageHeader, parseParty as parsePartyExt} from "../../parseUtils";
 import { exportBusinessError, parseBusinessError } from "../utils";
-import { Currency } from "dinero.js";
+import { Currency } from "../../lib/currency";
 
 export interface TransactionReport {
   msgId?: string;
