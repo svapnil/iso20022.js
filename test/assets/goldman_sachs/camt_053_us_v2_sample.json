@@ -3,7 +3,7 @@
     "BkToCstmrStmt": {
       "GrpHdr": {
         "MsgId": "235549650",
-        "CreDtTm": "2023-10-05T12:43:51.979Z",
+        "CreDtTm": "2023-10-05T18:43:51.979Z",
         "MsgRcpt": {
           "Id": {
             "OrgId": {
@@ -20,9 +20,9 @@
           "Id": "258158850",
           "ElctrncSeqNb": 1,
           "LglSeqNb": 1,
-          "CreDtTm": "2023-10-05T12:43:52.098Z",
+          "CreDtTm": "2023-10-05T18:43:52.098Z",
           "FrToDt": {
-            "FrDtTm": "2023-09-30",
+            "FrDtTm": "2023-10-01",
             "ToDtTm": "2023-10-01"
           },
           "TxsSummry": {
@@ -67,7 +67,7 @@
                 }
               },
               "Dt": {
-                "DtTm": "2023-09-30T18:00:00.000Z"
+                "DtTm": "2023-10-01T00:00:00.000Z"
               }
             },
             {
@@ -82,7 +82,7 @@
                 }
               },
               "Dt": {
-                "DtTm": "2023-09-30T18:00:00.000Z"
+                "DtTm": "2023-10-01T00:00:00.000Z"
               }
             },
             {
@@ -121,7 +121,7 @@
               "NtryRef": "52198201",
               "CdtDbtInd": "CRDT",
               "BookgDt": {
-                "DtTm": "2023-10-01T11:37:14.000Z"
+                "DtTm": "2023-10-01T17:37:14.000Z"
               },
               "RvslInd": true,
               "Amt": {
@@ -160,7 +160,7 @@
               "NtryRef": "52198251",
               "CdtDbtInd": "DBIT",
               "BookgDt": {
-                "DtTm": "2023-10-01T11:37:11.000Z"
+                "DtTm": "2023-10-01T17:37:11.000Z"
               },
               "RvslInd": false,
               "Amt": {
@@ -207,7 +207,7 @@
               "NtryRef": "52198301",
               "CdtDbtInd": "CRDT",
               "BookgDt": {
-                "DtTm": "2023-10-01T11:36:04.000Z"
+                "DtTm": "2023-10-01T17:36:04.000Z"
               },
               "RvslInd": false,
               "Amt": {
@@ -654,7 +654,7 @@
               "NtryRef": "52198401",
               "CdtDbtInd": "CRDT",
               "BookgDt": {
-                "DtTm": "2023-10-01T16:39:54.000Z"
+                "DtTm": "2023-10-01T22:39:54.000Z"
               },
               "RvslInd": false,
               "Amt": {
@@ -695,7 +695,7 @@
               "NtryRef": "52198451",
               "CdtDbtInd": "CRDT",
               "BookgDt": {
-                "DtTm": "2023-10-01T14:27:53.000Z"
+                "DtTm": "2023-10-01T20:27:53.000Z"
               },
               "RvslInd": true,
               "Amt": {
@@ -756,7 +756,7 @@
               "NtryRef": "52198501",
               "CdtDbtInd": "CRDT",
               "BookgDt": {
-                "DtTm": "2023-10-01T11:35:06.000Z"
+                "DtTm": "2023-10-01T17:35:06.000Z"
               },
               "RvslInd": false,
               "Amt": {
@@ -790,7 +790,7 @@
               "NtryRef": "52198551",
               "CdtDbtInd": "DBIT",
               "BookgDt": {
-                "DtTm": "2023-10-01T08:17:07.000Z"
+                "DtTm": "2023-10-01T14:17:07.000Z"
               },
               "RvslInd": false,
               "Amt": {
