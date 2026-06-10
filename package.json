@@ -6,6 +6,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "module": "dist/index.mjs",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "test": "npx jest",
     "coverage": "npx jest --coverage",
