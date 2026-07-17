@@ -30,20 +30,22 @@ export const parseStatement = (stmt: any): Statement => {
   }
 
   // Txn Summaries
-  const numOfEntries = stmt.TxsSummry?.TtlNtries.NbOfNtries;
-  const sumOfEntries = stmt.TxsSummry?.TtlNtries.Sum;
-  const rawNetAmountOfEntries = stmt.TxsSummry?.TtlNtries.TtlNetNtryAmt;
+  // Every child of TxsSummry is optional in the schema (minOccurs="0"), so each
+  // must be guarded independently — some banks emit a summary with only a subset.
+  const numOfEntries = stmt.TxsSummry?.TtlNtries?.NbOfNtries;
+  const sumOfEntries = stmt.TxsSummry?.TtlNtries?.Sum;
+  const rawNetAmountOfEntries = stmt.TxsSummry?.TtlNtries?.TtlNetNtryAmt;
   let netAmountOfEntries;
   // No currency information, default to USD
   if (rawNetAmountOfEntries) {
     netAmountOfEntries = parseAmountToMinorUnits(rawNetAmountOfEntries);
   }
 
-  const numOfCreditEntries = stmt.TxsSummry?.TtlCdtNtries.NbOfNtries;
-  const sumOfCreditEntries = stmt.TxsSummry?.TtlCdtNtries.Sum;
+  const numOfCreditEntries = stmt.TxsSummry?.TtlCdtNtries?.NbOfNtries;
+  const sumOfCreditEntries = stmt.TxsSummry?.TtlCdtNtries?.Sum;
 
-  const numOfDebitEntries = stmt.TxsSummry?.TtlDbtNtries.NbOfNtries;
-  const sumOfDebitEntries = stmt.TxsSummry?.TtlDbtNtries.Sum;
+  const numOfDebitEntries = stmt.TxsSummry?.TtlDbtNtries?.NbOfNtries;
+  const sumOfDebitEntries = stmt.TxsSummry?.TtlDbtNtries?.Sum;
 
   // Get account information
   // TODO: Save account types here
