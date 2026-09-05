@@ -4,17 +4,19 @@ import { Currency } from './lib/currency';
 import { formatAmount } from './dinero-helpers';
 
 export const parseAccount = (account: any): Account => {
-  // Return just IBAN if it exists, else detailed local account details
-  if (account.Id.IBAN) {
+  // Return just IBAN if it exists, else detailed local account details.
+  // CashAccount40/43 declare Id as minOccurs="0", so an account may carry only
+  // Nm and Ccy — guard before dereferencing it.
+  if (account?.Id?.IBAN) {
     return {
       iban: account.Id.IBAN,
     } as Account;
   }
   // TODO: Add support for .Tp.Cd and .Tp.Prtry
   return {
-    ...(account.Id?.Othr?.Id && { accountNumber: String(account.Id.Othr.Id) }),
-    ...(account.Nm && { name: account.Nm }),
-    ...(account.Ccy && { currency: account.Ccy }),
+    ...(account?.Id?.Othr?.Id && { accountNumber: String(account.Id.Othr.Id) }),
+    ...(account?.Nm && { name: account.Nm }),
+    ...(account?.Ccy && { currency: account.Ccy }),
   } as Account;
 };
 
@@ -79,10 +81,13 @@ export const parseAgent = (agent: any): Agent | undefined => {
     return undefined;
   }
 
-  // Get BIC if it exists first
-  if (agent.FinInstnId.BIC) {
+  // Get BIC if it exists first. The element was renamed from BIC to BICFI in the
+  // 2014 ISO revision (CAMT.053.001.09+ / FinancialInstitutionIdentification23),
+  // so accept either spelling.
+  const bic = agent.FinInstnId.BICFI ?? agent.FinInstnId.BIC;
+  if (bic) {
     return {
-      bic: agent.FinInstnId.BIC,
+      bic,
     } as Agent;
   }
 
@@ -109,8 +114,10 @@ export const parseAmountToMinorUnits = (
   currency: Currency = 'USD',
 ): number => {
   const precision = getCurrencyPrecision(currency);
-  // Also make sure Javascript number parsing error do not happen.
-  return Math.floor(Number(rawAmount) * 10 ** precision);
+  // Round rather than floor: binary floating point makes products like
+  // 8.29 * 100 land on 828.9999999999999, and flooring silently drops a
+  // minor unit (8.29 -> 828 instead of 829).
+  return Math.round(Number(rawAmount) * 10 ** precision);
 };
 
 export const exportAmountToString = (
@@ -120,7 +127,13 @@ export const exportAmountToString = (
   return formatAmount(amount, currency);
 }
 
-export const parseDate = (dateElement: any): Date => {
+export const parseDate = (dateElement: any): Date | undefined => {
+  // DateAndDateTime2Choice is a choice of Dt | DtTm, and the element carrying it
+  // is itself optional in several places (Ntry/BookgDt, Bal/ValDt), so an absent
+  // element is valid input rather than a parse failure.
+  if (dateElement === undefined || dateElement === null) {
+    return undefined;
+  }
   // Find the date element, which can be DtTm or Dt
   const date = dateElement.DtTm || dateElement.Dt || dateElement;
   return new Date(date);

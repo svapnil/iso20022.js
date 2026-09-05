@@ -20,7 +20,9 @@ export const parseStatement = (stmt: any): Statement => {
   const id = stmt.Id.toString();
   const electronicSequenceNumber = stmt.ElctrncSeqNb;
   const legalSequenceNumber = stmt.LglSeqNb;
-  const creationDate = new Date(stmt.CreDtTm);
+  // CreDtTm is minOccurs="0" on AccountStatement13; absent should stay undefined
+  // rather than becoming an Invalid Date that propagates downstream.
+  const creationDate = stmt.CreDtTm ? new Date(stmt.CreDtTm) : undefined;
 
   let fromDate;
   let toDate;
@@ -94,7 +96,7 @@ export const exportStatement = (stmt: Statement): any => {
     Id: stmt.id,
     ElctrncSeqNb: stmt.electronicSequenceNumber,
     LglSeqNb: stmt.legalSequenceNumber,
-    CreDtTm: stmt.creationDate.toISOString(),
+    CreDtTm: stmt.creationDate?.toISOString(),
     FrToDt:
       stmt.fromDate && stmt.toDate
         ? {
@@ -135,7 +137,8 @@ export const parseBalance = (balance: any): Balance => {
   const amount = parseAmountToMinorUnits(rawAmount, currency);
   const creditDebitIndicator =
     balance.CdtDbtInd === 'CRDT' ? 'credit' : 'debit';
-  const type = balance.Tp.CdOrPrtry.Cd;
+  // BalanceType10Choice is a choice of Cd | Prtry — read whichever branch is present.
+  const type = balance.Tp?.CdOrPrtry?.Cd ?? balance.Tp?.CdOrPrtry?.Prtry;
   const date = parseDate(balance.Dt);
   return {
     date,
@@ -172,8 +175,10 @@ export const parseBalanceReport = (currency: Currency, balance: any): BalanceInR
   const creditDebitIndicator =
     balance.CdtDbtInd === 'CRDT' ? 'credit' : 'debit';
   const type = balance.Tp?.Cd || balance.Tp?.Prtry;
-  const valueDate = parseDate(balance.ValDt?.Dt);
-  const processingDate = parseDate(balance.PrcgDt?.DtTm);
+  // Pass the whole wrapper: parseDate resolves the Dt | DtTm choice itself, so
+  // pre-selecting one branch loses the other and passes undefined on absence.
+  const valueDate = parseDate(balance.ValDt);
+  const processingDate = parseDate(balance.PrcgDt);
   return {
     amount,
     creditDebitIndicator,
@@ -250,9 +255,9 @@ export const exportEntry = (entry: Entry): any => {
   const obj: any = {
     NtryRef: entry.referenceId,
     CdtDbtInd: entry.creditDebitIndicator === 'credit' ? 'CRDT' : 'DBIT',
-    BookgDt: {
-      DtTm: entry.bookingDate.toISOString(),
-    },
+    BookgDt: entry.bookingDate
+      ? { DtTm: entry.bookingDate.toISOString() }
+      : undefined,
     RvslInd: entry.reversal,
     Amt: {
       '#text': exportAmountToString(entry.amount, entry.currency),
@@ -266,14 +271,38 @@ export const exportEntry = (entry: Entry): any => {
   return obj;
 }
 
+/**
+ * Reads a party name across CAMT.053 versions.
+ * Up to v07 the party sits directly under Dbtr/Cdtr; from v08 it is wrapped in a
+ * Party50Choice, putting the name at .Pty.Nm.
+ */
+const parsePartyName = (party: any): string | undefined =>
+  party?.Pty?.Nm ?? party?.Nm;
+
 const parseTransactionDetail = (transactionDetail: any): Transaction => {
   const messageId = transactionDetail.Refs?.MsgId;
   const accountServicerReferenceId = transactionDetail.Refs?.AcctSvcrRef;
   const paymentInformationId = transactionDetail.Refs?.PmtInfId;
-  const remittanceInformation = transactionDetail.RmtInf?.Ustrd;
+  // Ustrd and AddtlInf are both maxOccurs="unbounded"; fold repeats into one string.
+  const remittanceInformation = parseAdditionalInformation(
+    transactionDetail.RmtInf?.Ustrd,
+  );
+  const returnAdditionalInformation = parseAdditionalInformation(
+    transactionDetail.RtrInf?.AddtlInf,
+  );
   const proprietaryPurpose = transactionDetail.Purp?.Prtry;
-  const returnReason = transactionDetail.RtrInf?.Rsn;
-  const returnAdditionalInformation = transactionDetail.RtrInf?.AddtlInf;
+  // Purpose2Choice is Cd | Prtry; the coded branch was previously discarded.
+  const purposeCode = transactionDetail.Purp?.Cd;
+  // ReturnReason5Choice is Cd | Prtry. Collapse to the value consumers want but
+  // remember the branch so exportTransactionDetails can write it back losslessly.
+  const rawReturnReason = transactionDetail.RtrInf?.Rsn;
+  const returnReason = rawReturnReason?.Cd ?? rawReturnReason?.Prtry;
+  const returnReasonSource: Transaction['returnReasonSource'] =
+    rawReturnReason?.Cd !== undefined
+      ? 'code'
+      : rawReturnReason?.Prtry !== undefined
+        ? 'proprietary'
+        : undefined;
   const endToEndId = transactionDetail.Refs?.EndToEndId;
 
   // Get Debtor information if 'Dbtr' is present
@@ -282,7 +311,9 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
   let debtorAccount;
   let debtorAgent;
   if (transactionDetail.RltdPties?.Dbtr) {
-    debtorName = transactionDetail.RltdPties.Dbtr.Nm;
+    // From CAMT.053.001.08 the party is wrapped in a Party50Choice (Pty | Agt);
+    // before that Nm sat directly on Dbtr. Support both layouts.
+    debtorName = parsePartyName(transactionDetail.RltdPties.Dbtr);
   }
   if (transactionDetail.RltdPties?.DbtrAcct) {
     debtorAccount = parseAccount(transactionDetail.RltdPties.DbtrAcct);
@@ -305,7 +336,7 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
   let creditorAccount;
   let creditorAgent;
   if (transactionDetail.RltdPties?.Cdtr) {
-    creditorName = transactionDetail.RltdPties.Cdtr.Nm;
+    creditorName = parsePartyName(transactionDetail.RltdPties.Cdtr);
   }
   if (transactionDetail.RltdPties?.CdtrAcct) {
     creditorAccount = parseAccount(transactionDetail.RltdPties.CdtrAcct);
@@ -329,7 +360,9 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
     paymentInformationId,
     remittanceInformation,
     proprietaryPurpose,
+    purposeCode,
     returnReason,
+    returnReasonSource,
     returnAdditionalInformation,
     debtor,
     creditor,
@@ -351,7 +384,14 @@ const exportTransactionDetails = (tx: Transaction): any => {
       Prtry: tx.proprietaryPurpose,
     },
     RtrInf: {
-      Rsn: tx.returnReason,
+      // Write the ReturnReason5Choice branch back. Prtry is the safe default for
+      // an unknown source: any Max35Text is valid there, whereas Cd is limited
+      // to the external return-reason code list.
+      Rsn: tx.returnReason
+        ? tx.returnReasonSource === 'code'
+          ? { Cd: tx.returnReason }
+          : { Prtry: tx.returnReason }
+        : undefined,
       AddtlInf: tx.returnAdditionalInformation,
     },
   };
