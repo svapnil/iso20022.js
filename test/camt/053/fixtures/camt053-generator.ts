@@ -17,7 +17,10 @@
  *   14  pinned from the ISO 20022 eRepository (2026-09-04 export),
  *       BankToCustomerStatementV14
  *
- * To add a version, inspect its XSD for the three switches below and add a
+ * The TtlNetNtry switch flips at v04 (NumberAndSumOfTransactions2 -> 4),
+ * pinned from the same eRepository export.
+ *
+ * To add a version, inspect its XSD for the four switches below and add a
  * row. The matrix test picks it up automatically and validates the generated
  * document against schemas/camt/camt.053.001.<version>.xsd when that file is
  * present.
@@ -30,6 +33,8 @@ export const VERSION_PROFILES = {
     bicElement: 'BIC',
     /** Sts is the EntryStatus2Code simple type. */
     statusAsChoice: false,
+    /** TtlNtries carries TtlNetNtryAmt with a sibling CdtDbtInd (NumberAndSumOfTransactions2). */
+    netEntriesAsComponent: false,
   },
   '08': {
     /** Dbtr/Cdtr are Party40Choice (Pty | Agt) — the same shape v12's Party50Choice keeps. */
@@ -38,6 +43,8 @@ export const VERSION_PROFILES = {
     bicElement: 'BICFI',
     /** Sts is EntryStatus1Choice (Sts/Cd). */
     statusAsChoice: true,
+    /** TtlNtries carries TtlNetNtry/{Amt,CdtDbtInd} (NumberAndSumOfTransactions4, since v04). */
+    netEntriesAsComponent: true,
   },
   '12': {
     /** Dbtr/Cdtr are Party50Choice; the party sits under Pty (Dbtr/Pty/Nm). */
@@ -46,6 +53,8 @@ export const VERSION_PROFILES = {
     bicElement: 'BICFI',
     /** Sts is EntryStatus1Choice (Sts/Cd). */
     statusAsChoice: true,
+    /** TtlNtries carries TtlNetNtry/{Amt,CdtDbtInd} (NumberAndSumOfTransactions4, since v04). */
+    netEntriesAsComponent: true,
   },
   '13': {
     /** Dbtr/Cdtr are Party50Choice (Pty | Agt). */
@@ -54,6 +63,8 @@ export const VERSION_PROFILES = {
     bicElement: 'BICFI',
     /** Sts is EntryStatus1Choice (Sts/Cd). */
     statusAsChoice: true,
+    /** TtlNtries carries TtlNetNtry/{Amt,CdtDbtInd} (NumberAndSumOfTransactions4, since v04). */
+    netEntriesAsComponent: true,
   },
   '14': {
     /** Dbtr/Cdtr are Party50Choice (Pty | Agt). */
@@ -62,6 +73,8 @@ export const VERSION_PROFILES = {
     bicElement: 'BICFI',
     /** Sts is EntryStatus1Choice (Sts/Cd). */
     statusAsChoice: true,
+    /** TtlNtries carries TtlNetNtry/{Amt,CdtDbtInd} (NumberAndSumOfTransactions4, since v04). */
+    netEntriesAsComponent: true,
   },
 } as const;
 
@@ -84,6 +97,10 @@ export const buildCamt053 = (version: Camt053Version): string => {
     `<FinInstnId><${p.bicElement}>${bic}</${p.bicElement}></FinInstnId>`;
   const status = (code: string): string =>
     p.statusAsChoice ? `<Sts><Cd>${code}</Cd></Sts>` : `<Sts>${code}</Sts>`;
+  const netEntries = (amount: string, ind: string): string =>
+    p.netEntriesAsComponent
+      ? `<TtlNetNtry><Amt>${amount}</Amt><CdtDbtInd>${ind}</CdtDbtInd></TtlNetNtry>`
+      : `<TtlNetNtryAmt>${amount}</TtlNetNtryAmt><CdtDbtInd>${ind}</CdtDbtInd>`;
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <Document xmlns="${camt053Namespace(version)}">
@@ -130,7 +147,7 @@ export const buildCamt053 = (version: Camt053Version): string => {
         <Dt><Dt>2026-03-01</Dt></Dt>
       </Bal>
       <TxsSummry>
-        <TtlNtries><NbOfNtries>4</NbOfNtries><Sum>113.77</Sum></TtlNtries>
+        <TtlNtries><NbOfNtries>4</NbOfNtries><Sum>113.77</Sum>${netEntries('102.81', 'CRDT')}</TtlNtries>
       </TxsSummry>
       <Ntry>
         <NtryRef>E1-BOOKED-CREDIT</NtryRef>

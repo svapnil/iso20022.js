@@ -29,6 +29,9 @@ const CANONICAL = {
       fromDate: expect.any(Date),
       toDate: expect.any(Date),
       numOfEntries: 4,
+      // credits 8.29 + 100.00 minus debits 4.35 + 1.13
+      netAmountOfEntries: 10281,
+      netAmountOfEntriesCreditDebitIndicator: 'credit',
       account: { accountNumber: 'DD01100056869', currency: 'USD', name: 'Operating Account' },
       agent: { bic: 'GSCRUS30XXX' },
       balances: [

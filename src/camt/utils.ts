@@ -36,12 +36,20 @@ export const parseStatement = (stmt: any): Statement => {
   // must be guarded independently — some banks emit a summary with only a subset.
   const numOfEntries = stmt.TxsSummry?.TtlNtries?.NbOfNtries;
   const sumOfEntries = stmt.TxsSummry?.TtlNtries?.Sum;
-  const rawNetAmountOfEntries = stmt.TxsSummry?.TtlNtries?.TtlNetNtryAmt;
+  // Up to v03 the net amount is TtlNtries/TtlNetNtryAmt with a sibling CdtDbtInd;
+  // from v04 (NumberAndSumOfTransactions4) it is TtlNtries/TtlNetNtry/{Amt,CdtDbtInd}.
+  const ttlNtries = stmt.TxsSummry?.TtlNtries;
+  const netAmountNode = ttlNtries?.TtlNetNtry?.Amt;
+  const rawNetAmountOfEntries =
+    netAmountNode?.['#text'] ?? netAmountNode ?? ttlNtries?.TtlNetNtryAmt;
+  const rawNetIndicator = ttlNtries?.TtlNetNtry?.CdtDbtInd ?? ttlNtries?.CdtDbtInd;
   let netAmountOfEntries;
   // No currency information, default to USD
-  if (rawNetAmountOfEntries) {
+  if (rawNetAmountOfEntries !== undefined) {
     netAmountOfEntries = parseAmountToMinorUnits(rawNetAmountOfEntries);
   }
+  const netAmountOfEntriesCreditDebitIndicator =
+    rawNetIndicator === 'CRDT' ? 'credit' : rawNetIndicator === 'DBIT' ? 'debit' : undefined;
 
   const numOfCreditEntries = stmt.TxsSummry?.TtlCdtNtries?.NbOfNtries;
   const sumOfCreditEntries = stmt.TxsSummry?.TtlCdtNtries?.Sum;
@@ -82,6 +90,7 @@ export const parseStatement = (stmt: any): Statement => {
     numOfEntries,
     sumOfEntries,
     netAmountOfEntries,
+    netAmountOfEntriesCreditDebitIndicator,
     numOfCreditEntries,
     sumOfCreditEntries,
     numOfDebitEntries,
@@ -108,8 +117,12 @@ export const exportStatement = (stmt: Statement): any => {
       TtlNtries: {
         NbOfNtries: stmt.numOfEntries,
         Sum: stmt.sumOfEntries,
-        TtlNetNtryAmt: stmt.netAmountOfEntries
+        TtlNetNtryAmt: stmt.netAmountOfEntries !== undefined
           ? exportAmountToString(stmt.netAmountOfEntries, stmt.balances[0]?.currency)
+          : undefined,
+        CdtDbtInd:
+          stmt.netAmountOfEntriesCreditDebitIndicator === 'credit' ? 'CRDT'
+          : stmt.netAmountOfEntriesCreditDebitIndicator === 'debit' ? 'DBIT'
           : undefined,
       },
       TtlCdtNtries: {

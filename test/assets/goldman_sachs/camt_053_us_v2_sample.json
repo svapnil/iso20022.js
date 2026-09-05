@@ -29,7 +29,8 @@
             "TtlNtries": {
               "NbOfNtries": 14,
               "Sum": 140,
-              "TtlNetNtryAmt": "40.00"
+              "TtlNetNtryAmt": "40.00",
+              "CdtDbtInd": "CRDT"
             },
             "TtlCdtNtries": {
               "NbOfNtries": 9,

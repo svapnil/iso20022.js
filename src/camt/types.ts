@@ -29,6 +29,8 @@ export interface Statement {
   sumOfEntries?: number;
   /** Net amount of all entries in the statement. */
   netAmountOfEntries?: number;
+  /** Direction of the net amount of entries (TtlNetNtry/CdtDbtInd from v04; the sibling CdtDbtInd before). */
+  netAmountOfEntriesCreditDebitIndicator?: 'credit' | 'debit';
   /** Number of credit entries in the statement. */
   numOfCreditEntries?: number;
   /** Sum of all credit entries in the statement. */
