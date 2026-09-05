@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Synthetic camt.006.001.11 return-transaction report. Element order follows
+     schemas/camt/camt.006.001.11.xsd and the file is validated against it in the
+     test suite. IntrBkSttlmAmt under LngBizId is ImpliedCurrencyAndAmount (a bare
+     decimal); the currency, when a bank sends one, sits under Pmt/IntrBkSttlmAmt. -->
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.006.001.11">
+  <RtrTx>
+    <MsgHdr>
+      <MsgId>RTRTX-0001</MsgId>
+      <CreDtTm>2026-03-01T10:00:00.000Z</CreDtTm>
+    </MsgHdr>
+    <RptOrErr>
+      <BizRpt>
+        <!-- T1: long business identifier, proprietary status, coded reason, DtTm execution date -->
+        <TxRpt>
+          <PmtId>
+            <LngBizId>
+              <TxId>TX-0001</TxId>
+              <IntrBkSttlmAmt>8.29</IntrBkSttlmAmt>
+              <IntrBkSttlmDt>2026-03-01</IntrBkSttlmDt>
+              <InstgAgt><FinInstnId><BICFI>COBADEFFXXX</BICFI></FinInstnId></InstgAgt>
+              <InstdAgt><FinInstnId><BICFI>GSCRUS30XXX</BICFI></FinInstnId></InstdAgt>
+              <EndToEndId>E2E-0001</EndToEndId>
+            </LngBizId>
+          </PmtId>
+          <TxOrErr>
+            <Tx>
+              <Pmt>
+                <MsgId>PMT-MSG-0001</MsgId>
+                <ReqdExctnDt><DtTm>2026-03-01T14:30:00.000Z</DtTm></ReqdExctnDt>
+                <Sts>
+                  <Cd><Prtry>CUST</Prtry></Cd>
+                  <Rsn><Umtchd>DMON</Umtchd></Rsn>
+                </Sts>
+                <IntrBkSttlmAmt><AmtWthCcy Ccy="EUR">8.29</AmtWthCcy></IntrBkSttlmAmt>
+                <Pties>
+                  <Dbtr><Pty><Nm>ACME Supplies GmbH</Nm><Id><OrgId><Othr><Id>ACME-001</Id></Othr></OrgId></Id></Pty></Dbtr>
+                  <DbtrAgt><FinInstnId><BICFI>COBADEFFXXX</BICFI></FinInstnId></DbtrAgt>
+                  <CdtrAgt><FinInstnId><ClrSysMmbId><ClrSysId><Cd>USABA</Cd></ClrSysId><MmbId>021000021</MmbId></ClrSysMmbId></FinInstnId></CdtrAgt>
+                  <Cdtr><Pty><Nm>Test Client Ltd.</Nm><Id><OrgId><Othr><Id>test001</Id></Othr></OrgId></Id></Pty></Cdtr>
+                </Pties>
+              </Pmt>
+            </Tx>
+          </TxOrErr>
+        </TxRpt>
+        <!-- T2: short business identifier (no LngBizId), final coded status, proprietary reason,
+             Dt execution date, debtor given as an agent -->
+        <TxRpt>
+          <PmtId>
+            <ShrtBizId>
+              <UETR>1b7e4a2c-3d5f-4a6b-8c9d-0e1f2a3b4c5d</UETR>
+              <IntrBkSttlmDt>2026-03-01</IntrBkSttlmDt>
+              <InstgAgt><FinInstnId><BICFI>DEUTDEFFXXX</BICFI></FinInstnId></InstgAgt>
+            </ShrtBizId>
+          </PmtId>
+          <TxOrErr>
+            <Tx>
+              <Pmt>
+                <ReqdExctnDt><Dt>2026-03-02</Dt></ReqdExctnDt>
+                <Sts>
+                  <Cd><Fnl>STLD</Fnl></Cd>
+                  <Rsn><Prtry>BANK-REJ</Prtry></Rsn>
+                </Sts>
+                <Pties>
+                  <Dbtr><Agt><FinInstnId><BICFI>DEUTDEFFXXX</BICFI></FinInstnId></Agt></Dbtr>
+                  <Cdtr><Pty><Nm>Beneficiary Co</Nm></Pty></Cdtr>
+                </Pties>
+              </Pmt>
+            </Tx>
+          </TxOrErr>
+        </TxRpt>
+      </BizRpt>
+    </RptOrErr>
+  </RtrTx>
+</Document>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Synthetic camt.005.001.11 get-transaction query with two search criteria: one on
+     payments (PmtSch) and one on account entries only (no PmtSch, which is minOccurs=0). -->
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.005.001.11">
+  <GetTx>
+    <MsgHdr><MsgId>GETTX-0001</MsgId></MsgHdr>
+    <TxQryDef>
+      <TxCrit>
+        <NewCrit>
+          <SchCrit>
+            <PmtSch>
+              <MsgId>PMT-MSG-0001</MsgId>
+              <PmtId>
+                <LngBizId>
+                  <IntrBkSttlmAmt>8.29</IntrBkSttlmAmt>
+                  <IntrBkSttlmDt>2026-03-01</IntrBkSttlmDt>
+                  <InstgAgt><FinInstnId><BICFI>COBADEFFXXX</BICFI></FinInstnId></InstgAgt>
+                  <InstdAgt><FinInstnId><BICFI>GSCRUS30XXX</BICFI></FinInstnId></InstdAgt>
+                  <EndToEndId>E2E-0001</EndToEndId>
+                </LngBizId>
+              </PmtId>
+            </PmtSch>
+          </SchCrit>
+          <SchCrit>
+            <AcctNtrySch>
+              <AcctId><EQ><Othr><Id>DD01100056869</Id></Othr></EQ></AcctId>
+              <NtryDt><DtSch><EQDt>2026-03-01</EQDt></DtSch></NtryDt>
+            </AcctNtrySch>
+          </SchCrit>
+        </NewCrit>
+      </TxCrit>
+    </TxQryDef>
+  </GetTx>
+</Document>

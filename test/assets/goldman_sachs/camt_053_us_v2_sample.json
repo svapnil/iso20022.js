@@ -317,7 +317,7 @@
                       "DbtrAcct": {
                         "Id": {
                           "Othr": {
-                            "Id": "6883105620"
+                            "Id": "06883105620"
                           }
                         },
                         "Nm": "TEST CLIENT"
@@ -538,7 +538,7 @@
                       "CdtrAgt": {
                         "FinInstnId": {
                           "Othr": {
-                            "Id": "10"
+                            "Id": "000000010"
                           }
                         }
                       }
@@ -666,8 +666,8 @@
                     "Refs": {
                       "MsgId": "FEDACHIN092820P",
                       "AcctSvcrRef": "B20092800009509",
-                      "PmtInfId": 1,
-                      "EndToEndId": 21000020000017
+                      "PmtInfId": "0000001",
+                      "EndToEndId": "021000020000017"
                     },
                     "RmtInf": {},
                     "RtrInf": {},
@@ -706,7 +706,7 @@
                     "Refs": {
                       "MsgId": "FEDACHIN092820G",
                       "AcctSvcrRef": "B20092800008542",
-                      "PmtInfId": 1,
+                      "PmtInfId": "0000001",
                       "EndToEndId": "GSKWTHM25VCGE5"
                     },
                     "RmtInf": {},
@@ -732,7 +732,7 @@
                       "DbtrAgt": {
                         "FinInstnId": {
                           "Othr": {
-                            "Id": "82000549"
+                            "Id": "082000549"
                           }
                         }
                       }

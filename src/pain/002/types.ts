@@ -17,19 +17,38 @@ export type StatusType = 'group' | 'payment' | 'transaction';
  * Represents the status codes in a payment status report.
  * @see {@link https://www.iso20022.org/sites/default/files/2022-03/externalcodesets_4q2021_v2_1.xlsx}
  */
+/**
+ * Codes from the ISO 20022 external code sets ExternalPaymentGroupStatus1Code
+ * and ExternalPaymentTransactionStatus1Code. The schema itself only constrains
+ * these to 1–4 characters, so an unlisted code is still passed through as-is.
+ */
 export const PaymentStatusCode = {
-  Rejected: 'RJCT',
-  PartiallyAccepted: 'ACCP',
-  Pending: 'PNDG',
+  AcceptedCreditSettlementCompleted: 'ACCC',
+  AcceptedCustomerProfile: 'ACCP',
+  /** Alias of AcceptedCustomerProfile, kept for existing callers. */
   Accepted: 'ACCP',
-  AcceptedSettlementInProgress: 'ACSP',
-  AcceptedCreditSettlementCompleted: 'ACSC',
+  AcceptedFundsChecked: 'ACFC',
+  AcceptedAndInstructedSettlement: 'ACIS',
+  AcceptedClearingProcessed: 'ACPD',
   AcceptedSettlementCompleted: 'ACSC',
+  AcceptedSettlementInProgress: 'ACSP',
   AcceptedTechnicalValidation: 'ACTC',
+  AcceptedWithChange: 'ACWC',
+  AcceptedWithoutPosting: 'ACWP',
+  Blocked: 'BLCK',
+  Cancelled: 'CANC',
+  CashPoolUnavailable: 'CPUC',
+  PartiallyAccepted: 'PART',
+  PartiallyAcceptedTechnicalCorrect: 'PATC',
+  Pending: 'PDNG',
+  Presented: 'PRES',
+  Received: 'RCVD',
+  Rejected: 'RJCT',
 } as const;
 
 export type PaymentStatus =
-  (typeof PaymentStatusCode)[keyof typeof PaymentStatusCode];
+  | (typeof PaymentStatusCode)[keyof typeof PaymentStatusCode]
+  | (string & {});
 
 /**
  * Represents the base structure for status information in a payment status report.

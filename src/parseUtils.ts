@@ -139,7 +139,11 @@ export const parseDate = (dateElement: any): Date | undefined => {
   return new Date(date);
 };
 
-export const parseParty = (party: any): Party => {
+export const parseParty = (party: any): Party | undefined => {
+  // Callers pass optional elements (e.g. GrpHdr/InitgPty, minOccurs="0").
+  if (!party) {
+    return undefined;
+  }
   return {
     id: party.Id?.OrgId?.Othr?.Id,
     name: party.Nm,
@@ -196,7 +200,9 @@ export const exportMessageHeader = (header: MessageHeader): any => {
     CreDtTm: header.creationDateTime?.toISOString(),
   };
   if (header.originalMessageHeader) {
-    obj.OrgnlMsgHdr = exportMessageHeader(header.originalMessageHeader as MessageHeader);
+    // The element is OrgnlBizQry (OriginalBusinessQuery1); parseMessageHeader
+    // reads it under that name, and OrgnlMsgHdr does not exist in the schema.
+    obj.OrgnlBizQry = exportMessageHeader(header.originalMessageHeader as MessageHeader);
   }
   if (header.requestType) {
     obj.ReqTp = { Prtry: header.requestType }; // TODO: Add support for PmtCtrl and Enqry types

@@ -5,6 +5,7 @@ import { formatAmount, sumAmounts } from '../../dinero-helpers';
 import { sanitize } from '../../utils/format';
 import { PaymentInitiation } from './payment-initiation';
 import { XMLParser } from 'fast-xml-parser';
+import { ISO20022_NUMBER_PARSE_OPTIONS } from '../../lib/interfaces';
 import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
 import { parseAccount, parseAgent, parseAmountToMinorUnits } from "../../parseUtils";
 import { Alpha2Country } from "../../lib/countries";
@@ -239,7 +240,7 @@ export class ACHCreditPaymentInitiation extends PaymentInitiation {
      * @throws {Error} If multiple payment information blocks are found.
      */
     public static fromXML(rawXml: string): ACHCreditPaymentInitiation {
-        const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '@_', textNodeName: '#text' });
+        const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '@_', textNodeName: '#text', numberParseOptions: ISO20022_NUMBER_PARSE_OPTIONS });
         const xml = parser.parse(rawXml);
 
         if (!xml.Document) {

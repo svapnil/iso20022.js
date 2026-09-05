@@ -5,6 +5,7 @@ import { Currency } from '../../lib/currency';
 import { formatAmount, sumAmounts } from '../../dinero-helpers';
 import { v4 as uuidv4 } from 'uuid';
 import { XMLParser } from 'fast-xml-parser';
+import { ISO20022_NUMBER_PARSE_OPTIONS } from '../../lib/interfaces';
 import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
 import { parseAccount, parseAgent, parseAmountToMinorUnits } from "../../parseUtils";
 import { Alpha2Country } from "lib/countries";
@@ -213,7 +214,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
   }
 
   public static fromXML(rawXml: string): SEPACreditPaymentInitiation {
-    const parser = new XMLParser({ ignoreAttributes: false });
+    const parser = new XMLParser({ ignoreAttributes: false, numberParseOptions: ISO20022_NUMBER_PARSE_OPTIONS });
     const xml = parser.parse(rawXml);
 
     if (!xml.Document) {

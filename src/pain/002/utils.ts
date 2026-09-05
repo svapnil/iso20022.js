@@ -5,30 +5,34 @@ import {
   TransactionStatusInformation,
   PaymentStatusCode,
 } from './types';
-import { parseAdditionalInformation } from '../../parseUtils';
 
 // NOTE: Consider not even using this switch statement.
-const parseStatus = (status: string): PaymentStatus => {
-  switch (status) {
-    case PaymentStatusCode.Rejected:
-      return PaymentStatusCode.Rejected;
-    case PaymentStatusCode.PartiallyAccepted:
-      return PaymentStatusCode.PartiallyAccepted;
-    case PaymentStatusCode.Pending:
-      return PaymentStatusCode.Pending;
-    case PaymentStatusCode.Accepted:
-      return PaymentStatusCode.Accepted;
-    case PaymentStatusCode.AcceptedSettlementInProgress:
-      return PaymentStatusCode.AcceptedSettlementInProgress;
-    case PaymentStatusCode.AcceptedCreditSettlementCompleted:
-      return PaymentStatusCode.AcceptedCreditSettlementCompleted;
-    case PaymentStatusCode.AcceptedSettlementCompleted:
-      return PaymentStatusCode.AcceptedSettlementCompleted;
-    case PaymentStatusCode.AcceptedTechnicalValidation:
-      return PaymentStatusCode.AcceptedTechnicalValidation;
-    default:
-      throw new Error(`Unknown status: ${status}`);
+const parseStatus = (status: unknown): PaymentStatus => {
+  // GrpSts / PmtInfSts / TxSts are external code sets; the schema only fixes
+  // their length at 1–4 characters, so any well-formed code is accepted.
+  if (typeof status !== 'string' || status.length < 1 || status.length > 4) {
+    throw new Error(`Invalid status: ${String(status)}`);
   }
+  return status;
+};
+
+/**
+ * StsRsnInf is maxOccurs="unbounded" at group, payment and transaction level.
+ * The code is taken from the first block that carries a reason (Cd or Prtry);
+ * additional information is folded across every block.
+ */
+const parseStatusReason = (rawStsRsnInf: any): { code?: string; additionalInformation?: string } => {
+  const infos: any[] = Array.isArray(rawStsRsnInf) ? rawStsRsnInf : rawStsRsnInf ? [rawStsRsnInf] : [];
+  const withReason = infos.find((i) => i?.Rsn !== undefined);
+  const code = withReason?.Rsn?.Cd ?? withReason?.Rsn?.Prtry;
+  const lines = infos.flatMap((i) => {
+    const a = i?.AddtlInf;
+    return a === undefined ? [] : Array.isArray(a) ? a : [a];
+  });
+  return {
+    code: code !== undefined ? String(code) : undefined,
+    additionalInformation: lines.length ? lines.join('\n') : undefined,
+  };
 };
 
 export const parseGroupStatusInformation = (
@@ -41,12 +45,7 @@ export const parseGroupStatusInformation = (
     type: 'group',
     originalMessageId: originalGroupInfAndStatus.OrgnlMsgId,
     status: parseStatus(originalGroupInfAndStatus.GrpSts),
-    reason: {
-      code: originalGroupInfAndStatus.StsRsnInf?.Rsn?.Cd,
-      additionalInformation: parseAdditionalInformation(
-        originalGroupInfAndStatus.StsRsnInf?.AddtlInf,
-      ),
-    },
+    reason: parseStatusReason(originalGroupInfAndStatus.StsRsnInf),
   };
 };
 
@@ -62,12 +61,7 @@ export const parsePaymentStatusInformations = (
         type: 'payment' as const,
         originalPaymentId: payment.OrgnlPmtInfId,
         status: parseStatus(payment.PmtInfSts),
-        reason: {
-          code: payment.StsRsnInf?.Rsn?.Cd,
-          additionalInformation: parseAdditionalInformation(
-            payment.StsRsnInf?.AddtlInf,
-          ),
-        },
+        reason: parseStatusReason(payment.StsRsnInf),
       };
     })
     .filter((status: any) => status !== null);
@@ -81,12 +75,7 @@ export const parseTransactionStatusInformations = (
       type: 'transaction' as const,
       originalEndToEndId: transaction.OrgnlEndToEndId,
       status: parseStatus(transaction.TxSts),
-      reason: {
-        code: transaction.StsRsnInf?.Rsn?.Cd,
-        additionalInformation: parseAdditionalInformation(
-          transaction.StsRsnInf?.Rsn?.AddtlInf,
-        ),
-      },
+      reason: parseStatusReason(transaction.StsRsnInf),
     };
   });
 

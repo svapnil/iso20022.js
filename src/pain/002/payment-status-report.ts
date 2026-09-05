@@ -1,4 +1,5 @@
 import { XMLParser } from 'fast-xml-parser';
+import { ISO20022_NUMBER_PARSE_OPTIONS } from '../../lib/interfaces';
 import { Party } from '../../lib/types';
 import { parseParty } from '../../parseUtils';
 import {
@@ -19,7 +20,7 @@ interface PaymentStatusReportConfig {
   /** Unique identifier for the message */
   messageId: string;
   creationDate: Date;
-  initatingParty: Party;
+  initatingParty?: Party;
   originalGroupInformation: OriginalGroupInformation;
   statusInformations: StatusInformation[];
 }
@@ -30,7 +31,7 @@ interface PaymentStatusReportConfig {
 export class PaymentStatusReport {
   private _messageId: string;
   private _creationDate: Date;
-  private _initatingParty: Party;
+  private _initatingParty?: Party;
   private _originalGroupInformation: OriginalGroupInformation;
   private _statusInformations: StatusInformation[];
 
@@ -52,7 +53,7 @@ export class PaymentStatusReport {
    * @returns {PaymentStatusReport} A new PaymentStatusReport instance.
    */
   static fromXML(rawXml: string): PaymentStatusReport {
-    const parser = new XMLParser({ ignoreAttributes: false });
+    const parser = new XMLParser({ ignoreAttributes: false, numberParseOptions: ISO20022_NUMBER_PARSE_OPTIONS });
     const xml = parser.parse(rawXml);
     const customerPaymentStatusReport = xml.Document.CstmrPmtStsRpt;
     const rawCreationDate = customerPaymentStatusReport.GrpHdr.CreDtTm;
@@ -125,7 +126,7 @@ export class PaymentStatusReport {
    * Gets the initiating party of the Payment Status Report.
    * @returns {Party} The initiating party.
    */
-  get initatingParty(): Party {
+  get initatingParty(): Party | undefined {
     return this._initatingParty;
   }
 

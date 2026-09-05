@@ -62,18 +62,18 @@ export class CashManagementGetTransaction implements GenericISO20022Message {
 
     for (const rawCriterium of rawCriterias) {
       // search on Ids
-      if (rawCriterium.PmtSch.MsgId) {
+      if (rawCriterium.PmtSch?.MsgId) {
         searchCriteria.push({
           type: "PmtSch.MsgId",
-          msgIdsEqualTo: Array.isArray(rawCriterium.PmtSch.MsgId) ? rawCriterium.PmtSch.MsgId : [rawCriterium.PmtSch.MsgId],
+          msgIdsEqualTo: Array.isArray(rawCriterium.PmtSch?.MsgId) ? rawCriterium.PmtSch?.MsgId : [rawCriterium.PmtSch?.MsgId],
         });
       }
       // seach on date
-      if (rawCriterium.PmtSch.ReqdExctnDt) {
-        if (Array.isArray(rawCriterium.PmtSch.ReqdExctnDt) && rawCriterium.PmtSch.ReqdExctnDt.length > 1) {
+      if (rawCriterium.PmtSch?.ReqdExctnDt) {
+        if (Array.isArray(rawCriterium.PmtSch?.ReqdExctnDt) && rawCriterium.PmtSch?.ReqdExctnDt.length > 1) {
           throw new InvalidStructureError("Invalid CAMT.005 document: multiple ReqdExctnDt criterium not supported");
         }
-        const criterium = Array.isArray(rawCriterium.PmtSch.ReqdExctnDt)? rawCriterium.PmtSch.ReqdExctnDt[0] : rawCriterium.PmtSch.ReqdExctnDt;
+        const criterium = Array.isArray(rawCriterium.PmtSch?.ReqdExctnDt)? rawCriterium.PmtSch?.ReqdExctnDt[0] : rawCriterium.PmtSch?.ReqdExctnDt;
         if (criterium?.DtSch?.EQDt) {
           searchCriteria.push({
             type: "PmtSch.ReqdExctnDt",
@@ -81,7 +81,7 @@ export class CashManagementGetTransaction implements GenericISO20022Message {
           });
         }
       }
-      let pmtIds: any[] = Array.isArray(rawCriterium.PmtSch.PmtId) ? rawCriterium.PmtSch.PmtId : [rawCriterium.PmtSch.PmtId];
+      let pmtIds: any[] = Array.isArray(rawCriterium.PmtSch?.PmtId) ? rawCriterium.PmtSch?.PmtId : [rawCriterium.PmtSch?.PmtId];
       pmtIds = pmtIds.filter((p) => !!p && p.LngBizId?.EndToEndId);
       if (pmtIds.length > 0) {
         searchCriteria.push({

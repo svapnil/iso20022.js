@@ -176,6 +176,12 @@ describe('CAMT.053 version compatibility', () => {
       const report = CashManagementEndOfDayReport.fromXML(fs.readFileSync(v02Path, 'utf8'));
       expect(report.statements[0].agent).toEqual({ bic: 'GSCRUS30' });
     });
+
+    it('keeps leading zeros in identifiers instead of coercing them to numbers', () => {
+      const report = CashManagementEndOfDayReport.fromXML(fs.readFileSync(v02Path, 'utf8'));
+      expect(report.transactions.map((t) => t.endToEndId)).toContain('021000020000017');
+      expect(report.transactions.map((t) => t.paymentInformationId)).toContain('0000001');
+    });
   });
 
   describe('with schema-optional elements omitted', () => {
