@@ -148,7 +148,6 @@
                     "RmtInf": {
                       "Ustrd": "Sample Unstructured Remittance 123"
                     },
-                    "Purp": {},
                     "RtrInf": {
                       "AddtlInf": "Status changed to REJECTED : REJECT REVERSAL"
                     }
@@ -184,7 +183,6 @@
                       "PmtInfId": "RP/GS/CTFILERP0002/CTBA0003"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {},
                     "RltdPties": {
                       "Cdtr": {
@@ -231,7 +229,6 @@
                       "EndToEndId": "20230928LTERMID2000003"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {}
                   }
                 }
@@ -311,7 +308,6 @@
                     "RmtInf": {
                       "Ustrd": "TEST 2023"
                     },
-                    "Purp": {},
                     "RtrInf": {},
                     "RltdPties": {
                       "Dbtr": {
@@ -368,7 +364,6 @@
                       "EndToEndId": "SBD91894_20230831_0011"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {}
                   }
                 }
@@ -409,7 +404,6 @@
                     "RmtInf": {
                       "Ustrd": "TBT OF6LBKDOHYVGZL"
                     },
-                    "Purp": {},
                     "RtrInf": {},
                     "RltdPties": {
                       "Cdtr": {
@@ -469,7 +463,6 @@
                     "RmtInf": {
                       "Ustrd": "FFC"
                     },
-                    "Purp": {},
                     "RtrInf": {},
                     "RltdPties": {
                       "Cdtr": {
@@ -527,7 +520,6 @@
                       "EndToEndId": "GSIISSUKTI8QBQER05IK"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {},
                     "RltdPties": {
                       "Cdtr": {
@@ -586,7 +578,6 @@
                       "EndToEndId": "GSWDEZOJDF"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {},
                     "RltdPties": {
                       "Dbtr": {
@@ -644,7 +635,6 @@
                       "PmtInfId": "d-uniqueid-test123-G"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {}
                   }
                 }
@@ -679,7 +669,6 @@
                       "EndToEndId": 21000020000017
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {},
                     "RltdPties": {
                       "Dbtr": {
@@ -720,7 +709,6 @@
                       "EndToEndId": "GSKWTHM25VCGE5"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {
                       "Rsn": {
                         "Prtry": "R02"
@@ -780,7 +768,6 @@
                       "EndToEndId": "20230928LTERMID2000002"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {}
                   }
                 }
@@ -814,7 +801,6 @@
                       "PmtInfId": "CLIENTID200928A0000001"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {},
                     "RltdPties": {
                       "Cdtr": {
