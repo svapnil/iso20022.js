@@ -29,7 +29,8 @@
             "TtlNtries": {
               "NbOfNtries": 14,
               "Sum": 140,
-              "TtlNetNtryAmt": "40.00"
+              "TtlNetNtryAmt": "40.00",
+              "CdtDbtInd": "CRDT"
             },
             "TtlCdtNtries": {
               "NbOfNtries": 9,
@@ -148,7 +149,6 @@
                     "RmtInf": {
                       "Ustrd": "Sample Unstructured Remittance 123"
                     },
-                    "Purp": {},
                     "RtrInf": {
                       "AddtlInf": "Status changed to REJECTED : REJECT REVERSAL"
                     }
@@ -184,7 +184,6 @@
                       "PmtInfId": "RP/GS/CTFILERP0002/CTBA0003"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {},
                     "RltdPties": {
                       "Cdtr": {
@@ -231,7 +230,6 @@
                       "EndToEndId": "20230928LTERMID2000003"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {}
                   }
                 }
@@ -311,7 +309,6 @@
                     "RmtInf": {
                       "Ustrd": "TEST 2023"
                     },
-                    "Purp": {},
                     "RtrInf": {},
                     "RltdPties": {
                       "Dbtr": {
@@ -320,7 +317,7 @@
                       "DbtrAcct": {
                         "Id": {
                           "Othr": {
-                            "Id": "6883105620"
+                            "Id": "06883105620"
                           }
                         },
                         "Nm": "TEST CLIENT"
@@ -368,7 +365,6 @@
                       "EndToEndId": "SBD91894_20230831_0011"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {}
                   }
                 }
@@ -409,7 +405,6 @@
                     "RmtInf": {
                       "Ustrd": "TBT OF6LBKDOHYVGZL"
                     },
-                    "Purp": {},
                     "RtrInf": {},
                     "RltdPties": {
                       "Cdtr": {
@@ -469,7 +464,6 @@
                     "RmtInf": {
                       "Ustrd": "FFC"
                     },
-                    "Purp": {},
                     "RtrInf": {},
                     "RltdPties": {
                       "Cdtr": {
@@ -527,7 +521,6 @@
                       "EndToEndId": "GSIISSUKTI8QBQER05IK"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {},
                     "RltdPties": {
                       "Cdtr": {
@@ -545,7 +538,7 @@
                       "CdtrAgt": {
                         "FinInstnId": {
                           "Othr": {
-                            "Id": "10"
+                            "Id": "000000010"
                           }
                         }
                       }
@@ -586,7 +579,6 @@
                       "EndToEndId": "GSWDEZOJDF"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {},
                     "RltdPties": {
                       "Dbtr": {
@@ -644,7 +636,6 @@
                       "PmtInfId": "d-uniqueid-test123-G"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {}
                   }
                 }
@@ -675,11 +666,10 @@
                     "Refs": {
                       "MsgId": "FEDACHIN092820P",
                       "AcctSvcrRef": "B20092800009509",
-                      "PmtInfId": 1,
-                      "EndToEndId": 21000020000017
+                      "PmtInfId": "0000001",
+                      "EndToEndId": "021000020000017"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {},
                     "RltdPties": {
                       "Dbtr": {
@@ -716,11 +706,10 @@
                     "Refs": {
                       "MsgId": "FEDACHIN092820G",
                       "AcctSvcrRef": "B20092800008542",
-                      "PmtInfId": 1,
+                      "PmtInfId": "0000001",
                       "EndToEndId": "GSKWTHM25VCGE5"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {
                       "Rsn": {
                         "Prtry": "R02"
@@ -743,7 +732,7 @@
                       "DbtrAgt": {
                         "FinInstnId": {
                           "Othr": {
-                            "Id": "82000549"
+                            "Id": "082000549"
                           }
                         }
                       }
@@ -780,7 +769,6 @@
                       "EndToEndId": "20230928LTERMID2000002"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {}
                   }
                 }
@@ -814,7 +802,6 @@
                       "PmtInfId": "CLIENTID200928A0000001"
                     },
                     "RmtInf": {},
-                    "Purp": {},
                     "RtrInf": {},
                     "RltdPties": {
                       "Cdtr": {

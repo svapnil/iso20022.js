@@ -199,7 +199,8 @@ describe('ACHCreditPaymentInitiation', () => {
             expect(achPayment.paymentInstructions[0].amount).toBe(1);
             expect(achPayment.paymentInstructions[0].currency).toBe("USD");
             expect(achPayment.paymentInstructions[0].creditor.name).toBe("John Doe Funding LLC");
-            expect((achPayment.paymentInstructions[0]?.creditor?.account as BaseAccount)?.accountNumber).toBe("123456789");
+            // Identifiers round-trip verbatim: the XML parser must not coerce "0123456789" to a number.
+            expect((achPayment.paymentInstructions[0]?.creditor?.account as BaseAccount)?.accountNumber).toBe("0123456789");
             expect((achPayment.paymentInstructions[0]?.creditor.agent as ABAAgent)?.abaRoutingNumber ).toBe("123456789");
             expect(achPayment.paymentInstructions[0]?.creditor.address?.streetName).toBe("999 Any Avenue");
             expect(achPayment.paymentInstructions[0]?.creditor.address?.postalCode).toBe("10000");

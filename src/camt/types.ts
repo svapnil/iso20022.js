@@ -13,22 +13,24 @@ export interface Statement {
   electronicSequenceNumber?: number;
   /** Legal sequence number of the statement. */
   legalSequenceNumber?: number;
-  /** Date and time when the statement was created. */
-  creationDate: Date;
+  /** Date and time when the statement was created. Optional — CreDtTm is minOccurs="0" on AccountStatement13. */
+  creationDate?: Date;
   /** Start date of the statement period. */
   fromDate?: Date;
   /** End date of the statement period. */
   toDate?: Date;
   /** Account details for which the statement is generated. */
   account: Account;
-  /** Financial institution details. */
-  agent: Agent;
+  /** Financial institution details. Optional — the account servicer (Svcr) block is absent in some valid CAMT.053 files (e.g. Rabobank). */
+  agent?: Agent;
   /** Total number of entries in the statement. */
   numOfEntries?: number;
   /** Sum of all entries in the statement. */
   sumOfEntries?: number;
   /** Net amount of all entries in the statement. */
   netAmountOfEntries?: number;
+  /** Direction of the net amount of entries (TtlNetNtry/CdtDbtInd from v04; the sibling CdtDbtInd before). */
+  netAmountOfEntriesCreditDebitIndicator?: 'credit' | 'debit';
   /** Number of credit entries in the statement. */
   numOfCreditEntries?: number;
   /** Sum of all credit entries in the statement. */
@@ -85,8 +87,8 @@ export interface Entry {
   creditDebitIndicator: 'credit' | 'debit';
   /** Indicates if the entry is a reversal. */
   reversal: boolean;
-  /** Date when the entry was booked. */
-  bookingDate: Date;
+  /** Date when the entry was booked. Optional — BookgDt is minOccurs="0" on ReportEntry14. */
+  bookingDate?: Date;
   /** Amount of the entry. */
   amount: number;
   /** Currency of the entry. */
@@ -121,16 +123,20 @@ export interface Transaction {
   instructedAmount?: number;
   /** Currency of the instructed amount. */
   instructedCurrency?: Currency;
-  /** Proprietary purpose code for the transaction. */
+  /** Proprietary purpose code for the transaction (Purp/Prtry). */
   proprietaryPurpose?: string;
+  /** Coded purpose for the transaction (Purp/Cd), the other branch of Purpose2Choice. */
+  purposeCode?: string;
   /** Details of the debtor party. */
   debtor?: Party;
   /** Details of the creditor party. */
   creditor?: Party;
   /** Additional information about the remittance. */
   remittanceInformation?: string;
-  /** Reason for return, if applicable. */
+  /** Reason for return, if applicable — the value of whichever ReturnReason5Choice branch was present. */
   returnReason?: string;
+  /** Which ReturnReason5Choice branch `returnReason` came from, so it can be serialized back losslessly. */
+  returnReasonSource?: 'code' | 'proprietary';
   /** Additional information about the return. */
   returnAdditionalInformation?: string;
   /** End-to-end ID for the entry. */

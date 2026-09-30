@@ -4,17 +4,19 @@ import { Currency } from './lib/currency';
 import { formatAmount } from './dinero-helpers';
 
 export const parseAccount = (account: any): Account => {
-  // Return just IBAN if it exists, else detailed local account details
-  if (account.Id.IBAN) {
+  // Return just IBAN if it exists, else detailed local account details.
+  // CashAccount40/43 declare Id as minOccurs="0", so an account may carry only
+  // Nm and Ccy — guard before dereferencing it.
+  if (account?.Id?.IBAN) {
     return {
       iban: account.Id.IBAN,
     } as Account;
   }
   // TODO: Add support for .Tp.Cd and .Tp.Prtry
   return {
-    ...(account.Id?.Othr?.Id && { accountNumber: String(account.Id.Othr.Id) }),
-    ...(account.Nm && { name: account.Nm }),
-    ...(account.Ccy && { currency: account.Ccy }),
+    ...(account?.Id?.Othr?.Id && { accountNumber: String(account.Id.Othr.Id) }),
+    ...(account?.Nm && { name: account.Nm }),
+    ...(account?.Ccy && { currency: account.Ccy }),
   } as Account;
 };
 
@@ -71,16 +73,26 @@ export const exportAccountIdentification = (accountId: AccountIdentification): a
 }
 
 // TODO: Add both BIC and ABA routing numbers at the same time
-export const parseAgent = (agent: any): Agent => {
-  // Get BIC if it exists first
-  if (agent.FinInstnId.BIC) {
+export const parseAgent = (agent: any): Agent | undefined => {
+  // The financial institution block (Svcr / Agt -> FinInstnId) is optional in
+  // ISO 20022. Some banks (e.g. Rabobank) omit it entirely, so guard before
+  // dereferencing FinInstnId to avoid a "Cannot read properties of undefined" throw.
+  if (!agent || !agent.FinInstnId) {
+    return undefined;
+  }
+
+  // Get BIC if it exists first. The element was renamed from BIC to BICFI in the
+  // 2014 ISO revision (CAMT.053.001.09+ / FinancialInstitutionIdentification23),
+  // so accept either spelling.
+  const bic = agent.FinInstnId.BICFI ?? agent.FinInstnId.BIC;
+  if (bic) {
     return {
-      bic: agent.FinInstnId.BIC,
+      bic,
     } as Agent;
   }
 
   return {
-    abaRoutingNumber: (agent.FinInstnId.Othr?.Id || agent.FinInstnId.ClrSysMmbId.MmbId).toString(),
+    abaRoutingNumber: (agent.FinInstnId.Othr?.Id || agent.FinInstnId.ClrSysMmbId?.MmbId)?.toString(),
   } as Agent;
 };
 
@@ -102,8 +114,10 @@ export const parseAmountToMinorUnits = (
   currency: Currency = 'USD',
 ): number => {
   const precision = getCurrencyPrecision(currency);
-  // Also make sure Javascript number parsing error do not happen.
-  return Math.floor(Number(rawAmount) * 10 ** precision);
+  // Round rather than floor: binary floating point makes products like
+  // 8.29 * 100 land on 828.9999999999999, and flooring silently drops a
+  // minor unit (8.29 -> 828 instead of 829).
+  return Math.round(Number(rawAmount) * 10 ** precision);
 };
 
 export const exportAmountToString = (
@@ -113,13 +127,23 @@ export const exportAmountToString = (
   return formatAmount(amount, currency);
 }
 
-export const parseDate = (dateElement: any): Date => {
+export const parseDate = (dateElement: any): Date | undefined => {
+  // DateAndDateTime2Choice is a choice of Dt | DtTm, and the element carrying it
+  // is itself optional in several places (Ntry/BookgDt, Bal/ValDt), so an absent
+  // element is valid input rather than a parse failure.
+  if (dateElement === undefined || dateElement === null) {
+    return undefined;
+  }
   // Find the date element, which can be DtTm or Dt
   const date = dateElement.DtTm || dateElement.Dt || dateElement;
   return new Date(date);
 };
 
-export const parseParty = (party: any): Party => {
+export const parseParty = (party: any): Party | undefined => {
+  // Callers pass optional elements (e.g. GrpHdr/InitgPty, minOccurs="0").
+  if (!party) {
+    return undefined;
+  }
   return {
     id: party.Id?.OrgId?.Othr?.Id,
     name: party.Nm,
@@ -176,7 +200,9 @@ export const exportMessageHeader = (header: MessageHeader): any => {
     CreDtTm: header.creationDateTime?.toISOString(),
   };
   if (header.originalMessageHeader) {
-    obj.OrgnlMsgHdr = exportMessageHeader(header.originalMessageHeader as MessageHeader);
+    // The element is OrgnlBizQry (OriginalBusinessQuery1); parseMessageHeader
+    // reads it under that name, and OrgnlMsgHdr does not exist in the schema.
+    obj.OrgnlBizQry = exportMessageHeader(header.originalMessageHeader as MessageHeader);
   }
   if (header.requestType) {
     obj.ReqTp = { Prtry: header.requestType }; // TODO: Add support for PmtCtrl and Enqry types

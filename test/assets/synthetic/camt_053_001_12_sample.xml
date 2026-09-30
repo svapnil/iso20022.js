@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Synthetic CAMT.053.001.12 statement used to exercise the structures that
+  changed after version 02: Party50Choice wrappers (Dbtr/Pty/Nm), the BICFI
+  element name, EntryStatus1Choice, and the Cd|Prtry choice branches.
+  Element order follows the xs:sequence in schemas/camt/camt.053.001.12.xsd
+  and the file is validated against that schema in the test suite.
+-->
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:camt.053.001.12">
+  <BkToCstmrStmt>
+    <GrpHdr>
+      <MsgId>V12-MSG-0001</MsgId>
+      <CreDtTm>2026-03-02T09:15:00.000Z</CreDtTm>
+      <MsgRcpt>
+        <Nm>Test Client Ltd.</Nm>
+        <Id>
+          <OrgId>
+            <Othr>
+              <Id>test001</Id>
+            </Othr>
+          </OrgId>
+        </Id>
+      </MsgRcpt>
+    </GrpHdr>
+    <Stmt>
+      <Id>V12-STMT-0001</Id>
+      <ElctrncSeqNb>7</ElctrncSeqNb>
+      <LglSeqNb>7</LglSeqNb>
+      <CreDtTm>2026-03-02T09:15:01.000Z</CreDtTm>
+      <FrToDt>
+        <FrDtTm>2026-03-01T00:00:00.000Z</FrDtTm>
+        <ToDtTm>2026-03-01T23:59:59.000Z</ToDtTm>
+      </FrToDt>
+      <Acct>
+        <Id>
+          <Othr>
+            <Id>DD01100056869</Id>
+          </Othr>
+        </Id>
+        <Ccy>USD</Ccy>
+        <Nm>Operating Account</Nm>
+        <Svcr>
+          <FinInstnId>
+            <BICFI>GSCRUS30XXX</BICFI>
+          </FinInstnId>
+        </Svcr>
+      </Acct>
+      <Bal>
+        <Tp>
+          <CdOrPrtry>
+            <Cd>OPBD</Cd>
+          </CdOrPrtry>
+        </Tp>
+        <Amt Ccy="USD">1000.00</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt>
+          <Dt>2026-03-01</Dt>
+        </Dt>
+      </Bal>
+      <Bal>
+        <Tp>
+          <CdOrPrtry>
+            <Cd>CLBD</Cd>
+          </CdOrPrtry>
+        </Tp>
+        <Amt Ccy="USD">1102.81</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt>
+          <DtTm>2026-03-01T23:59:59.000Z</DtTm>
+        </Dt>
+      </Bal>
+      <Bal>
+        <Tp>
+          <CdOrPrtry>
+            <Prtry>CUSTBAL</Prtry>
+          </CdOrPrtry>
+        </Tp>
+        <Amt Ccy="USD">1102.81</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Dt>
+          <Dt>2026-03-01</Dt>
+        </Dt>
+      </Bal>
+      <TxsSummry>
+        <TtlNtries>
+          <NbOfNtries>4</NbOfNtries>
+          <Sum>113.77</Sum>
+        </TtlNtries>
+      </TxsSummry>
+
+      <!-- E1: booked credit, full v12 party/agent structure, two remittance lines -->
+      <Ntry>
+        <NtryRef>E1-BOOKED-CREDIT</NtryRef>
+        <Amt Ccy="USD">8.29</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <RvslInd>false</RvslInd>
+        <Sts>
+          <Cd>BOOK</Cd>
+        </Sts>
+        <BookgDt>
+          <DtTm>2026-03-01T10:12:00.000Z</DtTm>
+        </BookgDt>
+        <AcctSvcrRef>ASR-0001</AcctSvcrRef>
+        <BkTxCd>
+          <Domn>
+            <Cd>PMNT</Cd>
+            <Fmly>
+              <Cd>RCDT</Cd>
+              <SubFmlyCd>ESCT</SubFmlyCd>
+            </Fmly>
+          </Domn>
+          <Prtry>
+            <Cd>SEPA-IN</Cd>
+            <Issr>GS</Issr>
+          </Prtry>
+        </BkTxCd>
+        <NtryDtls>
+          <TxDtls>
+            <Refs>
+              <MsgId>PMT-MSG-0001</MsgId>
+              <EndToEndId>E2E-0001</EndToEndId>
+            </Refs>
+            <RltdPties>
+              <Dbtr>
+                <Pty>
+                  <Nm>ACME Supplies GmbH</Nm>
+                </Pty>
+              </Dbtr>
+              <DbtrAcct>
+                <Id>
+                  <IBAN>DE89370400440532013000</IBAN>
+                </Id>
+              </DbtrAcct>
+              <Cdtr>
+                <Pty>
+                  <Nm>Test Client Ltd.</Nm>
+                </Pty>
+              </Cdtr>
+              <CdtrAcct>
+                <Id>
+                  <Othr>
+                    <Id>DD01100056869</Id>
+                  </Othr>
+                </Id>
+              </CdtrAcct>
+            </RltdPties>
+            <RltdAgts>
+              <DbtrAgt>
+                <FinInstnId>
+                  <BICFI>COBADEFFXXX</BICFI>
+                </FinInstnId>
+              </DbtrAgt>
+              <CdtrAgt>
+                <FinInstnId>
+                  <BICFI>GSCRUS30XXX</BICFI>
+                </FinInstnId>
+              </CdtrAgt>
+            </RltdAgts>
+            <Purp>
+              <Cd>SALA</Cd>
+            </Purp>
+            <RmtInf>
+              <Ustrd>Invoice 2026-0042</Ustrd>
+              <Ustrd>Second remittance line</Ustrd>
+            </RmtInf>
+          </TxDtls>
+        </NtryDtls>
+        <AddtlNtryInf>Booked credit</AddtlNtryInf>
+      </Ntry>
+
+      <!-- E2: pending debit with no booking date (BookgDt is minOccurs=0) -->
+      <Ntry>
+        <NtryRef>E2-PENDING-DEBIT</NtryRef>
+        <Amt Ccy="USD">4.35</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <Sts>
+          <Cd>PDNG</Cd>
+        </Sts>
+        <BkTxCd>
+          <Prtry>
+            <Cd>ACH-OUT</Cd>
+          </Prtry>
+        </BkTxCd>
+      </Ntry>
+
+      <!-- E3: returned debit, coded return reason, two AddtlInf lines, proprietary purpose -->
+      <Ntry>
+        <NtryRef>E3-RETURN-CODED</NtryRef>
+        <Amt Ccy="USD">1.13</Amt>
+        <CdtDbtInd>DBIT</CdtDbtInd>
+        <RvslInd>true</RvslInd>
+        <Sts>
+          <Cd>BOOK</Cd>
+        </Sts>
+        <BookgDt>
+          <Dt>2026-03-01</Dt>
+        </BookgDt>
+        <BkTxCd>
+          <Domn>
+            <Cd>PMNT</Cd>
+            <Fmly>
+              <Cd>ICDT</Cd>
+              <SubFmlyCd>RRTN</SubFmlyCd>
+            </Fmly>
+          </Domn>
+        </BkTxCd>
+        <NtryDtls>
+          <TxDtls>
+            <Refs>
+              <EndToEndId>E2E-0003</EndToEndId>
+            </Refs>
+            <Purp>
+              <Prtry>INTERNAL</Prtry>
+            </Purp>
+            <RtrInf>
+              <Rsn>
+                <Cd>AC01</Cd>
+              </Rsn>
+              <AddtlInf>Incorrect account number</AddtlInf>
+              <AddtlInf>Returned by beneficiary bank</AddtlInf>
+            </RtrInf>
+          </TxDtls>
+        </NtryDtls>
+      </Ntry>
+
+      <!-- E4: proprietary return reason (other branch of ReturnReason5Choice) -->
+      <Ntry>
+        <NtryRef>E4-RETURN-PRTRY</NtryRef>
+        <Amt Ccy="USD">100.00</Amt>
+        <CdtDbtInd>CRDT</CdtDbtInd>
+        <Sts>
+          <Cd>BOOK</Cd>
+        </Sts>
+        <BookgDt>
+          <DtTm>2026-03-01T15:00:00.000Z</DtTm>
+        </BookgDt>
+        <BkTxCd>
+          <Prtry>
+            <Cd>RETURN</Cd>
+          </Prtry>
+        </BkTxCd>
+        <NtryDtls>
+          <TxDtls>
+            <RtrInf>
+              <Rsn>
+                <Prtry>BANKREJ</Prtry>
+              </Rsn>
+            </RtrInf>
+          </TxDtls>
+        </NtryDtls>
+      </Ntry>
+    </Stmt>
+  </BkToCstmrStmt>
+</Document>

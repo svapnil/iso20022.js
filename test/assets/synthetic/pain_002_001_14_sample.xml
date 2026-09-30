@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Synthetic pain.002.001.14 status report exercising: PART/ACCC status codes,
+     repeated StsRsnInf, proprietary reasons, and transaction-level AddtlInf. -->
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.002.001.14">
+  <CstmrPmtStsRpt>
+    <GrpHdr>
+      <MsgId>PSR-0001</MsgId>
+      <CreDtTm>2026-03-01T10:00:00.000Z</CreDtTm>
+      <InitgPty><Nm>Goldman Sachs Bank USA</Nm></InitgPty>
+    </GrpHdr>
+    <OrgnlGrpInfAndSts>
+      <OrgnlMsgId>PAIN001-0001</OrgnlMsgId>
+      <OrgnlMsgNmId>pain.001.001.09</OrgnlMsgNmId>
+      <GrpSts>PART</GrpSts>
+      <StsRsnInf>
+        <Rsn><Cd>NARR</Cd></Rsn>
+        <AddtlInf>Group partially accepted</AddtlInf>
+        <AddtlInf>See transaction statuses</AddtlInf>
+      </StsRsnInf>
+      <StsRsnInf>
+        <Rsn><Prtry>CUST01</Prtry></Rsn>
+        <AddtlInf>Second reason block</AddtlInf>
+      </StsRsnInf>
+    </OrgnlGrpInfAndSts>
+    <OrgnlPmtInfAndSts>
+      <OrgnlPmtInfId>PMTINF-0001</OrgnlPmtInfId>
+      <PmtInfSts>PART</PmtInfSts>
+      <StsRsnInf><Rsn><Prtry>PMT-PARTIAL</Prtry></Rsn></StsRsnInf>
+      <TxInfAndSts>
+        <OrgnlEndToEndId>E2E-0001</OrgnlEndToEndId>
+        <TxSts>ACCC</TxSts>
+        <StsRsnInf>
+          <Rsn><Cd>AC01</Cd></Rsn>
+          <AddtlInf>Transaction-level additional info</AddtlInf>
+        </StsRsnInf>
+      </TxInfAndSts>
+      <TxInfAndSts>
+        <OrgnlEndToEndId>E2E-0002</OrgnlEndToEndId>
+        <TxSts>RJCT</TxSts>
+        <StsRsnInf>
+          <Rsn><Cd>AC04</Cd></Rsn>
+          <AddtlInf>Closed account</AddtlInf>
+        </StsRsnInf>
+        <StsRsnInf>
+          <Rsn><Prtry>BANK</Prtry></Rsn>
+          <AddtlInf>Second rejection detail</AddtlInf>
+        </StsRsnInf>
+      </TxInfAndSts>
+    </OrgnlPmtInfAndSts>
+  </CstmrPmtStsRpt>
+</Document>

@@ -1,5 +1,6 @@
 import { dinero, toDecimal } from 'dinero.js';
 import { XMLBuilder, XMLParser } from 'fast-xml-parser';
+import { ISO20022_NUMBER_PARSE_OPTIONS } from '../../lib/interfaces';
 import { v4 as uuidv4 } from 'uuid';
 import { InvalidXmlError, InvalidXmlNamespaceError } from "../../errors";
 import { Alpha2Country } from "../../lib/countries";
@@ -151,7 +152,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
    * @returns {string} The XML representation of the payment initiation.
    */
   public static fromXML(rawXml: string): SWIFTCreditPaymentInitiation {
-    const parser = new XMLParser({ ignoreAttributes: false });
+    const parser = new XMLParser({ ignoreAttributes: false, numberParseOptions: ISO20022_NUMBER_PARSE_OPTIONS });
     const xml = parser.parse(rawXml);
 
     if (!xml.Document) {

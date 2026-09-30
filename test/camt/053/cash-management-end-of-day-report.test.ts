@@ -260,6 +260,27 @@ describe('CashManagementEndOfDayReport', () => {
       });
     });
 
+    describe('with a 053 NL file whose TxsSummry omits TtlNtries', () => {
+      it('should parse, leaving the absent totals undefined', () => {
+        filePath = `${process.cwd()}/test/assets/rabobank/example_camt_partial_summary.xml`;
+        const camt053Sample = fs.readFileSync(filePath, 'utf8');
+        report = CashManagementEndOfDayReport.fromXML(camt053Sample);
+
+        const statement = report.statements[0];
+        expect(statement.numOfEntries).toBeUndefined();
+        expect(statement.sumOfEntries).toBeUndefined();
+        expect(statement.netAmountOfEntries).toBeUndefined();
+
+        // The totals that are present still parse
+        expect(statement.numOfCreditEntries).toBe(1);
+        expect(statement.sumOfCreditEntries).toBe(200);
+        expect(statement.numOfDebitEntries).toBe(1);
+        expect(statement.sumOfDebitEntries).toBe(50);
+
+        expect(report.entries.length).toBe(2);
+      });
+    });
+
     describe('with a non-XML file', () => {
       it('should throw an error', () => {
         expect(() => {

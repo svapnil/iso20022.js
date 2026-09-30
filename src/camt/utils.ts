@@ -20,7 +20,9 @@ export const parseStatement = (stmt: any): Statement => {
   const id = stmt.Id.toString();
   const electronicSequenceNumber = stmt.ElctrncSeqNb;
   const legalSequenceNumber = stmt.LglSeqNb;
-  const creationDate = new Date(stmt.CreDtTm);
+  // CreDtTm is minOccurs="0" on AccountStatement13; absent should stay undefined
+  // rather than becoming an Invalid Date that propagates downstream.
+  const creationDate = stmt.CreDtTm ? new Date(stmt.CreDtTm) : undefined;
 
   let fromDate;
   let toDate;
@@ -30,26 +32,37 @@ export const parseStatement = (stmt: any): Statement => {
   }
 
   // Txn Summaries
-  const numOfEntries = stmt.TxsSummry?.TtlNtries.NbOfNtries;
-  const sumOfEntries = stmt.TxsSummry?.TtlNtries.Sum;
-  const rawNetAmountOfEntries = stmt.TxsSummry?.TtlNtries.TtlNetNtryAmt;
+  // Every child of TxsSummry is optional in the schema (minOccurs="0"), so each
+  // must be guarded independently — some banks emit a summary with only a subset.
+  const numOfEntries = stmt.TxsSummry?.TtlNtries?.NbOfNtries;
+  const sumOfEntries = stmt.TxsSummry?.TtlNtries?.Sum;
+  // Up to v03 the net amount is TtlNtries/TtlNetNtryAmt with a sibling CdtDbtInd;
+  // from v04 (NumberAndSumOfTransactions4) it is TtlNtries/TtlNetNtry/{Amt,CdtDbtInd}.
+  const ttlNtries = stmt.TxsSummry?.TtlNtries;
+  const netAmountNode = ttlNtries?.TtlNetNtry?.Amt;
+  const rawNetAmountOfEntries =
+    netAmountNode?.['#text'] ?? netAmountNode ?? ttlNtries?.TtlNetNtryAmt;
+  const rawNetIndicator = ttlNtries?.TtlNetNtry?.CdtDbtInd ?? ttlNtries?.CdtDbtInd;
   let netAmountOfEntries;
   // No currency information, default to USD
-  if (rawNetAmountOfEntries) {
+  if (rawNetAmountOfEntries !== undefined) {
     netAmountOfEntries = parseAmountToMinorUnits(rawNetAmountOfEntries);
   }
+  const netAmountOfEntriesCreditDebitIndicator =
+    rawNetIndicator === 'CRDT' ? 'credit' : rawNetIndicator === 'DBIT' ? 'debit' : undefined;
 
-  const numOfCreditEntries = stmt.TxsSummry?.TtlCdtNtries.NbOfNtries;
-  const sumOfCreditEntries = stmt.TxsSummry?.TtlCdtNtries.Sum;
+  const numOfCreditEntries = stmt.TxsSummry?.TtlCdtNtries?.NbOfNtries;
+  const sumOfCreditEntries = stmt.TxsSummry?.TtlCdtNtries?.Sum;
 
-  const numOfDebitEntries = stmt.TxsSummry?.TtlDbtNtries.NbOfNtries;
-  const sumOfDebitEntries = stmt.TxsSummry?.TtlDbtNtries.Sum;
+  const numOfDebitEntries = stmt.TxsSummry?.TtlDbtNtries?.NbOfNtries;
+  const sumOfDebitEntries = stmt.TxsSummry?.TtlDbtNtries?.Sum;
 
   // Get account information
   // TODO: Save account types here
   const account = parseAccount(stmt.Acct);
 
-  const agent = parseAgent(stmt.Acct.Svcr);
+  // Svcr (account servicer / financial institution) is optional in CAMT.053.
+  const agent = stmt.Acct?.Svcr ? parseAgent(stmt.Acct.Svcr) : undefined;
 
   let balances: Balance[] = [];
   if (Array.isArray(stmt.Bal)) {
@@ -77,6 +90,7 @@ export const parseStatement = (stmt: any): Statement => {
     numOfEntries,
     sumOfEntries,
     netAmountOfEntries,
+    netAmountOfEntriesCreditDebitIndicator,
     numOfCreditEntries,
     sumOfCreditEntries,
     numOfDebitEntries,
@@ -91,7 +105,7 @@ export const exportStatement = (stmt: Statement): any => {
     Id: stmt.id,
     ElctrncSeqNb: stmt.electronicSequenceNumber,
     LglSeqNb: stmt.legalSequenceNumber,
-    CreDtTm: stmt.creationDate.toISOString(),
+    CreDtTm: stmt.creationDate?.toISOString(),
     FrToDt:
       stmt.fromDate && stmt.toDate
         ? {
@@ -103,8 +117,12 @@ export const exportStatement = (stmt: Statement): any => {
       TtlNtries: {
         NbOfNtries: stmt.numOfEntries,
         Sum: stmt.sumOfEntries,
-        TtlNetNtryAmt: stmt.netAmountOfEntries
+        TtlNetNtryAmt: stmt.netAmountOfEntries !== undefined
           ? exportAmountToString(stmt.netAmountOfEntries, stmt.balances[0]?.currency)
+          : undefined,
+        CdtDbtInd:
+          stmt.netAmountOfEntriesCreditDebitIndicator === 'credit' ? 'CRDT'
+          : stmt.netAmountOfEntriesCreditDebitIndicator === 'debit' ? 'DBIT'
           : undefined,
       },
       TtlCdtNtries: {
@@ -117,8 +135,8 @@ export const exportStatement = (stmt: Statement): any => {
       },
     },
     Acct: {
-      ...exportAccount(stmt.account), 
-      Svcr: exportAgent(stmt.agent)
+      ...exportAccount(stmt.account),
+      ...(stmt.agent ? { Svcr: exportAgent(stmt.agent) } : {}),
     },
     Bal: stmt.balances.map((bal) => exportBalance(bal)),
     Ntry: stmt.entries.map((entry) => exportEntry(entry)),
@@ -132,7 +150,8 @@ export const parseBalance = (balance: any): Balance => {
   const amount = parseAmountToMinorUnits(rawAmount, currency);
   const creditDebitIndicator =
     balance.CdtDbtInd === 'CRDT' ? 'credit' : 'debit';
-  const type = balance.Tp.CdOrPrtry.Cd;
+  // BalanceType10Choice is a choice of Cd | Prtry — read whichever branch is present.
+  const type = balance.Tp?.CdOrPrtry?.Cd ?? balance.Tp?.CdOrPrtry?.Prtry;
   const date = parseDate(balance.Dt);
   return {
     date,
@@ -169,8 +188,10 @@ export const parseBalanceReport = (currency: Currency, balance: any): BalanceInR
   const creditDebitIndicator =
     balance.CdtDbtInd === 'CRDT' ? 'credit' : 'debit';
   const type = balance.Tp?.Cd || balance.Tp?.Prtry;
-  const valueDate = parseDate(balance.ValDt?.Dt);
-  const processingDate = parseDate(balance.PrcgDt?.DtTm);
+  // Pass the whole wrapper: parseDate resolves the Dt | DtTm choice itself, so
+  // pre-selecting one branch loses the other and passes undefined on absence.
+  const valueDate = parseDate(balance.ValDt);
+  const processingDate = parseDate(balance.PrcgDt);
   return {
     amount,
     creditDebitIndicator,
@@ -247,9 +268,9 @@ export const exportEntry = (entry: Entry): any => {
   const obj: any = {
     NtryRef: entry.referenceId,
     CdtDbtInd: entry.creditDebitIndicator === 'credit' ? 'CRDT' : 'DBIT',
-    BookgDt: {
-      DtTm: entry.bookingDate.toISOString(),
-    },
+    BookgDt: entry.bookingDate
+      ? { DtTm: entry.bookingDate.toISOString() }
+      : undefined,
     RvslInd: entry.reversal,
     Amt: {
       '#text': exportAmountToString(entry.amount, entry.currency),
@@ -263,14 +284,38 @@ export const exportEntry = (entry: Entry): any => {
   return obj;
 }
 
+/**
+ * Reads a party name across CAMT.053 versions.
+ * Up to v07 the party sits directly under Dbtr/Cdtr; from v08 it is wrapped in a
+ * Party50Choice, putting the name at .Pty.Nm.
+ */
+const parsePartyName = (party: any): string | undefined =>
+  party?.Pty?.Nm ?? party?.Nm;
+
 const parseTransactionDetail = (transactionDetail: any): Transaction => {
   const messageId = transactionDetail.Refs?.MsgId;
   const accountServicerReferenceId = transactionDetail.Refs?.AcctSvcrRef;
   const paymentInformationId = transactionDetail.Refs?.PmtInfId;
-  const remittanceInformation = transactionDetail.RmtInf?.Ustrd;
+  // Ustrd and AddtlInf are both maxOccurs="unbounded"; fold repeats into one string.
+  const remittanceInformation = parseAdditionalInformation(
+    transactionDetail.RmtInf?.Ustrd,
+  );
+  const returnAdditionalInformation = parseAdditionalInformation(
+    transactionDetail.RtrInf?.AddtlInf,
+  );
   const proprietaryPurpose = transactionDetail.Purp?.Prtry;
-  const returnReason = transactionDetail.RtrInf?.Rsn;
-  const returnAdditionalInformation = transactionDetail.RtrInf?.AddtlInf;
+  // Purpose2Choice is Cd | Prtry; the coded branch was previously discarded.
+  const purposeCode = transactionDetail.Purp?.Cd;
+  // ReturnReason5Choice is Cd | Prtry. Collapse to the value consumers want but
+  // remember the branch so exportTransactionDetails can write it back losslessly.
+  const rawReturnReason = transactionDetail.RtrInf?.Rsn;
+  const returnReason = rawReturnReason?.Cd ?? rawReturnReason?.Prtry;
+  const returnReasonSource: Transaction['returnReasonSource'] =
+    rawReturnReason?.Cd !== undefined
+      ? 'code'
+      : rawReturnReason?.Prtry !== undefined
+        ? 'proprietary'
+        : undefined;
   const endToEndId = transactionDetail.Refs?.EndToEndId;
 
   // Get Debtor information if 'Dbtr' is present
@@ -279,7 +324,9 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
   let debtorAccount;
   let debtorAgent;
   if (transactionDetail.RltdPties?.Dbtr) {
-    debtorName = transactionDetail.RltdPties.Dbtr.Nm;
+    // From CAMT.053.001.08 the party is wrapped in a Party50Choice (Pty | Agt);
+    // before that Nm sat directly on Dbtr. Support both layouts.
+    debtorName = parsePartyName(transactionDetail.RltdPties.Dbtr);
   }
   if (transactionDetail.RltdPties?.DbtrAcct) {
     debtorAccount = parseAccount(transactionDetail.RltdPties.DbtrAcct);
@@ -302,7 +349,7 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
   let creditorAccount;
   let creditorAgent;
   if (transactionDetail.RltdPties?.Cdtr) {
-    creditorName = transactionDetail.RltdPties.Cdtr.Nm;
+    creditorName = parsePartyName(transactionDetail.RltdPties.Cdtr);
   }
   if (transactionDetail.RltdPties?.CdtrAcct) {
     creditorAccount = parseAccount(transactionDetail.RltdPties.CdtrAcct);
@@ -326,7 +373,9 @@ const parseTransactionDetail = (transactionDetail: any): Transaction => {
     paymentInformationId,
     remittanceInformation,
     proprietaryPurpose,
+    purposeCode,
     returnReason,
+    returnReasonSource,
     returnAdditionalInformation,
     debtor,
     creditor,
@@ -344,11 +393,22 @@ const exportTransactionDetails = (tx: Transaction): any => {
     RmtInf: {
       Ustrd: tx.remittanceInformation,
     },
-    Purp: {
-      Prtry: tx.proprietaryPurpose,
-    },
+    // Purpose2Choice is Cd | Prtry and must have exactly one child, so omit the
+    // element entirely when neither is set rather than emitting an empty <Purp/>.
+    Purp: tx.purposeCode
+      ? { Cd: tx.purposeCode }
+      : tx.proprietaryPurpose
+        ? { Prtry: tx.proprietaryPurpose }
+        : undefined,
     RtrInf: {
-      Rsn: tx.returnReason,
+      // Write the ReturnReason5Choice branch back. Prtry is the safe default for
+      // an unknown source: any Max35Text is valid there, whereas Cd is limited
+      // to the external return-reason code list.
+      Rsn: tx.returnReason
+        ? tx.returnReasonSource === 'code'
+          ? { Cd: tx.returnReason }
+          : { Prtry: tx.returnReason }
+        : undefined,
       AddtlInf: tx.returnAdditionalInformation,
     },
   };
@@ -372,7 +432,9 @@ const exportTransactionDetails = (tx: Transaction): any => {
       },
       CdtrAcct: tx.creditor.account ? exportAccount(tx.creditor.account) : undefined,
     };
+    // Spread, or the creditor block silently overwrites the DbtrAgt set above.
     obj.RltdAgts = {
+      ...obj.RltdAgts,
       CdtrAgt: tx.creditor.agent ? exportAgent(tx.creditor.agent) : undefined,
     };
   }
