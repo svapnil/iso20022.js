@@ -19,6 +19,7 @@ type AtLeastOne<T> = [T, ...T[]];
  * @property {AtLeastOne<RTPCreditPaymentInstruction>} paymentInstructions - Array containing at least one payment instruction for the RTP credit transfer.
  * @property {string} [messageId] - Optional unique identifier for the message. If not provided, a UUID will be generated.
  * @property {Date} [creationDate] - Optional creation date for the message. If not provided, current date will be used.
+ * @property {Date} [requestedExecutionDate] - Optional requested execution date for the payment. If not provided, the creation date will be used.
  */
 export interface RTPCreditPaymentInitiationConfig {
     /** The party initiating the RTP credit transfer. */
@@ -29,6 +30,8 @@ export interface RTPCreditPaymentInitiationConfig {
     messageId?: string
     /** Optional creation date for the message. If not provided, current date will be used. */
     creationDate?: Date
+    /** Optional requested execution date for the payment. If not provided, the creation date will be used. */
+    requestedExecutionDate?: Date
 }
 
 /**
@@ -57,6 +60,7 @@ export class RTPCreditPaymentInitiation extends PaymentInitiation {
     public paymentInstructions: AtLeastOne<RTPCreditPaymentInstruction>
     public messageId: string
     public creationDate: Date
+    public requestedExecutionDate: Date
     public paymentInformationId: string;
     private formattedPaymentSum: string;
     constructor(config: RTPCreditPaymentInitiationConfig) {
@@ -65,6 +69,7 @@ export class RTPCreditPaymentInitiation extends PaymentInitiation {
         this.paymentInstructions = config.paymentInstructions;
         this.messageId = config.messageId || uuidv4().replace(/-/g, '');
         this.creationDate = config.creationDate || new Date();
+        this.requestedExecutionDate = config.requestedExecutionDate || this.creationDate;
         this.paymentInformationId = sanitize(uuidv4(), 35);
         this.formattedPaymentSum = this.sumPaymentInstructions(this.paymentInstructions as AtLeastOne<RTPCreditPaymentInstruction>);
         this.validate();
@@ -172,7 +177,7 @@ export class RTPCreditPaymentInitiation extends PaymentInitiation {
                             SvcLvl: { Cd: 'URNS' },
                             LclInstrm: { Prtry: "RTP" },
                         },
-                        ReqdExctnDt: this.creationDate.toISOString().split('T').at(0),
+                        ReqdExctnDt: this.requestedExecutionDate.toISOString().split('T').at(0),
                         Dbtr: this.party(this.initiatingParty),
                         DbtrAcct: this.account(this.initiatingParty.account as Account),
                         DbtrAgt: this.agent(this.initiatingParty.agent as Agent),
@@ -206,6 +211,10 @@ export class RTPCreditPaymentInitiation extends PaymentInitiation {
         if (Array.isArray(xml.Document.CstmrCdtTrfInitn.PmtInf)) {
             throw new Error('Multiple PmtInf is not supported');
         }
+
+        // Fall back to the creation date when ReqdExctnDt is missing or not a parseable date
+        const rawExecutionDate = new Date(xml.Document.CstmrCdtTrfInitn.PmtInf.ReqdExctnDt as string);
+        const requestedExecutionDate = isNaN(rawExecutionDate.getTime()) ? undefined : rawExecutionDate;
 
         // Assuming we have one PmtInf / one Debtor, we can hack together this information from InitgPty / Dbtr
         const initiatingParty = {
@@ -250,6 +259,7 @@ export class RTPCreditPaymentInitiation extends PaymentInitiation {
         return new RTPCreditPaymentInitiation({
             messageId: messageId,
             creationDate: creationDate,
+            requestedExecutionDate: requestedExecutionDate,
             initiatingParty: initiatingParty,
             paymentInstructions: paymentInstructions
         });

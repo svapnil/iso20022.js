@@ -26,6 +26,7 @@ type AtLeastOne<T> = [T, ...T[]];
  * @property {AtLeastOne<SWIFTCreditPaymentInstruction>} paymentInstructions - An array of payment instructions.
  * @property {string} [messageId] - Optional unique identifier for the message. If not provided, a UUID will be generated.
  * @property {Date} [creationDate] - Optional creation date for the message. If not provided, current date will be used.
+ * @property {Date} [requestedExecutionDate] - Optional requested execution date for the payment. If not provided, the creation date will be used.
  */
 export interface SWIFTCreditPaymentInitiationConfig {
   /** The party initiating the payment. */
@@ -36,6 +37,8 @@ export interface SWIFTCreditPaymentInitiationConfig {
   messageId?: string;
   /** Optional creation date for the message. If not provided, current date will be used. */
   creationDate?: Date;
+  /** Optional requested execution date for the payment. If not provided, the creation date will be used. */
+  requestedExecutionDate?: Date;
 }
 
 /**
@@ -61,6 +64,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
   public initiatingParty: Party;
   public messageId: string;
   public creationDate: Date;
+  public requestedExecutionDate: Date;
   public paymentInstructions: SWIFTCreditPaymentInstruction[];
   public paymentInformationId: string;
 
@@ -75,6 +79,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
     this.messageId =
       config.messageId || uuidv4().replace(/-/g, '').substring(0, 35);
     this.creationDate = config.creationDate || new Date();
+    this.requestedExecutionDate = config.requestedExecutionDate || this.creationDate;
     this.paymentInformationId = sanitize(uuidv4(), 35);
     this.validate();
   }
@@ -166,6 +171,9 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
 
     const messageId = xml.Document.CstmrCdtTrfInitn.GrpHdr.MsgId as string;
     const creationDate = new Date(xml.Document.CstmrCdtTrfInitn.GrpHdr.CreDtTm as string);
+    // Fall back to the creation date when ReqdExctnDt is missing or not a parseable date
+    const rawExecutionDate = new Date(xml.Document.CstmrCdtTrfInitn.PmtInf.ReqdExctnDt as string);
+    const requestedExecutionDate = isNaN(rawExecutionDate.getTime()) ? undefined : rawExecutionDate;
 
     // Parse and validate accounts
     // Create base initiating party
@@ -218,6 +226,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
     return new SWIFTCreditPaymentInitiation({
       messageId,
       creationDate,
+      requestedExecutionDate,
       initiatingParty: baseInitiatingParty,
       paymentInstructions: paymentInstructions as AtLeastOne<SWIFTCreditPaymentInstruction>
     });
@@ -258,7 +267,7 @@ export class SWIFTCreditPaymentInitiation extends PaymentInitiation {
                 Cd: 'URGP',
               },
             },
-            ReqdExctnDt: this.creationDate.toISOString().split('T')[0], // TODO: Check time zone eventually
+            ReqdExctnDt: this.requestedExecutionDate.toISOString().split('T')[0], // TODO: Check time zone eventually
             Dbtr: this.party(this.initiatingParty),
             DbtrAcct: this.account(this.initiatingParty.account as Account),
             DbtrAgt: this.agent(this.initiatingParty.agent as BICAgent),

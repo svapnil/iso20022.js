@@ -19,6 +19,7 @@ type AtLeastOne<T> = [T, ...T[]];
  * @property {AtLeastOne<SEPACreditPaymentInstruction>} paymentInstructions - An array containing at least one payment instruction for SEPA credit transfer.
  * @property {string} [messageId] - Optional unique identifier for the message. If not provided, a UUID will be generated.
  * @property {Date} [creationDate] - Optional creation date for the message. If not provided, current date will be used.
+ * @property {Date} [requestedExecutionDate] - Optional requested execution date for the payment. If not provided, the creation date will be used.
  * @property {ExternalCategoryPurpose} [categoryPurpose] - Optional category purpose code following ISO20022 ExternalCategoryPurpose1Code standard.
  */
 export interface SEPACreditPaymentInitiationConfig {
@@ -30,6 +31,8 @@ export interface SEPACreditPaymentInitiationConfig {
   messageId?: string;
   /** Optional creation date for the message. If not provided, current date will be used. */
   creationDate?: Date;
+  /** Optional requested execution date for the payment. If not provided, the creation date will be used. */
+  requestedExecutionDate?: Date;
   /** Optional category purpose code following ISO20022 ExternalCategoryPurpose1Code standard */
   categoryPurpose?: ExternalCategoryPurpose;
 }
@@ -59,6 +62,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
   public initiatingParty: Party;
   public messageId: string;
   public creationDate: Date;
+  public requestedExecutionDate: Date;
   public paymentInstructions: AtLeastOne<SEPACreditPaymentInstruction>;
   public paymentInformationId: string;
   public categoryPurpose?: ExternalCategoryPurpose;
@@ -74,6 +78,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
     this.paymentInstructions = config.paymentInstructions;
     this.messageId = config.messageId || uuidv4().replace(/-/g, '');
     this.creationDate = config.creationDate || new Date();
+    this.requestedExecutionDate = config.requestedExecutionDate || this.creationDate;
     this.formattedPaymentSum = this.sumPaymentInstructions(this.paymentInstructions as AtLeastOne<SEPACreditPaymentInstruction>);
     this.paymentInformationId = sanitize(uuidv4(), 35);
     this.categoryPurpose = config.categoryPurpose;
@@ -198,7 +203,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
                 CtgyPurp: { Cd: this.categoryPurpose }
               }),
             },
-            ReqdExctnDt: this.creationDate.toISOString().split('T').at(0),
+            ReqdExctnDt: this.requestedExecutionDate.toISOString().split('T').at(0),
             Dbtr: this.party(this.initiatingParty),
             DbtrAcct: this.account(this.initiatingParty.account as Account),
             DbtrAgt: this.agent(this.initiatingParty.agent as Agent),
@@ -232,6 +237,10 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
     if (Array.isArray(xml.Document.CstmrCdtTrfInitn.PmtInf)) {
       throw new Error('Multiple PmtInf is not supported');
     }
+
+    // Fall back to the creation date when ReqdExctnDt is missing or not a parseable date
+    const rawExecutionDate = new Date(xml.Document.CstmrCdtTrfInitn.PmtInf.ReqdExctnDt as string);
+    const requestedExecutionDate = isNaN(rawExecutionDate.getTime()) ? undefined : rawExecutionDate;
 
     // Assuming we have one PmtInf / one Debtor, we can hack together this information from InitgPty / Dbtr
     const initiatingParty = {
@@ -276,6 +285,7 @@ export class SEPACreditPaymentInitiation extends PaymentInitiation {
     return new SEPACreditPaymentInitiation({
       messageId: messageId,
       creationDate: creationDate,
+      requestedExecutionDate: requestedExecutionDate,
       initiatingParty: initiatingParty,
       paymentInstructions: paymentInstructions
     });
